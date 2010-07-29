@@ -1,0 +1,15 @@
+--- voltdb.php.old	2010-07-26 16:06:06.907246218 -0400
++++ voltdb.php	2010-07-26 16:06:50.848904902 -0400
+@@ -1540,11 +1540,7 @@
+ 		default: $r=ClientNative_create($listener);
+ 		}
+ 		if (is_resource($r)) {
+-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+-			if (!class_exists($c)) {
+-				return new ClientNative($r);
+-			}
+-			return new $c($r);
++			return new ClientNative($r);
+ 		}
+ 		return $r;
+ 	}

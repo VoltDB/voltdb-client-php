@@ -1,0 +1,81 @@
+###################
+# 1. Introduction #
+###################
+
+The VoltDB PHP wrapper lets you connect to and interact with VoltDB servers from PHP. Most of the code for this wrapper is generated automatically from the C++ client library code using SWIG.
+
+This is the overall build process that this package manages:
+
+  --------------          ---------------         ---------------
+  | C++ client |  (SWIG)  | PHP wrapper |  (g++)  | PHP wrapper |
+  |  library   |--------->|    source   |-------->|  extension  |
+  --------------          ---------------         ---------------
+
+The repository contains pre-generated PHP wrapper source so that you don't have to install and run SWIG yourself.
+
+########################
+# 2. Required Software #
+########################
+
+  * PHP
+    http://php.net/
+    Install PHP as well as the php-devel package which allows you to compile your own PHP extensions.
+
+  * VoltDB C++ Client Library
+    https://svn.voltdb.com/clientapi/cpp/
+    Do a checkout of this repository and build it.
+
+  * OpenSSL
+    http://www.openssl.org/
+    Refer to the VoltDB C++ Client Library README for installation details.
+
+  * libevent 2.0.5
+    http://www.monkey.org/~provos/libevent/
+    Refer to the VoltDB C++ Client Library README for installation details.
+
+  * Boost C++ Libraries
+    http://www.boost.org/
+    Refer to the VoltDB C++ Client Library README for installation details.
+
+###################
+# 3. Installation #
+###################
+
+The build file needs to know where the required libraries are installed. Open build.xml in a text editor and edit the first two properties to point to the correct locations on your system.
+
+With that done, simply run ant without any arguments from the root directory. It will do its thing for a few seconds (there will be warnings in the output, this is fine) and if it succeeds, a dist directory will be created and it will contain two files, voltdb.so and voltdb.php.
+
+To get PHP to recognize the new extension, it needs to know where to find voltdb.so. Edit your php.ini file to include this line:
+
+    extension=${path.to.voltphp}/trunk/dist/voltdb.so
+
+Where ${path.to.voltphp} is where you checked this repository out to. Alternatively, you could move or symlink voltdb.so to PHP's default extension directory and not have to list a full path.
+
+Note that if you are running PHP through a web server such as Apache (instead of command line), you will have to restart/reload the server for the new php.ini changes to take effect.
+
+##############
+# 4. Running #
+##############
+
+With the extension loaded into PHP, include the voltdb.php file at the top of your script. This file contains proxy classes for interacting with a VoltDB server. Look at the examples directory to see how to use the PHP wrapper.
+
+#################
+# 5. Bugs/TODOs #
+#################
+
+This wrapper is still very much in the development phase, so not all features are fully supported. This includes:
+
+  * Status listeners
+    Providing a status listener can cause a seg fault when a status listener callback is invoked.
+
+  * Exceptions in callbacks
+    When running asynchronously, you will get an error if you try to throw an exception in your callback function.
+
+  * Exceptions from C++
+    Exceptions that are thrown in C++ (such as when trying to connect to a server that does not exist) appear in PHP, but are inconsistent compared to the C API.
+
+  * Parameters arrays
+    Arrays of parameters are supported using vector wrappers, but they aren't tested.
+
+  * int64_t and Decimal
+    int64_t doesn't work because PHP doesn't support 64-bit integers. Decimal isn't tested.

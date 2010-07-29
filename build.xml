@@ -1,0 +1,116 @@
+<project name="VoltDB PHP wrapper" default="dist">
+
+    <!-- change these properties to point to the correct library locations on your system -->
+    <property name="lib.voltcpp" location="${user.home}/clientapi/cpp/trunk/Library Release" />
+    <property name="lib.event" location="${user.home}/lib" />
+
+    <property name="src" location="src" />
+    <property name="tests" location="tests" />
+    <property name="bin" location="bin" />
+    <property name="dist" location="dist" />
+
+    <!--
+        ******************
+        MAIN BUILD TARGETS
+        ******************
+    -->
+
+    <target name="php" description="Compiles the VoltDB PHP Wrapper from the SWIG-generated source code.">
+        <!-- prepare output locations -->
+        <mkdir dir="${bin}" />
+        <mkdir dir="${bin}/cpp" />
+
+        <!-- compile -->
+        <exec executable="php-config" outputproperty="php.includes" failonerror="true">
+            <arg value="--includes" />
+        </exec>
+        <exec executable="g++" failonerror="true">
+            <arg value="-g3" />
+            <arg value="-O3" />
+            <arg value="-fpic" />
+            <arg line="${php.includes}" />
+            <arg value="-I${lib.voltcpp}/../include" />
+            <arg value="-DBOOST_SP_DISABLE_THREADS" />
+            <arg value="-D__STDC_LIMIT_MACROS" />
+            <arg value="-c" />
+            <arg value="${src}/cpp/voltdb_wrap.cpp" />
+            <arg value="-o" />
+            <arg value="${bin}/cpp/voltdb_wrap.o" />
+        </exec>
+
+        <!-- build shared library -->
+        <exec executable="g++" failonerror="true">
+            <arg value="-g3" />
+            <arg value="-O3" />
+            <arg value="-shared" />
+            <arg value="${bin}/cpp/voltdb_wrap.o" />
+            <arg value="-L${lib.voltcpp}" />
+            <arg value="-L${lib.event}" />
+            <arg value="-Xlinker" />
+            <arg value="-rpath=${lib.voltcpp}:${lib.event}" />
+            <arg value="-lvoltcpp" />
+            <arg value="-levent" />
+            <arg value="-lssl" />
+            <arg value="-o" />
+            <arg value="${bin}/cpp/voltdb.so" />
+        </exec>
+    </target>
+
+    <target name="dist" depends="php" description="Copies the compiled VoltDB PHP Wrapper code into the dist directory.">
+        <!-- prepare output location -->
+        <mkdir dir="${dist}" />
+
+        <!-- copy files -->
+        <copy file="${bin}/cpp/voltdb.so" todir="${dist}" />
+        <copy file="${src}/php/voltdb.php" todir="${dist}" />
+    </target>
+
+    <target name="clean">
+        <!-- remove generated directories -->
+        <delete dir="${bin}" />
+        <delete dir="${dist}" />
+    </target>
+
+    <!--
+        **********************
+        OPTIONAL BUILD TARGETS
+        **********************
+    -->
+
+    <target name="phpunit" description="Runs PHPUnit tests.">
+        <!-- run all tests -->
+        <apply executable="phpunit">
+            <fileset dir="${tests}" />
+        </apply>
+    </target>
+
+    <target name="swig" description="Generates the VoltDB PHP Wrapper source code from the Voltdb C++ Client Library using SWIG.">
+        <!-- run swig -->
+        <exec executable="swig" failonerror="true">
+            <arg value="-I${lib.voltcpp}/../include" />
+            <arg value="-c++" />
+            <arg value="-php5" />
+            <arg value="-outdir" />
+            <arg value="${src}/php" />
+            <arg value="-o" />
+            <arg value="${src}/cpp/voltdb_wrap.cpp" />
+            <arg value="${src}/swig/voltdb.i" />
+        </exec>
+        <move file="${src}/php/php_voltdb.h" todir="${src}/cpp" />
+
+        <!-- swig fixes -->
+        <exec executable="sed">
+            <arg value="-i" />
+            <arg value="s/zend_error_noreturn/zend_error/g" />
+            <arg value="${src}/cpp/voltdb_wrap.cpp" />
+        </exec>
+        <exec executable="patch" dir="${src}/php" input="${src}/swig/voltdb.php.patch">
+            <arg value="--no-backup-if-mismatch" />
+            <arg value="-p0" />
+        </exec>
+        <exec executable="cat" output="${src}/php/voltdb.php" append="true">
+            <arg value="${src}/swig/extras.php" />
+        </exec>
+    </target>
+
+</project>
