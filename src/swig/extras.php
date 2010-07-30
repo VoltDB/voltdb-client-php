@@ -29,6 +29,7 @@ class Client {
 
     private $native;
     private $listener;
+    private $callbackIndex = 0;
     private $callbacks = array();
 
     private function __construct($native, $listener = null) {
@@ -45,13 +46,14 @@ class Client {
     }
 
     public function invokeAsync($procedure, $callback) {
-        $wrapper = new ProcedureCallbackWrapper($this, $callback);
-        $this->callbacks[spl_object_hash($wrapper)] = $wrapper;
+        $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
+        $this->callbacks[$this->callbackIndex] = $wrapper;
+        $this->callbackIndex++;
         return $this->native->invokeAsync($procedure, $wrapper);
     }
 
-    public function invoked($callback) {
-        unset($this->callbacks[spl_object_hash($callback)]);
+    public function invoked($index) {
+        unset($this->callbacks[$index]);
     }
 
     public function runOnce() {
@@ -90,19 +92,19 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
 
     private $client;
     private $callback;
+    private $index;
 
-    public function __construct($client, $callback) {
+    public function __construct($client, $callback, $index) {
         parent::__construct();
         $this->client = $client;
         $this->callback = $callback;
+        $this->index = $index;
     }
 
     public function callback($response) {
-        $this->client->invoked($this);
+        $this->client->invoked($this->index);
         $retval = $this->callback->callback(new InvocationResponse($response));
         return $retval === null ? false : $retval;
     }
 
 }
-
-?>
