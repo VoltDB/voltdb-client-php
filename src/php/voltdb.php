@@ -231,6 +231,89 @@ class Tables {
 	}
 }
 
+class Columns {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_voltdb_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_voltdb_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	public function __construct($n=null) {
+		if (is_resource($n) && get_resource_type($n) === '_p_std__vectorT_voltdb__Column_t') {
+			$this->_cPtr=$n;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_Columns(); break;
+		default: $this->_cPtr=new_Columns($n);
+		}
+	}
+
+	public function size() {
+		return Columns_size($this->_cPtr);
+	}
+
+	public function capacity() {
+		return Columns_capacity($this->_cPtr);
+	}
+
+	public function reserve($n) {
+		Columns_reserve($this->_cPtr,$n);
+	}
+
+	public function clear() {
+		Columns_clear($this->_cPtr);
+	}
+
+	public function push($x) {
+		Columns_push($this->_cPtr,$x);
+	}
+
+	public function is_empty() {
+		return Columns_is_empty($this->_cPtr);
+	}
+
+	public function pop() {
+		$r=Columns_pop($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (!class_exists($c)) {
+				return new Column($r);
+			}
+			return new $c($r);
+		}
+		return $r;
+	}
+
+	public function get($i) {
+		$r=Columns_get($this->_cPtr,$i);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (!class_exists($c)) {
+				return new Column($r);
+			}
+			return new $c($r);
+		}
+		return $r;
+	}
+
+	public function set($i,$val) {
+		Columns_set($this->_cPtr,$i,$val);
+	}
+}
+
 class Int8Vector {
 	public $_cPtr=null;
 	protected $_pData=array();
@@ -2108,7 +2191,15 @@ class Row {
 	}
 
 	public function columns() {
-		return Row_columns($this->_cPtr);
+		$r=Row_columns($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (!class_exists($c)) {
+				return new Columns($r);
+			}
+			return new $c($r);
+		}
+		return $r;
 	}
 }
 
@@ -2202,7 +2293,15 @@ class Table {
 	}
 
 	public function columns() {
-		return Table_columns($this->_cPtr);
+		$r=Table_columns($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (!class_exists($c)) {
+				return new Columns($r);
+			}
+			return new $c($r);
+		}
+		return $r;
 	}
 
 	public function columnCount() {
@@ -2260,6 +2359,56 @@ abstract class StatusListenerNative {
 			$_this = $this;
 		}
 		$this->_cPtr=new_StatusListenerNative($_this);
+	}
+}
+
+class Column {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'm_name') return Column_m_name_set($this->_cPtr,$value);
+		if ($var === 'm_type') return Column_m_type_set($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_voltdb_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if (function_exists('Column_'.$var.'_set')) return true;
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		$func = 'Column_'.$var.'_get';
+		if (function_exists($func)) {
+			$r = call_user_func($func,$this->_cPtr);
+			if (!is_resource($r)) return $r;
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			return new $c($r);
+		}
+		if ($var === 'thisown') return swig_voltdb_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	public function __construct($name_or_type=null,$type=null) {
+		if (is_resource($name_or_type) && get_resource_type($name_or_type) === '_p_voltdb__Column') {
+			$this->_cPtr=$name_or_type;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_Column(); break;
+		case 1: $this->_cPtr=new_Column($name_or_type); break;
+		default: $this->_cPtr=new_Column($name_or_type,$type);
+		}
+	}
+
+	public function name() {
+		return Column_name($this->_cPtr);
+	}
+
+	public function type() {
+		return Column_type($this->_cPtr);
 	}
 }
 

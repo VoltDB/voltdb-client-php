@@ -56,6 +56,7 @@
 #include "TableIterator.h"
 #include "Table.h"
 #include "StatusListener.h"
+#include "Column.hpp"
 %}
 
 // types
@@ -71,6 +72,7 @@ typedef signed long int int64_t;
 %include "std_vector.i"
 %template(Parameters) std::vector<voltdb::Parameter>;
 %template(Tables) std::vector<voltdb::Table>;
+%template(Columns) std::vector<voltdb::Column>;
 
 %template(Int8Vector) std::vector<int8_t>;
 %template(Int16Vector) std::vector<int16_t>;
@@ -100,3 +102,4 @@ typedef signed long int int64_t;
 %include "TableIterator.h"
 %include "Table.h"
 %include "StatusListener.h"
+%include "Column.hpp"
