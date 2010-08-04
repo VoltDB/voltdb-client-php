@@ -112,9 +112,6 @@
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
         </exec>
-        <exec executable="cat" output="${src}/php/voltdb.php" append="true">
-            <arg value="${src}/swig/extras.php" />
-        </exec>
     </target>
 
 </project>

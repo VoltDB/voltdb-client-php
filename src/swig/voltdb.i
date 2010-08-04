@@ -103,3 +103,92 @@ typedef signed long int int64_t;
 %include "Table.h"
 %include "StatusListener.h"
 %include "Column.hpp"
+
+%pragma(php) code="
+/* Client wrapper class */
+
+class Client {
+
+    private $native;
+    private $listener;
+    private $callbackIndex = 0;
+    private $callbacks = array();
+
+    private function __construct($native, $listener = null) {
+        $this->native = $native;
+        $this->listener = $listener;
+    }
+
+    public function createConnection($hostname, $username = '', $password = '', $port = 21212) {
+        $this->native->createConnection($hostname, $username, $password, $port);
+    }
+
+    public function invoke($procedure) {
+        return $this->native->invoke($procedure);
+    }
+
+    public function invokeAsync($procedure, $callback) {
+        $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
+        $this->callbacks[$this->callbackIndex] = $wrapper;
+        $this->callbackIndex++;
+        return $this->native->invokeAsync($procedure, $wrapper);
+    }
+
+    public function invoked($index) {
+        unset($this->callbacks[$index]);
+    }
+
+    public function runOnce() {
+        return $this->native->runOnce();
+    }
+
+    public function run() {
+        return $this->native->run();
+    }
+
+    public function drain() {
+        return $this->native->drain();
+    }
+
+    public static function create($listener = null) {
+        switch (func_num_args()) {
+            case 0:
+                return new Client(ClientNative::create());
+            case 1:
+                $wrapper = new StatusListenerWrapper($listener);
+                return new Client(ClientNative::create($wrapper), $wrapper);
+        }
+    }
+
+}
+
+/* Callback wrapper classes */
+
+abstract class ProcedureCallback {
+
+    public abstract function callback($response);
+
+}
+
+class ProcedureCallbackWrapper extends ProcedureCallbackNative {
+
+    private $client;
+    private $callback;
+    private $index;
+
+    public function __construct($client, $callback, $index) {
+        parent::__construct();
+        $this->client = $client;
+        $this->callback = $callback;
+        $this->index = $index;
+    }
+
+    public function callback($response) {
+        $this->client->invoked($this->index);
+        $retval = $this->callback->callback(new InvocationResponse($response));
+        $response = null; // avoids memory leak
+        return $retval === null ? false : $retval;
+    }
+
+}
+"
