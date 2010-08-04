@@ -104,6 +104,7 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
     public function callback($response) {
         $this->client->invoked($this->index);
         $retval = $this->callback->callback(new InvocationResponse($response));
+        $response = null; // avoids memory leak
         return $retval === null ? false : $retval;
     }
 

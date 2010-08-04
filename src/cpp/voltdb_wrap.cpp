@@ -869,6 +869,7 @@ SWIG_ZTS_SetPointerZval(zval *z, void *ptr, swig_type_info *type, int newobject 
       Z_SET_REFCOUNT_P(z, 1);
       Z_SET_ISREF_P(z);
       zend_hash_update(HASH_OF(z), (char*)"_cPtr", sizeof("_cPtr"), (void*)&resource, sizeof(zval), NULL);
+      efree(classname->value.str.val);
       FREE_ZVAL(classname);
     }
     return;

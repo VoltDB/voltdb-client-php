@@ -79,6 +79,3 @@ This wrapper is still very much in the development phase, so not all features ar
 
   * int64_t and Decimal
     int64_t doesn't work because PHP doesn't support 64-bit integers. Decimal isn't tested.
-
-  * Memory leaks
-    There is a memory leak when invoking procedures asynchronously.

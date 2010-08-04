@@ -1,0 +1,10 @@
+--- voltdb_wrap.cpp.new	2010-08-04 09:22:34.108072456 -0400
++++ voltdb_wrap.cpp	2010-08-04 09:18:28.586408603 -0400
+@@ -869,6 +869,7 @@
+       Z_SET_REFCOUNT_P(z, 1);
+       Z_SET_ISREF_P(z);
+       zend_hash_update(HASH_OF(z), (char*)"_cPtr", sizeof("_cPtr"), (void*)&resource, sizeof(zval), NULL);
++      efree(classname->value.str.val);
+       FREE_ZVAL(classname);
+     }
+     return;

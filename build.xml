@@ -104,6 +104,10 @@
             <arg value="s/zend_error_noreturn/zend_error/g" />
             <arg value="${src}/cpp/voltdb_wrap.cpp" />
         </exec>
+        <exec executable="patch" dir="${src}/cpp" input="${src}/swig/voltdb_wrap.cpp.patch">
+            <arg value="--no-backup-if-mismatch" />
+            <arg value="-p0" />
+        </exec>
         <exec executable="patch" dir="${src}/php" input="${src}/swig/voltdb.php.patch">
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
