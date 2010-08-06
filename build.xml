@@ -1,11 +1,13 @@
+<?xml version="1.0" ?>
 <project name="VoltDB PHP wrapper" default="dist">
 
     <!-- change these properties to point to the correct library locations on your system -->
     <property name="lib.voltcpp" location="${user.home}/clientapi/cpp/trunk/Library Release" />
     <property name="lib.event" location="${user.home}/lib" />
+    <property name="lib.voltdb" location="${user.home}/voltdb" />
 
     <property name="src" location="src" />
-    <property name="tests" location="tests" />
+    <property name="test" location="test" />
     <property name="bin" location="bin" />
     <property name="dist" location="dist" />
 
@@ -69,6 +71,8 @@
         <!-- remove generated directories -->
         <delete dir="${bin}" />
         <delete dir="${dist}" />
+        <delete dir="${test}/tmp" />
+        <delete dir="debugoutput" />
     </target>
 
     <!--
@@ -77,11 +81,26 @@
         **********************
     -->
 
-    <target name="phpunit" description="Runs PHPUnit tests.">
+    <target name="phpunit" depends="servercheck" description="Runs PHPUnit tests.">
+        <!-- prepare tmp directory -->
+        <delete dir="${test}/tmp" />
+        <mkdir dir="${test}/tmp" />
+
+        <!-- make voltdb location available -->
+        <exec executable="echo" output="test/tmp/voltdb.txt" failonerror="true">
+            <arg line="${lib.voltdb}" />
+        </exec>
+
         <!-- run all tests -->
-        <apply executable="phpunit">
-            <fileset dir="${tests}" />
-        </apply>
+        <exec executable="phpunit" failonerror="true">
+            <arg value="--bootstrap" />
+            <arg value="${test}/util/bootstrap.php" />
+            <arg value="--include-path" />
+            <arg value="${basedir}" />
+            <arg value="--verbose" />
+            <arg line="-d foo=bar" />
+            <arg value="${test}/tests" />
+        </exec>
     </target>
 
     <target name="swig" description="Generates the VoltDB PHP Wrapper source code from the Voltdb C++ Client Library using SWIG.">
@@ -111,6 +130,18 @@
         <exec executable="patch" dir="${src}/php" input="${src}/swig/voltdb.php.patch">
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
+        </exec>
+    </target>
+
+    <target name="servercheck" description="Checks whether a VoltDB server is running.">
+        <exec executable="bash" failonerror="true">
+            <arg value="${src}/scripts/servercheck.sh" />
+        </exec>
+    </target>
+
+    <target name="serverkill" description="Kills any running VoltDB servers.">
+        <exec executable="bash" failonerror="true">
+            <arg value="${src}/scripts/serverkill.sh" />
         </exec>
     </target>
 

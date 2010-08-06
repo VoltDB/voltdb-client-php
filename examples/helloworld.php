@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-require('../dist/voltdb.php');
+require_once('../dist/voltdb.php');
 
 // Instantiate a client and connect to the database.
 $client = Client::create();

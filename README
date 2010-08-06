@@ -17,6 +17,8 @@ The repository contains pre-generated PHP wrapper source so that you don't have 
 # 2. Required Software #
 ########################
 
+The following software is required for both end-users and developers:
+
   * PHP
     http://php.net/
     Install PHP as well as the php-devel package which allows you to compile your own PHP extensions.
@@ -37,8 +39,26 @@ The repository contains pre-generated PHP wrapper source so that you don't have 
     http://www.boost.org/
     Refer to the VoltDB C++ Client Library README for installation details.
 
+########################
+# 3. Optional Software #
+########################
+
+The following software is optional for end-users, but required for developers:
+
+  * VoltDB
+    https://svn.voltdb.com/eng/
+    The core VoltDB project is used to start VoltDB servers to run unit tests against.
+  
+  * PHPUnit
+    http://www.phpunit.de/
+    PHPUnit is used to run PHP unit tests.
+
+  * SWIG
+    http://www.swig.org/
+    SWIG is used to generate the PHP wrapper source.
+
 ###################
-# 3. Installation #
+# 4. Installation #
 ###################
 
 The build file needs to know where the required libraries are installed. Open build.xml in a text editor and edit the first two properties to point to the correct locations on your system.
@@ -54,13 +74,13 @@ Where ${path.to.voltphp} is where you checked this repository out to. Alternativ
 Note that if you are running PHP through a web server such as Apache (instead of command line), you will have to restart/reload the server for the new php.ini changes to take effect.
 
 ##############
-# 4. Running #
+# 5. Running #
 ##############
 
 With the extension loaded into PHP, include the voltdb.php file at the top of your script. This file contains proxy classes for interacting with a VoltDB server. Look at the examples directory to see how to use the PHP wrapper.
 
 #################
-# 5. Bugs/TODOs #
+# 6. Bugs/TODOs #
 #################
 
 This wrapper is still very much in the development phase, so not all features are fully supported. This includes:
