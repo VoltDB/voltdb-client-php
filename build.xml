@@ -6,11 +6,6 @@
     <property name="lib.event" location="${user.home}/lib" />
     <property name="lib.voltdb" location="${user.home}/voltdb" />
 
-    <property name="src" location="src" />
-    <property name="test" location="test" />
-    <property name="bin" location="bin" />
-    <property name="dist" location="dist" />
-
     <!--
         ******************
         MAIN BUILD TARGETS
@@ -19,8 +14,8 @@
 
     <target name="php" description="Compiles the VoltDB PHP Wrapper from the SWIG-generated source code.">
         <!-- prepare output locations -->
-        <mkdir dir="${bin}" />
-        <mkdir dir="${bin}/cpp" />
+        <mkdir dir="bin" />
+        <mkdir dir="bin/cpp" />
 
         <!-- compile -->
         <exec executable="php-config" outputproperty="php.includes" failonerror="true">
@@ -34,10 +29,8 @@
             <arg value="-I${lib.voltcpp}/../include" />
             <arg value="-DBOOST_SP_DISABLE_THREADS" />
             <arg value="-D__STDC_LIMIT_MACROS" />
-            <arg value="-c" />
-            <arg value="${src}/cpp/voltdb_wrap.cpp" />
-            <arg value="-o" />
-            <arg value="${bin}/cpp/voltdb_wrap.o" />
+            <arg line="-c src/cpp/voltdb_wrap.cpp" />
+            <arg line="-o bin/cpp/voltdb_wrap.o" />
         </exec>
 
         <!-- build shared library -->
@@ -45,33 +38,32 @@
             <arg value="-g3" />
             <arg value="-O3" />
             <arg value="-shared" />
-            <arg value="${bin}/cpp/voltdb_wrap.o" />
             <arg value="-L${lib.voltcpp}" />
             <arg value="-L${lib.event}" />
-            <arg value="-Xlinker" />
+            <arg line="-Xlinker" />
             <arg value="-rpath=${lib.voltcpp}:${lib.event}" />
             <arg value="-lvoltcpp" />
             <arg value="-levent" />
             <arg value="-lssl" />
-            <arg value="-o" />
-            <arg value="${bin}/cpp/voltdb.so" />
+            <arg value="bin/cpp/voltdb_wrap.o" />
+            <arg line="-o bin/cpp/voltdb.so" />
         </exec>
     </target>
 
     <target name="dist" depends="php" description="Copies the compiled VoltDB PHP Wrapper code into the dist directory.">
         <!-- prepare output location -->
-        <mkdir dir="${dist}" />
+        <mkdir dir="dist" />
 
         <!-- copy files -->
-        <copy file="${bin}/cpp/voltdb.so" todir="${dist}" />
-        <copy file="${src}/php/voltdb.php" todir="${dist}" />
+        <copy file="bin/cpp/voltdb.so" todir="dist" />
+        <copy file="src/php/voltdb.php" todir="dist" />
     </target>
 
     <target name="clean">
         <!-- remove generated directories -->
-        <delete dir="${bin}" />
-        <delete dir="${dist}" />
-        <delete dir="${test}/tmp" />
+        <delete dir="bin" />
+        <delete dir="dist" />
+        <delete dir="test/tmp" />
         <delete dir="debugoutput" />
     </target>
 
@@ -83,8 +75,8 @@
 
     <target name="phpunit" depends="servercheck" description="Runs PHPUnit tests.">
         <!-- prepare tmp directory -->
-        <delete dir="${test}/tmp" />
-        <mkdir dir="${test}/tmp" />
+        <delete dir="test/tmp" />
+        <mkdir dir="test/tmp" />
 
         <!-- make voltdb location available -->
         <exec executable="echo" output="test/tmp/voltdb.txt" failonerror="true">
@@ -93,13 +85,10 @@
 
         <!-- run all tests -->
         <exec executable="phpunit" failonerror="true">
-            <arg value="--bootstrap" />
-            <arg value="${test}/util/bootstrap.php" />
-            <arg value="--include-path" />
-            <arg value="${basedir}" />
+            <arg line="--bootstrap test/util/bootstrap.php" />
+            <arg line="--include-path ${basedir}" />
             <arg value="--verbose" />
-            <arg line="-d foo=bar" />
-            <arg value="${test}/tests" />
+            <arg value="test/tests" />
         </exec>
     </target>
 
@@ -109,25 +98,23 @@
             <arg value="-I${lib.voltcpp}/../include" />
             <arg value="-c++" />
             <arg value="-php5" />
-            <arg value="-outdir" />
-            <arg value="${src}/php" />
-            <arg value="-o" />
-            <arg value="${src}/cpp/voltdb_wrap.cpp" />
-            <arg value="${src}/swig/voltdb.i" />
+            <arg line="-outdir src/php" />
+            <arg line="-o src/cpp/voltdb_wrap.cpp" />
+            <arg value="src/swig/voltdb.i" />
         </exec>
-        <move file="${src}/php/php_voltdb.h" todir="${src}/cpp" />
+        <move file="src/php/php_voltdb.h" todir="src/cpp" />
 
         <!-- swig fixes -->
         <exec executable="sed">
             <arg value="-i" />
             <arg value="s/zend_error_noreturn/zend_error/g" />
-            <arg value="${src}/cpp/voltdb_wrap.cpp" />
+            <arg value="src/cpp/voltdb_wrap.cpp" />
         </exec>
-        <exec executable="patch" dir="${src}/cpp" input="${src}/swig/voltdb_wrap.cpp.patch">
+        <exec executable="patch" dir="src/cpp" input="src/swig/voltdb_wrap.cpp.patch">
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
         </exec>
-        <exec executable="patch" dir="${src}/php" input="${src}/swig/voltdb.php.patch">
+        <exec executable="patch" dir="src/php" input="src/swig/voltdb.php.patch">
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
         </exec>
@@ -135,13 +122,13 @@
 
     <target name="servercheck" description="Checks whether a VoltDB server is running.">
         <exec executable="bash" failonerror="true">
-            <arg value="${src}/scripts/servercheck.sh" />
+            <arg value="src/scripts/servercheck.sh" />
         </exec>
     </target>
 
     <target name="serverkill" description="Kills any running VoltDB servers.">
         <exec executable="bash" failonerror="true">
-            <arg value="${src}/scripts/serverkill.sh" />
+            <arg value="src/scripts/serverkill.sh" />
         </exec>
     </target>
 
