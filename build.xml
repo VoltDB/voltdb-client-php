@@ -40,7 +40,7 @@
             <arg value="-shared" />
             <arg value="-L${lib.voltcpp}" />
             <arg value="-L${lib.event}" />
-            <arg line="-Xlinker" />
+            <arg value="-Xlinker" />
             <arg value="-rpath=${lib.voltcpp}:${lib.event}" />
             <arg value="-lvoltcpp" />
             <arg value="-levent" />
@@ -73,6 +73,8 @@
         **********************
     -->
 
+    <target name="check" depends="clean, swig, dist, phpunit" description="Verifies overall project integrity. This should pass before committing." />
+
     <target name="phpunit" depends="servercheck" description="Runs PHPUnit tests.">
         <!-- prepare tmp directory -->
         <delete dir="test/tmp" />
@@ -91,6 +93,24 @@
             <arg value="test/tests" />
         </exec>
     </target>
+
+    <target name="servercheck" description="Checks whether a VoltDB server is running.">
+        <exec executable="bash" failonerror="true">
+            <arg value="src/scripts/servercheck.sh" />
+        </exec>
+    </target>
+
+    <target name="serverkill" description="Kills any running VoltDB servers.">
+        <exec executable="bash" failonerror="true">
+            <arg value="src/scripts/serverkill.sh" />
+        </exec>
+    </target>
+
+    <!--
+        *************************
+        DEVELOPMENT BUILD TARGETS
+        *************************
+    -->
 
     <target name="swig" description="Generates the VoltDB PHP Wrapper source code from the Voltdb C++ Client Library using SWIG.">
         <!-- run swig -->
@@ -117,18 +137,6 @@
         <exec executable="patch" dir="src/php" input="src/swig/voltdb.php.patch">
             <arg value="--no-backup-if-mismatch" />
             <arg value="-p0" />
-        </exec>
-    </target>
-
-    <target name="servercheck" description="Checks whether a VoltDB server is running.">
-        <exec executable="bash" failonerror="true">
-            <arg value="src/scripts/servercheck.sh" />
-        </exec>
-    </target>
-
-    <target name="serverkill" description="Kills any running VoltDB servers.">
-        <exec executable="bash" failonerror="true">
-            <arg value="src/scripts/serverkill.sh" />
         </exec>
     </target>
 
