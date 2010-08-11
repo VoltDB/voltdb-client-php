@@ -44,15 +44,6 @@
 }
 */
 
-%include "exception.i"
-%exception {
-    try {
-      $action
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-}
-
 %{
 #include "Exception.hpp"
 #include "WireType.h"
@@ -71,6 +62,33 @@
 #include "Column.hpp"
 #include "ConnectionPool.h"
 %}
+
+// exceptions
+%define PHP_EXCEPTION(NAME)
+%typemap(throws) NAME %{
+    std::string name = "NAME";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+        name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+            zend_fetch_class(name.c_str(), name.length(), 0),
+            const_cast<char*>($1.what()),
+            0 TSRMLS_CC);
+%}
+%enddef
+PHP_EXCEPTION(voltdb::Exception);
+PHP_EXCEPTION(voltdb::NullPointerException);
+PHP_EXCEPTION(voltdb::InvalidColumnException);
+PHP_EXCEPTION(voltdb::OverflowUnderflowException);
+PHP_EXCEPTION(voltdb::IndexOutOfBoundsException);
+PHP_EXCEPTION(voltdb::NonExpandableBufferException);
+PHP_EXCEPTION(voltdb::UninitializedParamsException);
+PHP_EXCEPTION(voltdb::ParamMismatchException);
+PHP_EXCEPTION(voltdb::NoMoreRowsException);
+PHP_EXCEPTION(voltdb::StringToDecimalException);
+PHP_EXCEPTION(voltdb::ConnectException);
+PHP_EXCEPTION(voltdb::NoConnectionsException);
+PHP_EXCEPTION(voltdb::LibEventException);
 
 // types
 typedef signed char int8_t;

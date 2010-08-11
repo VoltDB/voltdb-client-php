@@ -1349,17 +1349,6 @@ namespace Swig {
 
 #endif
 
-#if PHP_MAJOR_VERSION < 5
-# define SWIG_exception(code, msg) { zend_error(E_ERROR, msg); }
-#else
-# include "zend_exceptions.h"
-# define SWIG_exception(code, msg) { zend_throw_exception(NULL, (char*)msg, code TSRMLS_CC); }
-#endif
-
-
-#include <stdexcept>
-
-
 #include "Exception.hpp"
 #include "WireType.h"
 #include "Parameter.hpp"
@@ -1376,6 +1365,17 @@ namespace Swig {
 #include "StatusListener.h"
 #include "Column.hpp"
 #include "ConnectionPool.h"
+
+
+#if PHP_MAJOR_VERSION < 5
+# define SWIG_exception(code, msg) { zend_error(E_ERROR, msg); }
+#else
+# include "zend_exceptions.h"
+# define SWIG_exception(code, msg) { zend_throw_exception(NULL, (char*)msg, code TSRMLS_CC); }
+#endif
+
+
+#include <stdexcept>
 
 
 #include <string>
@@ -3303,13 +3303,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameters__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< voltdb::Parameter > *)new std::vector< voltdb::Parameter >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Parameter > *)new std::vector< voltdb::Parameter >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Parameter_t, 1);
   
@@ -3335,13 +3329,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameters__SWIG_1) {
   arg1 = (std::vector< voltdb::Parameter >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< voltdb::Parameter > *)new std::vector< voltdb::Parameter >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Parameter > *)new std::vector< voltdb::Parameter >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Parameter_t, 1);
   
@@ -3390,13 +3378,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Parameter > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Parameter > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -3422,13 +3404,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Parameter > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Parameter > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -3460,13 +3436,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_reserve) {
   arg2 = (std::vector< voltdb::Parameter >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -3489,13 +3459,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -3524,13 +3488,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_push) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of Parameters_push. Expected SWIGTYPE_p_voltdb__Parameter");
     }
   }
-  {
-    try {
-      (arg1)->push_back((std::vector< voltdb::Parameter >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< voltdb::Parameter >::value_type const &)*arg2);
   
   return;
 fail:
@@ -3554,13 +3512,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_voltdb_Parameter_Sg__is_empty((std::vector< voltdb::Parameter > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_voltdb_Parameter_Sg__is_empty((std::vector< voltdb::Parameter > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -3586,22 +3538,16 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = std_vector_Sl_voltdb_Parameter_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = std_vector_Sl_voltdb_Parameter_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Parameter * resultobj = new voltdb::Parameter((const voltdb::Parameter &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Parameter, 1);
@@ -3635,22 +3581,16 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< voltdb::Parameter >::value_type *) &std_vector_Sl_voltdb_Parameter_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< voltdb::Parameter >::value_type *) &std_vector_Sl_voltdb_Parameter_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Parameter, 0);
   
@@ -3688,22 +3628,16 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_set) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of Parameters_set. Expected SWIGTYPE_p_voltdb__Parameter");
     }
   }
-  {
-    try {
-      try {
-        std_vector_Sl_voltdb_Parameter_Sg__set(arg1,arg2,(voltdb::Parameter const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_voltdb_Parameter_Sg__set(arg1,arg2,(voltdb::Parameter const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -3723,13 +3657,7 @@ static void __wrap_delete_Parameters(zend_rsrc_list_entry *rsrc, const char *typ
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< voltdb::Parameter > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_voltdb__Parameter_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(voltdb::Parameter)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -3744,13 +3672,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Tables__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< voltdb::Table > *)new std::vector< voltdb::Table >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Table > *)new std::vector< voltdb::Table >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Table_t, 1);
   
@@ -3776,13 +3698,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Tables__SWIG_1) {
   arg1 = (std::vector< voltdb::Table >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< voltdb::Table > *)new std::vector< voltdb::Table >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Table > *)new std::vector< voltdb::Table >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Table_t, 1);
   
@@ -3831,13 +3747,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Table > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Table > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -3863,13 +3773,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Table > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Table > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -3901,13 +3805,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_reserve) {
   arg2 = (std::vector< voltdb::Table >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -3930,13 +3828,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -3965,13 +3857,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_push) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of Tables_push. Expected SWIGTYPE_p_voltdb__Table");
     }
   }
-  {
-    try {
-      (arg1)->push_back((std::vector< voltdb::Table >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< voltdb::Table >::value_type const &)*arg2);
   
   return;
 fail:
@@ -3995,13 +3881,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_voltdb_Table_Sg__is_empty((std::vector< voltdb::Table > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_voltdb_Table_Sg__is_empty((std::vector< voltdb::Table > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -4027,22 +3907,16 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = std_vector_Sl_voltdb_Table_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = std_vector_Sl_voltdb_Table_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Table * resultobj = new voltdb::Table((const voltdb::Table &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Table, 1);
@@ -4076,22 +3950,16 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< voltdb::Table >::value_type *) &std_vector_Sl_voltdb_Table_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< voltdb::Table >::value_type *) &std_vector_Sl_voltdb_Table_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Table, 0);
   
@@ -4129,22 +3997,16 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_set) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of Tables_set. Expected SWIGTYPE_p_voltdb__Table");
     }
   }
-  {
-    try {
-      try {
-        std_vector_Sl_voltdb_Table_Sg__set(arg1,arg2,(voltdb::Table const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_voltdb_Table_Sg__set(arg1,arg2,(voltdb::Table const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -4164,13 +4026,7 @@ static void __wrap_delete_Tables(zend_rsrc_list_entry *rsrc, const char *type_na
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< voltdb::Table > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_voltdb__Table_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(voltdb::Table)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -4185,13 +4041,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Columns__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< voltdb::Column > *)new std::vector< voltdb::Column >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Column > *)new std::vector< voltdb::Column >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Column_t, 1);
   
@@ -4217,13 +4067,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Columns__SWIG_1) {
   arg1 = (std::vector< voltdb::Column >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< voltdb::Column > *)new std::vector< voltdb::Column >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Column > *)new std::vector< voltdb::Column >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Column_t, 1);
   
@@ -4272,13 +4116,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Column > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Column > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4304,13 +4142,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Column > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Column > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4342,13 +4174,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_reserve) {
   arg2 = (std::vector< voltdb::Column >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -4371,13 +4197,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -4406,13 +4226,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_push) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of Columns_push. Expected SWIGTYPE_p_voltdb__Column");
     }
   }
-  {
-    try {
-      (arg1)->push_back((std::vector< voltdb::Column >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< voltdb::Column >::value_type const &)*arg2);
   
   return;
 fail:
@@ -4436,13 +4250,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_voltdb_Column_Sg__is_empty((std::vector< voltdb::Column > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_voltdb_Column_Sg__is_empty((std::vector< voltdb::Column > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -4468,22 +4276,16 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = std_vector_Sl_voltdb_Column_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = std_vector_Sl_voltdb_Column_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Column * resultobj = new voltdb::Column((const voltdb::Column &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Column, 1);
@@ -4517,22 +4319,16 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< voltdb::Column >::value_type *) &std_vector_Sl_voltdb_Column_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< voltdb::Column >::value_type *) &std_vector_Sl_voltdb_Column_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Column, 0);
   
@@ -4570,22 +4366,16 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_set) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of Columns_set. Expected SWIGTYPE_p_voltdb__Column");
     }
   }
-  {
-    try {
-      try {
-        std_vector_Sl_voltdb_Column_Sg__set(arg1,arg2,(voltdb::Column const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_voltdb_Column_Sg__set(arg1,arg2,(voltdb::Column const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -4605,13 +4395,7 @@ static void __wrap_delete_Columns(zend_rsrc_list_entry *rsrc, const char *type_n
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< voltdb::Column > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_voltdb__Column_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(voltdb::Column)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -4626,13 +4410,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int8Vector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< int8_t > *)new std::vector< int8_t >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int8_t > *)new std::vector< int8_t >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_signed_char_t, 1);
   
@@ -4658,13 +4436,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int8Vector__SWIG_1) {
   arg1 = (std::vector< signed char >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< int8_t > *)new std::vector< int8_t >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int8_t > *)new std::vector< int8_t >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_signed_char_t, 1);
   
@@ -4713,13 +4485,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int8_t > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int8_t > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4745,13 +4511,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int8_t > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int8_t > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4783,13 +4543,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_reserve) {
   arg2 = (std::vector< signed char >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -4812,13 +4566,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -4850,13 +4598,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_push) {
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< signed char >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< signed char >::value_type const &)*arg2);
   
   return;
 fail:
@@ -4880,13 +4622,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_int8_t_Sg__is_empty((std::vector< signed char > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_int8_t_Sg__is_empty((std::vector< signed char > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -4912,22 +4648,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (signed char)std_vector_Sl_int8_t_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (signed char)std_vector_Sl_int8_t_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4960,22 +4690,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< signed char >::value_type *) &std_vector_Sl_int8_t_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< signed char >::value_type *) &std_vector_Sl_int8_t_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,*result);
   }
@@ -5016,22 +4740,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_set) {
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_int8_t_Sg__set(arg1,arg2,(signed char const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_int8_t_Sg__set(arg1,arg2,(signed char const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -5051,13 +4769,7 @@ static void __wrap_delete_Int8Vector(zend_rsrc_list_entry *rsrc, const char *typ
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< int8_t > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_signed_char_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(int8_t)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -5072,13 +4784,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int16Vector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< int16_t > *)new std::vector< int16_t >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int16_t > *)new std::vector< int16_t >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_short_t, 1);
   
@@ -5104,13 +4810,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int16Vector__SWIG_1) {
   arg1 = (std::vector< short >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< int16_t > *)new std::vector< int16_t >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int16_t > *)new std::vector< int16_t >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_short_t, 1);
   
@@ -5159,13 +4859,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int16_t > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int16_t > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5191,13 +4885,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int16_t > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int16_t > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5229,13 +4917,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_reserve) {
   arg2 = (std::vector< short >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -5258,13 +4940,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -5296,13 +4972,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_push) {
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< short >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< short >::value_type const &)*arg2);
   
   return;
 fail:
@@ -5326,13 +4996,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_int16_t_Sg__is_empty((std::vector< short > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_int16_t_Sg__is_empty((std::vector< short > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -5358,22 +5022,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (short)std_vector_Sl_int16_t_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (short)std_vector_Sl_int16_t_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5406,22 +5064,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< short >::value_type *) &std_vector_Sl_int16_t_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< short >::value_type *) &std_vector_Sl_int16_t_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,*result);
   }
@@ -5462,22 +5114,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_set) {
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_int16_t_Sg__set(arg1,arg2,(short const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_int16_t_Sg__set(arg1,arg2,(short const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -5497,13 +5143,7 @@ static void __wrap_delete_Int16Vector(zend_rsrc_list_entry *rsrc, const char *ty
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< int16_t > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_short_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(int16_t)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -5518,13 +5158,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int32Vector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< int32_t > *)new std::vector< int32_t >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int32_t > *)new std::vector< int32_t >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_int_t, 1);
   
@@ -5550,13 +5184,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int32Vector__SWIG_1) {
   arg1 = (std::vector< int >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< int32_t > *)new std::vector< int32_t >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int32_t > *)new std::vector< int32_t >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_int_t, 1);
   
@@ -5605,13 +5233,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int32_t > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int32_t > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5637,13 +5259,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int32_t > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int32_t > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5675,13 +5291,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_reserve) {
   arg2 = (std::vector< int >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -5704,13 +5314,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -5742,13 +5346,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_push) {
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< int >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< int >::value_type const &)*arg2);
   
   return;
 fail:
@@ -5772,13 +5370,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_int32_t_Sg__is_empty((std::vector< int > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_int32_t_Sg__is_empty((std::vector< int > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -5804,22 +5396,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (int)std_vector_Sl_int32_t_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int)std_vector_Sl_int32_t_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5852,22 +5438,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< int >::value_type *) &std_vector_Sl_int32_t_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< int >::value_type *) &std_vector_Sl_int32_t_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,*result);
   }
@@ -5908,22 +5488,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_set) {
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_int32_t_Sg__set(arg1,arg2,(int const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_int32_t_Sg__set(arg1,arg2,(int const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -5943,13 +5517,7 @@ static void __wrap_delete_Int32Vector(zend_rsrc_list_entry *rsrc, const char *ty
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< int32_t > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_int_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(int32_t)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -5964,13 +5532,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int64Vector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< int64_t > *)new std::vector< int64_t >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int64_t > *)new std::vector< int64_t >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_long_t, 1);
   
@@ -5996,13 +5558,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int64Vector__SWIG_1) {
   arg1 = (std::vector< long >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< int64_t > *)new std::vector< int64_t >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< int64_t > *)new std::vector< int64_t >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_long_t, 1);
   
@@ -6051,13 +5607,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int64_t > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int64_t > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6083,13 +5633,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< int64_t > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< int64_t > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6121,13 +5665,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_reserve) {
   arg2 = (std::vector< long >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -6150,13 +5688,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -6188,13 +5720,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_push) {
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< long >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< long >::value_type const &)*arg2);
   
   return;
 fail:
@@ -6218,13 +5744,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_int64_t_Sg__is_empty((std::vector< long > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_int64_t_Sg__is_empty((std::vector< long > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6250,22 +5770,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (long)std_vector_Sl_int64_t_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (long)std_vector_Sl_int64_t_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6298,22 +5812,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< long >::value_type *) &std_vector_Sl_int64_t_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< long >::value_type *) &std_vector_Sl_int64_t_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,*result);
   }
@@ -6354,22 +5862,16 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_set) {
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_int64_t_Sg__set(arg1,arg2,(long const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_int64_t_Sg__set(arg1,arg2,(long const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -6389,13 +5891,7 @@ static void __wrap_delete_Int64Vector(zend_rsrc_list_entry *rsrc, const char *ty
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< int64_t > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_long_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(int64_t)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -6410,13 +5906,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DoubleVector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< double > *)new std::vector< double >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< double > *)new std::vector< double >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_double_t, 1);
   
@@ -6442,13 +5932,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DoubleVector__SWIG_1) {
   arg1 = (std::vector< double >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< double > *)new std::vector< double >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< double > *)new std::vector< double >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_double_t, 1);
   
@@ -6497,13 +5981,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< double > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< double > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6529,13 +6007,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< double > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< double > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6567,13 +6039,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_reserve) {
   arg2 = (std::vector< double >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -6596,13 +6062,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -6634,13 +6094,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_push) {
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< double >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< double >::value_type const &)*arg2);
   
   return;
 fail:
@@ -6664,13 +6118,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_double_Sg__is_empty((std::vector< double > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_double_Sg__is_empty((std::vector< double > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6696,22 +6144,16 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (double)std_vector_Sl_double_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (double)std_vector_Sl_double_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -6744,22 +6186,16 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< double >::value_type *) &std_vector_Sl_double_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< double >::value_type *) &std_vector_Sl_double_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,*result);
   }
@@ -6800,22 +6236,16 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_set) {
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_double_Sg__set(arg1,arg2,(double const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_double_Sg__set(arg1,arg2,(double const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -6835,13 +6265,7 @@ static void __wrap_delete_DoubleVector(zend_rsrc_list_entry *rsrc, const char *t
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< double > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_double_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(double)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -6856,13 +6280,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_StringVector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< std::string > *)new std::vector< std::string >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< std::string > *)new std::vector< std::string >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_std__string_t, 1);
   
@@ -6888,13 +6306,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_StringVector__SWIG_1) {
   arg1 = (std::vector< std::string >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< std::string > *)new std::vector< std::string >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< std::string > *)new std::vector< std::string >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_std__string_t, 1);
   
@@ -6943,13 +6355,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< std::string > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< std::string > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6975,13 +6381,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< std::string > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< std::string > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -7013,13 +6413,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_reserve) {
   arg2 = (std::vector< std::string >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -7042,13 +6436,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -7078,13 +6466,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_push) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  {
-    try {
-      (arg1)->push_back((std::vector< std::string >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< std::string >::value_type const &)*arg2);
   
   
   return;
@@ -7109,13 +6491,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_std_string_Sg__is_empty((std::vector< std::string > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_std_string_Sg__is_empty((std::vector< std::string > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7141,22 +6517,16 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = std_vector_Sl_std_string_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = std_vector_Sl_std_string_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7189,22 +6559,16 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< std::string >::value_type *) &std_vector_Sl_std_string_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< std::string >::value_type *) &std_vector_Sl_std_string_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
   
@@ -7243,22 +6607,16 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_set) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  {
-    try {
-      try {
-        std_vector_Sl_std_string_Sg__set(arg1,arg2,(std::string const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_std_string_Sg__set(arg1,arg2,(std::string const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   
   return;
@@ -7279,13 +6637,7 @@ static void __wrap_delete_StringVector(zend_rsrc_list_entry *rsrc, const char *t
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< std::string > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_std__string_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(std::string)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -7300,13 +6652,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DecimalVector__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (std::vector< voltdb::Decimal > *)new std::vector< voltdb::Decimal >();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Decimal > *)new std::vector< voltdb::Decimal >();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Decimal_t, 1);
   
@@ -7332,13 +6678,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DecimalVector__SWIG_1) {
   arg1 = (std::vector< voltdb::Decimal >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (std::vector< voltdb::Decimal > *)new std::vector< voltdb::Decimal >(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (std::vector< voltdb::Decimal > *)new std::vector< voltdb::Decimal >(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_voltdb__Decimal_t, 1);
   
@@ -7387,13 +6727,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_size) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Decimal > const *)arg1)->size();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Decimal > const *)arg1)->size();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -7419,13 +6753,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = ((std::vector< voltdb::Decimal > const *)arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = ((std::vector< voltdb::Decimal > const *)arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -7457,13 +6785,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_reserve) {
   arg2 = (std::vector< voltdb::Decimal >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      (arg1)->reserve(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reserve(arg2);
   
   return;
 fail:
@@ -7486,13 +6808,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->clear();
   
   return;
 fail:
@@ -7521,13 +6837,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_push) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of DecimalVector_push. Expected SWIGTYPE_p_voltdb__Decimal");
     }
   }
-  {
-    try {
-      (arg1)->push_back((std::vector< voltdb::Decimal >::value_type const &)*arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->push_back((std::vector< voltdb::Decimal >::value_type const &)*arg2);
   
   return;
 fail:
@@ -7551,13 +6861,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_is_empty) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)std_vector_Sl_voltdb_Decimal_Sg__is_empty((std::vector< voltdb::Decimal > const *)arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)std_vector_Sl_voltdb_Decimal_Sg__is_empty((std::vector< voltdb::Decimal > const *)arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7583,22 +6887,16 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_pop) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = std_vector_Sl_voltdb_Decimal_Sg__pop(arg1);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = std_vector_Sl_voltdb_Decimal_Sg__pop(arg1);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Decimal * resultobj = new voltdb::Decimal((const voltdb::Decimal &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Decimal, 1);
@@ -7632,22 +6930,16 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_get) {
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (std::vector< voltdb::Decimal >::value_type *) &std_vector_Sl_voltdb_Decimal_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (std::vector< voltdb::Decimal >::value_type *) &std_vector_Sl_voltdb_Decimal_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Decimal, 0);
   
@@ -7685,22 +6977,16 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_set) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of DecimalVector_set. Expected SWIGTYPE_p_voltdb__Decimal");
     }
   }
-  {
-    try {
-      try {
-        std_vector_Sl_voltdb_Decimal_Sg__set(arg1,arg2,(voltdb::Decimal const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    std_vector_Sl_voltdb_Decimal_Sg__set(arg1,arg2,(voltdb::Decimal const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   return;
 fail:
@@ -7720,13 +7006,7 @@ static void __wrap_delete_DecimalVector(zend_rsrc_list_entry *rsrc, const char *
   if (! newobject) return; /* can't delete it! */
   arg1 = (std::vector< voltdb::Decimal > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_voltdb__Decimal_t TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "std::vector<(voltdb::Decimal)> resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -7745,13 +7025,7 @@ static void __wrap_delete_c_Exception(zend_rsrc_list_entry *rsrc, const char *ty
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Exception *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Exception TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Exception resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -7778,16 +7052,10 @@ ZEND_NAMED_FUNCTION(_wrap_c_Exception_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::Exception const *)arg1)->voltdb::Exception::what();
-      } else {
-        result = (char *)((voltdb::Exception const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::Exception const *)arg1)->voltdb::Exception::what();
+  } else {
+    result = (char *)((voltdb::Exception const *)arg1)->what();
   }
   {
     if(!result) {
@@ -7814,19 +7082,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_c_Exception) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::Exception *)new voltdb::Exception();
-      } else {
-        result = (voltdb::Exception *)new SwigDirector_c_Exception(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::Exception *)new voltdb::Exception();
+  } else {
+    result = (voltdb::Exception *)new SwigDirector_c_Exception(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Exception, 1);
   
@@ -7848,19 +7110,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_NullPointerException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::NullPointerException *)new voltdb::NullPointerException();
-      } else {
-        result = (voltdb::NullPointerException *)new SwigDirector_NullPointerException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::NullPointerException *)new voltdb::NullPointerException();
+  } else {
+    result = (voltdb::NullPointerException *)new SwigDirector_NullPointerException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__NullPointerException, 1);
   
@@ -7890,16 +7146,10 @@ ZEND_NAMED_FUNCTION(_wrap_NullPointerException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::NullPointerException const *)arg1)->voltdb::NullPointerException::what();
-      } else {
-        result = (char *)((voltdb::NullPointerException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::NullPointerException const *)arg1)->voltdb::NullPointerException::what();
+  } else {
+    result = (char *)((voltdb::NullPointerException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -7926,13 +7176,7 @@ static void __wrap_delete_NullPointerException(zend_rsrc_list_entry *rsrc, const
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::NullPointerException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__NullPointerException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::NullPointerException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -7951,19 +7195,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_InvalidColumnException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::InvalidColumnException *)new voltdb::InvalidColumnException();
-      } else {
-        result = (voltdb::InvalidColumnException *)new SwigDirector_InvalidColumnException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::InvalidColumnException *)new voltdb::InvalidColumnException();
+  } else {
+    result = (voltdb::InvalidColumnException *)new SwigDirector_InvalidColumnException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__InvalidColumnException, 1);
   
@@ -7993,16 +7231,10 @@ ZEND_NAMED_FUNCTION(_wrap_InvalidColumnException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::InvalidColumnException const *)arg1)->voltdb::InvalidColumnException::what();
-      } else {
-        result = (char *)((voltdb::InvalidColumnException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::InvalidColumnException const *)arg1)->voltdb::InvalidColumnException::what();
+  } else {
+    result = (char *)((voltdb::InvalidColumnException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8029,13 +7261,7 @@ static void __wrap_delete_InvalidColumnException(zend_rsrc_list_entry *rsrc, con
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::InvalidColumnException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__InvalidColumnException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::InvalidColumnException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8054,19 +7280,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_OverflowUnderflowException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::OverflowUnderflowException *)new voltdb::OverflowUnderflowException();
-      } else {
-        result = (voltdb::OverflowUnderflowException *)new SwigDirector_OverflowUnderflowException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::OverflowUnderflowException *)new voltdb::OverflowUnderflowException();
+  } else {
+    result = (voltdb::OverflowUnderflowException *)new SwigDirector_OverflowUnderflowException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__OverflowUnderflowException, 1);
   
@@ -8096,16 +7316,10 @@ ZEND_NAMED_FUNCTION(_wrap_OverflowUnderflowException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::OverflowUnderflowException const *)arg1)->voltdb::OverflowUnderflowException::what();
-      } else {
-        result = (char *)((voltdb::OverflowUnderflowException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::OverflowUnderflowException const *)arg1)->voltdb::OverflowUnderflowException::what();
+  } else {
+    result = (char *)((voltdb::OverflowUnderflowException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8132,13 +7346,7 @@ static void __wrap_delete_OverflowUnderflowException(zend_rsrc_list_entry *rsrc,
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::OverflowUnderflowException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__OverflowUnderflowException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::OverflowUnderflowException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8157,19 +7365,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_IndexOutOfBoundsException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::IndexOutOfBoundsException *)new voltdb::IndexOutOfBoundsException();
-      } else {
-        result = (voltdb::IndexOutOfBoundsException *)new SwigDirector_IndexOutOfBoundsException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::IndexOutOfBoundsException *)new voltdb::IndexOutOfBoundsException();
+  } else {
+    result = (voltdb::IndexOutOfBoundsException *)new SwigDirector_IndexOutOfBoundsException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__IndexOutOfBoundsException, 1);
   
@@ -8199,16 +7401,10 @@ ZEND_NAMED_FUNCTION(_wrap_IndexOutOfBoundsException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::IndexOutOfBoundsException const *)arg1)->voltdb::IndexOutOfBoundsException::what();
-      } else {
-        result = (char *)((voltdb::IndexOutOfBoundsException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::IndexOutOfBoundsException const *)arg1)->voltdb::IndexOutOfBoundsException::what();
+  } else {
+    result = (char *)((voltdb::IndexOutOfBoundsException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8235,13 +7431,7 @@ static void __wrap_delete_IndexOutOfBoundsException(zend_rsrc_list_entry *rsrc, 
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::IndexOutOfBoundsException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__IndexOutOfBoundsException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::IndexOutOfBoundsException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8260,19 +7450,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_NonExpandableBufferException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::NonExpandableBufferException *)new voltdb::NonExpandableBufferException();
-      } else {
-        result = (voltdb::NonExpandableBufferException *)new SwigDirector_NonExpandableBufferException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::NonExpandableBufferException *)new voltdb::NonExpandableBufferException();
+  } else {
+    result = (voltdb::NonExpandableBufferException *)new SwigDirector_NonExpandableBufferException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__NonExpandableBufferException, 1);
   
@@ -8302,16 +7486,10 @@ ZEND_NAMED_FUNCTION(_wrap_NonExpandableBufferException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::NonExpandableBufferException const *)arg1)->voltdb::NonExpandableBufferException::what();
-      } else {
-        result = (char *)((voltdb::NonExpandableBufferException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::NonExpandableBufferException const *)arg1)->voltdb::NonExpandableBufferException::what();
+  } else {
+    result = (char *)((voltdb::NonExpandableBufferException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8338,13 +7516,7 @@ static void __wrap_delete_NonExpandableBufferException(zend_rsrc_list_entry *rsr
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::NonExpandableBufferException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__NonExpandableBufferException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::NonExpandableBufferException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8363,19 +7535,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_UninitializedParamsException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::UninitializedParamsException *)new voltdb::UninitializedParamsException();
-      } else {
-        result = (voltdb::UninitializedParamsException *)new SwigDirector_UninitializedParamsException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::UninitializedParamsException *)new voltdb::UninitializedParamsException();
+  } else {
+    result = (voltdb::UninitializedParamsException *)new SwigDirector_UninitializedParamsException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__UninitializedParamsException, 1);
   
@@ -8405,16 +7571,10 @@ ZEND_NAMED_FUNCTION(_wrap_UninitializedParamsException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::UninitializedParamsException const *)arg1)->voltdb::UninitializedParamsException::what();
-      } else {
-        result = (char *)((voltdb::UninitializedParamsException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::UninitializedParamsException const *)arg1)->voltdb::UninitializedParamsException::what();
+  } else {
+    result = (char *)((voltdb::UninitializedParamsException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8441,13 +7601,7 @@ static void __wrap_delete_UninitializedParamsException(zend_rsrc_list_entry *rsr
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::UninitializedParamsException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__UninitializedParamsException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::UninitializedParamsException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8466,19 +7620,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ParamMismatchException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ParamMismatchException *)new voltdb::ParamMismatchException();
-      } else {
-        result = (voltdb::ParamMismatchException *)new SwigDirector_ParamMismatchException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ParamMismatchException *)new voltdb::ParamMismatchException();
+  } else {
+    result = (voltdb::ParamMismatchException *)new SwigDirector_ParamMismatchException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParamMismatchException, 1);
   
@@ -8508,16 +7656,10 @@ ZEND_NAMED_FUNCTION(_wrap_ParamMismatchException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::ParamMismatchException const *)arg1)->voltdb::ParamMismatchException::what();
-      } else {
-        result = (char *)((voltdb::ParamMismatchException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::ParamMismatchException const *)arg1)->voltdb::ParamMismatchException::what();
+  } else {
+    result = (char *)((voltdb::ParamMismatchException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8544,13 +7686,7 @@ static void __wrap_delete_ParamMismatchException(zend_rsrc_list_entry *rsrc, con
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ParamMismatchException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ParamMismatchException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ParamMismatchException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8569,19 +7705,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_NoMoreRowsException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::NoMoreRowsException *)new voltdb::NoMoreRowsException();
-      } else {
-        result = (voltdb::NoMoreRowsException *)new SwigDirector_NoMoreRowsException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::NoMoreRowsException *)new voltdb::NoMoreRowsException();
+  } else {
+    result = (voltdb::NoMoreRowsException *)new SwigDirector_NoMoreRowsException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__NoMoreRowsException, 1);
   
@@ -8611,16 +7741,10 @@ ZEND_NAMED_FUNCTION(_wrap_NoMoreRowsException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::NoMoreRowsException const *)arg1)->voltdb::NoMoreRowsException::what();
-      } else {
-        result = (char *)((voltdb::NoMoreRowsException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::NoMoreRowsException const *)arg1)->voltdb::NoMoreRowsException::what();
+  } else {
+    result = (char *)((voltdb::NoMoreRowsException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8647,13 +7771,7 @@ static void __wrap_delete_NoMoreRowsException(zend_rsrc_list_entry *rsrc, const 
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::NoMoreRowsException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__NoMoreRowsException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::NoMoreRowsException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8672,19 +7790,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_StringToDecimalException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::StringToDecimalException *)new voltdb::StringToDecimalException();
-      } else {
-        result = (voltdb::StringToDecimalException *)new SwigDirector_StringToDecimalException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::StringToDecimalException *)new voltdb::StringToDecimalException();
+  } else {
+    result = (voltdb::StringToDecimalException *)new SwigDirector_StringToDecimalException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__StringToDecimalException, 1);
   
@@ -8714,16 +7826,10 @@ ZEND_NAMED_FUNCTION(_wrap_StringToDecimalException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::StringToDecimalException const *)arg1)->voltdb::StringToDecimalException::what();
-      } else {
-        result = (char *)((voltdb::StringToDecimalException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::StringToDecimalException const *)arg1)->voltdb::StringToDecimalException::what();
+  } else {
+    result = (char *)((voltdb::StringToDecimalException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8750,13 +7856,7 @@ static void __wrap_delete_StringToDecimalException(zend_rsrc_list_entry *rsrc, c
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::StringToDecimalException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__StringToDecimalException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::StringToDecimalException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8775,19 +7875,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ConnectException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ConnectException *)new voltdb::ConnectException();
-      } else {
-        result = (voltdb::ConnectException *)new SwigDirector_ConnectException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ConnectException *)new voltdb::ConnectException();
+  } else {
+    result = (voltdb::ConnectException *)new SwigDirector_ConnectException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ConnectException, 1);
   
@@ -8817,16 +7911,10 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::ConnectException const *)arg1)->voltdb::ConnectException::what();
-      } else {
-        result = (char *)((voltdb::ConnectException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::ConnectException const *)arg1)->voltdb::ConnectException::what();
+  } else {
+    result = (char *)((voltdb::ConnectException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8853,13 +7941,7 @@ static void __wrap_delete_ConnectException(zend_rsrc_list_entry *rsrc, const cha
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ConnectException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ConnectException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ConnectException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8878,19 +7960,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_NoConnectionsException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::NoConnectionsException *)new voltdb::NoConnectionsException();
-      } else {
-        result = (voltdb::NoConnectionsException *)new SwigDirector_NoConnectionsException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::NoConnectionsException *)new voltdb::NoConnectionsException();
+  } else {
+    result = (voltdb::NoConnectionsException *)new SwigDirector_NoConnectionsException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__NoConnectionsException, 1);
   
@@ -8920,16 +7996,10 @@ ZEND_NAMED_FUNCTION(_wrap_NoConnectionsException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::NoConnectionsException const *)arg1)->voltdb::NoConnectionsException::what();
-      } else {
-        result = (char *)((voltdb::NoConnectionsException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::NoConnectionsException const *)arg1)->voltdb::NoConnectionsException::what();
+  } else {
+    result = (char *)((voltdb::NoConnectionsException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -8956,13 +8026,7 @@ static void __wrap_delete_NoConnectionsException(zend_rsrc_list_entry *rsrc, con
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::NoConnectionsException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__NoConnectionsException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::NoConnectionsException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -8981,19 +8045,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_LibEventException) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::LibEventException *)new voltdb::LibEventException();
-      } else {
-        result = (voltdb::LibEventException *)new SwigDirector_LibEventException(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::LibEventException *)new voltdb::LibEventException();
+  } else {
+    result = (voltdb::LibEventException *)new SwigDirector_LibEventException(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__LibEventException, 1);
   
@@ -9023,16 +8081,10 @@ ZEND_NAMED_FUNCTION(_wrap_LibEventException_what) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (char *)((voltdb::LibEventException const *)arg1)->voltdb::LibEventException::what();
-      } else {
-        result = (char *)((voltdb::LibEventException const *)arg1)->what();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (char *)((voltdb::LibEventException const *)arg1)->voltdb::LibEventException::what();
+  } else {
+    result = (char *)((voltdb::LibEventException const *)arg1)->what();
   }
   {
     if(!result) {
@@ -9059,13 +8111,7 @@ static void __wrap_delete_LibEventException(zend_rsrc_list_entry *rsrc, const ch
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::LibEventException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__LibEventException TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::LibEventException resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -9088,13 +8134,7 @@ ZEND_NAMED_FUNCTION(_wrap_wireTypeToString) {
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = voltdb::wireTypeToString(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = voltdb::wireTypeToString(arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9112,13 +8152,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (voltdb::Parameter *)new voltdb::Parameter();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Parameter *)new voltdb::Parameter();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Parameter, 1);
   
@@ -9151,13 +8185,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_1) {
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::Parameter *)new voltdb::Parameter(arg1,arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Parameter *)new voltdb::Parameter(arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Parameter, 1);
   
@@ -9183,13 +8211,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_2) {
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::Parameter *)new voltdb::Parameter(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Parameter *)new voltdb::Parameter(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Parameter, 1);
   
@@ -9214,13 +8236,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_3) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_Parameter. Expected SWIGTYPE_p_voltdb__Parameter");
     }
   }
-  {
-    try {
-      result = (voltdb::Parameter *)new voltdb::Parameter((voltdb::Parameter const &)*arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Parameter *)new voltdb::Parameter((voltdb::Parameter const &)*arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Parameter, 1);
   
@@ -9397,13 +8413,7 @@ static void __wrap_delete_Parameter(zend_rsrc_list_entry *rsrc, const char *type
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Parameter *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Parameter TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Parameter resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -9426,13 +8436,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_flip) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::ByteBuffer *) &(arg1)->flip();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ByteBuffer *) &(arg1)->flip();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -9458,13 +8462,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_clear) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::ByteBuffer *) &(arg1)->clear();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ByteBuffer *) &(arg1)->clear();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -9507,22 +8505,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_0) {
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        (arg1)->get(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->get(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -9570,28 +8567,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_1) {
   arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        (arg1)->get(arg2,arg3,arg4);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->get(arg2,arg3,arg4);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -9681,22 +8682,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_0) {
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->put((char const *)arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->put((char const *)arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -9747,28 +8747,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_1) {
   arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->put(arg2,(char const *)arg3,arg4);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->put(arg2,(char const *)arg3,arg4);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -9800,22 +8804,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_2) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ByteBuffer_put. Expected SWIGTYPE_p_voltdb__ByteBuffer");
     }
   }
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->put(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->put(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -9905,22 +8908,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (int8_t)(arg1)->getInt8();
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int8_t)(arg1)->getInt8();
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9953,28 +8955,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (int8_t)(arg1)->getInt8(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int8_t)(arg1)->getInt8(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10043,22 +9049,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_0) {
   arg2 = (int8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt8(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt8(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10098,28 +9103,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_1) {
   arg3 = (int8_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt8(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt8(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10187,22 +9196,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (int16_t)(arg1)->getInt16();
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int16_t)(arg1)->getInt16();
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10235,28 +9243,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (int16_t)(arg1)->getInt16(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int16_t)(arg1)->getInt16(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10325,22 +9337,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_0) {
   arg2 = (int16_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt16(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt16(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10380,28 +9391,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_1) {
   arg3 = (int16_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt16(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt16(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10469,22 +9484,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (int32_t)(arg1)->getInt32();
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int32_t)(arg1)->getInt32();
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10517,28 +9531,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (int32_t)(arg1)->getInt32(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int32_t)(arg1)->getInt32(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10607,22 +9625,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt32(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt32(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10662,28 +9679,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_1) {
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt32(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt32(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10751,22 +9772,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (int64_t)(arg1)->getInt64();
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int64_t)(arg1)->getInt64();
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10799,28 +9819,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (int64_t)(arg1)->getInt64(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (int64_t)(arg1)->getInt64(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10889,22 +9913,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_0) {
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt64(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt64(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -10944,28 +9967,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_1) {
   arg3 = (int64_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putInt64(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putInt64(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11033,22 +10060,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (double)(arg1)->getDouble();
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (double)(arg1)->getDouble();
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -11081,28 +10107,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (double)(arg1)->getDouble(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (double)(arg1)->getDouble(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -11171,22 +10201,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_0) {
   arg2 = (double) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putDouble(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putDouble(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11226,28 +10255,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_1) {
   arg3 = (double) Z_DVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putDouble(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putDouble(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11321,22 +10354,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ByteBuffer_getString. Expected SWIGTYPE_p_bool");
     }
   }
-  {
-    try {
-      try {
-        result = (arg1)->getString(*arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->getString(*arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11375,28 +10407,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_1) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of ByteBuffer_getString. Expected SWIGTYPE_p_bool");
     }
   }
-  {
-    try {
-      try {
-        result = (arg1)->getString(arg2,*arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->getString(arg2,*arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11475,22 +10511,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_0) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putString(arg2);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putString(arg2);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11528,28 +10563,32 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_1) {
   convert_to_string_ex(args[2]);
   (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->putString(arg2,arg3);
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->putString(arg2,arg3);
   }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11619,13 +10658,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_position__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->position();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->position();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -11658,22 +10691,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_position__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->position(arg2);
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->position(arg2);
   }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11735,13 +10767,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_remaining) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->remaining();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->remaining();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -11767,13 +10793,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_hasRemaining) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->hasRemaining();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->hasRemaining();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -11799,13 +10819,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_limit__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->limit();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->limit();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -11838,22 +10852,21 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_limit__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (voltdb::ByteBuffer *) &(arg1)->limit(arg2);
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (voltdb::ByteBuffer *) &(arg1)->limit(arg2);
   }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 0);
   
@@ -11915,13 +10928,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_bytes) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (char *)(arg1)->bytes();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (char *)(arg1)->bytes();
   {
     if(!result) {
       ZVAL_NULL(return_value);
@@ -11951,13 +10958,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_slice) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->slice();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->slice();
   {
     voltdb::ByteBuffer * resultobj = new voltdb::ByteBuffer((const voltdb::ByteBuffer &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__ByteBuffer, 1);
@@ -11988,16 +10989,10 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_isExpandable) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (bool)(arg1)->voltdb::ByteBuffer::isExpandable();
-      } else {
-        result = (bool)(arg1)->isExpandable();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (bool)(arg1)->voltdb::ByteBuffer::isExpandable();
+  } else {
+    result = (bool)(arg1)->isExpandable();
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -12034,26 +11029,25 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemaining) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ByteBuffer::ensureRemaining(arg2);
-        } else {
-          (arg1)->ensureRemaining(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ByteBuffer::ensureRemaining(arg2);
+    } else {
+      (arg1)->ensureRemaining(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12087,26 +11081,25 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemainingExact) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ByteBuffer::ensureRemainingExact(arg2);
-        } else {
-          (arg1)->ensureRemainingExact(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ByteBuffer::ensureRemainingExact(arg2);
+    } else {
+      (arg1)->ensureRemainingExact(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12140,26 +11133,25 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacity) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ByteBuffer::ensureCapacity(arg2);
-        } else {
-          (arg1)->ensureCapacity(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ByteBuffer::ensureCapacity(arg2);
+    } else {
+      (arg1)->ensureCapacity(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12193,26 +11185,25 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacityExact) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ByteBuffer::ensureCapacityExact(arg2);
-        } else {
-          (arg1)->ensureCapacityExact(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ByteBuffer::ensureCapacityExact(arg2);
+    } else {
+      (arg1)->ensureCapacityExact(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12250,19 +11241,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ByteBuffer__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ByteBuffer *)new voltdb::ByteBuffer(arg1, arg2);
-      } else {
-        result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0, arg1, arg2);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ByteBuffer *)new voltdb::ByteBuffer(arg1, arg2);
+  } else {
+    result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0, arg1, arg2);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 1);
   
@@ -12290,19 +11275,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ByteBuffer__SWIG_1) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_ByteBuffer. Expected SWIGTYPE_p_voltdb__ByteBuffer");
     }
   }
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ByteBuffer *)new voltdb::ByteBuffer((voltdb::ByteBuffer const &)*arg1);
-      } else {
-        result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0, (voltdb::ByteBuffer const &)*arg1);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ByteBuffer *)new voltdb::ByteBuffer((voltdb::ByteBuffer const &)*arg1);
+  } else {
+    result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0, (voltdb::ByteBuffer const &)*arg1);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 1);
   
@@ -12324,13 +11303,7 @@ static void __wrap_delete_ByteBuffer(zend_rsrc_list_entry *rsrc, const char *typ
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ByteBuffer *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ByteBuffer TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ByteBuffer resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -12353,13 +11326,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_capacity) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->capacity();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->capacity();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -12381,19 +11348,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ByteBuffer__SWIG_2) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::ByteBuffer *)new SwigDirector_ByteBuffer(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ByteBuffer, 1);
   
@@ -12466,26 +11427,25 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemaining) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ExpandableByteBuffer::ensureRemaining(arg2);
-        } else {
-          (arg1)->ensureRemaining(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ExpandableByteBuffer::ensureRemaining(arg2);
+    } else {
+      (arg1)->ensureRemaining(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12519,26 +11479,25 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemainingExact) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ExpandableByteBuffer::ensureRemainingExact(arg2);
-        } else {
-          (arg1)->ensureRemainingExact(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ExpandableByteBuffer::ensureRemainingExact(arg2);
+    } else {
+      (arg1)->ensureRemainingExact(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12572,26 +11531,25 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacity) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ExpandableByteBuffer::ensureCapacity(arg2);
-        } else {
-          (arg1)->ensureCapacity(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ExpandableByteBuffer::ensureCapacity(arg2);
+    } else {
+      (arg1)->ensureCapacity(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12625,26 +11583,25 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacityExact) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        if (upcall) {
-          (arg1)->voltdb::ExpandableByteBuffer::ensureCapacityExact(arg2);
-        } else {
-          (arg1)->ensureCapacityExact(arg2);
-        }
-      }
-      catch(voltdb::NonExpandableBufferException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NonExpandableBufferException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      (arg1)->voltdb::ExpandableByteBuffer::ensureCapacityExact(arg2);
+    } else {
+      (arg1)->ensureCapacityExact(arg2);
     }
   }
+  catch(voltdb::NonExpandableBufferException &_e) {
+    std::string name = "voltdb::NonExpandableBufferException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -12672,16 +11629,10 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_isExpandable) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      if (upcall) {
-        result = (bool)(arg1)->voltdb::ExpandableByteBuffer::isExpandable();
-      } else {
-        result = (bool)(arg1)->isExpandable();
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    result = (bool)(arg1)->voltdb::ExpandableByteBuffer::isExpandable();
+  } else {
+    result = (bool)(arg1)->isExpandable();
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -12704,13 +11655,7 @@ static void __wrap_delete_ExpandableByteBuffer(zend_rsrc_list_entry *rsrc, const
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ExpandableByteBuffer *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ExpandableByteBuffer TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ExpandableByteBuffer resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -12735,19 +11680,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ExpandableByteBuffer__SWIG_0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_ExpandableByteBuffer. Expected SWIGTYPE_p_voltdb__ExpandableByteBuffer");
     }
   }
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0, (voltdb::ExpandableByteBuffer const &)*arg1);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0, (voltdb::ExpandableByteBuffer const &)*arg1);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ExpandableByteBuffer, 1);
   
@@ -12769,19 +11708,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ExpandableByteBuffer__SWIG_1) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ExpandableByteBuffer, 1);
   
@@ -12821,19 +11754,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ExpandableByteBuffer__SWIG_2) {
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0, arg1, arg2);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::ExpandableByteBuffer *)new SwigDirector_ExpandableByteBuffer(arg0, arg1, arg2);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ExpandableByteBuffer, 1);
   
@@ -12912,16 +11839,10 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_resetRef) {
   /*@SWIG@*/;
   
   darg = dynamic_cast<SwigDirector_ExpandableByteBuffer *>(arg1);
-  {
-    try {
-      if (upcall) {
-        Swig::DirectorPureVirtualException::raise("voltdb::ExpandableByteBuffer::resetRef");
-      } else {
-        (darg)->resetRef(arg2);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    Swig::DirectorPureVirtualException::raise("voltdb::ExpandableByteBuffer::resetRef");
+  } else {
+    (darg)->resetRef(arg2);
   }
   
   return;
@@ -12948,19 +11869,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_SharedByteBuffer. Expected SWIGTYPE_p_voltdb__SharedByteBuffer");
     }
   }
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer((voltdb::SharedByteBuffer const &)*arg1);
-      } else {
-        result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, (voltdb::SharedByteBuffer const &)*arg1);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer((voltdb::SharedByteBuffer const &)*arg1);
+  } else {
+    result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, (voltdb::SharedByteBuffer const &)*arg1);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__SharedByteBuffer, 1);
   
@@ -12982,19 +11897,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_1) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer();
-      } else {
-        result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer();
+  } else {
+    result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__SharedByteBuffer, 1);
   
@@ -13020,13 +11929,7 @@ ZEND_NAMED_FUNCTION(_wrap_SharedByteBuffer_slice) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->slice();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->slice();
   {
     voltdb::SharedByteBuffer * resultobj = new voltdb::SharedByteBuffer((const voltdb::SharedByteBuffer &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__SharedByteBuffer, 1);
@@ -13067,19 +11970,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_2) {
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer(arg1, arg2);
-      } else {
-        result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, arg1, arg2);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer(arg1, arg2);
+  } else {
+    result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, arg1, arg2);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__SharedByteBuffer, 1);
   
@@ -13116,19 +12013,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_3) {
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer(arg1, arg2);
-      } else {
-        result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, arg1, arg2);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::SharedByteBuffer *)new voltdb::SharedByteBuffer(arg1, arg2);
+  } else {
+    result = (voltdb::SharedByteBuffer *)new SwigDirector_SharedByteBuffer(arg0, arg1, arg2);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__SharedByteBuffer, 1);
   
@@ -13220,16 +12111,10 @@ ZEND_NAMED_FUNCTION(_wrap_SharedByteBuffer_resetRef) {
   /*@SWIG@*/;
   
   darg = dynamic_cast<SwigDirector_SharedByteBuffer *>(arg1);
-  {
-    try {
-      if (upcall) {
-        (darg)->resetRefSwigPublic(arg2);
-      } else {
-        (darg)->resetRef(arg2);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    (darg)->resetRefSwigPublic(arg2);
+  } else {
+    (darg)->resetRef(arg2);
   }
   
   return;
@@ -13250,13 +12135,7 @@ static void __wrap_delete_SharedByteBuffer(zend_rsrc_list_entry *rsrc, const cha
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::SharedByteBuffer *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__SharedByteBuffer TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::SharedByteBuffer resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -13282,19 +12161,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ScopedByteBuffer__SWIG_0) {
   arg1 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ScopedByteBuffer *)new voltdb::ScopedByteBuffer(arg1);
-      } else {
-        result = (voltdb::ScopedByteBuffer *)new SwigDirector_ScopedByteBuffer(arg0, arg1);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ScopedByteBuffer *)new voltdb::ScopedByteBuffer(arg1);
+  } else {
+    result = (voltdb::ScopedByteBuffer *)new SwigDirector_ScopedByteBuffer(arg0, arg1);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ScopedByteBuffer, 1);
   
@@ -13334,19 +12207,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ScopedByteBuffer__SWIG_1) {
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ScopedByteBuffer *)new voltdb::ScopedByteBuffer(arg1, arg2);
-      } else {
-        result = (voltdb::ScopedByteBuffer *)new SwigDirector_ScopedByteBuffer(arg0, arg1, arg2);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ScopedByteBuffer *)new voltdb::ScopedByteBuffer(arg1, arg2);
+  } else {
+    result = (voltdb::ScopedByteBuffer *)new SwigDirector_ScopedByteBuffer(arg0, arg1, arg2);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ScopedByteBuffer, 1);
   
@@ -13418,16 +12285,10 @@ ZEND_NAMED_FUNCTION(_wrap_ScopedByteBuffer_resetRef) {
   /*@SWIG@*/;
   
   darg = dynamic_cast<SwigDirector_ScopedByteBuffer *>(arg1);
-  {
-    try {
-      if (upcall) {
-        (darg)->resetRefSwigPublic(arg2);
-      } else {
-        (darg)->resetRef(arg2);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    (darg)->resetRefSwigPublic(arg2);
+  } else {
+    (darg)->resetRef(arg2);
   }
   
   return;
@@ -13448,13 +12309,7 @@ static void __wrap_delete_ScopedByteBuffer(zend_rsrc_list_entry *rsrc, const cha
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ScopedByteBuffer *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ScopedByteBuffer TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ScopedByteBuffer resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -13469,13 +12324,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Decimal__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (voltdb::Decimal *)new voltdb::Decimal();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Decimal *)new voltdb::Decimal();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Decimal, 1);
   
@@ -13499,13 +12348,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Decimal__SWIG_1) {
   convert_to_string_ex(args[0]);
   (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   
-  {
-    try {
-      result = (voltdb::Decimal *)new voltdb::Decimal(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Decimal *)new voltdb::Decimal(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Decimal, 1);
   
@@ -13529,13 +12372,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Decimal__SWIG_2) {
     convert_to_string_ex(args[0]);
     arg1 = (char *) Z_STRVAL_PP(args[0]);
   }
-  {
-    try {
-      result = (voltdb::Decimal *)new voltdb::Decimal(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Decimal *)new voltdb::Decimal(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Decimal, 1);
   
@@ -13596,13 +12433,7 @@ ZEND_NAMED_FUNCTION(_wrap_Decimal_getDecimal__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::TTInt *) &(arg1)->getDecimal();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::TTInt *) &(arg1)->getDecimal();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ttmath__IntT_4_t, 0);
   
@@ -13628,13 +12459,7 @@ ZEND_NAMED_FUNCTION(_wrap_Decimal_getDecimal__SWIG_1) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::TTInt *) &((voltdb::Decimal const *)arg1)->getDecimal();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::TTInt *) &((voltdb::Decimal const *)arg1)->getDecimal();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ttmath__IntT_4_t, 0);
   
@@ -13693,13 +12518,7 @@ ZEND_NAMED_FUNCTION(_wrap_Decimal_toString) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->toString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->toString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13725,13 +12544,7 @@ ZEND_NAMED_FUNCTION(_wrap_Decimal_isNull) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->isNull();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->isNull();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -13753,13 +12566,7 @@ static void __wrap_delete_Decimal(zend_rsrc_list_entry *rsrc, const char *type_n
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Decimal *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Decimal TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Decimal resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -13790,13 +12597,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDecimal__SWIG_0) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13830,13 +12631,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDecimal__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13914,13 +12709,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addTimestamp__SWIG_0) {
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13954,13 +12743,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addTimestamp__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14035,13 +12818,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt64__SWIG_0) {
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14075,13 +12852,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt64__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14156,13 +12927,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt32__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14196,13 +12961,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt32__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14277,13 +13036,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt16__SWIG_0) {
   arg2 = (int16_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14317,13 +13070,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt16__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14398,13 +13145,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt8__SWIG_0) {
   arg2 = (int8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14438,13 +13179,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt8__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14519,13 +13254,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDouble__SWIG_0) {
   arg2 = (double) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14559,13 +13288,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDouble__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14633,13 +13356,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addNull) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addNull();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addNull();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14670,13 +13387,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addString__SWIG_0) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14710,13 +13421,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addString__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14784,13 +13489,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_reset) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->reset();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->reset();
   
   return;
 fail:
@@ -14814,13 +13513,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_getSerializedSize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->getSerializedSize();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->getSerializedSize();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14842,13 +13535,7 @@ static void __wrap_delete_ParameterSet(zend_rsrc_list_entry *rsrc, const char *t
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ParameterSet *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ParameterSet TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ParameterSet resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -14877,13 +13564,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Procedure) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      result = (voltdb::Procedure *)new voltdb::Procedure(arg1,arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Procedure *)new voltdb::Procedure(arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Procedure, 1);
   
@@ -14909,13 +13590,7 @@ ZEND_NAMED_FUNCTION(_wrap_Procedure_params) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::ParameterSet *)(arg1)->params();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ParameterSet *)(arg1)->params();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -14941,13 +13616,7 @@ ZEND_NAMED_FUNCTION(_wrap_Procedure_getSerializedSize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->getSerializedSize();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->getSerializedSize();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14969,13 +13638,7 @@ static void __wrap_delete_Procedure(zend_rsrc_list_entry *rsrc, const char *type
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Procedure *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Procedure TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Procedure resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -14998,13 +13661,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_clientData) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int64_t)(arg1)->clientData();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int64_t)(arg1)->clientData();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15030,13 +13687,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_statusCode) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int8_t)(arg1)->statusCode();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int8_t)(arg1)->statusCode();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15062,13 +13713,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_success) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->success();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->success();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -15094,13 +13739,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_failure) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->failure();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->failure();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -15126,13 +13765,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_statusString) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->statusString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->statusString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15158,13 +13791,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_appStatusCode) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int8_t)(arg1)->appStatusCode();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int8_t)(arg1)->appStatusCode();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15190,13 +13817,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_appStatusString) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->appStatusString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->appStatusString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15222,13 +13843,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_clusterRoundTripTime) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->clusterRoundTripTime();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->clusterRoundTripTime();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15254,13 +13869,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_results) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->results();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->results();
   {
     std::vector< voltdb::Table > * resultobj = new std::vector< voltdb::Table >((const std::vector< voltdb::Table > &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_std__vectorT_voltdb__Table_t, 1);
@@ -15287,13 +13896,7 @@ ZEND_NAMED_FUNCTION(_wrap_InvocationResponse_toString) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->toString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->toString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15315,13 +13918,7 @@ static void __wrap_delete_InvocationResponse(zend_rsrc_list_entry *rsrc, const c
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::InvocationResponse *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__InvocationResponse TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::InvocationResponse resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -15356,26 +13953,25 @@ ZEND_NAMED_FUNCTION(_wrap_ProcedureCallbackNative_callback) {
     }
     arg2 = *tmp2;
   }
-  {
-    try {
-      try {
-        if (upcall) {
-          Swig::DirectorPureVirtualException::raise("voltdb::ProcedureCallback::callback");
-        } else {
-          result = (bool)(arg1)->callback(arg2);
-        }
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
+  try {
+    if (upcall) {
+      Swig::DirectorPureVirtualException::raise("voltdb::ProcedureCallback::callback");
+    } else {
+      result = (bool)(arg1)->callback(arg2);
     }
   }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -15397,13 +13993,7 @@ static void __wrap_delete_ProcedureCallbackNative(zend_rsrc_list_entry *rsrc, co
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ProcedureCallback *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ProcedureCallback TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ProcedureCallback resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -15422,19 +14012,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ProcedureCallbackNative) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::ProcedureCallback *)new SwigDirector_ProcedureCallbackNative(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::ProcedureCallback *)new SwigDirector_ProcedureCallbackNative(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ProcedureCallback, 1);
   
@@ -15481,34 +14065,43 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
   arg5 = (short) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        (arg1)->createConnection(arg2,arg3,arg4,arg5);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->createConnection(arg2,arg3,arg4,arg5);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -15546,34 +14139,43 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
   convert_to_string_ex(args[3]);
   (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   
-  {
-    try {
-      try {
-        (arg1)->createConnection(arg2,arg3,arg4);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->createConnection(arg2,arg3,arg4);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -15663,40 +14265,54 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ClientNative_invoke. Expected SWIGTYPE_p_voltdb__Procedure");
     }
   }
-  {
-    try {
-      try {
-        result = (arg1)->invoke(*arg2);
-      }
-      catch(voltdb::NoConnectionsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoConnectionsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::UninitializedParamsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::UninitializedParamsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->invoke(*arg2);
   }
+  catch(voltdb::NoConnectionsException &_e) {
+    std::string name = "voltdb::NoConnectionsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::UninitializedParamsException &_e) {
+    std::string name = "voltdb::UninitializedParamsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::InvocationResponse * resultobj = new voltdb::InvocationResponse((const voltdb::InvocationResponse &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__InvocationResponse, 1);
@@ -15734,40 +14350,54 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of ClientNative_invokeAsync. Expected SWIGTYPE_p_voltdb__ProcedureCallback");
     }
   }
-  {
-    try {
-      try {
-        (arg1)->invokeAsync(*arg2,arg3);
-      }
-      catch(voltdb::NoConnectionsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoConnectionsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::UninitializedParamsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::UninitializedParamsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->invokeAsync(*arg2,arg3);
   }
+  catch(voltdb::NoConnectionsException &_e) {
+    std::string name = "voltdb::NoConnectionsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::UninitializedParamsException &_e) {
+    std::string name = "voltdb::UninitializedParamsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -15790,34 +14420,43 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_runOnce) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        (arg1)->runOnce();
-      }
-      catch(voltdb::NoConnectionsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoConnectionsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->runOnce();
   }
+  catch(voltdb::NoConnectionsException &_e) {
+    std::string name = "voltdb::NoConnectionsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -15840,34 +14479,43 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_run) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        (arg1)->run();
-      }
-      catch(voltdb::NoConnectionsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoConnectionsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    (arg1)->run();
   }
+  catch(voltdb::NoConnectionsException &_e) {
+    std::string name = "voltdb::NoConnectionsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   
   return;
 fail:
@@ -15891,34 +14539,43 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_drain) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (bool)(arg1)->drain();
-      }
-      catch(voltdb::NoConnectionsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoConnectionsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (bool)(arg1)->drain();
   }
+  catch(voltdb::NoConnectionsException &_e) {
+    std::string name = "voltdb::NoConnectionsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -15936,28 +14593,32 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      try {
-        result = voltdb::Client::create();
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = voltdb::Client::create();
   }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -15983,28 +14644,32 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_1) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientNative_create. Expected SWIGTYPE_p_voltdb__StatusListener");
     }
   }
-  {
-    try {
-      try {
-        result = voltdb::Client::create(arg1);
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = voltdb::Client::create(arg1);
   }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -16053,13 +14718,7 @@ static void __wrap_delete_ClientNative(zend_rsrc_list_entry *rsrc, const char *t
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Client *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Client TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Client resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -16089,13 +14748,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDecimal__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (arg1)->getDecimal(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->getDecimal(arg2);
   {
     voltdb::Decimal * resultobj = new voltdb::Decimal((const voltdb::Decimal &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Decimal, 1);
@@ -16129,13 +14782,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getTimestamp__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (int64_t)(arg1)->getTimestamp(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int64_t)(arg1)->getTimestamp(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16168,13 +14815,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt64__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (int64_t)(arg1)->getInt64(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int64_t)(arg1)->getInt64(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16207,13 +14848,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt32__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (int32_t)(arg1)->getInt32(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->getInt32(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16246,13 +14881,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt16__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (int16_t)(arg1)->getInt16(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int16_t)(arg1)->getInt16(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16285,13 +14914,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt8__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (int8_t)(arg1)->getInt8(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int8_t)(arg1)->getInt8(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16324,13 +14947,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDouble__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (double)(arg1)->getDouble(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (double)(arg1)->getDouble(arg2);
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -16363,13 +14980,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getString__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (arg1)->getString(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->getString(arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16402,13 +15013,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_isNull__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (bool)(arg1)->isNull(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->isNull(arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -16439,13 +15044,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDecimal__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (arg1)->getDecimal(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->getDecimal(arg2);
   {
     voltdb::Decimal * resultobj = new voltdb::Decimal((const voltdb::Decimal &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Decimal, 1);
@@ -16517,13 +15116,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getTimestamp__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (int64_t)(arg1)->getTimestamp(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int64_t)(arg1)->getTimestamp(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16594,13 +15187,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt64__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (int64_t)(arg1)->getInt64(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int64_t)(arg1)->getInt64(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16671,13 +15258,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt32__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (int32_t)(arg1)->getInt32(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->getInt32(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16748,13 +15329,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt16__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (int16_t)(arg1)->getInt16(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int16_t)(arg1)->getInt16(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16825,13 +15400,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt8__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (int8_t)(arg1)->getInt8(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int8_t)(arg1)->getInt8(arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16902,13 +15471,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDouble__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (double)(arg1)->getDouble(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (double)(arg1)->getDouble(arg2);
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -16979,13 +15542,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getString__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (arg1)->getString(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->getString(arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -17056,13 +15613,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_isNull__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  {
-    try {
-      result = (bool)(arg1)->isNull(arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->isNull(arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -17128,13 +15679,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_wasNull) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->wasNull();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->wasNull();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -17160,13 +15705,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_toString__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->toString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->toString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -17202,13 +15741,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_toString__SWIG_1) {
   convert_to_string_ex(args[2]);
   (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   
-  {
-    try {
-      (arg1)->toString(*arg2,arg3);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->toString(*arg2,arg3);
   
   return;
 fail:
@@ -17275,13 +15808,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_columnCount) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->columnCount();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->columnCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -17307,13 +15834,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_columns) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->columns();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->columns();
   {
     std::vector< voltdb::Column > * resultobj = new std::vector< voltdb::Column >((const std::vector< voltdb::Column > &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_std__vectorT_voltdb__Column_t, 1);
@@ -17336,13 +15857,7 @@ static void __wrap_delete_Row(zend_rsrc_list_entry *rsrc, const char *type_name 
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Row *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Row TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Row resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -17365,13 +15880,7 @@ ZEND_NAMED_FUNCTION(_wrap_TableIterator_hasNext) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (bool)(arg1)->hasNext();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (bool)(arg1)->hasNext();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -17397,34 +15906,43 @@ ZEND_NAMED_FUNCTION(_wrap_TableIterator_next) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      try {
-        result = (arg1)->next();
-      }
-      catch(voltdb::NoMoreRowsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::NoMoreRowsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::OverflowUnderflowException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::OverflowUnderflowException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::IndexOutOfBoundsException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::IndexOutOfBoundsException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->next();
   }
+  catch(voltdb::NoMoreRowsException &_e) {
+    std::string name = "voltdb::NoMoreRowsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::OverflowUnderflowException &_e) {
+    std::string name = "voltdb::OverflowUnderflowException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::IndexOutOfBoundsException &_e) {
+    std::string name = "voltdb::IndexOutOfBoundsException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Row * resultobj = new voltdb::Row((const voltdb::Row &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Row, 1);
@@ -17447,13 +15965,7 @@ static void __wrap_delete_TableIterator(zend_rsrc_list_entry *rsrc, const char *
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::TableIterator *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__TableIterator TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::TableIterator resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -17477,13 +15989,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Table__SWIG_0) {
     }
     arg1 = *tmp1;
   }
-  {
-    try {
-      result = (voltdb::Table *)new voltdb::Table(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Table *)new voltdb::Table(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Table, 1);
   
@@ -17501,13 +16007,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Table__SWIG_1) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (voltdb::Table *)new voltdb::Table();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Table *)new voltdb::Table();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Table, 1);
   
@@ -17555,13 +16055,7 @@ static void __wrap_delete_Table(zend_rsrc_list_entry *rsrc, const char *type_nam
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Table *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Table TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Table resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -17584,13 +16078,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_iterator) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->iterator();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->iterator();
   {
     voltdb::TableIterator * resultobj = new voltdb::TableIterator((const voltdb::TableIterator &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__TableIterator, 1);
@@ -17617,13 +16105,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_getStatusCode) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int8_t)(arg1)->getStatusCode();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int8_t)(arg1)->getStatusCode();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -17649,13 +16131,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_rowCount) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->rowCount();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->rowCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -17681,13 +16157,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_columns) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->columns();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->columns();
   {
     std::vector< voltdb::Column > * resultobj = new std::vector< voltdb::Column >((const std::vector< voltdb::Column > &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_std__vectorT_voltdb__Column_t, 1);
@@ -17714,13 +16184,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_columnCount) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (int32_t)(arg1)->columnCount();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (int32_t)(arg1)->columnCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -17746,13 +16210,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_toString__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->toString();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->toString();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -17788,13 +16246,7 @@ ZEND_NAMED_FUNCTION(_wrap_Table_toString__SWIG_1) {
   convert_to_string_ex(args[2]);
   (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   
-  {
-    try {
-      (arg1)->toString(*arg2,arg3);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->toString(*arg2,arg3);
   
   return;
 fail:
@@ -17881,16 +16333,10 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_uncaughtException) {
     }
     arg3 = *tmp3;
   }
-  {
-    try {
-      if (upcall) {
-        Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::uncaughtException");
-      } else {
-        result = (bool)(arg1)->uncaughtException(arg2,arg3);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::uncaughtException");
+  } else {
+    result = (bool)(arg1)->uncaughtException(arg2,arg3);
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -17933,16 +16379,10 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_connectionLost) {
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if (upcall) {
-        Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::connectionLost");
-      } else {
-        result = (bool)(arg1)->connectionLost(arg2,arg3);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::connectionLost");
+  } else {
+    result = (bool)(arg1)->connectionLost(arg2,arg3);
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -17980,16 +16420,10 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_backpressure) {
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      if (upcall) {
-        Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::backpressure");
-      } else {
-        result = (bool)(arg1)->backpressure(arg2);
-      }
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if (upcall) {
+    Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::backpressure");
+  } else {
+    result = (bool)(arg1)->backpressure(arg2);
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -18012,13 +16446,7 @@ static void __wrap_delete_StatusListenerNative(zend_rsrc_list_entry *rsrc, const
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::StatusListener *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__StatusListener TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::StatusListener resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -18037,19 +16465,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_StatusListenerNative) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
-      } else {
-        result = (voltdb::StatusListener *)new SwigDirector_StatusListenerNative(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    SWIG_PHP_Error(E_ERROR, "accessing abstract class or protected constructor");
+  } else {
+    result = (voltdb::StatusListener *)new SwigDirector_StatusListenerNative(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__StatusListener, 1);
   
@@ -18067,13 +16489,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Column__SWIG_0) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (voltdb::Column *)new voltdb::Column();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Column *)new voltdb::Column();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Column, 1);
   
@@ -18104,13 +16520,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Column__SWIG_1) {
   arg2 = (voltdb::WireType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::Column *)new voltdb::Column(arg1,arg2);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Column *)new voltdb::Column(arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Column, 1);
   
@@ -18136,13 +16546,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Column__SWIG_2) {
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
-  {
-    try {
-      result = (voltdb::Column *)new voltdb::Column(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::Column *)new voltdb::Column(arg1);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__Column, 1);
   
@@ -18316,13 +16720,7 @@ ZEND_NAMED_FUNCTION(_wrap_Column_name) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (arg1)->name();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (arg1)->name();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -18348,13 +16746,7 @@ ZEND_NAMED_FUNCTION(_wrap_Column_type) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (voltdb::WireType)(arg1)->type();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::WireType)(arg1)->type();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -18376,13 +16768,7 @@ static void __wrap_delete_Column(zend_rsrc_list_entry *rsrc, const char *type_na
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::Column *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__Column TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::Column resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -18403,13 +16789,7 @@ ZEND_NAMED_FUNCTION(_wrap_cleanupOnScriptEnd) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of cleanupOnScriptEnd. Expected SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t");
     }
   }
-  {
-    try {
-      voltdb::cleanupOnScriptEnd(arg1);
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  voltdb::cleanupOnScriptEnd(arg1);
   
   return;
 fail:
@@ -18429,19 +16809,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_ConnectionPool) {
   
   arg0 = *args[0];
   
-  {
-    try {
-      if ( arg0->type == IS_NULL ) {
-        /* not subclassed */
-        result = (voltdb::ConnectionPool *)new voltdb::ConnectionPool();
-      } else {
-        result = (voltdb::ConnectionPool *)new SwigDirector_ConnectionPool(arg0);
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ConnectionPool *)new voltdb::ConnectionPool();
+  } else {
+    result = (voltdb::ConnectionPool *)new SwigDirector_ConnectionPool(arg0);
   }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ConnectionPool, 1);
   
@@ -18463,13 +16837,7 @@ static void __wrap_delete_ConnectionPool(zend_rsrc_list_entry *rsrc, const char 
   if (! newobject) return; /* can't delete it! */
   arg1 = (voltdb::ConnectionPool *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ConnectionPool TSRMLS_CC);
   if (! arg1) zend_error(E_ERROR, "voltdb::ConnectionPool resource already free'd");
-  {
-    try {
-      delete arg1;
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  delete arg1;
   return;
 fail:
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
@@ -18514,34 +16882,43 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
   arg5 = (short) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -18583,34 +16960,43 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_1) {
   convert_to_string_ex(args[3]);
   (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   
-  {
-    try {
-      try {
-        result = (arg1)->acquireClient(arg2,arg3,arg4);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->acquireClient(arg2,arg3,arg4);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -18665,34 +17051,43 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
   arg6 = (short) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
   
-  {
-    try {
-      try {
-        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5,arg6);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->acquireClient(arg2,arg3,arg4,arg5,arg6);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -18740,34 +17135,43 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_3) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 5 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__StatusListener");
     }
   }
-  {
-    try {
-      try {
-        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
-      }
-      catch(voltdb::ConnectException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::LibEventException &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      catch(voltdb::Exception &_e) {
-        (void)_e;
-        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
-        return;
-        
-      }
-      
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
+  try {
+    result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
   }
+  catch(voltdb::ConnectException &_e) {
+    std::string name = "voltdb::ConnectException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    
+  }
+  
   {
     voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
@@ -18912,13 +17316,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_onScriptEnd) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      (arg1)->onScriptEnd();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  (arg1)->onScriptEnd();
   
   return;
 fail:
@@ -18934,13 +17332,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_pool) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      result = (voltdb::ConnectionPool *)voltdb::ConnectionPool::pool();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  result = (voltdb::ConnectionPool *)voltdb::ConnectionPool::pool();
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ConnectionPool, 0);
   
@@ -18956,13 +17348,7 @@ ZEND_NAMED_FUNCTION(_wrap_onLoad) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      voltdb::onLoad();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  voltdb::onLoad();
   
   return;
 fail:
@@ -18976,13 +17362,7 @@ ZEND_NAMED_FUNCTION(_wrap_onUnload) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      voltdb::onUnload();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  voltdb::onUnload();
   
   return;
 fail:
@@ -18996,13 +17376,7 @@ ZEND_NAMED_FUNCTION(_wrap_onScriptEnd) {
     WRONG_PARAM_COUNT;
   }
   
-  {
-    try {
-      voltdb::onScriptEnd();
-    } catch (const std::exception& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-  }
+  voltdb::onScriptEnd();
   
   return;
 fail:

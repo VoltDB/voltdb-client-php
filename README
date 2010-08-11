@@ -91,9 +91,6 @@ This wrapper is still very much in the development phase, so not all features ar
   * Exceptions in callbacks
     When running asynchronously, you will get an error if you try to throw an exception in your callback function.
 
-  * Exceptions from C++
-    Exceptions that are thrown in C++ (such as when trying to connect to a server that does not exist) appear in PHP, but are inconsistent compared to the C API.
-
   * Parameters arrays
     Arrays of parameters are supported using vector wrappers, but they aren't tested.
 
