@@ -179,5 +179,11 @@ public:
     virtual bool backpressure(bool hasBackpressure);
     virtual ~SwigDirector_StatusListenerNative();
 };
+class SwigDirector_ConnectionPool : public voltdb::ConnectionPool, public Swig::Director {
+
+public:
+    SwigDirector_ConnectionPool(zval *self);
+    virtual ~SwigDirector_ConnectionPool();
+};
 
 #endif

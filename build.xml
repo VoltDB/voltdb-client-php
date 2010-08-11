@@ -45,6 +45,7 @@
             <arg value="-lvoltcpp" />
             <arg value="-levent" />
             <arg value="-lssl" />
+            <arg value="-lboost_thread" />
             <arg value="bin/cpp/voltdb_wrap.o" />
             <arg line="-o bin/cpp/voltdb.so" />
         </exec>

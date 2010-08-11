@@ -273,4 +273,12 @@ ZEND_NAMED_FUNCTION(_wrap_Column_m_type_set);
 ZEND_NAMED_FUNCTION(_wrap_Column_m_type_get);
 ZEND_NAMED_FUNCTION(_wrap_Column_name);
 ZEND_NAMED_FUNCTION(_wrap_Column_type);
+ZEND_NAMED_FUNCTION(_wrap_cleanupOnScriptEnd);
+ZEND_NAMED_FUNCTION(_wrap_new_ConnectionPool);
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient);
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_onScriptEnd);
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_pool);
+ZEND_NAMED_FUNCTION(_wrap_onLoad);
+ZEND_NAMED_FUNCTION(_wrap_onUnload);
+ZEND_NAMED_FUNCTION(_wrap_onScriptEnd);
 #endif /* PHP_VOLTDB_H */

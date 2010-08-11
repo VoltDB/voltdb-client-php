@@ -22,6 +22,18 @@
  */
 
 %module(directors="1") voltdb
+
+// connection pooling
+%minit {
+    voltdb::onLoad();
+}
+%rshutdown {
+    voltdb::onScriptEnd();
+}
+%mshutdown {
+    voltdb::onUnload();
+}
+
 %feature("director");
 
 /*
@@ -57,6 +69,7 @@
 #include "Table.h"
 #include "StatusListener.h"
 #include "Column.hpp"
+#include "ConnectionPool.h"
 %}
 
 // types
@@ -103,6 +116,7 @@ typedef signed long int int64_t;
 %include "Table.h"
 %include "StatusListener.h"
 %include "Column.hpp"
+%include "ConnectionPool.h"
 
 %pragma(php) code="
 /* Client wrapper class */
@@ -157,6 +171,26 @@ class Client {
             case 1:
                 $wrapper = new StatusListenerWrapper($listener);
                 return new Client(ClientNative::create($wrapper), $wrapper);
+            default:
+                print('Invalid argument count to Client::create()' . \"\\n\");
+                return null;
+        }
+    }
+
+    public static function createFromPool($hostname, $username = '', $password = '', $listener = null, $port = 21212) {
+        switch (func_num_args()) {
+            case 1:
+            case 3:
+                return new Client(ConnectionPool::pool()->acquireClient($hostname, $username, $password, $port));
+            case 4:
+            case 5:
+                $wrapper = new StatusListenerWrapper($listener);
+                return new Client(
+                    ConnectionPool::pool()->acquireClient($hostname, $username, $password, $wrapper, $port),
+                    $wrapper);
+            default:
+                print('Invalid argument count to Client::createFromPool()' . \"\\n\");
+                return null;
         }
     }
 

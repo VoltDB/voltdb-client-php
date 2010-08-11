@@ -1024,58 +1024,61 @@ static int le_member_ptr;
 #define SWIGTYPE_p_bool swig_types[1]
 #define SWIGTYPE_p_boost__shared_arrayT_char_t swig_types[2]
 #define SWIGTYPE_p_boost__shared_ptrT_voltdb__ProcedureCallback_t swig_types[3]
-#define SWIGTYPE_p_char swig_types[4]
-#define SWIGTYPE_p_int swig_types[5]
-#define SWIGTYPE_p_long swig_types[6]
-#define SWIGTYPE_p_short swig_types[7]
-#define SWIGTYPE_p_signed_char swig_types[8]
-#define SWIGTYPE_p_size_type swig_types[9]
-#define SWIGTYPE_p_std__exception swig_types[10]
-#define SWIGTYPE_p_std__ostringstream swig_types[11]
-#define SWIGTYPE_p_std__vectorT_double_t swig_types[12]
-#define SWIGTYPE_p_std__vectorT_int_t swig_types[13]
-#define SWIGTYPE_p_std__vectorT_long_t swig_types[14]
-#define SWIGTYPE_p_std__vectorT_short_t swig_types[15]
-#define SWIGTYPE_p_std__vectorT_signed_char_t swig_types[16]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[17]
-#define SWIGTYPE_p_std__vectorT_voltdb__Column_t swig_types[18]
-#define SWIGTYPE_p_std__vectorT_voltdb__Decimal_t swig_types[19]
-#define SWIGTYPE_p_std__vectorT_voltdb__Parameter_t swig_types[20]
-#define SWIGTYPE_p_std__vectorT_voltdb__Table_t swig_types[21]
-#define SWIGTYPE_p_ttmath__IntT_4_t swig_types[22]
-#define SWIGTYPE_p_value_type swig_types[23]
-#define SWIGTYPE_p_voltdb__ByteBuffer swig_types[24]
-#define SWIGTYPE_p_voltdb__Client swig_types[25]
-#define SWIGTYPE_p_voltdb__Column swig_types[26]
-#define SWIGTYPE_p_voltdb__ConnectException swig_types[27]
-#define SWIGTYPE_p_voltdb__Decimal swig_types[28]
-#define SWIGTYPE_p_voltdb__Exception swig_types[29]
-#define SWIGTYPE_p_voltdb__ExpandableByteBuffer swig_types[30]
-#define SWIGTYPE_p_voltdb__IndexOutOfBoundsException swig_types[31]
-#define SWIGTYPE_p_voltdb__InvalidColumnException swig_types[32]
-#define SWIGTYPE_p_voltdb__InvocationResponse swig_types[33]
-#define SWIGTYPE_p_voltdb__LibEventException swig_types[34]
-#define SWIGTYPE_p_voltdb__NoConnectionsException swig_types[35]
-#define SWIGTYPE_p_voltdb__NoMoreRowsException swig_types[36]
-#define SWIGTYPE_p_voltdb__NonExpandableBufferException swig_types[37]
-#define SWIGTYPE_p_voltdb__NullPointerException swig_types[38]
-#define SWIGTYPE_p_voltdb__OverflowUnderflowException swig_types[39]
-#define SWIGTYPE_p_voltdb__ParamMismatchException swig_types[40]
-#define SWIGTYPE_p_voltdb__Parameter swig_types[41]
-#define SWIGTYPE_p_voltdb__ParameterSet swig_types[42]
-#define SWIGTYPE_p_voltdb__Procedure swig_types[43]
-#define SWIGTYPE_p_voltdb__ProcedureCallback swig_types[44]
-#define SWIGTYPE_p_voltdb__Row swig_types[45]
-#define SWIGTYPE_p_voltdb__ScopedByteBuffer swig_types[46]
-#define SWIGTYPE_p_voltdb__SharedByteBuffer swig_types[47]
-#define SWIGTYPE_p_voltdb__StatusListener swig_types[48]
-#define SWIGTYPE_p_voltdb__StringToDecimalException swig_types[49]
-#define SWIGTYPE_p_voltdb__Table swig_types[50]
-#define SWIGTYPE_p_voltdb__TableIterator swig_types[51]
-#define SWIGTYPE_p_voltdb__UninitializedParamsException swig_types[52]
-#define SWIGTYPE_uint16_t swig_types[53]
-static swig_type_info *swig_types[55];
-static swig_module_info swig_module = {swig_types, 54, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t swig_types[4]
+#define SWIGTYPE_p_char swig_types[5]
+#define SWIGTYPE_p_int swig_types[6]
+#define SWIGTYPE_p_long swig_types[7]
+#define SWIGTYPE_p_short swig_types[8]
+#define SWIGTYPE_p_signed_char swig_types[9]
+#define SWIGTYPE_p_size_type swig_types[10]
+#define SWIGTYPE_p_std__exception swig_types[11]
+#define SWIGTYPE_p_std__ostringstream swig_types[12]
+#define SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t swig_types[13]
+#define SWIGTYPE_p_std__vectorT_double_t swig_types[14]
+#define SWIGTYPE_p_std__vectorT_int_t swig_types[15]
+#define SWIGTYPE_p_std__vectorT_long_t swig_types[16]
+#define SWIGTYPE_p_std__vectorT_short_t swig_types[17]
+#define SWIGTYPE_p_std__vectorT_signed_char_t swig_types[18]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[19]
+#define SWIGTYPE_p_std__vectorT_voltdb__Column_t swig_types[20]
+#define SWIGTYPE_p_std__vectorT_voltdb__Decimal_t swig_types[21]
+#define SWIGTYPE_p_std__vectorT_voltdb__Parameter_t swig_types[22]
+#define SWIGTYPE_p_std__vectorT_voltdb__Table_t swig_types[23]
+#define SWIGTYPE_p_ttmath__IntT_4_t swig_types[24]
+#define SWIGTYPE_p_value_type swig_types[25]
+#define SWIGTYPE_p_voltdb__ByteBuffer swig_types[26]
+#define SWIGTYPE_p_voltdb__Client swig_types[27]
+#define SWIGTYPE_p_voltdb__Column swig_types[28]
+#define SWIGTYPE_p_voltdb__ConnectException swig_types[29]
+#define SWIGTYPE_p_voltdb__ConnectionPool swig_types[30]
+#define SWIGTYPE_p_voltdb__Decimal swig_types[31]
+#define SWIGTYPE_p_voltdb__Exception swig_types[32]
+#define SWIGTYPE_p_voltdb__ExpandableByteBuffer swig_types[33]
+#define SWIGTYPE_p_voltdb__IndexOutOfBoundsException swig_types[34]
+#define SWIGTYPE_p_voltdb__InvalidColumnException swig_types[35]
+#define SWIGTYPE_p_voltdb__InvocationResponse swig_types[36]
+#define SWIGTYPE_p_voltdb__LibEventException swig_types[37]
+#define SWIGTYPE_p_voltdb__NoConnectionsException swig_types[38]
+#define SWIGTYPE_p_voltdb__NoMoreRowsException swig_types[39]
+#define SWIGTYPE_p_voltdb__NonExpandableBufferException swig_types[40]
+#define SWIGTYPE_p_voltdb__NullPointerException swig_types[41]
+#define SWIGTYPE_p_voltdb__OverflowUnderflowException swig_types[42]
+#define SWIGTYPE_p_voltdb__ParamMismatchException swig_types[43]
+#define SWIGTYPE_p_voltdb__Parameter swig_types[44]
+#define SWIGTYPE_p_voltdb__ParameterSet swig_types[45]
+#define SWIGTYPE_p_voltdb__Procedure swig_types[46]
+#define SWIGTYPE_p_voltdb__ProcedureCallback swig_types[47]
+#define SWIGTYPE_p_voltdb__Row swig_types[48]
+#define SWIGTYPE_p_voltdb__ScopedByteBuffer swig_types[49]
+#define SWIGTYPE_p_voltdb__SharedByteBuffer swig_types[50]
+#define SWIGTYPE_p_voltdb__StatusListener swig_types[51]
+#define SWIGTYPE_p_voltdb__StringToDecimalException swig_types[52]
+#define SWIGTYPE_p_voltdb__Table swig_types[53]
+#define SWIGTYPE_p_voltdb__TableIterator swig_types[54]
+#define SWIGTYPE_p_voltdb__UninitializedParamsException swig_types[55]
+#define SWIGTYPE_uint16_t swig_types[56]
+static swig_type_info *swig_types[58];
+static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1372,6 +1375,7 @@ namespace Swig {
 #include "Table.h"
 #include "StatusListener.h"
 #include "Column.hpp"
+#include "ConnectionPool.h"
 
 
 #include <string>
@@ -1720,6 +1724,7 @@ static swig_type_info _swigt__int = {"_int", "int", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_arrayT_char_t = {"_p_boost__shared_arrayT_char_t", "boost::shared_array< char > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t = {"_p_boost__shared_ptrT_voltdb__ProcedureCallback_t", "boost::shared_ptr< voltdb::ProcedureCallback > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t = {"_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t", "voltdb::ClientMap *|boost::unordered_map< std::string,std::vector< boost::shared_ptr< voltdb::ClientStuff > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *|int32_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long = {"_p_long", "int64_t *|long *", 0, 0, (void*)0, 0};
@@ -1728,6 +1733,7 @@ static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__exception = {"_p_std__exception", "std::exception *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostringstream = {"_p_std__ostringstream", "std::ostringstream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t = {"_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t", "voltdb::ClientSet *|std::vector< boost::shared_ptr< voltdb::ClientStuff > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_double_t = {"_p_std__vectorT_double_t", "std::vector< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_int_t = {"_p_std__vectorT_int_t", "std::vector< int32_t > *|std::vector< int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_long_t = {"_p_std__vectorT_long_t", "std::vector< long > *|std::vector< int64_t > *", 0, 0, (void*)0, 0};
@@ -1744,6 +1750,7 @@ static swig_type_info _swigt__p_voltdb__ByteBuffer = {"_p_voltdb__ByteBuffer", "
 static swig_type_info _swigt__p_voltdb__Client = {"_p_voltdb__Client", "voltdb::Client *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__Column = {"_p_voltdb__Column", "std::vector< voltdb::Column >::value_type *|voltdb::Column *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__ConnectException = {"_p_voltdb__ConnectException", "voltdb::ConnectException *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_voltdb__ConnectionPool = {"_p_voltdb__ConnectionPool", "voltdb::ConnectionPool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__Decimal = {"_p_voltdb__Decimal", "std::vector< voltdb::Decimal >::value_type *|voltdb::Decimal *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__Exception = {"_p_voltdb__Exception", "voltdb::Exception *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__ExpandableByteBuffer = {"_p_voltdb__ExpandableByteBuffer", "voltdb::ExpandableByteBuffer *", 0, 0, (void*)0, 0};
@@ -1776,6 +1783,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_bool,
   &_swigt__p_boost__shared_arrayT_char_t,
   &_swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t,
+  &_swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,
   &_swigt__p_char,
   &_swigt__p_int,
   &_swigt__p_long,
@@ -1784,6 +1792,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_size_type,
   &_swigt__p_std__exception,
   &_swigt__p_std__ostringstream,
+  &_swigt__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t,
   &_swigt__p_std__vectorT_double_t,
   &_swigt__p_std__vectorT_int_t,
   &_swigt__p_std__vectorT_long_t,
@@ -1800,6 +1809,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_voltdb__Client,
   &_swigt__p_voltdb__Column,
   &_swigt__p_voltdb__ConnectException,
+  &_swigt__p_voltdb__ConnectionPool,
   &_swigt__p_voltdb__Decimal,
   &_swigt__p_voltdb__Exception,
   &_swigt__p_voltdb__ExpandableByteBuffer,
@@ -1832,6 +1842,7 @@ static swig_cast_info _swigc__int[] = {  {&_swigt__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_arrayT_char_t[] = {  {&_swigt__p_boost__shared_arrayT_char_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_voltdb__ProcedureCallback_t[] = {  {&_swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t[] = {  {&_swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long[] = {  {&_swigt__p_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -1840,6 +1851,7 @@ static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_voltdb__Exception, _p_voltdb__ExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostringstream[] = {  {&_swigt__p_std__ostringstream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t[] = {  {&_swigt__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_t[] = {  {&_swigt__p_std__vectorT_double_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_int_t[] = {  {&_swigt__p_std__vectorT_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_long_t[] = {  {&_swigt__p_std__vectorT_long_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -1856,6 +1868,7 @@ static swig_cast_info _swigc__p_voltdb__ByteBuffer[] = {  {&_swigt__p_voltdb__By
 static swig_cast_info _swigc__p_voltdb__Client[] = {  {&_swigt__p_voltdb__Client, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Column[] = {  {&_swigt__p_voltdb__Column, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ConnectException[] = {  {&_swigt__p_voltdb__ConnectException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_voltdb__ConnectionPool[] = {  {&_swigt__p_voltdb__ConnectionPool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Decimal[] = {  {&_swigt__p_voltdb__Decimal, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Exception[] = {  {&_swigt__p_voltdb__Exception, 0, 0, 0},  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_voltdb__Exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ExpandableByteBuffer[] = {  {&_swigt__p_voltdb__ExpandableByteBuffer, 0, 0, 0},  {&_swigt__p_voltdb__SharedByteBuffer, _p_voltdb__SharedByteBufferTo_p_voltdb__ExpandableByteBuffer, 0, 0},  {&_swigt__p_voltdb__ScopedByteBuffer, _p_voltdb__ScopedByteBufferTo_p_voltdb__ExpandableByteBuffer, 0, 0},{0, 0, 0, 0}};
@@ -1888,6 +1901,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_bool,
   _swigc__p_boost__shared_arrayT_char_t,
   _swigc__p_boost__shared_ptrT_voltdb__ProcedureCallback_t,
+  _swigc__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,
   _swigc__p_char,
   _swigc__p_int,
   _swigc__p_long,
@@ -1896,6 +1910,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_size_type,
   _swigc__p_std__exception,
   _swigc__p_std__ostringstream,
+  _swigc__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t,
   _swigc__p_std__vectorT_double_t,
   _swigc__p_std__vectorT_int_t,
   _swigc__p_std__vectorT_long_t,
@@ -1912,6 +1927,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_voltdb__Client,
   _swigc__p_voltdb__Column,
   _swigc__p_voltdb__ConnectException,
+  _swigc__p_voltdb__ConnectionPool,
   _swigc__p_voltdb__Decimal,
   _swigc__p_voltdb__Exception,
   _swigc__p_voltdb__ExpandableByteBuffer,
@@ -3210,6 +3226,15 @@ fail:
 SwigDirector_StatusListenerNative::~SwigDirector_StatusListenerNative() {
 }
 
+SwigDirector_ConnectionPool::SwigDirector_ConnectionPool(zval *self): voltdb::ConnectionPool(), Swig::Director(self) {
+  
+}
+
+
+
+SwigDirector_ConnectionPool::~SwigDirector_ConnectionPool() {
+}
+
 /* vdecl subsection */
 static int le_swig__p_std__vectorT_signed_char_t=0; /* handle for Int8Vector */
 static int le_swig__p_boost__shared_arrayT_char_t=0; /* handle for _p_boost__shared_arrayT_char_t */
@@ -3227,6 +3252,7 @@ static int le_swig__int=0; /* handle for _int */
 static int le_swig__uint16_t=0; /* handle for _uint16_t */
 static int le_swig__p_voltdb__StatusListener=0; /* handle for StatusListenerNative */
 static int le_swig__p_voltdb__ParameterSet=0; /* handle for ParameterSet */
+static int le_swig__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t=0; /* handle for _p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t */
 static int le_swig__p_voltdb__Column=0; /* handle for Column */
 static int le_swig__p_long=0; /* handle for _p_long */
 static int le_swig__p_std__vectorT_double_t=0; /* handle for DoubleVector */
@@ -3260,7 +3286,9 @@ static int le_swig__p_short=0; /* handle for _p_short */
 static int le_swig__p_std__vectorT_long_t=0; /* handle for Int64Vector */
 static int le_swig__p_voltdb__ProcedureCallback=0; /* handle for ProcedureCallbackNative */
 static int le_swig__p_voltdb__Row=0; /* handle for Row */
+static int le_swig__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t=0; /* handle for _p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t */
 static int le_swig__p_std__vectorT_short_t=0; /* handle for Int16Vector */
+static int le_swig__p_voltdb__ConnectionPool=0; /* handle for ConnectionPool */
 static int le_swig__p_value_type=0; /* handle for _p_value_type */
 static int le_swig__p_int=0; /* handle for _p_int */
 static int le_swig__p_std__vectorT_voltdb__Table_t=0; /* handle for Tables */
@@ -18361,6 +18389,627 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_cleanupOnScriptEnd) {
+  voltdb::ClientSet *arg1 = (voltdb::ClientSet *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of cleanupOnScriptEnd. Expected SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t");
+    }
+  }
+  {
+    try {
+      voltdb::cleanupOnScriptEnd(arg1);
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ConnectionPool) {
+  zval *arg0;
+  zval **args[1];
+  voltdb::ConnectionPool *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  arg0 = *args[0];
+  
+  {
+    try {
+      if ( arg0->type == IS_NULL ) {
+        /* not subclassed */
+        result = (voltdb::ConnectionPool *)new voltdb::ConnectionPool();
+      } else {
+        result = (voltdb::ConnectionPool *)new SwigDirector_ConnectionPool(arg0);
+      }
+      
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ConnectionPool, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_ConnectionPool(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (voltdb::ConnectionPool *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ConnectionPool TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "voltdb::ConnectionPool resource already free'd");
+  {
+    try {
+      delete arg1;
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  short arg5 ;
+  zval **args[5];
+  SwigValueWrapper< voltdb::Client > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ConnectionPool, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__ConnectionPool");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  
+  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[4]);
+  arg5 = (short) Z_LVAL_PP(args[4]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      try {
+        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
+      }
+      catch(voltdb::ConnectException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::LibEventException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::Exception &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  {
+    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_1) {
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  zval **args[4];
+  SwigValueWrapper< voltdb::Client > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ConnectionPool, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__ConnectionPool");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  {
+    try {
+      try {
+        result = (arg1)->acquireClient(arg2,arg3,arg4);
+      }
+      catch(voltdb::ConnectException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::LibEventException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::Exception &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  {
+    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  voltdb::StatusListener *arg5 = (voltdb::StatusListener *) 0 ;
+  short arg6 ;
+  zval **args[6];
+  SwigValueWrapper< voltdb::Client > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ConnectionPool, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__ConnectionPool");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  {
+    if(SWIG_ConvertPtr(*args[4], (void **) &arg5, SWIGTYPE_p_voltdb__StatusListener, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 5 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__StatusListener");
+    }
+  }
+  
+  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[5]);
+  arg6 = (short) Z_LVAL_PP(args[5]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      try {
+        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5,arg6);
+      }
+      catch(voltdb::ConnectException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::LibEventException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::Exception &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  {
+    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_3) {
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  voltdb::StatusListener *arg5 = (voltdb::StatusListener *) 0 ;
+  zval **args[5];
+  SwigValueWrapper< voltdb::Client > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ConnectionPool, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__ConnectionPool");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  {
+    if(SWIG_ConvertPtr(*args[4], (void **) &arg5, SWIGTYPE_p_voltdb__StatusListener, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 5 of ConnectionPool_acquireClient. Expected SWIGTYPE_p_voltdb__StatusListener");
+    }
+  }
+  {
+    try {
+      try {
+        result = (arg1)->acquireClient(arg2,arg3,arg4,arg5);
+      }
+      catch(voltdb::ConnectException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::ConnectException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::LibEventException &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::LibEventException exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      catch(voltdb::Exception &_e) {
+        (void)_e;
+        zend_throw_exception(NULL, const_cast<char*>("C++ voltdb::Exception exception thrown"), 0 TSRMLS_CC);
+        return;
+        
+      }
+      
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  {
+    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient) {
+  int argc;
+  zval **argv[6];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__ConnectionPool, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            return _wrap_ConnectionPool_acquireClient__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__ConnectionPool, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            {
+              void *tmp;
+              _v = (SWIG_ConvertPtr(*argv[4], (void**)&tmp, SWIGTYPE_p_voltdb__StatusListener, 0) >= 0);
+            }
+            if (_v) {
+              return _wrap_ConnectionPool_acquireClient__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__ConnectionPool, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _v = (Z_TYPE_PP(argv[4]) == IS_LONG); 
+            if (_v) {
+              return _wrap_ConnectionPool_acquireClient__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__ConnectionPool, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            {
+              void *tmp;
+              _v = (SWIG_ConvertPtr(*argv[4], (void**)&tmp, SWIGTYPE_p_voltdb__StatusListener, 0) >= 0);
+            }
+            if (_v) {
+              _v = (Z_TYPE_PP(argv[5]) == IS_LONG); 
+              if (_v) {
+                return _wrap_ConnectionPool_acquireClient__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ConnectionPool_acquireClient'";
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_onScriptEnd) {
+  voltdb::ConnectionPool *arg1 = (voltdb::ConnectionPool *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ConnectionPool, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConnectionPool_onScriptEnd. Expected SWIGTYPE_p_voltdb__ConnectionPool");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      (arg1)->onScriptEnd();
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_pool) {
+  voltdb::ConnectionPool *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    try {
+      result = (voltdb::ConnectionPool *)voltdb::ConnectionPool::pool();
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ConnectionPool, 0);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_onLoad) {
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    try {
+      voltdb::onLoad();
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_onUnload) {
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    try {
+      voltdb::onUnload();
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_onScriptEnd) {
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    try {
+      voltdb::onScriptEnd();
+    } catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_signed_char_t) {
   __wrap_delete_Int8Vector(rsrc, SWIGTYPE_p_std__vectorT_signed_char_t->name TSRMLS_CC);
 }
@@ -18415,6 +19064,10 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__StatusListener) {
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__ParameterSet) {
   __wrap_delete_ParameterSet(rsrc, SWIGTYPE_p_voltdb__ParameterSet->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t) {
+  /* No destructor for simple type _p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t */
+  efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__Column) {
   __wrap_delete_Column(rsrc, SWIGTYPE_p_voltdb__Column->name TSRMLS_CC);
@@ -18521,8 +19174,15 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__ProcedureCallback) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__Row) {
   __wrap_delete_Row(rsrc, SWIGTYPE_p_voltdb__Row->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t) {
+  /* No destructor for simple type _p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_short_t) {
   __wrap_delete_Int16Vector(rsrc, SWIGTYPE_p_std__vectorT_short_t->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__ConnectionPool) {
+  __wrap_delete_ConnectionPool(rsrc, SWIGTYPE_p_voltdb__ConnectionPool->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_value_type) {
   /* No destructor for simple type _p_value_type */
@@ -18788,6 +19448,14 @@ static zend_function_entry voltdb_functions[] = {
  SWIG_ZEND_NAMED_FE(column_m_type_get,_wrap_Column_m_type_get,NULL)
  SWIG_ZEND_NAMED_FE(column_name,_wrap_Column_name,NULL)
  SWIG_ZEND_NAMED_FE(column_type,_wrap_Column_type,NULL)
+ SWIG_ZEND_NAMED_FE(cleanuponscriptend,_wrap_cleanupOnScriptEnd,NULL)
+ SWIG_ZEND_NAMED_FE(new_connectionpool,_wrap_new_ConnectionPool,NULL)
+ SWIG_ZEND_NAMED_FE(connectionpool_acquireclient,_wrap_ConnectionPool_acquireClient,NULL)
+ SWIG_ZEND_NAMED_FE(connectionpool_onscriptend,_wrap_ConnectionPool_onScriptEnd,NULL)
+ SWIG_ZEND_NAMED_FE(connectionpool_pool,_wrap_ConnectionPool_pool,NULL)
+ SWIG_ZEND_NAMED_FE(onload,_wrap_onLoad,NULL)
+ SWIG_ZEND_NAMED_FE(onunload,_wrap_onUnload,NULL)
+ SWIG_ZEND_NAMED_FE(onscriptend,_wrap_onScriptEnd,NULL)
  SWIG_ZEND_NAMED_FE(swig_voltdb_alter_newobject,_wrap_swig_voltdb_alter_newobject,NULL)
  SWIG_ZEND_NAMED_FE(swig_voltdb_get_newobject,_wrap_swig_voltdb_get_newobject,NULL)
 {NULL, NULL, NULL}
@@ -19067,6 +19735,9 @@ SWIG_PropagateClientData(void) {
     SWIG_InitializeModule(0);
     le_member_ptr = zend_register_list_destructors_ex(member_ptr_dtor, NULL, SWIG_MEMBER_PTR, module_number);
 
+
+    voltdb::onLoad();
+
 /* oinit subsection */
 ZEND_INIT_MODULE_GLOBALS(voltdb, voltdb_init_globals, voltdb_destroy_globals);
 
@@ -19103,6 +19774,8 @@ le_swig__p_voltdb__StatusListener=zend_register_list_destructors_ex(_wrap_destro
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__StatusListener,&le_swig__p_voltdb__StatusListener);
 le_swig__p_voltdb__ParameterSet=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ParameterSet,NULL,(char *)(SWIGTYPE_p_voltdb__ParameterSet->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__ParameterSet,&le_swig__p_voltdb__ParameterSet);
+le_swig__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t=zend_register_list_destructors_ex(_wrap_destroy_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,NULL,(char *)(SWIGTYPE_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,&le_swig__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t);
 le_swig__p_voltdb__Column=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__Column,NULL,(char *)(SWIGTYPE_p_voltdb__Column->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__Column,&le_swig__p_voltdb__Column);
 le_swig__p_long=zend_register_list_destructors_ex(_wrap_destroy_p_long,NULL,(char *)(SWIGTYPE_p_long->name),module_number);
@@ -19169,8 +19842,12 @@ le_swig__p_voltdb__ProcedureCallback=zend_register_list_destructors_ex(_wrap_des
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__ProcedureCallback,&le_swig__p_voltdb__ProcedureCallback);
 le_swig__p_voltdb__Row=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__Row,NULL,(char *)(SWIGTYPE_p_voltdb__Row->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__Row,&le_swig__p_voltdb__Row);
+le_swig__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t,&le_swig__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t);
 le_swig__p_std__vectorT_short_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_short_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_short_t->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_short_t,&le_swig__p_std__vectorT_short_t);
+le_swig__p_voltdb__ConnectionPool=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ConnectionPool,NULL,(char *)(SWIGTYPE_p_voltdb__ConnectionPool->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_voltdb__ConnectionPool,&le_swig__p_voltdb__ConnectionPool);
 le_swig__p_value_type=zend_register_list_destructors_ex(_wrap_destroy_p_value_type,NULL,(char *)(SWIGTYPE_p_value_type->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_value_type,&le_swig__p_value_type);
 le_swig__p_int=zend_register_list_destructors_ex(_wrap_destroy_p_int,NULL,(char *)(SWIGTYPE_p_int->name),module_number);
@@ -19217,6 +19894,9 @@ PHP_RINIT_FUNCTION(voltdb)
 PHP_MSHUTDOWN_FUNCTION(voltdb)
 {
 /* shutdown section */
+
+    voltdb::onUnload();
+
 #ifdef ZTS
     ts_free_id(voltdb_globals_id);
 #endif
@@ -19226,6 +19906,9 @@ PHP_MSHUTDOWN_FUNCTION(voltdb)
 PHP_RSHUTDOWN_FUNCTION(voltdb)
 {
 /* rshutdown section */
+
+    voltdb::onScriptEnd();
+
 
     return SUCCESS;
 }

@@ -78,6 +78,26 @@ class Client {
             case 1:
                 $wrapper = new StatusListenerWrapper($listener);
                 return new Client(ClientNative::create($wrapper), $wrapper);
+            default:
+                print('Invalid argument count to Client::create()' . "\n");
+                return null;
+        }
+    }
+
+    public static function createFromPool($hostname, $username = '', $password = '', $listener = null, $port = 21212) {
+        switch (func_num_args()) {
+            case 1:
+            case 3:
+                return new Client(ConnectionPool::pool()->acquireClient($hostname, $username, $password, $port));
+            case 4:
+            case 5:
+                $wrapper = new StatusListenerWrapper($listener);
+                return new Client(
+                    ConnectionPool::pool()->acquireClient($hostname, $username, $password, $wrapper, $port),
+                    $wrapper);
+            default:
+                print('Invalid argument count to Client::createFromPool()' . "\n");
+                return null;
         }
     }
 
@@ -150,6 +170,22 @@ abstract class voltdb {
 	const STATUS_CODE_UNEXPECTED_FAILURE = -3;
 
 	const STATUS_CODE_CONNECTION_LOST = -4;
+
+	static function cleanupOnScriptEnd($clients) {
+		cleanupOnScriptEnd($clients);
+	}
+
+	static function onLoad() {
+		onLoad();
+	}
+
+	static function onUnload() {
+		onUnload();
+	}
+
+	static function onScriptEnd() {
+		onScriptEnd();
+	}
 }
 
 /* PHP Proxy Classes */
@@ -2497,6 +2533,67 @@ class Column {
 
 	public function type() {
 		return Column_type($this->_cPtr);
+	}
+}
+
+class ConnectionPool {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_voltdb_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_voltdb_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	public function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_voltdb__ConnectionPool') {
+			$this->_cPtr=$res;
+			return;
+		}
+		if (get_class($this) === 'ConnectionPool') {
+			$_this = null;
+		} else {
+			$_this = $this;
+		}
+		$this->_cPtr=new_ConnectionPool($_this);
+	}
+
+	public function acquireClient($hostname,$username,$password,$port_or_listener=null,$port=null) {
+		switch (func_num_args()) {
+		case 3: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password); break;
+		case 4: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener); break;
+		default: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener,$port);
+		}
+		if (is_resource($r)) {
+			return new ClientNative($r);
+		}
+		return $r;
+	}
+
+	public function onScriptEnd() {
+		ConnectionPool_onScriptEnd($this->_cPtr);
+	}
+
+	static function pool() {
+		$r=ConnectionPool_pool();
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (!class_exists($c)) {
+				return new ConnectionPool($r);
+			}
+			return new $c($r);
+		}
+		return $r;
 	}
 }
 

@@ -1,7 +1,28 @@
---- voltdb.php.old	2010-07-26 16:06:06.907246218 -0400
-+++ voltdb.php	2010-07-26 16:06:50.848904902 -0400
-@@ -1540,11 +1540,7 @@
+--- voltdb.php.old	2010-08-09 11:26:45.178944015 -0400
++++ voltdb.php	2010-08-09 11:30:16.289760755 -0400
+@@ -2226,11 +2226,7 @@
  		default: $r=ClientNative_create($listener);
+ 		}
+ 		if (is_resource($r)) {
+-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+-			if (!class_exists($c)) {
+-				return new ClientNative($r);
+-			}
+-			return new $c($r);
++			return new ClientNative($r);
+ 		}
+ 		return $r;
+ 	}
+@@ -2574,16 +2570,12 @@
+ 
+ 	public function acquireClient($hostname,$username,$password,$port_or_listener=null,$port=null) {
+ 		switch (func_num_args()) {
+-		case 3: $this->_cPtr=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password); break;
+-		case 4: $this->_cPtr=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener); break;
+-		default: $this->_cPtr=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener,$port);
++		case 3: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password); break;
++		case 4: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener); break;
++		default: $r=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password,$port_or_listener,$port);
  		}
  		if (is_resource($r)) {
 -			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
