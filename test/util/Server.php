@@ -30,6 +30,7 @@ class Server {
     private $log;
 
     private $pid;
+    private $running;
 
     public function __construct($catalog, $deployment, $log) {
         $this->catalog = $catalog;
@@ -65,13 +66,25 @@ class Server {
             $waited += $waitInterval;
         }
         // @codeCoverageIgnoreStart
-        printf('Server failed to initialize, see the log for more details: %s' . "\n", $this->log);
+        printf('Server failed to initialize, dumping log (%s):' . "\n", $this->log);
+        print("\n");
+        print(file_get_contents($this->log) . "\n");
         exit(1);
         // @codeCoverageIgnoreStop
     }
 
     public function stop() {
-        Shell::kill($this->pid);
+        if ($this->running) {
+            Shell::kill($this->pid);
+        }
+        $this->running = false;
+    }
+
+    /**
+     * If an assertion fails, the test won't have a chance to stop the server.
+     */
+    public function __destruct() {
+        $this->stop();
     }
 
 }

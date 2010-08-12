@@ -5,5 +5,8 @@
             <file>tests/examples/HelloWorldTest.php</file>
             <file>tests/examples/HelloWorldAsyncTest.php</file>
         </testsuite>
+        <testsuite name="core">
+            <file>tests/core/ClientTest.php</file>
+        </testsuite>
     </testsuites>
 </phpunit>

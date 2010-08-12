@@ -33,7 +33,10 @@ abstract class ProjectBuilder {
     private $name;
     private $schemas;
     private $procedures;
+    private $users;
+    private $groups;
     private $partitions;
+    private $security;
 
     private $server;
 
@@ -57,8 +60,20 @@ abstract class ProjectBuilder {
         $this->procedures = $procedures;
     }
 
+    public function setUsers(array $users) {
+        $this->users = $users;
+    }
+
+    public function setGroups(array $groups) {
+        $this->groups = $groups;
+    }
+
     public function setPartitions(array $partitions) {
         $this->partitions = $partitions;
+    }
+
+    public function setSecurityEnabled($security) {
+        $this->security = $security;
     }
 
     private function getWorkingDir() {
@@ -67,8 +82,10 @@ abstract class ProjectBuilder {
 
     public function start() {
         if (!isset($this->name)) {
+            // @codeCoverageIgnoreStart
             print('ProjectBuilder constructor must be explicitly called by subclasses.');
             exit(1);
+            // @codeCoverageIgnoreStop
         }
 
         $project = $this->project();
@@ -90,6 +107,10 @@ abstract class ProjectBuilder {
 
         $writer->startDocument('1.0');
         $writer->startElement('project');
+
+        $writer->startElement('security');
+        $writer->writeAttribute('enabled', $this->security ? 'true' : 'false');
+        $writer->endElement(); // security
 
         $writer->startElement('database');
         $writer->writeAttribute('name', 'database');
@@ -124,6 +145,18 @@ abstract class ProjectBuilder {
         }
         $writer->endElement(); // partitions
 
+        if (count($this->groups) > 0) {
+            $writer->startElement('groups');
+            foreach ($this->groups as $group) {
+                $writer->startElement('group');
+                $writer->writeAttribute('name', $group->getName());
+                $writer->writeAttribute('adhoc', $group->getAdhoc() ? 'true' : 'false');
+                $writer->writeAttribute('sysproc', $group->getSysproc() ? 'true' : 'false');
+                $writer->endElement(); // group
+            }
+            $writer->endElement(); // groups;
+        }
+
         $writer->endElement(); // database
         $writer->endElement(); // project
         $writer->flush();
@@ -147,12 +180,28 @@ abstract class ProjectBuilder {
 
         $writer->startDocument('1.0');
         $writer->startElement('deployment');
+
         $writer->startElement('cluster');
         $writer->writeAttribute('hostcount', 1);
         $writer->writeAttribute('sitesperhost', 2);
         $writer->writeAttribute('leader', 'localhost');
         $writer->writeAttribute('kfactor', 0);
         $writer->endElement(); // cluster
+
+        if (count($this->users) > 0) {
+            $writer->startElement('users');
+            foreach ($this->users as $user) {
+                $writer->startElement('user');
+                $writer->writeAttribute('name', $user->getName());
+                $writer->writeAttribute('password', $user->getPassword());
+                if (count($user->getGroups()) > 0) {
+                    $writer->writeAttribute('groups', implode(',', $user->getGroups()));
+                }
+                $writer->endElement(); // user
+            }
+            $writer->endElement(); // users
+        }
+
         $writer->endElement(); // deployment
         $writer->flush();
 
@@ -227,6 +276,58 @@ class PartitionInfo {
 
     public function getColumn() {
         return $this->column;
+    }
+
+}
+
+class UserInfo {
+
+    private $name;
+    private $password;
+    private $groups;
+
+    public function __construct($name, $password, array $groups) {
+        $this->name = $name;
+        $this->password = $password;
+        $this->groups = $groups;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getGroups() {
+        return $this->groups;
+    }
+
+}
+
+class GroupInfo {
+
+    private $name;
+    private $adhoc;
+    private $sysproc;
+
+    public function __construct($name, $adhoc, $sysproc) {
+        $this->name = $name;
+        $this->adhoc = $adhoc;
+        $this->sysproc = $sysproc;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getAdhoc() {
+        return $this->adhoc;
+    }
+
+    public function getSysproc() {
+        return $this->sysproc;
     }
 
 }
