@@ -65,14 +65,16 @@ class Server {
             usleep($waitInterval);
             $waited += $waitInterval;
         }
+        // @codeCoverageIgnoreStart
         $this->running = false;
         printf('Server failed to initialize, see the log for more details: %s' . "\n", $this->log);
         return false;
+        // @codeCoverageIgnoreStop
     }
 
     public function stop() {
         if ($this->running) {
-            exec('kill ' . $this->pid);
+            Shell::kill($this->pid);
         }
     }
 

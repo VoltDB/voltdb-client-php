@@ -65,7 +65,8 @@
         <delete dir="bin" />
         <delete dir="dist" />
         <delete dir="test/tmp" />
-        <delete dir="debugoutput" />
+        <delete dir="test/debugoutput" />
+        <delete dir="test/coverage" />
     </target>
 
     <!--
@@ -77,9 +78,10 @@
     <target name="check" depends="clean, swig, dist, phpunit" description="Verifies overall project integrity. This should pass before committing." />
 
     <target name="phpunit" depends="servercheck" description="Runs PHPUnit tests.">
-        <!-- prepare tmp directory -->
+        <!-- prepare directories -->
         <delete dir="test/tmp" />
         <mkdir dir="test/tmp" />
+        <delete dir="test/coverage" />
 
         <!-- make voltdb location available -->
         <exec executable="echo" output="test/tmp/voltdb.txt" failonerror="true">
@@ -90,8 +92,12 @@
         <exec executable="phpunit" dir="test" failonerror="true">
             <arg value="--verbose" />
             <arg line="--include-path ${basedir}" />
+            <arg line="--bootstrap bootstrap.php" />
             <arg line="--configuration phpunit.xml" />
+            <arg line="--coverage-html coverage" />
         </exec>
+        
+        <echo message="Code coverage report generated: ${basedir}/test/coverage/index.html" />
     </target>
 
     <target name="servercheck" description="Checks whether a VoltDB server is running.">

@@ -52,6 +52,10 @@ The following software is optional for end-users, but required for developers:
   * PHPUnit
     http://www.phpunit.de/
     PHPUnit is used to run PHP unit tests.
+    
+  * Xdebug
+    http://www.xdebug.org/
+    Xdebug is used to generate code coverage reports.
 
   * SWIG
     http://www.swig.org/

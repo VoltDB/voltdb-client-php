@@ -25,7 +25,7 @@
 
 class Shell {
 
-    public static function exec($cmd, $out) {
+    public static function exec($cmd, $out = '/dev/null') {
         exec($cmd . ' >> ' . $out . ' 2>&1 ');
     }
 
