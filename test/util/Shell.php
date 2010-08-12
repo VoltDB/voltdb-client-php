@@ -51,7 +51,7 @@ class Shell {
             $waited += $waitInterval;
         }
         // @codeCoverageIgnoreStart
-        printf('Process could not be killed: $d' . "\n", $pid);
+        printf('Process could not be killed: %d' . "\n", $pid);
         // @codeCoverageIgnoreStop
     }
 
