@@ -52,7 +52,7 @@ class AsyncCallback extends ProcedureCallback {
         if ($response->failure()) {
             printf('Failed to execute' . "\n");
             printf($response->toString() . "\n");
-            exit;
+            exit(1);
         }
 
         Stats::$totExecutions++;
@@ -90,13 +90,13 @@ if ($argc !== 9 + 1) { // 9 arguments and the name of the script
     print('usage: php voter.php [number of contestants] [votes per phone number] [transactions per second] ' .
         '[minimum outstanding] [maximum outstanding] [client feedback interval (seconds)] [test duration (seconds)] ' .
         '[lag record delay (seconds)] [server list (comma separated)]' . "\n");
-    exit;
+    exit(1);
 }
 
 $maxContestants = (int) $argv[1];
 if ($maxContestants < 1 || $maxContestants > 12) {
     print('Number of contestants must be between 1 and 12' . "\n");
-    exit;
+    exit(1);
 }
 
 $maxVotesPerPhoneNumber = (int) $argv[2];
@@ -152,7 +152,7 @@ foreach ($voltServers as $thisServer) {
         $voltClient->createConnection($thisServer);
     } catch (ConnectException $e) {
         print($e->getMessage() . "\n");
-        exit;
+        exit(1);
     }
 }
 

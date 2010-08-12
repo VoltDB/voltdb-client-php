@@ -25,25 +25,15 @@
 
 class HelloWorldTest extends PHPUnit_Framework_TestCase {
 
-    private $server;
-
-    public function setUp() {
-        $project = new HelloWorld('helloworld');
-        $project->build();
-        $this->server = $project->getServer();
-        if (!$this->server->start()) {
-            parent::fail();
-        }
-    }
-
     public function testHelloWorld() {
+        $server = new HelloWorld();
+        $server->start();
+
         $script = 'helloworld.php';
         exec('cd ../examples && php ' . $script, $output);
         parent::assertEquals(implode("\n", $output), 'Hola Mundo');
-    }
 
-    public function tearDown() {
-        $this->server->stop();
+        $server->stop();
     }
 
 }

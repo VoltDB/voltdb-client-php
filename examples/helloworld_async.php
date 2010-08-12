@@ -71,7 +71,7 @@ try {
     $client->createConnection('localhost');
 } catch (ConnectException $e) {
     print($e->getMessage() . "\n");
-    exit;
+    exit(1);
 }
 
 // Describe the stored procedure to be invoked

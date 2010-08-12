@@ -25,8 +25,8 @@
 
 class HelloWorld extends ProjectBuilder {
 
-    public function __construct($name) {
-        parent::__construct($name);
+    public function __construct() {
+        parent::__construct();
 
         $schemas = array();
         $schemas[] = '

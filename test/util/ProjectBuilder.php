@@ -28,7 +28,7 @@
  * cases to build projects to run against. Supports a subset of the actual project/deployment file features available
  * (no exports, for example). Also only supports single-server instances.
  */
-class ProjectBuilder {
+abstract class ProjectBuilder {
 
     private $name;
     private $schemas;
@@ -37,11 +37,11 @@ class ProjectBuilder {
 
     private $server;
 
-    public function __construct($name) {
-        $this->name = $name;
-        if (!file_exists($this->getWorkingDir())) {
-            mkdir($this->getWorkingDir());
-        }
+    public function __construct() {
+        $backtrace = debug_backtrace();
+        $caller = sprintf('%s-%s', $backtrace[2]['class'], $backtrace[2]['function']); // TestClass-MethodName
+        $this->name = $caller;
+        mkdir($this->getWorkingDir());
     }
 
     public function setSchemas(array $schemas) {
@@ -65,17 +65,19 @@ class ProjectBuilder {
         return getcwd() . '/tmp/' . $this->name;
     }
 
-    public function build() {
+    public function start() {
+        if (!isset($this->name)) {
+            print('ProjectBuilder constructor must be explicitly called by subclasses.');
+            exit(1);
+        }
+
         $project = $this->project();
         $catalog = $this->getWorkingDir() . '/catalog.jar';
         $log = $this->getWorkingDir() . '/log.txt';
         $this->compile($project, $catalog, $log);
         $deployment = $this->deployment();
         $this->server = new Server($catalog, $deployment, $log);
-    }
-
-    public function getServer() {
-        return $this->server;
+        $this->server->start();
     }
 
     private function project() {
@@ -155,6 +157,10 @@ class ProjectBuilder {
         $writer->flush();
 
         return $deployment;
+    }
+
+    public function stop() {
+        $this->server->stop();
     }
 
 }

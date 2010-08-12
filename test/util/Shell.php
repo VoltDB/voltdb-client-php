@@ -52,6 +52,7 @@ class Shell {
         }
         // @codeCoverageIgnoreStart
         printf('Process could not be killed: %d' . "\n", $pid);
+        exit(1);
         // @codeCoverageIgnoreStop
     }
 

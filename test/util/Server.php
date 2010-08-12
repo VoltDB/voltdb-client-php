@@ -29,7 +29,6 @@ class Server {
     private $deployment;
     private $log;
 
-    private $running = false;
     private $pid;
 
     public function __construct($catalog, $deployment, $log) {
@@ -47,7 +46,7 @@ class Server {
                 VOLTDB, VOLTDBJAR, $this->catalog, $this->deployment),
             $this->log);
         $this->running = true;
-        return $this->waitForInitialization();
+        $this->waitForInitialization();
     }
 
     /**
@@ -60,22 +59,19 @@ class Server {
         $waited = 0;
         while ($waited < $waitMax) {
             if (strpos(file_get_contents($this->log), 'Server completed initialization.')) {
-                return true;
+                return;
             }
             usleep($waitInterval);
             $waited += $waitInterval;
         }
         // @codeCoverageIgnoreStart
-        $this->running = false;
         printf('Server failed to initialize, see the log for more details: %s' . "\n", $this->log);
-        return false;
+        exit(1);
         // @codeCoverageIgnoreStop
     }
 
     public function stop() {
-        if ($this->running) {
-            Shell::kill($this->pid);
-        }
+        Shell::kill($this->pid);
     }
 
 }
