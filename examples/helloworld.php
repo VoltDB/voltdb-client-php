@@ -27,7 +27,12 @@ require_once('../dist/voltdb.php');
 
 // Instantiate a client and connect to the database.
 $client = Client::create();
-$client->createConnection('localhost');
+try {
+    $client->createConnection('localhost');
+} catch (ConnectException $e) {
+    print($e->getMessage() . "\n");
+    exit;
+}
 
 // Describe the stored procedure to be invoked
 $parameters = new Parameters();

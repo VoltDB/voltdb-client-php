@@ -148,7 +148,12 @@ $voltServers = explode(',', $serverList);
 foreach ($voltServers as $thisServer) {
     $thisServer = trim($thisServer);
     printf('Connecting to server: \'%s\'' . "\n", $thisServer);
-    $voltClient->createConnection($thisServer);
+    try {
+        $voltClient->createConnection($thisServer);
+    } catch (ConnectException $e) {
+        print($e->getMessage() . "\n");
+        exit;
+    }
 }
 
 $parameters = new Parameters();
