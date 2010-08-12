@@ -102,8 +102,9 @@
     </target>
 
     <target name="serverkill" description="Kills any running VoltDB servers.">
-        <exec executable="bash" failonerror="true">
-            <arg value="src/scripts/serverkill.sh" />
+        <exec executable="pkill" failonerror="true">
+            <arg value="-f" />
+            <arg value="org.voltdb.VoltDB" />
         </exec>
     </target>
 
