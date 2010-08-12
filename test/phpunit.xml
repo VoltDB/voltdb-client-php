@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<phpunit bootstrap="bootstrap.php">
+    <testsuites>
+        <testsuite name="examples">
+            <file>tests/examples/HelloWorldTest.php</file>
+            <file>tests/examples/HelloWorldAsyncTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

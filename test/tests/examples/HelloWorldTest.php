@@ -38,8 +38,8 @@ class HelloWorldTest extends PHPUnit_Framework_TestCase {
 
     public function testHelloWorld() {
         $script = 'helloworld.php';
-        exec('cd examples && php ' . $script, $output);
-        parent::assertEquals(implode("\n", $output), ExpectedOutput::get($script));
+        exec('cd ../examples && php ' . $script, $output);
+        parent::assertEquals(implode("\n", $output), 'Hola Mundo');
     }
 
     public function tearDown() {

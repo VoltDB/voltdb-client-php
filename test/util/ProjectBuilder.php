@@ -30,12 +30,6 @@
  */
 class ProjectBuilder {
 
-    private static $voltdbjar;
-
-    public static function init() {
-        self::$voltdbjar = trim(file_get_contents('test/tmp/voltdb.txt')) . '/voltdb/voltdb-*.jar';
-    }
-
     private $name;
     private $schemas;
     private $procedures;
@@ -68,7 +62,7 @@ class ProjectBuilder {
     }
 
     private function getWorkingDir() {
-        return getcwd() . '/test/tmp/' . $this->name;
+        return getcwd() . '/tmp/' . $this->name;
     }
 
     public function build() {
@@ -137,7 +131,7 @@ class ProjectBuilder {
 
     private function compile($project, $catalog, $log) {
         Shell::exec(
-            sprintf('java -cp %s org.voltdb.compiler.VoltCompiler %s %s', self::$voltdbjar, $project, $catalog),
+            sprintf('java -cp %s org.voltdb.compiler.VoltCompiler %s %s', VOLTDBJAR, $project, $catalog),
             $log);
     }
 
@@ -164,7 +158,6 @@ class ProjectBuilder {
     }
 
 }
-ProjectBuilder::init();
 
 class SchemaInfo {
 

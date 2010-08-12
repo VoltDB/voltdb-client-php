@@ -23,21 +23,27 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * This script runs before tests are run and makes all test framework classes available.
- */
+class HelloWorldAsyncTest extends PHPUnit_Framework_TestCase {
 
-// PHPUnit framework
-require_once('PHPUnit/Framework.php');
+    private $server;
 
-// Wrapper interface
-require('dist/voltdb.php');
+    public function setUp() {
+        $project = new HelloWorld('helloworld_async');
+        $project->build();
+        $this->server = $project->getServer();
+        if (!$this->server->start()) {
+            parent::fail();
+        }
+    }
 
-// Test utilities
-require('test/util/ProjectBuilder.php');
-require('test/util/Server.php');
-require('test/util/Shell.php');
-require('test/util/ExpectedOutput.php');
+    public function testHelloWorld() {
+        $script = 'helloworld_async.php';
+        exec('cd ../examples && php ' . $script, $output);
+        parent::assertEquals(implode("\n", $output), 'Hola Mundo');
+    }
 
-// Project files
-require('test/projects/HelloWorld.php');
+    public function tearDown() {
+        $this->server->stop();
+    }
+
+}

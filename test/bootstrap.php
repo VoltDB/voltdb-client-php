@@ -23,10 +23,24 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-class ExpectedOutput {
+/**
+ * This script runs before tests are run and makes all test framework classes available.
+ */
 
-    public static function get($scriptName) {
-        return file_get_contents('test/expectedoutput/' . substr($scriptName, 0, count($scriptName) - 4) . 'txt');
-    }
+// PHPUnit framework
+require_once('PHPUnit/Framework.php');
 
-}
+// wrapper interface
+require('dist/voltdb.php');
+
+// test utilities
+require('test/util/ProjectBuilder.php');
+require('test/util/Server.php');
+require('test/util/Shell.php');
+
+// project files
+require('test/projects/HelloWorld.php');
+
+// voltdb installation
+define('VOLTDB', trim(file_get_contents('tmp/voltdb.txt')) . '/voltdb');
+define('VOLTDBJAR', VOLTDB . '/voltdb-*.jar');

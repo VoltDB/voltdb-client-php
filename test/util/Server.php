@@ -25,14 +25,6 @@
 
 class Server {
 
-    private static $voltdb;
-    private static $voltdbjar;
-
-    public static function init() {
-        self::$voltdb = trim(file_get_contents('test/tmp/voltdb.txt')) . '/voltdb';
-        self::$voltdbjar = self::$voltdb . '/voltdb-*.jar';
-    }
-
     private $catalog;
     private $deployment;
     private $log;
@@ -52,7 +44,7 @@ class Server {
     public function start() {
         $this->pid = Shell::execAsync(
             sprintf('java -Djava.library.path=%s -cp %s org.voltdb.VoltDB catalog %s deployment %s',
-                self::$voltdb, self::$voltdbjar, $this->catalog, $this->deployment),
+                VOLTDB, VOLTDBJAR, $this->catalog, $this->deployment),
             $this->log);
         $this->running = true;
         return $this->waitForInitialization();
@@ -85,4 +77,3 @@ class Server {
     }
 
 }
-Server::init();

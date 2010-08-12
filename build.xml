@@ -87,11 +87,10 @@
         </exec>
 
         <!-- run all tests -->
-        <exec executable="phpunit" failonerror="true">
-            <arg line="--bootstrap test/util/bootstrap.php" />
-            <arg line="--include-path ${basedir}" />
+        <exec executable="phpunit" dir="test" failonerror="true">
             <arg value="--verbose" />
-            <arg value="test/tests" />
+            <arg line="--include-path ${basedir}" />
+            <arg line="--configuration phpunit.xml" />
         </exec>
     </target>
 
