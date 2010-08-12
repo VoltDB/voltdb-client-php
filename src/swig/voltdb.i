@@ -74,6 +74,7 @@
             zend_fetch_class(name.c_str(), name.length(), 0),
             const_cast<char*>($1.what()),
             0 TSRMLS_CC);
+    return;
 %}
 %enddef
 PHP_EXCEPTION(voltdb::Exception);

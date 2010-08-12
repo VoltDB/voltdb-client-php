@@ -8517,6 +8517,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8579,6 +8580,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -8590,6 +8592,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8694,6 +8697,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8759,6 +8763,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -8770,6 +8775,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8816,6 +8822,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_2) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8920,6 +8927,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -8967,6 +8975,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -8978,6 +8987,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9061,6 +9071,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9115,6 +9126,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9126,6 +9138,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9208,6 +9221,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9255,6 +9269,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9266,6 +9281,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9349,6 +9365,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9403,6 +9420,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9414,6 +9432,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9496,6 +9515,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9543,6 +9563,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9554,6 +9575,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9637,6 +9659,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9691,6 +9714,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9702,6 +9726,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9784,6 +9809,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9831,6 +9857,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9842,6 +9869,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9925,6 +9953,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -9979,6 +10008,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -9990,6 +10020,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10072,6 +10103,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10119,6 +10151,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -10130,6 +10163,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10213,6 +10247,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10267,6 +10302,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -10278,6 +10314,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10366,6 +10403,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10419,6 +10457,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -10430,6 +10469,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10523,6 +10563,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10575,6 +10616,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -10586,6 +10628,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10703,6 +10746,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_position__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -10864,6 +10908,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_limit__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11045,6 +11090,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemaining) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11097,6 +11143,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemainingExact) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11149,6 +11196,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacity) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11201,6 +11249,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacityExact) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11443,6 +11492,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemaining) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11495,6 +11545,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemainingExact) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11547,6 +11598,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacity) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -11599,6 +11651,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacityExact) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -13969,6 +14022,7 @@ ZEND_NAMED_FUNCTION(_wrap_ProcedureCallbackNative_callback) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14077,6 +14131,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14088,6 +14143,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14099,6 +14155,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14151,6 +14208,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14162,6 +14220,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14173,6 +14232,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14277,6 +14337,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::UninitializedParamsException &_e) {
@@ -14288,6 +14349,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14299,6 +14361,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14310,6 +14373,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14362,6 +14426,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::UninitializedParamsException &_e) {
@@ -14373,6 +14438,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14384,6 +14450,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14395,6 +14462,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14432,6 +14500,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_runOnce) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14443,6 +14512,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_runOnce) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14454,6 +14524,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_runOnce) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14491,6 +14562,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_run) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14502,6 +14574,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_run) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14513,6 +14586,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_run) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14551,6 +14625,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_drain) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -14562,6 +14637,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_drain) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14573,6 +14649,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_drain) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14605,6 +14682,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14616,6 +14694,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -14656,6 +14735,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -14667,6 +14747,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -15918,6 +15999,7 @@ ZEND_NAMED_FUNCTION(_wrap_TableIterator_next) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::OverflowUnderflowException &_e) {
@@ -15929,6 +16011,7 @@ ZEND_NAMED_FUNCTION(_wrap_TableIterator_next) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::IndexOutOfBoundsException &_e) {
@@ -15940,6 +16023,7 @@ ZEND_NAMED_FUNCTION(_wrap_TableIterator_next) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -16894,6 +16978,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -16905,6 +16990,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -16916,6 +17002,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -16972,6 +17059,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -16983,6 +17071,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -16994,6 +17083,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_1) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -17063,6 +17153,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -17074,6 +17165,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -17085,6 +17177,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
@@ -17147,6 +17240,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_3) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::LibEventException &_e) {
@@ -17158,6 +17252,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_3) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   catch(voltdb::Exception &_e) {
@@ -17169,6 +17264,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_3) {
       zend_fetch_class(name.c_str(), name.length(), 0),
       const_cast<char*>((&_e)->what()),
       0 TSRMLS_CC);
+    return;
     
   }
   
