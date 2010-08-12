@@ -37,6 +37,22 @@ class Shell {
 
     public static function kill($pid) {
         self::exec('kill ' . $pid);
+
+        // block until the process is gone
+        $waitMax = 3000000; // 3s
+        $waitInterval = 100000; // 100ms
+        $waited = 0;
+        while ($waited < $waitMax) {
+            exec(sprintf('ps -p %d > /dev/null', $pid), $output, $retval);
+            if ($retval === 1) {
+                return;
+            }
+            usleep($waitInterval);
+            $waited += $waitInterval;
+        }
+        // @codeCoverageIgnoreStart
+        printf('Process could not be killed: $d' . "\n", $pid);
+        // @codeCoverageIgnoreStop
     }
 
 }
