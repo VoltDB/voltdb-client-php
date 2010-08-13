@@ -25,19 +25,19 @@
 
 class ClientTest extends PHPUnit_Framework_TestCase {
 
+    /**
+     * Client::create(), Client::createFromPool(), and Client::createConnection()
+     */
+
     public function testCreateConnectionNoServerRunning() {
         $client = Client::create();
-        try {
-            $client->createConnection('localhost');
-            parent::assertTrue(false, 'Expected ConnectException.');
-        } catch (ConnectException $e) {}
+        parent::setExpectedException('ConnectException');
+        $client->createConnection('localhost');
     }
 
     public function testCreateFromPoolNoServerRunning() {
-        try {
-            Client::createFromPool('localhost');
-            parent::assertTrue(false, 'Expected ConnectException.');
-        } catch (ConnectException $e) {}
+        parent::setExpectedException('ConnectException');
+        Client::createFromPool('localhost');
     }
 
     public function testCreateConnectionServerRunning() {
@@ -111,6 +111,302 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         }
 
         $server->stop();
+    }
+
+    /**
+     * Client::invoke()
+     */
+
+    public function testInvokeNoConnection() {
+        $client = Client::create();
+        parent::setExpectedException('NoConnectionsException');
+        $client->invoke($this->getSelect());
+    }
+
+    public function testInvoke() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::create();
+        $client->createConnection('localhost');
+        $this->doInvokeTest($client);
+
+        $server->stop();
+    }
+
+    public function testInvokeFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::createFromPool('localhost');
+        $this->doInvokeTest($client);
+
+        $server->stop();
+    }
+
+    private function doInvokeTest($client) {
+        $this->doInsert($client);
+        $response = $client->invoke($this->getSelect());
+        $this->verifySelect($response);
+    }
+
+    /**
+     * Client::invokeAsync()
+     */
+
+    public function testInvokeAsyncNoConnection() {
+        $client = Client::create();
+        parent::setExpectedException('NoConnectionsException');
+        $client->invokeAsync($this->getSelect(), new ClientTestCallback(null));
+    }
+
+    public function testInvokeAsync() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::create();
+        $client->createConnection('localhost');
+        $this->doInvokeAsyncTest($client);
+
+        $server->stop();
+    }
+
+    public function testInvokeAsyncFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::createFromPool('localhost');
+        $this->doInvokeAsyncTest($client);
+
+        $server->stop();
+    }
+
+    private function doInvokeAsyncTest($client) {
+        $this->doInsert($client);
+        $callback = new ClientTestCallback($this);
+        $client->invokeAsync($this->getSelect(), $callback);
+        while (!$client->drain()) {}
+        parent::assertEquals(1, $callback->getInvocationCount());
+    }
+
+    /**
+     * Client::runOnce()
+     */
+
+    public function testRunOnceNoConnections() {
+        $client = Client::create();
+        parent::setExpectedException('NoConnectionsException');
+        $client->runOnce();
+    }
+
+    public function testRunOnce() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::create();
+        $client->createConnection('localhost');
+        $this->doRunOnceTest($client);
+
+        $server->stop();
+    }
+
+    public function testRunOnceFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::createFromPool('localhost');
+        $this->doRunOnceTest($client);
+
+        $server->stop();
+    }
+
+
+    // this can go into an infinite loop upon failure
+    private function doRunOnceTest($client) {
+        $this->doInsert($client);
+
+        $callback = new ClientTestCallback($this);
+
+        // do it 1 time
+        $client->invokeAsync($this->getSelect(), $callback);
+        parent::assertEquals(0, $callback->getInvocationCount());
+        while ($callback->getInvocationCount() !== 1) {
+            $client->runOnce();
+        }
+
+        // do it 2 times
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invokeAsync($this->getSelect(), $callback);
+        while ($callback->getInvocationCount() !== 3) {
+            $client->runOnce();
+        }
+    }
+
+    /**
+     * Client::run()
+     */
+
+    public function testRunNoConnections() {
+        $client = Client::create();
+        parent::setExpectedException('NoConnectionsException');
+        $client->run();
+    }
+
+    public function testRun() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::create();
+        $client->createConnection('localhost');
+        $this->doRunTest($client);
+
+        $server->stop();
+    }
+
+    public function testRunFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::createFromPool('localhost');
+        $this->doRunTest($client);
+
+        $server->stop();
+    }
+
+    // this can go into an infinite loop upon failure
+    private function doRunTest($client) {
+        $this->doInsert($client);
+        $callback = new ClientTestCountingCallback($this, 3);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->run();
+    }
+
+    /**
+     * Client::drain()
+     */
+
+    public function testDrainNoConnections() {
+        $client = Client::create();
+        parent::setExpectedException('NoConnectionsException');
+        $client->drain();
+    }
+
+    public function testDrain() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::create();
+        $client->createConnection('localhost');
+        $this->doDrainTest($client);
+
+        $server->stop();
+    }
+
+    public function testDrainFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $client = Client::createFromPool('localhost');
+        $this->doDrainTest($client);
+
+        $server->stop();
+    }
+
+    // this can go into an infinite loop upon failure
+    private function doDrainTest($client) {
+        $this->doInsert($client);
+        $callback = new ClientTestCallback($this);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invokeAsync($this->getSelect(), $callback);
+        $client->drain();
+    }
+
+    /**
+     * Test helpers
+     */
+
+    private function doInsert($client) {
+        $parameters = new Parameters();
+        $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
+        $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
+        $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
+        $insertProcedure = new Procedure('Insert', $parameters);
+        $insertProcedure->params()->addString('Hola')->addString('Mundo')->addString('Spanish');
+        $response = $client->invoke($insertProcedure);
+
+        parent::assertTrue($response->success());
+        parent::assertEquals('', $response->statusString());
+        parent::assertEquals(-128, $response->appStatusCode());
+        parent::assertEquals('', $response->appStatusString());
+        parent::assertEquals(1, $response->results()->size());
+    }
+
+    private function getSelect() {
+        $parameters = new Parameters();
+        $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
+        $selectProcedure = new Procedure('Select', $parameters);
+        $selectProcedure->params()->addString('Spanish');
+        return $selectProcedure;
+    }
+
+    public function verifySelect($response) {
+        parent::assertTrue($response->success());
+        parent::assertEquals('', $response->statusString());
+        parent::assertEquals(-128, $response->appStatusCode());
+        parent::assertEquals('', $response->appStatusString());
+        parent::assertEquals(1, $response->results()->size());
+
+        $results = $response->results();
+        $table = $results->get(0);
+        parent::assertEquals(1, $table->rowCount());
+        $iterator = $table->iterator();
+        $row = $iterator->next();
+        parent::assertFalse($iterator->hasNext());
+        $hello = $row->getString(0);
+        $world = $row->getString(1);
+        parent::assertEquals('Hola', $hello);
+        parent::assertEquals('Mundo', $world);
+    }
+
+}
+
+class ClientTestCallback extends ProcedureCallback {
+
+    private $test;
+    private $invocationCount = 0;
+
+    public function __construct($test) {
+        $this->test = $test;
+    }
+
+    public function callback($response) {
+        $this->test->verifySelect($response);
+        $this->invocationCount++;
+        return true;
+    }
+
+    public function getInvocationCount() {
+        return $this->invocationCount;
+    }
+
+}
+
+class ClientTestCountingCallback extends ProcedureCallback {
+
+    private $test;
+    private $invocationCount;
+
+    public function __construct($test, $invocationCount) {
+        $this->test = $test;
+        $this->invocationCount = $invocationCount;
+    }
+
+    public function callback($response) {
+        $this->test->verifySelect($response);
+        return --$this->invocationCount === 0;
     }
 
 }
