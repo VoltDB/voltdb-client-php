@@ -37,7 +37,7 @@ class CountingCallback extends ProcedureCallback {
         $this->count--;
 
         if ($response->failure()) {
-            echo $response->toString();
+            print($response->toString() . "\n");
         }
 
         return $this->count === 0;
@@ -56,7 +56,7 @@ class PrintingCallBack extends ProcedureCallback {
                 $row = $iterator->next();
                 $hello = $row->getString('HELLO');
                 $world = $row->getString('WORLD');
-                echo $hello . ' ' . $world . "\n";
+                printf('%s %s' . "\n", $hello, $world);
             }
         }
 

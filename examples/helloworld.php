@@ -46,23 +46,23 @@ $params = $procedure->params();
 
 $params->addString('Hello')->addString('World')->addString('English');
 $response = $client->invoke($procedure);
-if ($response->failure()) { echo $response->toString() . "\n"; }
+if ($response->failure()) { print($response->toString() . "\n"); }
 
 $params->addString('Bonjour')->addString('Monde')->addString('French');
 $response = $client->invoke($procedure);
-if ($response->failure()) { echo $response->toString() . "\n"; }
+if ($response->failure()) { print($response->toString() . "\n"); }
 
 $params->addString('Hola')->addString('Mundo')->addString('Spanish');
 $response = $client->invoke($procedure);
-if ($response->failure()) { echo $response->toString() . "\n"; }
+if ($response->failure()) { print($response->toString() . "\n"); }
 
 $params->addString('Hej')->addString('Verden')->addString('Danish');
 $response = $client->invoke($procedure);
-if ($response->failure()) { echo $response->toString() . "\n"; }
+if ($response->failure()) { print($response->toString() . "\n"); }
 
 $params->addString('Ciao')->addString('Mondo')->addString('Italian');
 $response = $client->invoke($procedure);
-if ($response->failure()) { echo $response->toString() . "\n"; }
+if ($response->failure()) { print($response->toString() . "\n"); }
 
 // Describe procedure to retrieve message
 $parameters = new Parameters();
@@ -82,6 +82,6 @@ for ($i = 0; $i < $results->size(); $i++) {
         $row = $iterator->next();
         $hello = $row->getString(0);
         $world = $row->getString(1);
-        echo $hello . ' ' . $world . "\n";
+        printf('%s %s' . "\n", $hello, $world);
     }
 }
