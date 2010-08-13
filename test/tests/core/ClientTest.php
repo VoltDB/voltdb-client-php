@@ -314,14 +314,14 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $server->stop();
     }
 
-    // this can go into an infinite loop upon failure
     private function doDrainTest($client) {
         $this->doInsert($client);
-        $callback = new ClientTestCallback($this);
+        $callback = new ClientTestCountingCallback($this, 3);
         $client->invokeAsync($this->getSelect(), $callback);
         $client->invokeAsync($this->getSelect(), $callback);
         $client->invokeAsync($this->getSelect(), $callback);
         $client->drain();
+        parent::assertEquals(0, $callback->getInvocationCount());
     }
 
     /**
@@ -407,6 +407,10 @@ class ClientTestCountingCallback extends ProcedureCallback {
     public function callback($response) {
         $this->test->verifySelect($response);
         return --$this->invocationCount === 0;
+    }
+
+    public function getInvocationCount() {
+        return $this->invocationCount;
     }
 
 }
