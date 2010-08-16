@@ -90,7 +90,7 @@ With the extension loaded into PHP, include the voltdb.php file at the top of yo
 This wrapper is still very much in the development phase, so not all features are fully supported. This includes:
 
   * Status listeners
-    Providing a status listener can cause a seg fault when a status listener callback is invoked.
+    When using connection pooling, status listeners do not receive connectionLost() and backpressure() calls. 
 
   * Exceptions in callbacks
     When running asynchronously, you will get an error if you try to throw an exception in your callback function.

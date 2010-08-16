@@ -36,14 +36,6 @@
 
 %feature("director");
 
-/*
-%feature("director:except") {
-    if ($error == FAILURE) {
-        throw voltdb::Exception();
-    }
-}
-*/
-
 %{
 #include "Exception.hpp"
 #include "WireType.h"
@@ -171,6 +163,14 @@ class Client {
         unset($this->callbacks[$index]);
     }
 
+    public function uncaughtException($exception, $callback) {
+        if (isset($this->listener)) {
+            return $this->listener->uncaughtException($exception, $callback);
+        } else {
+            return false;
+        }
+    }
+
     public function runOnce() {
         return $this->native->runOnce();
     }
@@ -215,7 +215,43 @@ class Client {
 
 }
 
-/* Callback wrapper classes */
+/* StatusListener wrapper classes */
+
+abstract class StatusListener {
+
+    public abstract function uncaughtException($exception, $callback);
+    public abstract function connectionLost($hostname, $connectionsLeft);
+    public abstract function backpressure($hasBackpressure);
+
+}
+
+class StatusListenerWrapper extends StatusListenerNative {
+
+    private $listener;
+
+    public function __construct($listener) {
+        parent::__construct();
+        $this->listener = $listener;
+    }
+
+    public function uncaughtException($exception, $callback) {
+        $retval = $this->listener->uncaughtException($exception, $callback);
+        return $retval === null ? false : $retval;
+    }
+
+    public function connectionLost($hostname, $connectionsLeft) {
+        $retval = $this->listener->connectionLost($hostname, $connectionsLeft);
+        return $retval === null ? false : $retval;
+    }
+
+    public function backpressure($hasBackpressure) {
+        $retval = $this->listener->backpressure($hasBackpressure);
+        return $retval === null ? false : $retval;
+    }
+
+}
+
+/* ProcedureCallback wrapper classes */
 
 abstract class ProcedureCallback {
 
@@ -229,6 +265,10 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
     private $callback;
     private $index;
 
+    public function uncaughtException($exception, $callback) {
+        $this->listener->uncaughtException($exception, $callback);
+    }
+
     public function __construct($client, $callback, $index) {
         parent::__construct();
         $this->client = $client;
@@ -238,7 +278,11 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
 
     public function callback($response) {
         $this->client->invoked($this->index);
-        $retval = $this->callback->callback(new InvocationResponse($response));
+        try {
+            $retval = $this->callback->callback(new InvocationResponse($response));
+        } catch (Exception $e) {
+            return $this->client->uncaughtException($e, $this->callback);
+        }
         $response = null; // avoids memory leak
         return $retval === null ? false : $retval;
     }
