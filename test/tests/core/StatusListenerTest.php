@@ -90,20 +90,20 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
         parent::assertTrue($listener->called('connectionLost'));
     }
 
-//    public function testConnectionLostFromPool() {
-//        $server = new HelloWorld();
-//        $server->start();
-//
-//        $listener = new StatusListenerTestListener($this);
-//        $client = Client::createFromPool('localhost', '', '', $listener);
-//
-//        $this->doConnectionLostTest($client);
-//
-//        $server->stop();
-//
-//        $client->run();
-//        parent::assertTrue($listener->called('connectionLost'));
-//    }
+    public function testConnectionLostFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $listener = new StatusListenerTestListener($this);
+        $client = Client::createFromPool('localhost', '', '', $listener);
+
+        $this->doConnectionLostTest($client);
+
+        $server->stop();
+
+        $client->run();
+        parent::assertTrue($listener->called('connectionLost'));
+    }
 
     public function doConnectionLostTest($client) {
         $parameters = new Parameters();
@@ -132,17 +132,17 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
         $server->stop();
     }
 
-//    public function testBackpressureFromPool() {
-//        $server = new HelloWorld();
-//        $server->start();
-//
-//        $listener = new StatusListenerTestListener($this);
-//        $client = Client::createFromPool('localhost', '', '', $listener);
-//
-//        $this->doBackpressureTest($client, $listener);
-//
-//        $server->stop();
-//    }
+    public function testBackpressureFromPool() {
+        $server = new HelloWorld();
+        $server->start();
+
+        $listener = new StatusListenerTestListener($this);
+        $client = Client::createFromPool('localhost', '', '', $listener);
+
+        $this->doBackpressureTest($client, $listener);
+
+        $server->stop();
+    }
 
     public function doBackpressureTest($client, $listener) {
         $parameters = new Parameters();

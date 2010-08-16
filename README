@@ -89,12 +89,6 @@ With the extension loaded into PHP, include the voltdb.php file at the top of yo
 
 This wrapper is still very much in the development phase, so not all features are fully supported. This includes:
 
-  * Status listeners
-    When using connection pooling, status listeners do not receive connectionLost() and backpressure() calls. 
-
-  * Exceptions in callbacks
-    When running asynchronously, you will get an error if you try to throw an exception in your callback function.
-
   * Parameters arrays
     Arrays of parameters are supported using vector wrappers, but they aren't tested.
 
