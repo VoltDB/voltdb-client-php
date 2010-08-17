@@ -12650,7 +12650,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDecimal__SWIG_0) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12684,7 +12699,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDecimal__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addDecimal(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12762,7 +12792,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addTimestamp__SWIG_0) {
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12796,7 +12841,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addTimestamp__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addTimestamp(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12871,7 +12931,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt64__SWIG_0) {
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12905,7 +12980,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt64__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt64(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -12980,7 +13070,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt32__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13014,7 +13119,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt32__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt32(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13089,7 +13209,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt16__SWIG_0) {
   arg2 = (int16_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13123,7 +13258,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt16__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt16(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13198,7 +13348,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt8__SWIG_0) {
   arg2 = (int8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13232,7 +13397,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt8__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addInt8(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13307,7 +13487,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDouble__SWIG_0) {
   arg2 = (double) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13341,7 +13536,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDouble__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addDouble(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13409,7 +13619,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addNull) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (voltdb::ParameterSet *) &(arg1)->addNull();
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addNull();
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13440,7 +13665,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addString__SWIG_0) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
@@ -13474,7 +13714,22 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addString__SWIG_1) {
     }
     arg2 = *tmp2;
   }
-  result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
+  try {
+    result = (voltdb::ParameterSet *) &(arg1)->addString(arg2);
+  }
+  catch(voltdb::ParamMismatchException &_e) {
+    std::string name = "voltdb::ParamMismatchException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ParameterSet, 0);
   
