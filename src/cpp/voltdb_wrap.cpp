@@ -15084,7 +15084,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDecimal__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (arg1)->getDecimal(arg2);
+  try {
+    result = (arg1)->getDecimal(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Decimal * resultobj = new voltdb::Decimal((const voltdb::Decimal &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Decimal, 1);
@@ -15118,7 +15133,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getTimestamp__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (int64_t)(arg1)->getTimestamp(arg2);
+  try {
+    result = (int64_t)(arg1)->getTimestamp(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15151,7 +15181,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt64__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (int64_t)(arg1)->getInt64(arg2);
+  try {
+    result = (int64_t)(arg1)->getInt64(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15184,7 +15229,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt32__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (int32_t)(arg1)->getInt32(arg2);
+  try {
+    result = (int32_t)(arg1)->getInt32(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15217,7 +15277,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt16__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (int16_t)(arg1)->getInt16(arg2);
+  try {
+    result = (int16_t)(arg1)->getInt16(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15250,7 +15325,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt8__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (int8_t)(arg1)->getInt8(arg2);
+  try {
+    result = (int8_t)(arg1)->getInt8(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15283,7 +15373,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDouble__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (double)(arg1)->getDouble(arg2);
+  try {
+    result = (double)(arg1)->getDouble(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -15316,7 +15421,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getString__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (arg1)->getString(arg2);
+  try {
+    result = (arg1)->getString(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15349,7 +15469,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_isNull__SWIG_0) {
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
-  result = (bool)(arg1)->isNull(arg2);
+  try {
+    result = (bool)(arg1)->isNull(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -15380,7 +15515,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDecimal__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (arg1)->getDecimal(arg2);
+  try {
+    result = (arg1)->getDecimal(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     voltdb::Decimal * resultobj = new voltdb::Decimal((const voltdb::Decimal &) result);
     SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Decimal, 1);
@@ -15452,7 +15602,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getTimestamp__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (int64_t)(arg1)->getTimestamp(arg2);
+  try {
+    result = (int64_t)(arg1)->getTimestamp(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15523,7 +15688,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt64__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (int64_t)(arg1)->getInt64(arg2);
+  try {
+    result = (int64_t)(arg1)->getInt64(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15594,7 +15774,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt32__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (int32_t)(arg1)->getInt32(arg2);
+  try {
+    result = (int32_t)(arg1)->getInt32(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15665,7 +15860,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt16__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (int16_t)(arg1)->getInt16(arg2);
+  try {
+    result = (int16_t)(arg1)->getInt16(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15736,7 +15946,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt8__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (int8_t)(arg1)->getInt8(arg2);
+  try {
+    result = (int8_t)(arg1)->getInt8(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15807,7 +16032,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDouble__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (double)(arg1)->getDouble(arg2);
+  try {
+    result = (double)(arg1)->getDouble(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_DOUBLE(return_value,result);
   }
@@ -15878,7 +16118,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getString__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (arg1)->getString(arg2);
+  try {
+    result = (arg1)->getString(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15949,7 +16204,22 @@ ZEND_NAMED_FUNCTION(_wrap_Row_isNull__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  result = (bool)(arg1)->isNull(arg2);
+  try {
+    result = (bool)(arg1)->isNull(arg2);
+  }
+  catch(voltdb::InvalidColumnException &_e) {
+    std::string name = "voltdb::InvalidColumnException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
