@@ -35,6 +35,7 @@ require('dist/voltdb.php');
 
 // test utilities
 require('test/util/ProjectBuilder.php');
+require('test/util/SampleValues.php');
 require('test/util/Server.php');
 require('test/util/Shell.php');
 

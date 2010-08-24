@@ -41,7 +41,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testDecimal() {
         $key = 1;
-        $value = new Decimal('3.1415');
+        $value = SampleValues::$DECIMAL;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -68,7 +68,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testTimestamp() {
         $key = 2;
-        $value = 123456789;
+        $value = SampleValues::$TIMESTAMP;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -95,7 +95,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testBigint() {
         $key = 3;
-        $value = 64;
+        $value = SampleValues::$BIGINT;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -122,7 +122,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testInteger() {
         $key = 4;
-        $value = 32;
+        $value = SampleValues::$INTEGER;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -149,7 +149,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testSmallint() {
         $key = 5;
-        $value = 16;
+        $value = SampleValues::$SMALLINT;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -176,7 +176,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testTinyint() {
         $key = 6;
-        $value = 8;
+        $value = SampleValues::$TINYINT;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -203,7 +203,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testFloat() {
         $key = 7;
-        $value = 3.14;
+        $value = SampleValues::$FLOAT;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
@@ -230,7 +230,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     public function testVarchar() {
         $key = 8;
-        $value = 'varchar';
+        $value = SampleValues::$VARCHAR;
 
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
