@@ -26,7 +26,7 @@
 /**
  * Tests that parameters sent to VoltDB come back as the correct type with the correct data.
  */
-class ParameterTest extends PHPUnit_Framework_TestCase {
+class WireTypeTest extends PHPUnit_Framework_TestCase {
 
     private static $server;
     private static $client;

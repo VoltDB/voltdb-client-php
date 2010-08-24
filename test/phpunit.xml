@@ -8,7 +8,7 @@
         <testsuite name="core">
             <file>tests/core/ClientTest.php</file>
             <file>tests/core/StatusListenerTest.php</file>
-            <file>tests/core/ParameterTest.php</file>
+            <file>tests/core/WireTypeTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
