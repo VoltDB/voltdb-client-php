@@ -31,8 +31,9 @@ class SecuritySuite extends ProjectBuilder {
         $schemas = array();
         $schemas[] = '
             CREATE TABLE players (
-                id INTEGER NOT NULL,
-                score INTEGER NOT NULL,
+                id      INTEGER NOT NULL,
+                score   INTEGER NOT NULL,
+
                 PRIMARY KEY (id)
             );
         ';

@@ -1923,10 +1923,6 @@ class Decimal {
 		return $this->_pData[$var];
 	}
 
-	const kMaxDecPrec = Decimal_kMaxDecPrec;
-
-	const kMaxDecScale = Decimal_kMaxDecScale;
-
 	public function __construct($txt_or_data=null) {
 		if (is_resource($txt_or_data) && get_resource_type($txt_or_data) === '_p_voltdb__Decimal') {
 			$this->_cPtr=$txt_or_data;

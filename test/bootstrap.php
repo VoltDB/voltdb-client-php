@@ -41,6 +41,7 @@ require('test/util/Shell.php');
 // projects
 require('test/projects/HelloWorld.php');
 require('test/projects/SecuritySuite.php');
+require('test/projects/TypeSuite.php');
 
 // voltdb installation
 define('VOLTDB', trim(file_get_contents('tmp/voltdb.txt')) . '/voltdb');

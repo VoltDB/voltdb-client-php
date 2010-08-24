@@ -1076,9 +1076,8 @@ static int le_member_ptr;
 #define SWIGTYPE_p_voltdb__Table swig_types[53]
 #define SWIGTYPE_p_voltdb__TableIterator swig_types[54]
 #define SWIGTYPE_p_voltdb__UninitializedParamsException swig_types[55]
-#define SWIGTYPE_uint16_t swig_types[56]
-static swig_type_info *swig_types[58];
-static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
+static swig_type_info *swig_types[57];
+static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1776,7 +1775,6 @@ static swig_type_info _swigt__p_voltdb__StringToDecimalException = {"_p_voltdb__
 static swig_type_info _swigt__p_voltdb__Table = {"_p_voltdb__Table", "voltdb::Table *|std::vector< voltdb::Table >::value_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__TableIterator = {"_p_voltdb__TableIterator", "voltdb::TableIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__UninitializedParamsException = {"_p_voltdb__UninitializedParamsException", "voltdb::UninitializedParamsException *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__uint16_t = {"_uint16_t", "uint16_t", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__int,
@@ -1835,7 +1833,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_voltdb__Table,
   &_swigt__p_voltdb__TableIterator,
   &_swigt__p_voltdb__UninitializedParamsException,
-  &_swigt__uint16_t,
 };
 
 static swig_cast_info _swigc__int[] = {  {&_swigt__int, 0, 0, 0},{0, 0, 0, 0}};
@@ -1894,7 +1891,6 @@ static swig_cast_info _swigc__p_voltdb__StringToDecimalException[] = {  {&_swigt
 static swig_cast_info _swigc__p_voltdb__Table[] = {  {&_swigt__p_voltdb__Table, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__TableIterator[] = {  {&_swigt__p_voltdb__TableIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__UninitializedParamsException[] = {  {&_swigt__p_voltdb__UninitializedParamsException, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__uint16_t[] = {  {&_swigt__uint16_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__int,
@@ -1953,7 +1949,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_voltdb__Table,
   _swigc__p_voltdb__TableIterator,
   _swigc__p_voltdb__UninitializedParamsException,
-  _swigc__uint16_t,
 };
 
 
@@ -3249,7 +3244,6 @@ static int le_swig__p_bool=0; /* handle for _p_bool */
 static int le_swig__p_voltdb__Procedure=0; /* handle for Procedure */
 static int le_swig__p_std__vectorT_voltdb__Parameter_t=0; /* handle for Parameters */
 static int le_swig__int=0; /* handle for _int */
-static int le_swig__uint16_t=0; /* handle for _uint16_t */
 static int le_swig__p_voltdb__StatusListener=0; /* handle for StatusListenerNative */
 static int le_swig__p_voltdb__ParameterSet=0; /* handle for ParameterSet */
 static int le_swig__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t=0; /* handle for _p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t */
@@ -18050,10 +18044,6 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_int) {
   /* No destructor for simple type _int */
   efree(rsrc->ptr);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_uint16_t) {
-  /* No destructor for simple type _uint16_t */
-  efree(rsrc->ptr);
-}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__StatusListener) {
   __wrap_delete_StatusListenerNative(rsrc, SWIGTYPE_p_voltdb__StatusListener->name TSRMLS_CC);
 }
@@ -18763,8 +18753,6 @@ le_swig__p_std__vectorT_voltdb__Parameter_t=zend_register_list_destructors_ex(_w
 SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_voltdb__Parameter_t,&le_swig__p_std__vectorT_voltdb__Parameter_t);
 le_swig__int=zend_register_list_destructors_ex(_wrap_destroy_int,NULL,(char *)(SWIGTYPE_int->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_int,&le_swig__int);
-le_swig__uint16_t=zend_register_list_destructors_ex(_wrap_destroy_uint16_t,NULL,(char *)(SWIGTYPE_uint16_t->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_uint16_t,&le_swig__uint16_t);
 le_swig__p_voltdb__StatusListener=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__StatusListener,NULL,(char *)(SWIGTYPE_p_voltdb__StatusListener->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__StatusListener,&le_swig__p_voltdb__StatusListener);
 le_swig__p_voltdb__ParameterSet=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ParameterSet,NULL,(char *)(SWIGTYPE_p_voltdb__ParameterSet->name),module_number);
