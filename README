@@ -2,7 +2,8 @@
 # 1. Introduction #
 ###################
 
-The VoltDB PHP wrapper lets you connect to and interact with VoltDB servers from PHP. Most of the code for this wrapper is generated automatically from the C++ client library code using SWIG.
+The VoltDB PHP wrapper lets you connect to and interact with VoltDB servers from PHP. Most of the code for this wrapper
+is generated automatically from the C++ client library code using SWIG.
 
 This is the overall build process that this package manages:
 
@@ -48,11 +49,11 @@ The following software is optional for end-users, but required for developers:
   * VoltDB
     https://svn.voltdb.com/eng/
     The core VoltDB project is used to start VoltDB servers to run unit tests against.
-  
+
   * PHPUnit
     http://www.phpunit.de/
     PHPUnit is used to run PHP unit tests.
-    
+
   * Xdebug
     http://www.xdebug.org/
     Xdebug is used to generate code coverage reports.
@@ -65,23 +66,30 @@ The following software is optional for end-users, but required for developers:
 # 4. Installation #
 ###################
 
-The build file needs to know where the required libraries are installed. Open build.xml in a text editor and edit the first two properties to point to the correct locations on your system.
+The build file needs to know where the required libraries are installed. Open build.xml in a text editor and edit the
+first two properties to point to the correct locations on your system.
 
-With that done, simply run ant without any arguments from the root directory. It will do its thing for a few seconds (there will be warnings in the output, this is fine) and if it succeeds, a dist directory will be created and it will contain two files, voltdb.so and voltdb.php.
+With that done, simply run ant without any arguments from the root directory. It will do its thing for a few seconds
+(there will be warnings in the output, this is fine) and if it succeeds, a dist directory will be created and it will
+contain two files, voltdb.so and voltdb.php.
 
-To get PHP to recognize the new extension, it needs to know where to find voltdb.so. Edit your php.ini file to include this line:
+To get PHP to recognize the new extension, it needs to know where to find voltdb.so. Edit your php.ini file to include
+this line:
 
     extension=${path.to.voltphp}/trunk/dist/voltdb.so
 
-Where ${path.to.voltphp} is where you checked this repository out to. Alternatively, you could move or symlink voltdb.so to PHP's default extension directory and not have to list a full path.
+Where ${path.to.voltphp} is where you checked this repository out to. Alternatively, you could move or symlink voltdb.so
+to PHP's default extension directory and not have to list a full path.
 
-Note that if you are running PHP through a web server such as Apache (instead of command line), you will have to restart/reload the server for the new php.ini changes to take effect.
+Note that if you are running PHP through a web server such as Apache (instead of command line), you will have to
+restart/reload the server for the new php.ini changes to take effect.
 
 ##############
 # 5. Running #
 ##############
 
-With the extension loaded into PHP, include the voltdb.php file at the top of your script. This file contains proxy classes for interacting with a VoltDB server. Look at the examples directory to see how to use the PHP wrapper.
+With the extension loaded into PHP, include the voltdb.php file at the top of your script. This file contains proxy
+classes for interacting with a VoltDB server. Look at the examples directory to see how to use the PHP wrapper.
 
 #################
 # 6. Bugs/TODOs #
@@ -94,3 +102,17 @@ This wrapper is still very much in the development phase, so not all features ar
 
   * int64_t and Decimal
     int64_t doesn't work because PHP doesn't support 64-bit integers. Decimal isn't tested.
+
+  * Retrieving results
+    When extracting data out of an InvocationResponse object, you must explicitly create a variable to hold the results
+    object. For example, this is valid:
+
+        $results = $response->results();
+        $row = $results->get(0)->iterator()->next();
+
+    Whereas this is not:
+
+        $row = $response->results()->get(0)->iterator()->next();
+
+    If you chain the method calls together like above, the variable returned by results() gets garbage collected too
+    early. See CLIENTAPI-15 for the progress of this bug.
