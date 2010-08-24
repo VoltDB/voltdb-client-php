@@ -50,6 +50,10 @@ class HelloWorld extends ProjectBuilder {
             'Select',
             'SELECT HELLO, WORLD FROM HELLOWORLD WHERE DIALECT = ?;',
             'HELLOWORLD.DIALECT: 0');
+        $procedures[] = new ProcedureInfo(
+            array(),
+            'Delete',
+            'DELETE FROM HELLOWORLD;');
         parent::setProcedures($procedures);
 
         $partitions = array();

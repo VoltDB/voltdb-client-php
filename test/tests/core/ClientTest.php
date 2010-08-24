@@ -25,160 +25,66 @@
 
 class ClientTest extends PHPUnit_Framework_TestCase {
 
+    private static $server;
+
+    public static function setUpBeforeClass() {
+        self::$server = new HelloWorld();
+        self::$server->start();
+    }
+
+    public static function tearDownAfterClass() {
+        self::$server->stop();
+    }
+
     /**
      * Client::create(), Client::createFromPool(), and Client::createConnection()
      */
 
-    public function testCreateConnectionNoServerRunning() {
-        $client = Client::create();
-        parent::setExpectedException('ConnectException');
-        $client->createConnection('localhost');
-    }
-
-    public function testCreateFromPoolNoServerRunning() {
-        parent::setExpectedException('ConnectException');
-        Client::createFromPool('localhost');
-    }
-
     public function testCreateConnectionServerRunning() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
-
-        $server->stop();
     }
 
     public function testCreateFromPoolServerRunning() {
-        $server = new HelloWorld();
-        $server->start();
-
         Client::createFromPool('localhost');
-
-        $server->stop();
-    }
-
-    public function testCreateConnectionSecurity() {
-        $server = new SecuritySuite();
-        $server->start();
-
-        $client = Client::create();
-
-        // don't specify credentials
-        try {
-            $client->createConnection('localhost');
-            parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
-        } catch (ConnectException $e) {}
-
-        // specify incorrect credentials
-        try {
-            $client->createConnection('localhost', 'user-1', 'password-x');
-            parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
-        } catch (ConnectException $e) {}
-
-        // specify correct credentials
-        try {
-            $client->createConnection('localhost', 'user-1', 'password-1');
-        } catch (ConnectException $e) {
-            parent::assertTrue(false, 'Should have been able to authenticate.');
-        }
-
-        $server->stop();
-    }
-
-    public function testCreateFromPoolSecurity() {
-        $server = new SecuritySuite();
-        $server->start();
-
-        // don't specify credentials
-        try {
-            Client::createFromPool('localhost');
-            parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
-        } catch (ConnectException $e) {}
-
-        // specify incorrect credentials
-        try {
-            Client::createFromPool('localhost', 'user-1', 'password-x');
-            parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
-        } catch (ConnectException $e) {}
-
-        // specify correct credentials
-        try {
-            Client::createFromPool('localhost', 'user-1', 'password-1');
-        } catch (ConnectException $e) {
-            parent::assertTrue(false, 'Should have been able to authenticate.');
-        }
-
-        $server->stop();
     }
 
     /**
      * Client::invoke()
      */
 
-    public function testInvokeNoConnection() {
-        $client = Client::create();
-        parent::setExpectedException('NoConnectionsException');
-        $client->invoke($this->getSelect());
-    }
-
     public function testInvoke() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
         $this->doInvokeTest($client);
-
-        $server->stop();
     }
 
     public function testInvokeFromPool() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::createFromPool('localhost');
         $this->doInvokeTest($client);
-
-        $server->stop();
     }
 
     private function doInvokeTest($client) {
         $this->doInsert($client);
         $response = $client->invoke($this->getSelect());
         $this->verifySelect($response);
+
+        $this->doDelete($client);
     }
 
     /**
      * Client::invokeAsync()
      */
 
-    public function testInvokeAsyncNoConnection() {
-        $client = Client::create();
-        parent::setExpectedException('NoConnectionsException');
-        $client->invokeAsync($this->getSelect(), new ClientTestCallback(null));
-    }
-
     public function testInvokeAsync() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
         $this->doInvokeAsyncTest($client);
-
-        $server->stop();
     }
 
     public function testInvokeAsyncFromPool() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::createFromPool('localhost');
         $this->doInvokeAsyncTest($client);
-
-        $server->stop();
     }
 
     private function doInvokeAsyncTest($client) {
@@ -187,39 +93,24 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $client->invokeAsync($this->getSelect(), $callback);
         while (!$client->drain()) {}
         parent::assertEquals(1, $callback->getInvocationCount());
+
+        $this->doDelete($client);
     }
 
     /**
      * Client::runOnce()
      */
 
-    public function testRunOnceNoConnections() {
-        $client = Client::create();
-        parent::setExpectedException('NoConnectionsException');
-        $client->runOnce();
-    }
-
     public function testRunOnce() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
         $this->doRunOnceTest($client);
-
-        $server->stop();
     }
 
     public function testRunOnceFromPool() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::createFromPool('localhost');
         $this->doRunOnceTest($client);
-
-        $server->stop();
     }
-
 
     // this can go into an infinite loop upon failure
     private function doRunOnceTest($client) {
@@ -240,37 +131,23 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         while ($callback->getInvocationCount() !== 3) {
             $client->runOnce();
         }
+
+        $this->doDelete($client);
     }
 
     /**
      * Client::run()
      */
 
-    public function testRunNoConnections() {
-        $client = Client::create();
-        parent::setExpectedException('NoConnectionsException');
-        $client->run();
-    }
-
     public function testRun() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
         $this->doRunTest($client);
-
-        $server->stop();
     }
 
     public function testRunFromPool() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::createFromPool('localhost');
         $this->doRunTest($client);
-
-        $server->stop();
     }
 
     // this can go into an infinite loop upon failure
@@ -281,37 +158,23 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $client->invokeAsync($this->getSelect(), $callback);
         $client->invokeAsync($this->getSelect(), $callback);
         $client->run();
+
+        $this->doDelete($client);
     }
 
     /**
      * Client::drain()
      */
 
-    public function testDrainNoConnections() {
-        $client = Client::create();
-        parent::setExpectedException('NoConnectionsException');
-        $client->drain();
-    }
-
     public function testDrain() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::create();
         $client->createConnection('localhost');
         $this->doDrainTest($client);
-
-        $server->stop();
     }
 
     public function testDrainFromPool() {
-        $server = new HelloWorld();
-        $server->start();
-
         $client = Client::createFromPool('localhost');
         $this->doDrainTest($client);
-
-        $server->stop();
     }
 
     private function doDrainTest($client) {
@@ -322,11 +185,25 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $client->invokeAsync($this->getSelect(), $callback);
         $client->drain();
         parent::assertEquals(0, $callback->getInvocationCount());
+
+        $this->doDelete($client);
     }
 
     /**
      * Test helpers
      */
+
+    private function doDelete($client) {
+        $parameters = new Parameters();
+        $deleteProcedure = new Procedure('Delete', $parameters);
+        $response = $client->invoke($deleteProcedure);
+
+        parent::assertTrue($response->success());
+        parent::assertEquals('', $response->statusString());
+        parent::assertEquals(-128, $response->appStatusCode());
+        parent::assertEquals('', $response->appStatusString());
+        parent::assertEquals(1, $response->results()->size());
+    }
 
     private function doInsert($client) {
         $parameters = new Parameters();

@@ -39,6 +39,10 @@ class WireTypeTest extends PHPUnit_Framework_TestCase {
         self::$client->createConnection('localhost');
     }
 
+    public static function tearDownAfterClass() {
+        self::$server->stop();
+    }
+
     public function testDecimal() {
         $key = 1;
         $value = SampleValues::$DECIMAL;
@@ -253,10 +257,6 @@ class WireTypeTest extends PHPUnit_Framework_TestCase {
         $columns = $row->columns();
         parent::assertEquals(voltdb::WIRE_TYPE_BIGINT, $columns->get(0)->type());
         parent::assertEquals(voltdb::WIRE_TYPE_STRING, $columns->get(8)->type());
-    }
-
-    public static function tearDownAfterClass() {
-        self::$server->stop();
     }
 
 }

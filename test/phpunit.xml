@@ -6,6 +6,8 @@
             <file>tests/examples/HelloWorldAsyncTest.php</file>
         </testsuite>
         <testsuite name="core">
+            <file>tests/core/ClientOfflineTest.php</file>
+            <file>tests/core/ClientSecurityTest.php</file>
             <file>tests/core/ClientTest.php</file>
             <file>tests/core/ParameterTest.php</file>
             <file>tests/core/StatusListenerTest.php</file>

@@ -130,7 +130,9 @@ abstract class ProjectBuilder {
             if (count($procedure->getGroups()) > 0) {
                 $writer->writeAttribute('groups', implode(',', $procedure->getGroups()));
             }
-            $writer->writeAttribute('partitioninfo', $procedure->getPartitionInfo());
+            if ($procedure->getPartitionInfo() !== null) {
+                $writer->writeAttribute('partitioninfo', $procedure->getPartitionInfo());
+            }
             $writer->writeElement('sql', $procedure->getSQL());
             $writer->endElement(); // procedure
         }
@@ -235,7 +237,7 @@ class ProcedureInfo {
     private $sql;
     private $partitionInfo;
 
-    public function __construct(array $groups, $name, $sql, $partitionInfo) {
+    public function __construct(array $groups, $name, $sql, $partitionInfo = null) {
         $this->groups = $groups;
         $this->name = $name;
         $this->sql = $sql;
