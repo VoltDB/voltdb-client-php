@@ -148,15 +148,17 @@ class Client {
         $this->native->createConnection($hostname, $username, $password, $port);
     }
 
-    public function invoke($procedure) {
-        return $this->native->invoke($procedure);
-    }
+    public function invoke($procedure, $callback = null) {
+        switch (func_num_args()) {
+            case 1:
+                return $this->native->invoke($procedure);
+            case 2:
+                $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
+                $this->callbacks[$this->callbackIndex] = $wrapper;
+                $this->callbackIndex++;
+                return $this->native->invoke($procedure, $wrapper);
+        }
 
-    public function invokeAsync($procedure, $callback) {
-        $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
-        $this->callbacks[$this->callbackIndex] = $wrapper;
-        $this->callbackIndex++;
-        return $this->native->invokeAsync($procedure, $wrapper);
     }
 
     public function invoked($index) {

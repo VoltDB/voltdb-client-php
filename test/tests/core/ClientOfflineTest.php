@@ -48,23 +48,23 @@ class ClientOfflineTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Client::invoke()
+     * Client::invoke() - sync
      */
 
-    public function testInvokeNoConnection() {
+    public function testInvokeSyncNoConnection() {
         $client = Client::create();
         parent::setExpectedException('NoConnectionsException');
         $client->invoke($this->getSelect());
     }
 
     /**
-     * Client::invokeAsync()
+     * Client::invoke() - async
      */
 
     public function testInvokeAsyncNoConnection() {
         $client = Client::create();
         parent::setExpectedException('NoConnectionsException');
-        $client->invokeAsync($this->getSelect(), new ClientOfflineTestCallback());
+        $client->invoke($this->getSelect(), new ClientOfflineTestCallback());
     }
 
     /**

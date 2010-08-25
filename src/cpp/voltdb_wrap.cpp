@@ -14552,7 +14552,7 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection) {
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
+ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke__SWIG_0) {
   voltdb::Client *arg1 = (voltdb::Client *) 0 ;
   voltdb::Procedure *arg2 = 0 ;
   zval **args[2];
@@ -14636,7 +14636,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
+ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke__SWIG_1) {
   voltdb::Client *arg1 = (voltdb::Client *) 0 ;
   voltdb::Procedure *arg2 = 0 ;
   voltdb::ProcedureCallback *arg3 = (voltdb::ProcedureCallback *) 0 ;
@@ -14649,22 +14649,22 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__Client, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientNative_invokeAsync. Expected SWIGTYPE_p_voltdb__Client");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientNative_invoke. Expected SWIGTYPE_p_voltdb__Client");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
     if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_voltdb__Procedure, 0) < 0 || arg2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ClientNative_invokeAsync. Expected SWIGTYPE_p_voltdb__Procedure");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ClientNative_invoke. Expected SWIGTYPE_p_voltdb__Procedure");
     }
   }
   {
     if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_voltdb__ProcedureCallback, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of ClientNative_invokeAsync. Expected SWIGTYPE_p_voltdb__ProcedureCallback");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of ClientNative_invoke. Expected SWIGTYPE_p_voltdb__ProcedureCallback");
     }
   }
   try {
-    (arg1)->invokeAsync(*arg2,arg3);
+    (arg1)->invoke(*arg2,arg3);
   }
   catch(voltdb::NoConnectionsException &_e) {
     std::string name = "voltdb::NoConnectionsException";
@@ -14718,6 +14718,57 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync) {
   
   return;
 fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__Client, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_voltdb__Procedure, 0) >= 0);
+      }
+      if (_v) {
+        return _wrap_ClientNative_invoke__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__Client, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_voltdb__Procedure, 0) >= 0);
+      }
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_voltdb__ProcedureCallback, 0) >= 0);
+        }
+        if (_v) {
+          return _wrap_ClientNative_invoke__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ClientNative_invoke'";
   zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
 }
 
@@ -18395,7 +18446,6 @@ static zend_function_entry voltdb_functions[] = {
  SWIG_ZEND_NAMED_FE(new_procedurecallbacknative,_wrap_new_ProcedureCallbackNative,NULL)
  SWIG_ZEND_NAMED_FE(clientnative_createconnection,_wrap_ClientNative_createConnection,NULL)
  SWIG_ZEND_NAMED_FE(clientnative_invoke,_wrap_ClientNative_invoke,NULL)
- SWIG_ZEND_NAMED_FE(clientnative_invokeasync,_wrap_ClientNative_invokeAsync,NULL)
  SWIG_ZEND_NAMED_FE(clientnative_runonce,_wrap_ClientNative_runOnce,NULL)
  SWIG_ZEND_NAMED_FE(clientnative_run,_wrap_ClientNative_run,NULL)
  SWIG_ZEND_NAMED_FE(clientnative_drain,_wrap_ClientNative_drain,NULL)

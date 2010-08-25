@@ -235,7 +235,6 @@ ZEND_NAMED_FUNCTION(_wrap_ProcedureCallbackNative_callback);
 ZEND_NAMED_FUNCTION(_wrap_new_ProcedureCallbackNative);
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection);
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_invoke);
-ZEND_NAMED_FUNCTION(_wrap_ClientNative_invokeAsync);
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_runOnce);
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_run);
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_drain);

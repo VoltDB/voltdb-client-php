@@ -64,7 +64,7 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
         $insertProcedure = new Procedure('Insert', $parameters);
         $insertProcedure->params()->addString('Hola')->addString('Mundo')->addString('Spanish');
-        $client->invokeAsync($insertProcedure, $callback);
+        $client->invoke($insertProcedure, $callback);
 
         $client->run();
         parent::assertTrue($listener->called('uncaughtException'));
@@ -157,11 +157,11 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
             $longString .= ' ';
         }
         $insertProcedure->params()->addString($longString)->addString($longString)->addString($longString);
-        $client->invokeAsync($insertProcedure, new StatusListenerTestCallback());
+        $client->invoke($insertProcedure, new StatusListenerTestCallback());
         parent::assertFalse($listener->called('backpressure'));
 
         $insertProcedure->params()->addString('Hola')->addString('Mundo')->addString('Spanish');
-        $client->invokeAsync($insertProcedure, new StatusListenerTestCallback());
+        $client->invoke($insertProcedure, new StatusListenerTestCallback());
         parent::assertTrue($listener->called('backpressure'));
     }
 

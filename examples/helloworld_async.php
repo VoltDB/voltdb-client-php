@@ -63,19 +63,19 @@ $callback = new CountingCallback(5);
 $params = $procedure->params();
 
 $params->addString('Hello')->addString('World')->addString('English');
-$client->invokeAsync($procedure, $callback);
+$client->invoke($procedure, $callback);
 
 $params->addString('Bonjour')->addString('Monde')->addString('French');
-$client->invokeAsync($procedure, $callback);
+$client->invoke($procedure, $callback);
 
 $params->addString('Hola')->addString('Mundo')->addString('Spanish');
-$client->invokeAsync($procedure, $callback);
+$client->invoke($procedure, $callback);
 
 $params->addString('Hej')->addString('Verden')->addString('Danish');
-$client->invokeAsync($procedure, $callback);
+$client->invoke($procedure, $callback);
 
 $params->addString('Ciao')->addString('Mondo')->addString('Italian');
-$client->invokeAsync($procedure, $callback);
+$client->invoke($procedure, $callback);
 
 // Run the client event loop to poll the network and invoke callbacks.
 // The event loop will break on an error or when a callback returns true
@@ -88,6 +88,6 @@ $procedure = new Procedure('Select', $parameters);
 
 // Retrieve the message
 $procedure->params()->addString('Spanish');
-$client->invokeAsync($procedure, new PrintingCallback());
+$client->invoke($procedure, new PrintingCallback());
 
 $client->run();

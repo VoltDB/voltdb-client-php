@@ -50,21 +50,21 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Client::invoke()
+     * Client::invoke() - sync
      */
 
-    public function testInvoke() {
+    public function testInvokeSync() {
         $client = Client::create();
         $client->createConnection('localhost');
-        $this->doInvokeTest($client);
+        $this->doInvokeSyncTest($client);
     }
 
-    public function testInvokeFromPool() {
+    public function testInvokeSyncFromPool() {
         $client = Client::createFromPool('localhost');
-        $this->doInvokeTest($client);
+        $this->doInvokeSyncTest($client);
     }
 
-    private function doInvokeTest($client) {
+    private function doInvokeSyncTest($client) {
         $this->doInsert($client);
         $response = $client->invoke($this->getSelect());
         $this->verifySelect($response);
@@ -73,7 +73,7 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Client::invokeAsync()
+     * Client::invoke() - async
      */
 
     public function testInvokeAsync() {
@@ -90,7 +90,7 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     private function doInvokeAsyncTest($client) {
         $this->doInsert($client);
         $callback = new ClientTestCallback($this);
-        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
         while (!$client->drain()) {}
         parent::assertEquals(1, $callback->getInvocationCount());
 
@@ -119,15 +119,15 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $callback = new ClientTestCallback($this);
 
         // do it 1 time
-        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
         parent::assertEquals(0, $callback->getInvocationCount());
         while ($callback->getInvocationCount() !== 1) {
             $client->runOnce();
         }
 
         // do it 2 times
-        $client->invokeAsync($this->getSelect(), $callback);
-        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
         while ($callback->getInvocationCount() !== 3) {
             $client->runOnce();
         }
@@ -154,9 +154,9 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     private function doRunTest($client) {
         $this->doInsert($client);
         $callback = new ClientTestCountingCallback($this, 3);
-        $client->invokeAsync($this->getSelect(), $callback);
-        $client->invokeAsync($this->getSelect(), $callback);
-        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
         $client->run();
 
         $this->doDelete($client);
@@ -180,9 +180,9 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     private function doDrainTest($client) {
         $this->doInsert($client);
         $callback = new ClientTestCountingCallback($this, 3);
-        $client->invokeAsync($this->getSelect(), $callback);
-        $client->invokeAsync($this->getSelect(), $callback);
-        $client->invokeAsync($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
+        $client->invoke($this->getSelect(), $callback);
         $client->drain();
         parent::assertEquals(0, $callback->getInvocationCount());
 

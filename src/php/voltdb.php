@@ -44,15 +44,17 @@ class Client {
         $this->native->createConnection($hostname, $username, $password, $port);
     }
 
-    public function invoke($procedure) {
-        return $this->native->invoke($procedure);
-    }
+    public function invoke($procedure, $callback = null) {
+        switch (func_num_args()) {
+            case 1:
+                return $this->native->invoke($procedure);
+            case 2:
+                $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
+                $this->callbacks[$this->callbackIndex] = $wrapper;
+                $this->callbackIndex++;
+                return $this->native->invoke($procedure, $wrapper);
+        }
 
-    public function invokeAsync($procedure, $callback) {
-        $wrapper = new ProcedureCallbackWrapper($this, $callback, $this->callbackIndex);
-        $this->callbacks[$this->callbackIndex] = $wrapper;
-        $this->callbackIndex++;
-        return $this->native->invokeAsync($procedure, $wrapper);
     }
 
     public function invoked($index) {
@@ -2240,20 +2242,11 @@ class ClientNative {
 		ClientNative_createConnection($this->_cPtr,$hostname,$username,$password,$port);
 	}
 
-	public function invoke($proc) {
-		$r=ClientNative_invoke($this->_cPtr,$proc);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (!class_exists($c)) {
-				return new InvocationResponse($r);
-			}
-			return new $c($r);
+	public function invoke($proc,$callback=null) {
+		switch (func_num_args()) {
+		case 1: return new InvocationResponse(ClientNative_invoke($this->_cPtr,$proc));
+		default: ClientNative_invoke($this->_cPtr,$proc,$callback);
 		}
-		return $r;
-	}
-
-	public function invokeAsync($proc,$callback) {
-		ClientNative_invokeAsync($this->_cPtr,$proc,$callback);
 	}
 
 	public function runOnce() {

@@ -180,7 +180,7 @@ while ($endTime > $currentTime) {
     }
 
     $procedure->params()->addInt64($phoneNumber)->addInt8($contestantNumber)->addInt64($maxVotesPerPhoneNumber);
-    $voltClient->invokeAsync($procedure, $callback);
+    $voltClient->invoke($procedure, $callback);
 
     $transactionsThisSecond++;
     if ($transactionsThisSecond >= $transactionsPerMilli) {
