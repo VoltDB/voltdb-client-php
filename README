@@ -66,12 +66,20 @@ The following software is optional for end-users, but required for developers:
 # 4. Installation #
 ###################
 
-The build file needs to know where the required libraries are installed. Open build.xml in a text editor and edit the
-first two properties to point to the correct locations on your system.
+The build depends on other libraries, so it needs to know where they are installed. This information is read from a file
+called library.properties. A stub version exists inside source control to get you started:
 
-With that done, simply run ant without any arguments from the root directory. It will do its thing for a few seconds
-(there will be warnings in the output, this is fine) and if it succeeds, a dist directory will be created and it will
-contain two files, voltdb.so and voltdb.php.
+    cp library.properties.empty library.properties
+
+Now edit the library.properties file to contain the correct locations on your system. Your file will end up looking
+something like this:
+
+    lib.voltcpp=${user.home}/clientapi/cpp/trunk/Library Release
+    lib.event=${user.home}/lib
+    lib.voltdb=${user.home}/voltdb
+
+With that done, simply run ant without any arguments from the root directory. It will do its thing for some time and if
+it succeeds, a dist directory will be created and it will contain two files, voltdb.so and voltdb.php.
 
 To get PHP to recognize the new extension, it needs to know where to find voltdb.so. Edit your php.ini file to include
 this line:
@@ -88,14 +96,14 @@ restart/reload the server for the new php.ini changes to take effect.
 # 5. Running #
 ##############
 
-With the extension loaded into PHP, include the voltdb.php file at the top of your script. This file contains proxy
+With the extension loaded into PHP, include the dist/voltdb.php file at the top of your script. This file contains proxy
 classes for interacting with a VoltDB server. Look at the examples directory to see how to use the PHP wrapper.
 
 #################
 # 6. Bugs/TODOs #
 #################
 
-This wrapper is still very much in the development phase, so not all features are fully supported. This includes:
+This wrapper is still in its development phase, so a few features are not fully supported. This includes:
 
   * Parameters arrays
     Arrays of parameters are supported using vector wrappers, but they aren't tested.

@@ -1,10 +1,17 @@
 <?xml version="1.0" ?>
 <project name="VoltDB PHP wrapper" default="dist">
 
-    <!-- change these properties to point to the correct library locations on your system -->
-    <property name="lib.voltcpp" location="${user.home}/clientapi/cpp/trunk/Library Release" />
-    <property name="lib.event" location="${user.home}/lib" />
-    <property name="lib.voltdb" location="${user.home}/voltdb" />
+    <!-- verify properties file exists -->
+    <available file="library.properties" property="library.properties" />
+    <fail unless="library.properties" message="Missing file: library.properties" />
+
+    <!-- load properties file -->
+    <property file="library.properties" />
+
+    <!-- verify properties file contains all required properties -->
+    <fail unless="lib.voltcpp" message="Missing property: lib.voltcpp" />
+    <fail unless="lib.event" message="Missing property: lib.event" />
+    <fail unless="lib.voltdb" message="Missing property: lib.voltdb" />
 
     <!--
         ******************
