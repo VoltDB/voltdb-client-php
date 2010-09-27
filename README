@@ -124,3 +124,6 @@ This wrapper is still in its development phase, so a few features are not fully 
 
     If you chain the method calls together like above, the variable returned by results() gets garbage collected too
     early. See CLIENTAPI-15 for the progress of this bug.
+
+  * Uncaught exception handler
+    The handler is provided the wrong procedure callback when it is invoked. See https://issues.voltdb.com/browse/CLIENTAPI-33
