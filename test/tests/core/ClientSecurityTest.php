@@ -48,15 +48,21 @@ class ClientSecurityTest extends PHPUnit_Framework_TestCase {
             parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
         } catch (ConnectException $e) {}
 
+        $config = new ClientConfig('user-1', 'password-x');
+        $client = Client::create($config);
+
         // specify incorrect credentials
         try {
-            $client->createConnection('localhost', 'user-1', 'password-x');
+            $client->createConnection('localhost');
             parent::assertTrue(false, 'Shouldn\'t have been able to authenticate.');
         } catch (ConnectException $e) {}
 
+        $config = new ClientConfig('user-1', 'password-1');
+        $client = Client::create($config);
+
         // specify correct credentials
         try {
-            $client->createConnection('localhost', 'user-1', 'password-1');
+            $client->createConnection('localhost');
         } catch (ConnectException $e) {
             parent::assertTrue(false, 'Should have been able to authenticate.');
         }

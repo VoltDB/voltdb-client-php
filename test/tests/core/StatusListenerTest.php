@@ -32,14 +32,12 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
     public function testUncaughtException() {
         $server = new HelloWorld();
         $server->start();
-
         $callback = new StatusListenerTestCallback();
         $listener = new StatusListenerTestListener($this, $callback);
-        $client = Client::create($listener);
+        $config = new ClientConfig('', '', $listener);
+        $client = Client::create($config);
         $client->createConnection('localhost');
-
         $this->doUncaughtExceptionTest($client, $callback, $listener);
-
         $server->stop();
     }
 
@@ -57,7 +55,6 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
     }
 
     private function doUncaughtExceptionTest($client, $callback, $listener) {
-
         $parameters = new Parameters();
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
         $parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
@@ -79,7 +76,7 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
         $server->start();
 
         $listener = new StatusListenerTestListener($this);
-        $client = Client::create($listener);
+        $client = Client::create(new ClientConfig('', '', $listener));
         $client->createConnection('localhost');
 
         $this->doConnectionLostTest($client);
@@ -124,7 +121,7 @@ class StatusListenerTest extends PHPUnit_Framework_TestCase {
         $server->start();
 
         $listener = new StatusListenerTestListener($this);
-        $client = Client::create($listener);
+        $client = Client::create(new ClientConfig('', '', $listener));
         $client->createConnection('localhost');
 
         $this->doBackpressureTest($client, $listener);
@@ -181,7 +178,7 @@ class StatusListenerTestListener extends StatusListener {
         $this->callback = $callback;
     }
 
-    public function uncaughtException($exception, $callback) {
+    public function uncaughtException($exception, $callback, $response) {
         $this->test->assertEquals('StatusListenerTestException', get_class($exception));
         $this->test->assertEquals('Throwing a callback exception.', $exception->getMessage());
         $this->test->assertEquals($this->callback, $callback);

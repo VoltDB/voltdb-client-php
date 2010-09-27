@@ -86,6 +86,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase {
 
     private function doTest($params, $method, $value, $expectException) {
         try {
+            $params->reset();
             $params->$method($value);
             if ($expectException) {
                 parent::assertTrue(false, 'Expected ParamMismatchException.');

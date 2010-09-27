@@ -1024,60 +1024,63 @@ static int le_member_ptr;
 #define SWIGTYPE_p_bool swig_types[1]
 #define SWIGTYPE_p_boost__shared_arrayT_char_t swig_types[2]
 #define SWIGTYPE_p_boost__shared_ptrT_voltdb__ProcedureCallback_t swig_types[3]
-#define SWIGTYPE_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t swig_types[4]
-#define SWIGTYPE_p_char swig_types[5]
-#define SWIGTYPE_p_int swig_types[6]
-#define SWIGTYPE_p_long swig_types[7]
-#define SWIGTYPE_p_short swig_types[8]
-#define SWIGTYPE_p_signed_char swig_types[9]
-#define SWIGTYPE_p_size_type swig_types[10]
-#define SWIGTYPE_p_std__exception swig_types[11]
-#define SWIGTYPE_p_std__ostringstream swig_types[12]
-#define SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t swig_types[13]
-#define SWIGTYPE_p_std__vectorT_double_t swig_types[14]
-#define SWIGTYPE_p_std__vectorT_int_t swig_types[15]
-#define SWIGTYPE_p_std__vectorT_long_t swig_types[16]
-#define SWIGTYPE_p_std__vectorT_short_t swig_types[17]
-#define SWIGTYPE_p_std__vectorT_signed_char_t swig_types[18]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[19]
-#define SWIGTYPE_p_std__vectorT_voltdb__Column_t swig_types[20]
-#define SWIGTYPE_p_std__vectorT_voltdb__Decimal_t swig_types[21]
-#define SWIGTYPE_p_std__vectorT_voltdb__Parameter_t swig_types[22]
-#define SWIGTYPE_p_std__vectorT_voltdb__Table_t swig_types[23]
-#define SWIGTYPE_p_ttmath__IntT_4_t swig_types[24]
-#define SWIGTYPE_p_value_type swig_types[25]
-#define SWIGTYPE_p_voltdb__ByteBuffer swig_types[26]
-#define SWIGTYPE_p_voltdb__Client swig_types[27]
-#define SWIGTYPE_p_voltdb__Column swig_types[28]
-#define SWIGTYPE_p_voltdb__ConnectException swig_types[29]
-#define SWIGTYPE_p_voltdb__ConnectionPool swig_types[30]
-#define SWIGTYPE_p_voltdb__Decimal swig_types[31]
-#define SWIGTYPE_p_voltdb__Exception swig_types[32]
-#define SWIGTYPE_p_voltdb__ExpandableByteBuffer swig_types[33]
-#define SWIGTYPE_p_voltdb__IndexOutOfBoundsException swig_types[34]
-#define SWIGTYPE_p_voltdb__InvalidColumnException swig_types[35]
-#define SWIGTYPE_p_voltdb__InvocationResponse swig_types[36]
-#define SWIGTYPE_p_voltdb__LibEventException swig_types[37]
-#define SWIGTYPE_p_voltdb__NoConnectionsException swig_types[38]
-#define SWIGTYPE_p_voltdb__NoMoreRowsException swig_types[39]
-#define SWIGTYPE_p_voltdb__NonExpandableBufferException swig_types[40]
-#define SWIGTYPE_p_voltdb__NullPointerException swig_types[41]
-#define SWIGTYPE_p_voltdb__OverflowUnderflowException swig_types[42]
-#define SWIGTYPE_p_voltdb__ParamMismatchException swig_types[43]
-#define SWIGTYPE_p_voltdb__Parameter swig_types[44]
-#define SWIGTYPE_p_voltdb__ParameterSet swig_types[45]
-#define SWIGTYPE_p_voltdb__Procedure swig_types[46]
-#define SWIGTYPE_p_voltdb__ProcedureCallback swig_types[47]
-#define SWIGTYPE_p_voltdb__Row swig_types[48]
-#define SWIGTYPE_p_voltdb__ScopedByteBuffer swig_types[49]
-#define SWIGTYPE_p_voltdb__SharedByteBuffer swig_types[50]
-#define SWIGTYPE_p_voltdb__StatusListener swig_types[51]
-#define SWIGTYPE_p_voltdb__StringToDecimalException swig_types[52]
-#define SWIGTYPE_p_voltdb__Table swig_types[53]
-#define SWIGTYPE_p_voltdb__TableIterator swig_types[54]
-#define SWIGTYPE_p_voltdb__UninitializedParamsException swig_types[55]
-static swig_type_info *swig_types[57];
-static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t swig_types[4]
+#define SWIGTYPE_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t swig_types[5]
+#define SWIGTYPE_p_char swig_types[6]
+#define SWIGTYPE_p_int swig_types[7]
+#define SWIGTYPE_p_long swig_types[8]
+#define SWIGTYPE_p_short swig_types[9]
+#define SWIGTYPE_p_signed_char swig_types[10]
+#define SWIGTYPE_p_size_type swig_types[11]
+#define SWIGTYPE_p_std__exception swig_types[12]
+#define SWIGTYPE_p_std__ostringstream swig_types[13]
+#define SWIGTYPE_p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t swig_types[14]
+#define SWIGTYPE_p_std__vectorT_double_t swig_types[15]
+#define SWIGTYPE_p_std__vectorT_int_t swig_types[16]
+#define SWIGTYPE_p_std__vectorT_long_t swig_types[17]
+#define SWIGTYPE_p_std__vectorT_short_t swig_types[18]
+#define SWIGTYPE_p_std__vectorT_signed_char_t swig_types[19]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[20]
+#define SWIGTYPE_p_std__vectorT_voltdb__Column_t swig_types[21]
+#define SWIGTYPE_p_std__vectorT_voltdb__Decimal_t swig_types[22]
+#define SWIGTYPE_p_std__vectorT_voltdb__Parameter_t swig_types[23]
+#define SWIGTYPE_p_std__vectorT_voltdb__Table_t swig_types[24]
+#define SWIGTYPE_p_ttmath__IntT_4_t swig_types[25]
+#define SWIGTYPE_p_value_type swig_types[26]
+#define SWIGTYPE_p_voltdb__ByteBuffer swig_types[27]
+#define SWIGTYPE_p_voltdb__Client swig_types[28]
+#define SWIGTYPE_p_voltdb__ClientConfig swig_types[29]
+#define SWIGTYPE_p_voltdb__ClusterInstanceMismatchException swig_types[30]
+#define SWIGTYPE_p_voltdb__Column swig_types[31]
+#define SWIGTYPE_p_voltdb__ConnectException swig_types[32]
+#define SWIGTYPE_p_voltdb__ConnectionPool swig_types[33]
+#define SWIGTYPE_p_voltdb__Decimal swig_types[34]
+#define SWIGTYPE_p_voltdb__Exception swig_types[35]
+#define SWIGTYPE_p_voltdb__ExpandableByteBuffer swig_types[36]
+#define SWIGTYPE_p_voltdb__IndexOutOfBoundsException swig_types[37]
+#define SWIGTYPE_p_voltdb__InvalidColumnException swig_types[38]
+#define SWIGTYPE_p_voltdb__InvocationResponse swig_types[39]
+#define SWIGTYPE_p_voltdb__LibEventException swig_types[40]
+#define SWIGTYPE_p_voltdb__NoConnectionsException swig_types[41]
+#define SWIGTYPE_p_voltdb__NoMoreRowsException swig_types[42]
+#define SWIGTYPE_p_voltdb__NonExpandableBufferException swig_types[43]
+#define SWIGTYPE_p_voltdb__NullPointerException swig_types[44]
+#define SWIGTYPE_p_voltdb__OverflowUnderflowException swig_types[45]
+#define SWIGTYPE_p_voltdb__ParamMismatchException swig_types[46]
+#define SWIGTYPE_p_voltdb__Parameter swig_types[47]
+#define SWIGTYPE_p_voltdb__ParameterSet swig_types[48]
+#define SWIGTYPE_p_voltdb__Procedure swig_types[49]
+#define SWIGTYPE_p_voltdb__ProcedureCallback swig_types[50]
+#define SWIGTYPE_p_voltdb__Row swig_types[51]
+#define SWIGTYPE_p_voltdb__ScopedByteBuffer swig_types[52]
+#define SWIGTYPE_p_voltdb__SharedByteBuffer swig_types[53]
+#define SWIGTYPE_p_voltdb__StatusListener swig_types[54]
+#define SWIGTYPE_p_voltdb__StringToDecimalException swig_types[55]
+#define SWIGTYPE_p_voltdb__Table swig_types[56]
+#define SWIGTYPE_p_voltdb__TableIterator swig_types[57]
+#define SWIGTYPE_p_voltdb__UninitializedParamsException swig_types[58]
+static swig_type_info *swig_types[60];
+static swig_module_info swig_module = {swig_types, 59, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1364,6 +1367,7 @@ namespace Swig {
 #include "StatusListener.h"
 #include "Column.hpp"
 #include "ConnectionPool.h"
+#include "ClientConfig.h"
 
 
 #if PHP_MAJOR_VERSION < 5
@@ -1680,49 +1684,56 @@ static void *_p_voltdb__NoConnectionsExceptionTo_p_voltdb__Exception(void *x, in
 static void *_p_voltdb__LibEventExceptionTo_p_voltdb__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((voltdb::Exception *)  ((voltdb::LibEventException *) x));
 }
-static void *_p_voltdb__ExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *)  ((voltdb::Exception *) x));
+static void *_p_voltdb__ClusterInstanceMismatchExceptionTo_p_voltdb__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((voltdb::Exception *)  ((voltdb::ClusterInstanceMismatchException *) x));
 }
-static void *_p_voltdb__NullPointerExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NullPointerException *) x));
+static void *_p_voltdb__ClusterInstanceMismatchExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::ClusterInstanceMismatchException *) x));
 }
-static void *_p_voltdb__InvalidColumnExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::InvalidColumnException *) x));
-}
-static void *_p_voltdb__OverflowUnderflowExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::OverflowUnderflowException *) x));
-}
-static void *_p_voltdb__IndexOutOfBoundsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::IndexOutOfBoundsException *) x));
-}
-static void *_p_voltdb__NonExpandableBufferExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NonExpandableBufferException *) x));
-}
-static void *_p_voltdb__UninitializedParamsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::UninitializedParamsException *) x));
-}
-static void *_p_voltdb__ParamMismatchExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::ParamMismatchException *) x));
-}
-static void *_p_voltdb__NoMoreRowsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NoMoreRowsException *) x));
-}
-static void *_p_voltdb__StringToDecimalExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::StringToDecimalException *) x));
-}
-static void *_p_voltdb__ConnectExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::ConnectException *) x));
+static void *_p_voltdb__LibEventExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::LibEventException *) x));
 }
 static void *_p_voltdb__NoConnectionsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NoConnectionsException *) x));
 }
-static void *_p_voltdb__LibEventExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::LibEventException *) x));
+static void *_p_voltdb__ConnectExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::ConnectException *) x));
+}
+static void *_p_voltdb__StringToDecimalExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::StringToDecimalException *) x));
+}
+static void *_p_voltdb__NoMoreRowsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NoMoreRowsException *) x));
+}
+static void *_p_voltdb__ParamMismatchExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::ParamMismatchException *) x));
+}
+static void *_p_voltdb__UninitializedParamsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::UninitializedParamsException *) x));
+}
+static void *_p_voltdb__NonExpandableBufferExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NonExpandableBufferException *) x));
+}
+static void *_p_voltdb__IndexOutOfBoundsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::IndexOutOfBoundsException *) x));
+}
+static void *_p_voltdb__OverflowUnderflowExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::OverflowUnderflowException *) x));
+}
+static void *_p_voltdb__InvalidColumnExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::InvalidColumnException *) x));
+}
+static void *_p_voltdb__NullPointerExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (voltdb::Exception *) ((voltdb::NullPointerException *) x));
+}
+static void *_p_voltdb__ExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *)  ((voltdb::Exception *) x));
 }
 static swig_type_info _swigt__int = {"_int", "int", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_arrayT_char_t = {"_p_boost__shared_arrayT_char_t", "boost::shared_array< char > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t = {"_p_boost__shared_ptrT_voltdb__ProcedureCallback_t", "boost::shared_ptr< voltdb::ProcedureCallback > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_voltdb__StatusListener_t = {"_p_boost__shared_ptrT_voltdb__StatusListener_t", "boost::shared_ptr< voltdb::StatusListener > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t = {"_p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t", "voltdb::ClientMap *|boost::unordered_map< std::string,std::vector< boost::shared_ptr< voltdb::ClientStuff > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *|int32_t *", 0, 0, (void*)0, 0};
@@ -1747,6 +1758,8 @@ static swig_type_info _swigt__p_ttmath__IntT_4_t = {"_p_ttmath__IntT_4_t", "ttma
 static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__ByteBuffer = {"_p_voltdb__ByteBuffer", "voltdb::ByteBuffer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__Client = {"_p_voltdb__Client", "voltdb::Client *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_voltdb__ClientConfig = {"_p_voltdb__ClientConfig", "voltdb::ClientConfig *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_voltdb__ClusterInstanceMismatchException = {"_p_voltdb__ClusterInstanceMismatchException", "voltdb::ClusterInstanceMismatchException *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__Column = {"_p_voltdb__Column", "std::vector< voltdb::Column >::value_type *|voltdb::Column *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__ConnectException = {"_p_voltdb__ConnectException", "voltdb::ConnectException *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_voltdb__ConnectionPool = {"_p_voltdb__ConnectionPool", "voltdb::ConnectionPool *", 0, 0, (void*)0, 0};
@@ -1781,6 +1794,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_bool,
   &_swigt__p_boost__shared_arrayT_char_t,
   &_swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t,
+  &_swigt__p_boost__shared_ptrT_voltdb__StatusListener_t,
   &_swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,
   &_swigt__p_char,
   &_swigt__p_int,
@@ -1805,6 +1819,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_value_type,
   &_swigt__p_voltdb__ByteBuffer,
   &_swigt__p_voltdb__Client,
+  &_swigt__p_voltdb__ClientConfig,
+  &_swigt__p_voltdb__ClusterInstanceMismatchException,
   &_swigt__p_voltdb__Column,
   &_swigt__p_voltdb__ConnectException,
   &_swigt__p_voltdb__ConnectionPool,
@@ -1839,6 +1855,7 @@ static swig_cast_info _swigc__int[] = {  {&_swigt__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_arrayT_char_t[] = {  {&_swigt__p_boost__shared_arrayT_char_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_voltdb__ProcedureCallback_t[] = {  {&_swigt__p_boost__shared_ptrT_voltdb__ProcedureCallback_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_voltdb__StatusListener_t[] = {  {&_swigt__p_boost__shared_ptrT_voltdb__StatusListener_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t[] = {  {&_swigt__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -1846,7 +1863,7 @@ static swig_cast_info _swigc__p_long[] = {  {&_swigt__p_long, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_voltdb__Exception, _p_voltdb__ExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_voltdb__ClusterInstanceMismatchException, _p_voltdb__ClusterInstanceMismatchExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},  {&_swigt__p_voltdb__Exception, _p_voltdb__ExceptionTo_p_std__exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostringstream[] = {  {&_swigt__p_std__ostringstream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t[] = {  {&_swigt__p_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_t[] = {  {&_swigt__p_std__vectorT_double_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -1863,11 +1880,13 @@ static swig_cast_info _swigc__p_ttmath__IntT_4_t[] = {  {&_swigt__p_ttmath__IntT
 static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ByteBuffer[] = {  {&_swigt__p_voltdb__ByteBuffer, 0, 0, 0},  {&_swigt__p_voltdb__ExpandableByteBuffer, _p_voltdb__ExpandableByteBufferTo_p_voltdb__ByteBuffer, 0, 0},  {&_swigt__p_voltdb__SharedByteBuffer, _p_voltdb__SharedByteBufferTo_p_voltdb__ByteBuffer, 0, 0},  {&_swigt__p_voltdb__ScopedByteBuffer, _p_voltdb__ScopedByteBufferTo_p_voltdb__ByteBuffer, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Client[] = {  {&_swigt__p_voltdb__Client, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_voltdb__ClientConfig[] = {  {&_swigt__p_voltdb__ClientConfig, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_voltdb__ClusterInstanceMismatchException[] = {  {&_swigt__p_voltdb__ClusterInstanceMismatchException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Column[] = {  {&_swigt__p_voltdb__Column, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ConnectException[] = {  {&_swigt__p_voltdb__ConnectException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ConnectionPool[] = {  {&_swigt__p_voltdb__ConnectionPool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__Decimal[] = {  {&_swigt__p_voltdb__Decimal, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_voltdb__Exception[] = {  {&_swigt__p_voltdb__Exception, 0, 0, 0},  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_voltdb__Exception, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_voltdb__Exception[] = {  {&_swigt__p_voltdb__NullPointerException, _p_voltdb__NullPointerExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__InvalidColumnException, _p_voltdb__InvalidColumnExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__OverflowUnderflowException, _p_voltdb__OverflowUnderflowExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__IndexOutOfBoundsException, _p_voltdb__IndexOutOfBoundsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NonExpandableBufferException, _p_voltdb__NonExpandableBufferExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__UninitializedParamsException, _p_voltdb__UninitializedParamsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ParamMismatchException, _p_voltdb__ParamMismatchExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoMoreRowsException, _p_voltdb__NoMoreRowsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__StringToDecimalException, _p_voltdb__StringToDecimalExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ConnectException, _p_voltdb__ConnectExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__NoConnectionsException, _p_voltdb__NoConnectionsExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__LibEventException, _p_voltdb__LibEventExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__ClusterInstanceMismatchException, _p_voltdb__ClusterInstanceMismatchExceptionTo_p_voltdb__Exception, 0, 0},  {&_swigt__p_voltdb__Exception, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__ExpandableByteBuffer[] = {  {&_swigt__p_voltdb__ExpandableByteBuffer, 0, 0, 0},  {&_swigt__p_voltdb__SharedByteBuffer, _p_voltdb__SharedByteBufferTo_p_voltdb__ExpandableByteBuffer, 0, 0},  {&_swigt__p_voltdb__ScopedByteBuffer, _p_voltdb__ScopedByteBufferTo_p_voltdb__ExpandableByteBuffer, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__IndexOutOfBoundsException[] = {  {&_swigt__p_voltdb__IndexOutOfBoundsException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_voltdb__InvalidColumnException[] = {  {&_swigt__p_voltdb__InvalidColumnException, 0, 0, 0},{0, 0, 0, 0}};
@@ -1897,6 +1916,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_bool,
   _swigc__p_boost__shared_arrayT_char_t,
   _swigc__p_boost__shared_ptrT_voltdb__ProcedureCallback_t,
+  _swigc__p_boost__shared_ptrT_voltdb__StatusListener_t,
   _swigc__p_boost__unordered_mapT_std__string_std__vectorT_boost__shared_ptrT_voltdb__ClientStuff_t_t_t,
   _swigc__p_char,
   _swigc__p_int,
@@ -1921,6 +1941,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_value_type,
   _swigc__p_voltdb__ByteBuffer,
   _swigc__p_voltdb__Client,
+  _swigc__p_voltdb__ClientConfig,
+  _swigc__p_voltdb__ClusterInstanceMismatchException,
   _swigc__p_voltdb__Column,
   _swigc__p_voltdb__ConnectException,
   _swigc__p_voltdb__ConnectionPool,
@@ -1980,7 +2002,7 @@ char const *SwigDirector_c_Exception::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2018,7 +2040,7 @@ char const *SwigDirector_NullPointerException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2056,7 +2078,7 @@ char const *SwigDirector_InvalidColumnException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2094,7 +2116,7 @@ char const *SwigDirector_OverflowUnderflowException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2132,7 +2154,7 @@ char const *SwigDirector_IndexOutOfBoundsException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2170,7 +2192,7 @@ char const *SwigDirector_NonExpandableBufferException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2208,7 +2230,7 @@ char const *SwigDirector_UninitializedParamsException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2246,7 +2268,7 @@ char const *SwigDirector_ParamMismatchException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2284,7 +2306,7 @@ char const *SwigDirector_NoMoreRowsException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2322,7 +2344,7 @@ char const *SwigDirector_StringToDecimalException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2360,7 +2382,7 @@ char const *SwigDirector_ConnectException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2398,7 +2420,7 @@ char const *SwigDirector_NoConnectionsException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2436,7 +2458,45 @@ char const *SwigDirector_LibEventException::what() const throw() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  if ((*&result)->type==IS_NULL) {
+    c_result = (char *) 0;
+  } else {
+    convert_to_string_ex(&result);
+    c_result = (char *) Z_STRVAL_PP(&result);
+  }
+  /*@SWIG@*/;
+  
+  FREE_ZVAL(result);
+  return (char const *) c_result;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+SwigDirector_ClusterInstanceMismatchException::SwigDirector_ClusterInstanceMismatchException(zval *self): voltdb::ClusterInstanceMismatchException(), Swig::Director(self) {
+  
+}
+
+
+
+SwigDirector_ClusterInstanceMismatchException::~SwigDirector_ClusterInstanceMismatchException() throw () {
+}
+
+char const *SwigDirector_ClusterInstanceMismatchException::what() const throw() {
+  char *c_result;
+  zval **args = NULL;
+  zval *result, funcname;
+  MAKE_STD_ZVAL(result);
+  ZVAL_STRING(&funcname, (char *)"what", 0);
+  if (!swig_self) {
+    SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  }
+  
+  call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
+    result, 0, args TSRMLS_CC);
+  
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*&result)->type==IS_NULL) {
     c_result = (char *) 0;
   } else {
@@ -2483,7 +2543,7 @@ bool SwigDirector_ByteBuffer::isExpandable() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -2621,7 +2681,7 @@ bool SwigDirector_ExpandableByteBuffer::isExpandable() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -2788,7 +2848,7 @@ bool SwigDirector_SharedByteBuffer::isExpandable() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -2943,7 +3003,7 @@ bool SwigDirector_ScopedByteBuffer::isExpandable() {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 0, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -3097,7 +3157,7 @@ bool SwigDirector_ProcedureCallbackNative::callback(voltdb::InvocationResponse r
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 1, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -3118,9 +3178,9 @@ SwigDirector_StatusListenerNative::SwigDirector_StatusListenerNative(zval *self)
 
 
 
-bool SwigDirector_StatusListenerNative::uncaughtException(std::exception exception, boost::shared_ptr< voltdb::ProcedureCallback > callback) {
+bool SwigDirector_StatusListenerNative::uncaughtException(std::exception exception, boost::shared_ptr< voltdb::ProcedureCallback > callback, voltdb::InvocationResponse response) {
   bool c_result;
-  zval *args[2];
+  zval *args[3];
   zval *result, funcname;
   MAKE_STD_ZVAL(result);
   ZVAL_STRING(&funcname, (char *)"uncaughtException", 0);
@@ -3138,10 +3198,15 @@ bool SwigDirector_StatusListenerNative::uncaughtException(std::exception excepti
   {
     SWIG_SetPointerZval(&obj1, SWIG_as_voidptr(&callback), SWIGTYPE_p_boost__shared_ptrT_voltdb__ProcedureCallback_t, 2);
   }
+  zval obj2;
+  args[2] = &obj2;
+  {
+    SWIG_SetPointerZval(&obj2, SWIG_as_voidptr(&response), SWIGTYPE_p_voltdb__InvocationResponse, 2);
+  }
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
-    result, 2, args TSRMLS_CC);
+    result, 3, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -3176,7 +3241,7 @@ bool SwigDirector_StatusListenerNative::connectionLost(std::string hostname, int
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 2, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -3206,7 +3271,7 @@ bool SwigDirector_StatusListenerNative::backpressure(bool hasBackpressure) {
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname,
     result, 1, args TSRMLS_CC);
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(&result);
   c_result = (bool) Z_LVAL_PP(&result);
   /*@SWIG@*/;
@@ -3241,6 +3306,7 @@ static int le_swig__p_char=0; /* handle for _p_char */
 static int le_swig__p_size_type=0; /* handle for _p_size_type */
 static int le_swig__p_std__vectorT_voltdb__Column_t=0; /* handle for Columns */
 static int le_swig__p_bool=0; /* handle for _p_bool */
+static int le_swig__p_boost__shared_ptrT_voltdb__StatusListener_t=0; /* handle for _p_boost__shared_ptrT_voltdb__StatusListener_t */
 static int le_swig__p_voltdb__Procedure=0; /* handle for Procedure */
 static int le_swig__p_std__vectorT_voltdb__Parameter_t=0; /* handle for Parameters */
 static int le_swig__int=0; /* handle for _int */
@@ -3257,6 +3323,7 @@ static int le_swig__p_voltdb__ExpandableByteBuffer=0; /* handle for ExpandableBy
 static int le_swig__p_voltdb__SharedByteBuffer=0; /* handle for SharedByteBuffer */
 static int le_swig__p_voltdb__ScopedByteBuffer=0; /* handle for ScopedByteBuffer */
 static int le_swig__p_ttmath__IntT_4_t=0; /* handle for _p_ttmath__IntT_4_t */
+static int le_swig__p_voltdb__ClientConfig=0; /* handle for ClientConfigNative */
 static int le_swig__p_voltdb__NoConnectionsException=0; /* handle for NoConnectionsException */
 static int le_swig__p_voltdb__ConnectException=0; /* handle for ConnectException */
 static int le_swig__p_voltdb__StringToDecimalException=0; /* handle for StringToDecimalException */
@@ -3270,6 +3337,7 @@ static int le_swig__p_voltdb__InvalidColumnException=0; /* handle for InvalidCol
 static int le_swig__p_voltdb__NullPointerException=0; /* handle for NullPointerException */
 static int le_swig__p_voltdb__Exception=0; /* handle for c_Exception */
 static int le_swig__p_voltdb__LibEventException=0; /* handle for LibEventException */
+static int le_swig__p_voltdb__ClusterInstanceMismatchException=0; /* handle for ClusterInstanceMismatchException */
 static int le_swig__p_std__exception=0; /* handle for _p_std__exception */
 static int le_swig__p_std__vectorT_voltdb__Decimal_t=0; /* handle for DecimalVector */
 static int le_swig__p_voltdb__Parameter=0; /* handle for Parameter */
@@ -3318,7 +3386,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameters__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< voltdb::Parameter >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -3425,7 +3493,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< voltdb::Parameter >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3570,7 +3638,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3612,7 +3680,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameters_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3687,7 +3755,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Tables__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< voltdb::Table >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -3794,7 +3862,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< voltdb::Table >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3939,7 +4007,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3981,7 +4049,7 @@ ZEND_NAMED_FUNCTION(_wrap_Tables_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4056,7 +4124,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Columns__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< voltdb::Column >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -4163,7 +4231,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< voltdb::Column >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4308,7 +4376,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4350,7 +4418,7 @@ ZEND_NAMED_FUNCTION(_wrap_Columns_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4425,7 +4493,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int8Vector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< signed char >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -4532,7 +4600,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< signed char >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4586,7 +4654,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (std::vector< signed char >::value_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4679,7 +4747,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4722,13 +4790,13 @@ ZEND_NAMED_FUNCTION(_wrap_Int8Vector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (std::vector< signed char >::value_type) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -4799,7 +4867,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int16Vector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< short >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -4906,7 +4974,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< short >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4960,7 +5028,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (std::vector< short >::value_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5053,7 +5121,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5096,13 +5164,13 @@ ZEND_NAMED_FUNCTION(_wrap_Int16Vector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (std::vector< short >::value_type) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -5173,7 +5241,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int32Vector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< int >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5280,7 +5348,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< int >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5334,7 +5402,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (std::vector< int >::value_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5427,7 +5495,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5470,13 +5538,13 @@ ZEND_NAMED_FUNCTION(_wrap_Int32Vector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (std::vector< int >::value_type) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -5547,7 +5615,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Int64Vector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< long >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5654,7 +5722,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< long >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5708,7 +5776,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (std::vector< long >::value_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5801,7 +5869,7 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5844,13 +5912,13 @@ ZEND_NAMED_FUNCTION(_wrap_Int64Vector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (std::vector< long >::value_type) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -5921,7 +5989,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DoubleVector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< double >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6028,7 +6096,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< double >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6082,7 +6150,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
   convert_to_double_ex(args[1]);
   temp2 = (std::vector< double >::value_type) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6175,7 +6243,7 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6218,13 +6286,13 @@ ZEND_NAMED_FUNCTION(_wrap_DoubleVector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
   convert_to_double_ex(args[2]);
   temp3 = (std::vector< double >::value_type) Z_DVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -6295,7 +6363,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_StringVector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< std::string >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6402,7 +6470,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< std::string >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6548,7 +6616,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6591,7 +6659,7 @@ ZEND_NAMED_FUNCTION(_wrap_StringVector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6667,7 +6735,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_DecimalVector__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< voltdb::Decimal >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6774,7 +6842,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< voltdb::Decimal >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6919,7 +6987,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6961,7 +7029,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecimalVector_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8112,6 +8180,91 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_new_ClusterInstanceMismatchException) {
+  zval *arg0;
+  zval **args[1];
+  voltdb::ClusterInstanceMismatchException *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  arg0 = *args[0];
+  
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (voltdb::ClusterInstanceMismatchException *)new voltdb::ClusterInstanceMismatchException();
+  } else {
+    result = (voltdb::ClusterInstanceMismatchException *)new SwigDirector_ClusterInstanceMismatchException(arg0);
+  }
+  
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClusterInstanceMismatchException, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClusterInstanceMismatchException_what) {
+  voltdb::ClusterInstanceMismatchException *arg1 = (voltdb::ClusterInstanceMismatchException *) 0 ;
+  zval **args[1];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  char *result = 0 ;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"ClusterInstanceMismatchException", (char *)"what");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClusterInstanceMismatchException, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClusterInstanceMismatchException_what. Expected SWIGTYPE_p_voltdb__ClusterInstanceMismatchException");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  if (upcall) {
+    result = (char *)((voltdb::ClusterInstanceMismatchException const *)arg1)->voltdb::ClusterInstanceMismatchException::what();
+  } else {
+    result = (char *)((voltdb::ClusterInstanceMismatchException const *)arg1)->what();
+  }
+  {
+    if(!result) {
+      ZVAL_NULL(return_value);
+    } else {
+      ZVAL_STRING(return_value, (char *)result, 1);
+    }
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_ClusterInstanceMismatchException(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  voltdb::ClusterInstanceMismatchException *arg1 = (voltdb::ClusterInstanceMismatchException *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (voltdb::ClusterInstanceMismatchException *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ClusterInstanceMismatchException TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "voltdb::ClusterInstanceMismatchException resource already free'd");
+  delete arg1;
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_wireTypeToString) {
   voltdb::WireType arg1 ;
   zval **args[1];
@@ -8123,7 +8276,7 @@ ZEND_NAMED_FUNCTION(_wrap_wireTypeToString) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -8168,13 +8321,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_1) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8200,7 +8353,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Parameter__SWIG_2) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -8300,7 +8453,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameter_m_type_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (voltdb::WireType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8356,7 +8509,7 @@ ZEND_NAMED_FUNCTION(_wrap_Parameter_m_array_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8484,7 +8637,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -8494,7 +8647,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_0) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -8541,13 +8694,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[2])->type==IS_NULL) {
     arg3 = (char *) 0;
   } else {
@@ -8557,7 +8710,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_get__SWIG_1) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -8664,7 +8817,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -8674,7 +8827,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_0) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -8724,13 +8877,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[2])->type==IS_NULL) {
     arg3 = (char *) 0;
   } else {
@@ -8740,7 +8893,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_put__SWIG_1) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -8952,7 +9105,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt8__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9048,7 +9201,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9097,13 +9250,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt8__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int8_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9246,7 +9399,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt16__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9342,7 +9495,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int16_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9391,13 +9544,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt16__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int16_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9540,7 +9693,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt32__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9636,7 +9789,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9685,13 +9838,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt32__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9834,7 +9987,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getInt64__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9930,7 +10083,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9979,13 +10132,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putInt64__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int64_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10128,7 +10281,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getDouble__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10224,7 +10377,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
   convert_to_double_ex(args[1]);
   arg2 = (double) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10273,13 +10426,13 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putDouble__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
   convert_to_double_ex(args[2]);
   arg3 = (double) Z_DVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10429,7 +10582,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_getString__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10589,7 +10742,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_putString__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10723,7 +10876,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_position__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10885,7 +11038,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_limit__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11063,7 +11216,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemaining) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11116,7 +11269,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureRemainingExact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11169,7 +11322,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacity) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11222,7 +11375,7 @@ ZEND_NAMED_FUNCTION(_wrap_ByteBuffer_ensureCapacityExact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11269,7 +11422,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ByteBuffer__SWIG_0) {
   arg0 = *args[0];
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -11279,7 +11432,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ByteBuffer__SWIG_0) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -11465,7 +11618,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemaining) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11518,7 +11671,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureRemainingExact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11571,7 +11724,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacity) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11624,7 +11777,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_ensureCapacityExact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11786,7 +11939,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ExpandableByteBuffer__SWIG_2) {
   arg0 = *args[0];
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -11796,7 +11949,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ExpandableByteBuffer__SWIG_2) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -11876,7 +12029,7 @@ ZEND_NAMED_FUNCTION(_wrap_ExpandableByteBuffer_resetRef) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -12002,7 +12155,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_2) {
   arg0 = *args[0];
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -12012,7 +12165,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_2) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -12055,7 +12208,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_SharedByteBuffer__SWIG_3) {
     arg1 = *tmp1;
   }
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -12148,7 +12301,7 @@ ZEND_NAMED_FUNCTION(_wrap_SharedByteBuffer_resetRef) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -12203,7 +12356,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ScopedByteBuffer__SWIG_0) {
   arg0 = *args[0];
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg1 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -12239,7 +12392,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ScopedByteBuffer__SWIG_1) {
   arg0 = *args[0];
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -12249,7 +12402,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_ScopedByteBuffer__SWIG_1) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg2 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -12322,7 +12475,7 @@ ZEND_NAMED_FUNCTION(_wrap_ScopedByteBuffer_resetRef) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -12781,7 +12934,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addTimestamp__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -12920,7 +13073,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt64__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int64_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -13059,7 +13212,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt32__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -13198,7 +13351,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt16__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int16_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -13337,7 +13490,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addInt8__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -13476,7 +13629,7 @@ ZEND_NAMED_FUNCTION(_wrap_ParameterSet_addDouble__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,52,CONVERT_FLOAT_IN@*/
   convert_to_double_ex(args[1]);
   arg2 = (double) Z_DVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -14334,13 +14487,11 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
   voltdb::Client *arg1 = (voltdb::Client *) 0 ;
   std::string arg2 ;
-  std::string arg3 ;
-  std::string arg4 ;
-  short arg5 ;
-  zval **args[5];
+  short arg3 ;
+  zval **args[3];
   
   SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
@@ -14355,21 +14506,13 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_0) {
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
   
-  convert_to_string_ex(args[2]);
-  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  
-  
-  convert_to_string_ex(args[3]);
-  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  
-  
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[4]);
-  arg5 = (short) Z_LVAL_PP(args[4]);
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (short) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
   try {
-    (arg1)->createConnection(arg2,arg3,arg4,arg5);
+    (arg1)->createConnection(arg2,arg3);
   }
   catch(voltdb::ConnectException &_e) {
     std::string name = "voltdb::ConnectException";
@@ -14418,12 +14561,10 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
   voltdb::Client *arg1 = (voltdb::Client *) 0 ;
   std::string arg2 ;
-  std::string arg3 ;
-  std::string arg4 ;
-  zval **args[4];
+  zval **args[2];
   
   SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
@@ -14437,16 +14578,8 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection__SWIG_1) {
   convert_to_string_ex(args[1]);
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
-  
-  convert_to_string_ex(args[2]);
-  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  
-  
-  convert_to_string_ex(args[3]);
-  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  
   try {
-    (arg1)->createConnection(arg2,arg3,arg4);
+    (arg1)->createConnection(arg2);
   }
   catch(voltdb::ConnectException &_e) {
     std::string name = "voltdb::ConnectException";
@@ -14494,11 +14627,11 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection) {
   int argc;
-  zval **argv[5];
+  zval **argv[3];
   
   argc = ZEND_NUM_ARGS();
   zend_get_parameters_array_ex(argc,argv);
-  if (argc == 4) {
+  if (argc == 2) {
     int _v;
     {
       void *tmp;
@@ -14508,19 +14641,11 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
       
       if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
-          
-          if (_v) {
-            return _wrap_ClientNative_createConnection__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
-          }
-        }
+        return _wrap_ClientNative_createConnection__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
       }
     }
   }
-  if (argc == 5) {
+  if (argc == 3) {
     int _v;
     {
       void *tmp;
@@ -14530,17 +14655,9 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_createConnection) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
       
       if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
+        _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
         if (_v) {
-          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
-          
-          if (_v) {
-            _v = (Z_TYPE_PP(argv[4]) == IS_LONG); 
-            if (_v) {
-              return _wrap_ClientNative_createConnection__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
-            }
-          }
+          return _wrap_ClientNative_createConnection__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
         }
       }
     }
@@ -14963,6 +15080,61 @@ fail:
 
 
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_0) {
+  voltdb::ClientConfig arg1 ;
+  voltdb::ClientConfig *tmp1 ;
+  zval **args[1];
+  SwigValueWrapper< voltdb::Client > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &tmp1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0 || tmp1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientNative_create. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+    arg1 = *tmp1;
+  }
+  try {
+    result = voltdb::Client::create(arg1);
+  }
+  catch(voltdb::LibEventException &_e) {
+    std::string name = "voltdb::LibEventException";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  catch(voltdb::Exception &_e) {
+    std::string name = "voltdb::Exception";
+    if (name.substr(0, 8).compare("voltdb::") == 0) {
+      name = name.substr(8, name.length());
+    }
+    zend_throw_exception(
+      zend_fetch_class(name.c_str(), name.length(), 0),
+      const_cast<char*>((&_e)->what()),
+      0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  {
+    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_1) {
   SwigValueWrapper< voltdb::Client > result;
   
   SWIG_ResetError();
@@ -15008,59 +15180,6 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ClientNative_create__SWIG_1) {
-  voltdb::StatusListener *arg1 = (voltdb::StatusListener *) 0 ;
-  zval **args[1];
-  SwigValueWrapper< voltdb::Client > result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__StatusListener, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientNative_create. Expected SWIGTYPE_p_voltdb__StatusListener");
-    }
-  }
-  try {
-    result = voltdb::Client::create(arg1);
-  }
-  catch(voltdb::LibEventException &_e) {
-    std::string name = "voltdb::LibEventException";
-    if (name.substr(0, 8).compare("voltdb::") == 0) {
-      name = name.substr(8, name.length());
-    }
-    zend_throw_exception(
-      zend_fetch_class(name.c_str(), name.length(), 0),
-      const_cast<char*>((&_e)->what()),
-      0 TSRMLS_CC);
-    return;
-    
-  }
-  catch(voltdb::Exception &_e) {
-    std::string name = "voltdb::Exception";
-    if (name.substr(0, 8).compare("voltdb::") == 0) {
-      name = name.substr(8, name.length());
-    }
-    zend_throw_exception(
-      zend_fetch_class(name.c_str(), name.length(), 0),
-      const_cast<char*>((&_e)->what()),
-      0 TSRMLS_CC);
-    return;
-    
-  }
-  
-  {
-    voltdb::Client * resultobj = new voltdb::Client((const voltdb::Client &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_voltdb__Client, 1);
-  }
-  return;
-fail:
-  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
-}
-
-
 ZEND_NAMED_FUNCTION(_wrap_ClientNative_create) {
   int argc;
   zval **argv[1];
@@ -15068,16 +15187,16 @@ ZEND_NAMED_FUNCTION(_wrap_ClientNative_create) {
   argc = ZEND_NUM_ARGS();
   zend_get_parameters_array_ex(argc,argv);
   if (argc == 0) {
-    return _wrap_ClientNative_create__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+    return _wrap_ClientNative_create__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
   }
   if (argc == 1) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_voltdb__StatusListener, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void **)&tmp, SWIGTYPE_p_voltdb__ClientConfig, 0) >= 0);
     }
     if (_v) {
-      return _wrap_ClientNative_create__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+      return _wrap_ClientNative_create__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
     }
   }
   
@@ -15124,7 +15243,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDecimal__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15173,7 +15292,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getTimestamp__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15221,7 +15340,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt64__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15269,7 +15388,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt32__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15317,7 +15436,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt16__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15365,7 +15484,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getInt8__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15413,7 +15532,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getDouble__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15461,7 +15580,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_getString__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -15509,7 +15628,7 @@ ZEND_NAMED_FUNCTION(_wrap_Row_isNull__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -16955,9 +17074,11 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_uncaughtException) {
   voltdb::StatusListener *arg1 = (voltdb::StatusListener *) 0 ;
   std::exception arg2 ;
   boost::shared_ptr< voltdb::ProcedureCallback > arg3 ;
+  voltdb::InvocationResponse arg4 ;
   std::exception *tmp2 ;
   boost::shared_ptr< voltdb::ProcedureCallback > *tmp3 ;
-  zval **args[3];
+  voltdb::InvocationResponse *tmp4 ;
+  zval **args[4];
   Swig::Director *director = 0;
   bool upcall = false;
   bool result;
@@ -16965,7 +17086,7 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_uncaughtException) {
   director = dynamic_cast<Swig::Director*>(arg1);
   upcall = !director->swig_is_overridden_method((char *)"StatusListenerNative", (char *)"uncaughtException");
   SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
@@ -16987,10 +17108,16 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_uncaughtException) {
     }
     arg3 = *tmp3;
   }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &tmp4, SWIGTYPE_p_voltdb__InvocationResponse, 0) < 0 || tmp4 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of StatusListenerNative_uncaughtException. Expected SWIGTYPE_p_voltdb__InvocationResponse");
+    }
+    arg4 = *tmp4;
+  }
   if (upcall) {
     Swig::DirectorPureVirtualException::raise("voltdb::StatusListener::uncaughtException");
   } else {
-    result = (bool)(arg1)->uncaughtException(arg2,arg3);
+    result = (bool)(arg1)->uncaughtException(arg2,arg3,arg4);
   }
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -17028,7 +17155,7 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_connectionLost) {
   (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -17069,7 +17196,7 @@ ZEND_NAMED_FUNCTION(_wrap_StatusListenerNative_backpressure) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -17169,7 +17296,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Column__SWIG_1) {
   (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (voltdb::WireType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -17195,7 +17322,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_Column__SWIG_2) {
   }
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (voltdb::WireType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -17319,7 +17446,7 @@ ZEND_NAMED_FUNCTION(_wrap_Column_m_type_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (voltdb::WireType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -17531,7 +17658,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_0) {
   (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   arg5 = (short) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -17706,7 +17833,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConnectionPool_acquireClient__SWIG_2) {
     }
   }
   
-  /*@SWIG:/home/mazur/misc/swig/install//share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[5]);
   arg6 = (short) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
@@ -18050,6 +18177,472 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative__SWIG_0) {
+  std::string arg1 ;
+  std::string arg2 ;
+  zval **args[2];
+  voltdb::ClientConfig *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  result = (voltdb::ClientConfig *)new voltdb::ClientConfig(arg1,arg2);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClientConfig, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative__SWIG_1) {
+  std::string arg1 ;
+  zval **args[1];
+  voltdb::ClientConfig *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  result = (voltdb::ClientConfig *)new voltdb::ClientConfig(arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClientConfig, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative__SWIG_2) {
+  voltdb::ClientConfig *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (voltdb::ClientConfig *)new voltdb::ClientConfig();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClientConfig, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative__SWIG_3) {
+  std::string arg1 ;
+  std::string arg2 ;
+  boost::shared_ptr< voltdb::StatusListener > arg3 ;
+  boost::shared_ptr< voltdb::StatusListener > *tmp3 ;
+  zval **args[3];
+  voltdb::ClientConfig *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &tmp3, SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t, 0) < 0 || tmp3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of new_ClientConfigNative. Expected SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t");
+    }
+    arg3 = *tmp3;
+  }
+  result = (voltdb::ClientConfig *)new voltdb::ClientConfig(arg1,arg2,arg3);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClientConfig, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative__SWIG_4) {
+  std::string arg1 ;
+  std::string arg2 ;
+  voltdb::StatusListener *arg3 = (voltdb::StatusListener *) 0 ;
+  zval **args[3];
+  voltdb::ClientConfig *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_voltdb__StatusListener, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of new_ClientConfigNative. Expected SWIGTYPE_p_voltdb__StatusListener");
+    }
+  }
+  result = (voltdb::ClientConfig *)new voltdb::ClientConfig(arg1,arg2,arg3);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_voltdb__ClientConfig, 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_ClientConfigNative) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 0) {
+    return _wrap_new_ClientConfigNative__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+  }
+  if (argc == 1) {
+    int _v;
+    
+    _v = ( Z_TYPE_PP(argv[0]) == IS_STRING ) ? 1 : 0;
+    
+    if (_v) {
+      return _wrap_new_ClientConfigNative__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    
+    _v = ( Z_TYPE_PP(argv[0]) == IS_STRING ) ? 1 : 0;
+    
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        return _wrap_new_ClientConfigNative__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    
+    _v = ( Z_TYPE_PP(argv[0]) == IS_STRING ) ? 1 : 0;
+    
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void **)&tmp, SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t, 0) >= 0);
+        }
+        if (_v) {
+          return _wrap_new_ClientConfigNative__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    
+    _v = ( Z_TYPE_PP(argv[0]) == IS_STRING ) ? 1 : 0;
+    
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_voltdb__StatusListener, 0) >= 0);
+        }
+        if (_v) {
+          return _wrap_new_ClientConfigNative__SWIG_4(INTERNAL_FUNCTION_PARAM_PASSTHRU);
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'new_ClientConfigNative'";
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_username_set) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_username_set. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  if (arg1) (arg1)->m_username = *arg2;
+  
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_username_get) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_username_get. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) & ((arg1)->m_username);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_password_set) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_password_set. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  if (arg1) (arg1)->m_password = *arg2;
+  
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_password_get) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_password_get. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) & ((arg1)->m_password);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_listener_set) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  boost::shared_ptr< voltdb::StatusListener > arg2 ;
+  boost::shared_ptr< voltdb::StatusListener > *tmp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_listener_set. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t, 0) < 0 || tmp2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of ClientConfigNative_m_listener_set. Expected SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t");
+    }
+    arg2 = *tmp2;
+  }
+  if (arg1) (arg1)->m_listener = arg2;
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_listener_get) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  zval **args[1];
+  boost::shared_ptr< voltdb::StatusListener > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_listener_get. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result =  ((arg1)->m_listener);
+  {
+    boost::shared_ptr< voltdb::StatusListener > * resultobj = new boost::shared_ptr< voltdb::StatusListener >((const boost::shared_ptr< voltdb::StatusListener > &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t, 1);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_maxOutstandingRequests_set) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  int32_t arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_maxOutstandingRequests_set. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/home/aweisberg/share/swig/2.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  if (arg1) (arg1)->m_maxOutstandingRequests = arg2;
+  
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ClientConfigNative_m_maxOutstandingRequests_get) {
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_voltdb__ClientConfig, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ClientConfigNative_m_maxOutstandingRequests_get. Expected SWIGTYPE_p_voltdb__ClientConfig");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t) ((arg1)->m_maxOutstandingRequests);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_ClientConfigNative(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  voltdb::ClientConfig *arg1 = (voltdb::ClientConfig *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (voltdb::ClientConfig *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_voltdb__ClientConfig TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "voltdb::ClientConfig resource already free'd");
+  delete arg1;
+  return;
+fail:
+  zend_error(SWIG_ErrorCode(),"%s",SWIG_ErrorMsg());
+}
+
+
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_signed_char_t) {
   __wrap_delete_Int8Vector(rsrc, SWIGTYPE_p_std__vectorT_signed_char_t->name TSRMLS_CC);
 }
@@ -18083,6 +18676,10 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_voltdb__Column_t) {
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_bool) {
   /* No destructor for simple type _p_bool */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_boost__shared_ptrT_voltdb__StatusListener_t) {
+  /* No destructor for simple type _p_boost__shared_ptrT_voltdb__StatusListener_t */
   efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__Procedure) {
@@ -18137,6 +18734,9 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_ttmath__IntT_4_t) {
   /* No destructor for simple type _p_ttmath__IntT_4_t */
   efree(rsrc->ptr);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__ClientConfig) {
+  __wrap_delete_ClientConfigNative(rsrc, SWIGTYPE_p_voltdb__ClientConfig->name TSRMLS_CC);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__NoConnectionsException) {
   __wrap_delete_NoConnectionsException(rsrc, SWIGTYPE_p_voltdb__NoConnectionsException->name TSRMLS_CC);
 }
@@ -18175,6 +18775,9 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__Exception) {
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__LibEventException) {
   __wrap_delete_LibEventException(rsrc, SWIGTYPE_p_voltdb__LibEventException->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_voltdb__ClusterInstanceMismatchException) {
+  __wrap_delete_ClusterInstanceMismatchException(rsrc, SWIGTYPE_p_voltdb__ClusterInstanceMismatchException->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__exception) {
   /* No destructor for simple type _p_std__exception */
@@ -18367,6 +18970,8 @@ static zend_function_entry voltdb_functions[] = {
  SWIG_ZEND_NAMED_FE(noconnectionsexception_what,_wrap_NoConnectionsException_what,NULL)
  SWIG_ZEND_NAMED_FE(new_libeventexception,_wrap_new_LibEventException,NULL)
  SWIG_ZEND_NAMED_FE(libeventexception_what,_wrap_LibEventException_what,NULL)
+ SWIG_ZEND_NAMED_FE(new_clusterinstancemismatchexception,_wrap_new_ClusterInstanceMismatchException,NULL)
+ SWIG_ZEND_NAMED_FE(clusterinstancemismatchexception_what,_wrap_ClusterInstanceMismatchException_what,NULL)
  SWIG_ZEND_NAMED_FE(wiretypetostring,_wrap_wireTypeToString,NULL)
  SWIG_ZEND_NAMED_FE(new_parameter,_wrap_new_Parameter,NULL)
  SWIG_ZEND_NAMED_FE(parameter_m_type_set,_wrap_Parameter_m_type_set,NULL)
@@ -18491,6 +19096,15 @@ static zend_function_entry voltdb_functions[] = {
  SWIG_ZEND_NAMED_FE(onload,_wrap_onLoad,NULL)
  SWIG_ZEND_NAMED_FE(onunload,_wrap_onUnload,NULL)
  SWIG_ZEND_NAMED_FE(onscriptend,_wrap_onScriptEnd,NULL)
+ SWIG_ZEND_NAMED_FE(new_clientconfignative,_wrap_new_ClientConfigNative,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_username_set,_wrap_ClientConfigNative_m_username_set,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_username_get,_wrap_ClientConfigNative_m_username_get,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_password_set,_wrap_ClientConfigNative_m_password_set,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_password_get,_wrap_ClientConfigNative_m_password_get,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_listener_set,_wrap_ClientConfigNative_m_listener_set,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_listener_get,_wrap_ClientConfigNative_m_listener_get,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_maxoutstandingrequests_set,_wrap_ClientConfigNative_m_maxOutstandingRequests_set,NULL)
+ SWIG_ZEND_NAMED_FE(clientconfignative_m_maxoutstandingrequests_get,_wrap_ClientConfigNative_m_maxOutstandingRequests_get,NULL)
  SWIG_ZEND_NAMED_FE(swig_voltdb_alter_newobject,_wrap_swig_voltdb_alter_newobject,NULL)
  SWIG_ZEND_NAMED_FE(swig_voltdb_get_newobject,_wrap_swig_voltdb_get_newobject,NULL)
 {NULL, NULL, NULL}
@@ -18797,6 +19411,8 @@ le_swig__p_std__vectorT_voltdb__Column_t=zend_register_list_destructors_ex(_wrap
 SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_voltdb__Column_t,&le_swig__p_std__vectorT_voltdb__Column_t);
 le_swig__p_bool=zend_register_list_destructors_ex(_wrap_destroy_p_bool,NULL,(char *)(SWIGTYPE_p_bool->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_bool,&le_swig__p_bool);
+le_swig__p_boost__shared_ptrT_voltdb__StatusListener_t=zend_register_list_destructors_ex(_wrap_destroy_p_boost__shared_ptrT_voltdb__StatusListener_t,NULL,(char *)(SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_boost__shared_ptrT_voltdb__StatusListener_t,&le_swig__p_boost__shared_ptrT_voltdb__StatusListener_t);
 le_swig__p_voltdb__Procedure=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__Procedure,NULL,(char *)(SWIGTYPE_p_voltdb__Procedure->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__Procedure,&le_swig__p_voltdb__Procedure);
 le_swig__p_std__vectorT_voltdb__Parameter_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_voltdb__Parameter_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_voltdb__Parameter_t->name),module_number);
@@ -18829,6 +19445,8 @@ le_swig__p_voltdb__ScopedByteBuffer=zend_register_list_destructors_ex(_wrap_dest
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__ScopedByteBuffer,&le_swig__p_voltdb__ScopedByteBuffer);
 le_swig__p_ttmath__IntT_4_t=zend_register_list_destructors_ex(_wrap_destroy_p_ttmath__IntT_4_t,NULL,(char *)(SWIGTYPE_p_ttmath__IntT_4_t->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_ttmath__IntT_4_t,&le_swig__p_ttmath__IntT_4_t);
+le_swig__p_voltdb__ClientConfig=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ClientConfig,NULL,(char *)(SWIGTYPE_p_voltdb__ClientConfig->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_voltdb__ClientConfig,&le_swig__p_voltdb__ClientConfig);
 le_swig__p_voltdb__NoConnectionsException=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__NoConnectionsException,NULL,(char *)(SWIGTYPE_p_voltdb__NoConnectionsException->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__NoConnectionsException,&le_swig__p_voltdb__NoConnectionsException);
 le_swig__p_voltdb__ConnectException=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ConnectException,NULL,(char *)(SWIGTYPE_p_voltdb__ConnectException->name),module_number);
@@ -18855,6 +19473,8 @@ le_swig__p_voltdb__Exception=zend_register_list_destructors_ex(_wrap_destroy_p_v
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__Exception,&le_swig__p_voltdb__Exception);
 le_swig__p_voltdb__LibEventException=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__LibEventException,NULL,(char *)(SWIGTYPE_p_voltdb__LibEventException->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_voltdb__LibEventException,&le_swig__p_voltdb__LibEventException);
+le_swig__p_voltdb__ClusterInstanceMismatchException=zend_register_list_destructors_ex(_wrap_destroy_p_voltdb__ClusterInstanceMismatchException,NULL,(char *)(SWIGTYPE_p_voltdb__ClusterInstanceMismatchException->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_voltdb__ClusterInstanceMismatchException,&le_swig__p_voltdb__ClusterInstanceMismatchException);
 le_swig__p_std__exception=zend_register_list_destructors_ex(_wrap_destroy_p_std__exception,NULL,(char *)(SWIGTYPE_p_std__exception->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_std__exception,&le_swig__p_std__exception);
 le_swig__p_std__vectorT_voltdb__Decimal_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_voltdb__Decimal_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_voltdb__Decimal_t->name),module_number);

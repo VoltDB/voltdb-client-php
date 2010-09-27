@@ -40,8 +40,8 @@ class Client {
         $this->listener = $listener;
     }
 
-    public function createConnection($hostname, $username = '', $password = '', $port = 21212) {
-        $this->native->createConnection($hostname, $username, $password, $port);
+    public function createConnection($hostname, $port = 21212) {
+        $this->native->createConnection($hostname, $port);
     }
 
     public function invoke($procedure, $callback = null) {
@@ -61,9 +61,9 @@ class Client {
         unset($this->callbacks[$index]);
     }
 
-    public function uncaughtException($exception, $callback) {
+    public function uncaughtException($exception, $callback, $response) {
         if (isset($this->listener)) {
-            return $this->listener->uncaughtException($exception, $callback);
+            return $this->listener->uncaughtException($exception, $callback, $response);
         } else {
             return false;
         }
@@ -81,13 +81,17 @@ class Client {
         return $this->native->drain();
     }
 
-    public static function create($listener = null) {
+    public static function create($config = null) {
         switch (func_num_args()) {
             case 0:
                 return new Client(ClientNative::create());
             case 1:
-                $wrapper = new StatusListenerWrapper($listener);
-                return new Client(ClientNative::create($wrapper), $wrapper);
+                $wrapper = $config->getListenerWrapper();
+                if ($wrapper == null) {
+                    return new Client(ClientNative::create($config->getNativeConfig()));
+                } else {
+                    return new Client(ClientNative::create($config->getNativeConfig()), $wrapper);
+                }
             default:
                 print('Invalid argument count to Client::create()' . "\n");
                 return null;
@@ -117,7 +121,7 @@ class Client {
 
 abstract class StatusListener {
 
-    public abstract function uncaughtException($exception, $callback);
+    public abstract function uncaughtException($exception, $callback, $response);
     public abstract function connectionLost($hostname, $connectionsLeft);
     public abstract function backpressure($hasBackpressure);
 
@@ -132,8 +136,8 @@ class StatusListenerWrapper extends StatusListenerNative {
         $this->listener = $listener;
     }
 
-    public function uncaughtException($exception, $callback) {
-        $retval = $this->listener->uncaughtException($exception, $callback);
+    public function uncaughtException($exception, $callback, $response) {
+        $retval = $this->listener->uncaughtException($exception, $callback, $response);
         return $retval === null ? false : $retval;
     }
 
@@ -163,10 +167,6 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
     private $callback;
     private $index;
 
-    public function uncaughtException($exception, $callback) {
-        $this->listener->uncaughtException($exception, $callback);
-    }
-
     public function __construct($client, $callback, $index) {
         parent::__construct();
         $this->client = $client;
@@ -176,15 +176,40 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
 
     public function callback($response) {
         $this->client->invoked($this->index);
+        $iresponse = new InvocationResponse($response);
         try {
-            $retval = $this->callback->callback(new InvocationResponse($response));
+            $retval = $this->callback->callback($iresponse);
         } catch (Exception $e) {
-            return $this->client->uncaughtException($e, $this->callback);
+            return $this->client->uncaughtException($e, $this->callback, $iresponse);
         }
+        $iresponse = null;
         $response = null; // avoids memory leak
         return $retval === null ? false : $retval;
     }
 
+}
+
+class ClientConfig {
+    private $clientConfigNative;
+    private $listenerWrapper;
+
+    public function __construct($username = '', $password = '', $listener = null) {
+        if ($listener == null) {
+            $this->listenerWrapper = null;
+            $this->clientConfigNative = new ClientConfigNative($username, $password);
+        } else {
+            $this->listenerWrapper = new StatusListenerWrapper($listener);
+            $this->clientConfigNative = new ClientConfigNative($username, $password, $this->listenerWrapper);
+        }
+    }
+
+    public function getNativeConfig() {
+        return $this->clientConfigNative;
+    }
+
+    public function getListenerWrapper() {
+        return $this->listenerWrapper;
+    }
 }
 
 
@@ -1446,6 +1471,42 @@ class LibEventException extends c_Exception {
 	}
 }
 
+class ClusterInstanceMismatchException extends c_Exception {
+	public $_cPtr=null;
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_voltdb_alter_newobject($this->_cPtr,$value);
+		c_Exception::__set($var,$value);
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return c_Exception::__isset($var);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_voltdb_get_newobject($this->_cPtr);
+		return c_Exception::__get($var);
+	}
+
+	public function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_voltdb__ClusterInstanceMismatchException') {
+			$this->_cPtr=$res;
+			return;
+		}
+		if (get_class($this) === 'ClusterInstanceMismatchException') {
+			$_this = null;
+		} else {
+			$_this = $this;
+		}
+		$this->_cPtr=new_ClusterInstanceMismatchException($_this);
+	}
+
+	public function what() {
+		return ClusterInstanceMismatchException_what($this->_cPtr);
+	}
+}
+
 class Parameter {
 	public $_cPtr=null;
 	protected $_pData=array();
@@ -2238,8 +2299,8 @@ class ClientNative {
 		$this->_cPtr=$h;
 	}
 
-	public function createConnection($hostname,$username,$password,$port=21212) {
-		ClientNative_createConnection($this->_cPtr,$hostname,$username,$password,$port);
+	public function createConnection($hostname,$port=21212) {
+		ClientNative_createConnection($this->_cPtr,$hostname,$port);
 	}
 
 	public function invoke($proc,$callback=null) {
@@ -2261,10 +2322,10 @@ class ClientNative {
 		return ClientNative_drain($this->_cPtr);
 	}
 
-	static function create($listener=null) {
+	static function create($config=null) {
 		switch (func_num_args()) {
 		case 0: $r=ClientNative_create(); break;
-		default: $r=ClientNative_create($listener);
+		default: $r=ClientNative_create($config);
 		}
 		if (is_resource($r)) {
 			return new ClientNative($r);
@@ -2501,8 +2562,8 @@ abstract class StatusListenerNative {
 		return $this->_pData[$var];
 	}
 
-	public function uncaughtException($exception,$callback) {
-		return StatusListenerNative_uncaughtException($this->_cPtr,$exception,$callback);
+	public function uncaughtException($exception,$callback,$response) {
+		return StatusListenerNative_uncaughtException($this->_cPtr,$exception,$callback,$response);
 	}
 
 	public function connectionLost($hostname,$connectionsLeft) {
@@ -2635,6 +2696,49 @@ class ConnectionPool {
 			return new $c($r);
 		}
 		return $r;
+	}
+}
+
+class ClientConfigNative {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		$func = 'ClientConfigNative_'.$var.'_set';
+		if (function_exists($func)) return call_user_func($func,$this->_cPtr,$value);
+		if ($var === 'thisown') return swig_voltdb_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if (function_exists('ClientConfigNative_'.$var.'_set')) return true;
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		$func = 'ClientConfigNative_'.$var.'_get';
+		if (function_exists($func)) {
+			$r = call_user_func($func,$this->_cPtr);
+			if (!is_resource($r)) return $r;
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			return new $c($r);
+		}
+		if ($var === 'thisown') return swig_voltdb_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	public function __construct($username=null,$password=null,$listener=null) {
+		if (is_resource($username) && get_resource_type($username) === '_p_voltdb__ClientConfig') {
+			$this->_cPtr=$username;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_ClientConfigNative(); break;
+		case 1: $this->_cPtr=new_ClientConfigNative($username); break;
+		case 2: $this->_cPtr=new_ClientConfigNative($username,$password); break;
+		default: $this->_cPtr=new_ClientConfigNative($username,$password,$listener);
+		}
 	}
 }
 

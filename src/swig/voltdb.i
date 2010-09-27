@@ -53,6 +53,7 @@
 #include "StatusListener.h"
 #include "Column.hpp"
 #include "ConnectionPool.h"
+#include "ClientConfig.h"
 %}
 
 // exceptions
@@ -111,6 +112,7 @@ typedef signed long int int64_t;
 %rename(ClientNative) Client;
 %rename(StatusListenerNative) StatusListener;
 %rename(ProcedureCallbackNative) ProcedureCallback;
+%rename(ClientConfigNative) ClientConfig;
 
 %include "Exception.hpp"
 %include "WireType.h"
@@ -128,6 +130,7 @@ typedef signed long int int64_t;
 %include "StatusListener.h"
 %include "Column.hpp"
 %include "ConnectionPool.h"
+%include "ClientConfig.h"
 
 %pragma(php) code="
 /* Client wrapper class */
@@ -144,8 +147,8 @@ class Client {
         $this->listener = $listener;
     }
 
-    public function createConnection($hostname, $username = '', $password = '', $port = 21212) {
-        $this->native->createConnection($hostname, $username, $password, $port);
+    public function createConnection($hostname, $port = 21212) {
+        $this->native->createConnection($hostname, $port);
     }
 
     public function invoke($procedure, $callback = null) {
@@ -165,9 +168,9 @@ class Client {
         unset($this->callbacks[$index]);
     }
 
-    public function uncaughtException($exception, $callback) {
+    public function uncaughtException($exception, $callback, $response) {
         if (isset($this->listener)) {
-            return $this->listener->uncaughtException($exception, $callback);
+            return $this->listener->uncaughtException($exception, $callback, $response);
         } else {
             return false;
         }
@@ -185,13 +188,17 @@ class Client {
         return $this->native->drain();
     }
 
-    public static function create($listener = null) {
+    public static function create($config = null) {
         switch (func_num_args()) {
             case 0:
                 return new Client(ClientNative::create());
             case 1:
-                $wrapper = new StatusListenerWrapper($listener);
-                return new Client(ClientNative::create($wrapper), $wrapper);
+                $wrapper = $config->getListenerWrapper();
+                if ($wrapper == null) {
+                    return new Client(ClientNative::create($config->getNativeConfig()));
+                } else {
+                    return new Client(ClientNative::create($config->getNativeConfig()), $wrapper);
+                }
             default:
                 print('Invalid argument count to Client::create()' . \"\\n\");
                 return null;
@@ -221,7 +228,7 @@ class Client {
 
 abstract class StatusListener {
 
-    public abstract function uncaughtException($exception, $callback);
+    public abstract function uncaughtException($exception, $callback, $response);
     public abstract function connectionLost($hostname, $connectionsLeft);
     public abstract function backpressure($hasBackpressure);
 
@@ -236,8 +243,8 @@ class StatusListenerWrapper extends StatusListenerNative {
         $this->listener = $listener;
     }
 
-    public function uncaughtException($exception, $callback) {
-        $retval = $this->listener->uncaughtException($exception, $callback);
+    public function uncaughtException($exception, $callback, $response) {
+        $retval = $this->listener->uncaughtException($exception, $callback, $response);
         return $retval === null ? false : $retval;
     }
 
@@ -267,10 +274,6 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
     private $callback;
     private $index;
 
-    public function uncaughtException($exception, $callback) {
-        $this->listener->uncaughtException($exception, $callback);
-    }
-
     public function __construct($client, $callback, $index) {
         parent::__construct();
         $this->client = $client;
@@ -280,14 +283,39 @@ class ProcedureCallbackWrapper extends ProcedureCallbackNative {
 
     public function callback($response) {
         $this->client->invoked($this->index);
+        $iresponse = new InvocationResponse($response);
         try {
-            $retval = $this->callback->callback(new InvocationResponse($response));
+            $retval = $this->callback->callback($iresponse);
         } catch (Exception $e) {
-            return $this->client->uncaughtException($e, $this->callback);
+            return $this->client->uncaughtException($e, $this->callback, $iresponse);
         }
+        $iresponse = null;
         $response = null; // avoids memory leak
         return $retval === null ? false : $retval;
     }
 
+}
+
+class ClientConfig {
+    private $clientConfigNative;
+    private $listenerWrapper;
+
+    public function __construct($username = '', $password = '', $listener = null) {
+        if ($listener == null) {
+            $this->listenerWrapper = null;
+            $this->clientConfigNative = new ClientConfigNative($username, $password);
+        } else {
+            $this->listenerWrapper = new StatusListenerWrapper($listener);
+            $this->clientConfigNative = new ClientConfigNative($username, $password, $this->listenerWrapper);
+        }
+    }
+
+    public function getNativeConfig() {
+        return $this->clientConfigNative;
+    }
+
+    public function getListenerWrapper() {
+        return $this->listenerWrapper;
+    }
 }
 "

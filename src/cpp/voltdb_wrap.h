@@ -102,6 +102,13 @@ public:
     virtual ~SwigDirector_LibEventException() throw ();
     virtual char const *what() const throw();
 };
+class SwigDirector_ClusterInstanceMismatchException : public voltdb::ClusterInstanceMismatchException, public Swig::Director {
+
+public:
+    SwigDirector_ClusterInstanceMismatchException(zval *self);
+    virtual ~SwigDirector_ClusterInstanceMismatchException() throw ();
+    virtual char const *what() const throw();
+};
 class SwigDirector_ByteBuffer : public voltdb::ByteBuffer, public Swig::Director {
 
 public:
@@ -174,7 +181,7 @@ class SwigDirector_StatusListenerNative : public voltdb::StatusListener, public 
 
 public:
     SwigDirector_StatusListenerNative(zval *self);
-    virtual bool uncaughtException(std::exception exception, boost::shared_ptr< voltdb::ProcedureCallback > callback);
+    virtual bool uncaughtException(std::exception exception, boost::shared_ptr< voltdb::ProcedureCallback > callback, voltdb::InvocationResponse response);
     virtual bool connectionLost(std::string hostname, int32_t connectionsLeft);
     virtual bool backpressure(bool hasBackpressure);
     virtual ~SwigDirector_StatusListenerNative();

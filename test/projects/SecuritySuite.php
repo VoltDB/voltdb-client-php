@@ -44,12 +44,12 @@ class SecuritySuite extends ProjectBuilder {
             array(),
             'Insert',
             'INSERT INTO players VALUES (?, ?);',
-            'players.score: 0');
+            'players.id: 0');
         $procedures[] = new ProcedureInfo(
             array(),
             'Select',
             'SELECT score FROM players WHERE id = ?;',
-            'players.score: 0');
+            'players.id: 0');
         parent::setProcedures($procedures);
 
         $partitions = array();
