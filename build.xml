@@ -10,7 +10,6 @@
 
     <!-- verify properties file contains all required properties -->
     <fail unless="lib.voltcpp" message="Missing property: lib.voltcpp" />
-    <fail unless="lib.event" message="Missing property: lib.event" />
     <fail unless="lib.voltdb" message="Missing property: lib.voltdb" />
 
     <!--
@@ -33,7 +32,7 @@
             <arg value="-O3" />
             <arg value="-fpic" />
             <arg line="${php.includes}" />
-            <arg value="-I${lib.voltcpp}/../include" />
+            <arg value="-I${lib.voltcpp}/include" />
             <arg value="-DBOOST_SP_DISABLE_THREADS" />
             <arg value="-D__STDC_LIMIT_MACROS" />
             <arg line="-c src/cpp/voltdb_wrap.cpp" />
@@ -45,15 +44,9 @@
             <arg value="-g3" />
             <arg value="-O3" />
             <arg value="-shared" />
-            <arg value="-L${lib.voltcpp}" />
-            <arg value="-L${lib.event}" />
             <arg value="-Xlinker" />
-            <arg value="-rpath=${lib.voltcpp}:${lib.event}" />
-            <arg value="-lvoltcpp" />
-            <arg value="-levent" />
-            <arg value="-lssl" />
-            <arg value="-lboost_thread" />
             <arg value="bin/cpp/voltdb_wrap.o" />
+            <arg value="${lib.voltcpp}/libvoltcpp.a"/>
             <arg line="-o bin/cpp/voltdb.so" />
         </exec>
     </target>
@@ -129,7 +122,7 @@
     <target name="swig" description="Generates the VoltDB PHP Wrapper source code from the Voltdb C++ Client Library using SWIG.">
         <!-- run swig -->
         <exec executable="swig" failonerror="true">
-            <arg value="-I${lib.voltcpp}/../include" />
+            <arg value="-I${lib.voltcpp}/include" />
             <arg value="-c++" />
             <arg value="-php5" />
             <arg line="-outdir src/php" />
