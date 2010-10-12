@@ -1,6 +1,8 @@
 <?xml version="1.0" ?>
 <project name="VoltDB PHP wrapper" default="dist">
 
+    <property environment="env"/>
+
     <!-- verify properties file exists -->
     <available file="library.properties" property="library.properties" />
     <fail unless="library.properties" message="Missing file: library.properties" />
@@ -33,6 +35,7 @@
             <arg value="-fpic" />
             <arg line="${php.includes}" />
             <arg value="-I${lib.voltcpp}/include" />
+            <arg value="-I${env.HOME}/include" />
             <arg value="-DBOOST_SP_DISABLE_THREADS" />
             <arg value="-D__STDC_LIMIT_MACROS" />
             <arg line="-c src/cpp/voltdb_wrap.cpp" />
