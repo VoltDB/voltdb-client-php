@@ -47,7 +47,8 @@
             <arg value="-g3" />
             <arg value="-O3" />
             <arg value="-shared" />
-            <arg value="-Xlinker" />
+            <arg value="-lrt" />
+            <arg value="-lpthread" />
             <arg value="bin/cpp/voltdb_wrap.o" />
             <arg value="${lib.voltcpp}/libvoltcpp.a"/>
             <arg line="-o bin/cpp/voltdb.so" />
