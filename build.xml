@@ -126,7 +126,7 @@
     <target name="swig" description="Generates the VoltDB PHP Wrapper source code from the Voltdb C++ Client Library using SWIG.">
         <!-- run swig -->
         <exec executable="swig" failonerror="true">
-            <arg value="-I${lib.voltcpp}/include" />
+            <arg value="-I./mac_make_temp/cppinclude" />
             <arg value="-c++" />
             <arg value="-php5" />
             <arg line="-outdir src/php" />
