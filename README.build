@@ -28,10 +28,6 @@ The following software is required for both end-users and developers:
     https://svn.voltdb.com/clientapi/cpp/
     Do a checkout of this repository and build it.
 
-  * OpenSSL
-    http://www.openssl.org/
-    Refer to the VoltDB C++ Client Library README for installation details.
-
   * libevent 2.0.5
     http://www.monkey.org/~provos/libevent/
     Refer to the VoltDB C++ Client Library README for installation details.
