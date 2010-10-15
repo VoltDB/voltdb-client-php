@@ -4,6 +4,9 @@ The PHP VoltDB client library allows connecting to a VoltDB cluster,
 invoking stored procedures and reading responses from a PHP5
 application.
 
+The binary file provided is compiled for 64-bit Linux. To use the
+library on other platforms, it currently must be built from source.
+
 ## Installation
 
 Copy the VoltDB PHP extension (voltdb.so) to your PHP extension
@@ -31,7 +34,8 @@ This wrapper is still in its development phase, so a few features are
 not fully supported. This includes:
 
   * Parameters arrays
-    Arrays of parameters are supported using vector wrappers, but they aren't tested.
+    Arrays of parameters are supported using vector wrappers, but they
+    aren't tested.
 
   * int64_t and Decimal: int64_t doesn't work because PHP doesn't
     support 64-bit integers. Decimal isn't tested.
