@@ -1,11 +1,10 @@
 # PHP VoltDB Client Library
 
-The PHP VoltDB client library allows connecting to a VoltDB cluster,
-invoking stored procedures and reading responses from a PHP5
-application.
+The PHP VoltDB client library allows connecting to a VoltDB cluster, invoking
+stored procedures and reading responses from a PHP 5.3 application.
 
-The binary file provided is compiled for 64-bit Linux. To use the
-library on other platforms, it currently must be built from source.
+The binary file provided is compiled for PHP 5.3 or above on 64-bit Linux. To
+use the library on other platforms, it currently must be built from source.
 
 ## Installation
 
