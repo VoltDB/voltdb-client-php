@@ -1,7 +1,7 @@
 --- voltdb.php.old	2010-08-25 11:01:33.807770905 -0400
 +++ voltdb.php	2010-08-25 11:03:42.186093443 -0400
 @@ -2244,7 +2244,7 @@
- 
+
  	public function invoke($proc,$callback=null) {
  		switch (func_num_args()) {
 -		case 1: ClientNative_invoke($this->_cPtr,$proc); break;
@@ -23,7 +23,7 @@
  		return $r;
  	}
 @@ -2615,16 +2611,12 @@
- 
+
  	public function acquireClient($hostname,$username,$password,$port_or_listener=null,$port=null) {
  		switch (func_num_args()) {
 -		case 3: $this->_cPtr=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password); break;
