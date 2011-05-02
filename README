@@ -27,6 +27,10 @@ interacting with a VoltDB server.
 
 Look at the examples directory to see how to use the PHP wrapper.
 
+You can additionally view the source code of the examples online at:
+
+     https://source.voltdb.com/browse/ClientAPI/php/trunk/examples
+
 ## Known Issues
 
 This wrapper is still in its development phase, so a few features are
