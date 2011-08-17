@@ -63,46 +63,42 @@ class AsyncCallback extends ProcedureCallback {
 
 }
 
-if ($argc !== 9 + 1) { // 9 arguments and the name of the script
-    print('usage: php voter.php [number of contestants] [votes per phone number] [transactions per second] ' .
+if ($argc !== 8 + 1) { // 8 arguments and the name of the script
+    print('usage: php voter.php [votes per phone number] [transactions per second] ' .
         '[minimum outstanding] [maximum outstanding] [client feedback interval (seconds)] [test duration (seconds)] ' .
         '[lag record delay (seconds)] [server list (comma separated)]' . "\n");
     exit(1);
 }
 
-$maxContestants = (int) $argv[1];
-if ($maxContestants < 1 || $maxContestants > 12) {
-    print('Number of contestants must be between 1 and 12' . "\n");
-    exit(1);
-}
 
-$maxVotesPerPhoneNumber = (int) $argv[2];
-$transactionsPerSecond = $argv[3];
+$maxVotesPerPhoneNumber = (int) $argv[1];
+$transactionsPerSecond = $argv[2];
 $transactionsPerMilli = $transactionsPerSecond / 1000;
-Stats::$minAllowedOutstanding = $argv[4];
-Stats::$maxAllowedOutstanding = $argv[5];
-$clientFeedbackIntervalSecs = $argv[6];
-$testDurationSecs = $argv[7];
-$lagLatencySeconds = $argv[8];
-$serverList = $argv[9];
+Stats::$minAllowedOutstanding = $argv[3];
+Stats::$maxAllowedOutstanding = $argv[4];
+$clientFeedbackIntervalSecs = $argv[5];
+$testDurationSecs = $argv[6];
+$lagLatencySeconds = $argv[7];
+$serverList = $argv[8];
 $lagLatencyMillis = $lagLatencySeconds * 1000;
 $thisOutstanding = 0;
 $lastOutstanding = 0;
 
-$contestantNames = array(
-    'Edwina Burnam',
-    'Tabatha Gehling',
-    'Kelly Clauss',
-    'Jessie Alloway',
-    'Alana Bregman',
-    'Jessie Eichman',
-    'Allie Rogalski',
-    'Nita Coster',
-    'Kurt Walser',
-    'Ericka Dieter',
-    'Loraine Nygren',
-    'Tania Mattioli'
-);
+$contestantNames =
+    'Edwina Burnam,'.
+    'Tabatha Gehling,'.
+    'Kelly Clauss,'.
+    'Jessie Alloway,'.
+    'Alana Bregman,'.
+    'Jessie Eichman,'.
+    'Allie Rogalski,'.
+    'Nita Coster,'.
+    'Kurt Walser,'.
+    'Ericka Dieter,'.
+    'Loraine Nygren,'.
+    'Tania Mattioli';
+
+$maxContestants = 12;
 
 printf('Allowing %d votes per phone number' . "\n", $maxVotesPerPhoneNumber);
 printf('Allowing between %s and %s oustanding SP calls at a time' . "\n",
@@ -135,15 +131,9 @@ foreach ($voltServers as $thisServer) {
 
 $parameters = new Parameters();
 $parameters->push(new Parameter(voltdb::WIRE_TYPE_INTEGER));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING, true));
+$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
 $procedure = new Procedure('Initialize', $parameters);
-
-$stringVector = new StringVector();
-foreach ($contestantNames as $name) {
-    $stringVector->push($name);
-}
-
-$procedure->params()->addInt32($maxContestants)->addString($stringVector);
+$procedure->params()->addInt32($maxContestants)->addString($contestantNames);
 $response = $voltClient->invoke($procedure);
 $results = $response->results();
 $table = $results->get(0);
