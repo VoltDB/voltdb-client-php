@@ -26,6 +26,10 @@ at the top of your script. This file contains proxy classes for
 interacting with a VoltDB server.
 
 Look at the examples directory to see how to use the PHP wrapper.
+  * helloworld and helloworld_async demonstrate basic concepts.
+  * voter.php demonstrates a long running stand-alone PHP program.
+  * voter_initialize_apache.php and voter_apache.php demonstrate
+    an efficient use of the PHP client library within Apache.
 
 You can additionally view the source code of the examples online at:
 
