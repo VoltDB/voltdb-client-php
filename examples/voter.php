@@ -1,6 +1,6 @@
 <?php
 
-require('../dist/voltdb.php');
+require('../include/voltdb.php');
 
 // this class is a shared storage area for AsyncCallback and the other code
 class Stats {
@@ -139,7 +139,6 @@ $results = $response->results();
 $table = $results->get(0);
 $iterator = $table->iterator();
 $row = $iterator->next();
-$maxContestants = $row->getInt32(0);
 printf('Running for %d contestant(s)' . "\n", $maxContestants);
 
 $startTime = microtime(true) * 1000;
