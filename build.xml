@@ -31,7 +31,6 @@
         </exec>
         <exec executable="g++" failonerror="true">
             <arg value="-g3" />
-            <arg value="-O3" />
             <arg value="-fpic" />
             <arg line="${php.includes}" />
             <arg value="-I${lib.voltcpp}/include" />
@@ -45,12 +44,13 @@
         <!-- build shared library -->
         <exec executable="g++" failonerror="true">
             <arg value="-g3" />
-            <arg value="-O3" />
             <arg value="-shared" />
             <arg value="-lrt" />
             <arg value="-lpthread" />
             <arg value="bin/cpp/voltdb_wrap.o" />
-            <arg value="${lib.voltcpp}/libvoltcpp.a"/>
+            <arg value="${lib.voltcpp}/libvoltdbcpp.a"/>
+            <arg value="${lib.voltcpp}/third_party_libs/linux/libevent_pthreads.a"/>
+            <arg value="${lib.voltcpp}/third_party_libs/linux/libevent.a"/>
             <arg line="-o bin/cpp/voltdb.so" />
         </exec>
     </target>
@@ -100,7 +100,7 @@
             <arg line="--configuration phpunit.xml" />
             <arg line="--coverage-html coverage" />
         </exec>
-        
+
         <echo message="Code coverage report generated: ${basedir}/test/coverage/index.html" />
     </target>
 
