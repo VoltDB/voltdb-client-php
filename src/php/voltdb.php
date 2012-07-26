@@ -105,7 +105,11 @@ class Client {
                 return new Client(ConnectionPool::pool()->acquireClient($hostname, $username, $password, $port));
             case 4:
             case 5:
-                $wrapper = new StatusListenerWrapper($listener);
+                if ($listener === null) {
+                    $wrapper = null;
+                } else {
+                    $wrapper = new StatusListenerWrapper($listener);
+                }
                 return new Client(
                     ConnectionPool::pool()->acquireClient($hostname, $username, $password, $wrapper, $port),
                     $wrapper);
