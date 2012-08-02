@@ -1,7 +1,38 @@
---- voltdb.php.old	2010-08-25 11:01:33.807770905 -0400
-+++ voltdb.php	2010-08-25 11:03:42.186093443 -0400
-@@ -2244,7 +2244,7 @@
-
+--- voltdb.php.old	2012-08-02 12:38:37.000000000 -0400
++++ voltdb.php	2012-08-02 12:39:04.000000000 -0400
+@@ -10,6 +10,8 @@
+  * interface file instead. 
+  * ----------------------------------------------------------------------------- */
+ 
++namespace volt;
++
+ // Try to load our extension if it's not already loaded.
+ if (!extension_loaded('voltdb')) {
+   if (strtolower(substr(PHP_OS, 0, 3)) === 'win') {
+@@ -120,7 +122,11 @@
+                 return new Client(ConnectionPool::pool()->acquireClient($hostname, $username, $password, $port));
+             case 4:
+             case 5:
+-                $wrapper = new StatusListenerWrapper($listener);
++                if ($listener === null) {
++                    $wrapper = null;
++                } else {
++                    $wrapper = new StatusListenerWrapper($listener);
++                }
+                 return new Client(
+                     ConnectionPool::pool()->acquireClient($hostname, $username, $password, $wrapper, $port),
+                     $wrapper);
+@@ -1019,7 +1025,7 @@
+ 	}
+ }
+ 
+-class c_Exception extends Exception {
++class c_Exception extends \Exception {
+ 	public $_cPtr=null;
+ 	protected $_pData=array();
+ 
+@@ -2354,7 +2360,7 @@
+ 
  	public function invoke($proc,$callback=null) {
  		switch (func_num_args()) {
 -		case 1: ClientNative_invoke($this->_cPtr,$proc); break;
@@ -9,8 +40,8 @@
  		default: ClientNative_invoke($this->_cPtr,$proc,$callback);
  		}
  	}
-@@ -2267,11 +2267,7 @@
- 		default: $r=ClientNative_create($listener);
+@@ -2381,11 +2387,7 @@
+ 		default: $r=ClientNative_create($config);
  		}
  		if (is_resource($r)) {
 -			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
@@ -22,8 +53,8 @@
  		}
  		return $r;
  	}
-@@ -2615,16 +2611,12 @@
-
+@@ -2733,16 +2735,12 @@
+ 
  	public function acquireClient($hostname,$username,$password,$port_or_listener=null,$port=null) {
  		switch (func_num_args()) {
 -		case 3: $this->_cPtr=ConnectionPool_acquireClient($this->_cPtr,$hostname,$username,$password); break;

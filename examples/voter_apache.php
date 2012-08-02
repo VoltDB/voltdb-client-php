@@ -7,7 +7,7 @@ require('voltdb.php');
 $host1 = 'localhost';
 $host2 = 'localhost';
 
-class AsyncCallback extends ProcedureCallback {
+class AsyncCallback extends \volt\ProcedureCallback {
     public static $goodVotes = 0;
     public static $badVotes = 0;
     function callback($response) {
@@ -48,14 +48,19 @@ if ($client < 50) {
 }
 
 // Use a client that has a cached connection from the pool.
-$voltClient = Client::createFromPool($hostname, '', '', null, 21212);
+try {
+    $voltClient = \volt\Client::createFromPool($hostname, '', '', null, 21212);
+} catch (Exception $e) {
+    print($e->getMessage() . "\n");
+    exit(1);
+}
 
 // declare the vote procedure
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_TINYINT));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
-$procedure = new Procedure('Vote', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_BIGINT));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_TINYINT));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_BIGINT));
+$procedure = new \volt\Procedure('Vote', $parameters);
 
 // vote 5 times
 for ($i = 0; $i < 5; $i++) {

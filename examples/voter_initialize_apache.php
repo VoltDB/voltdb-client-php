@@ -21,19 +21,19 @@ $contestantNames =
     'Loraine Nygren,'.
     'Tania Mattioli';
 
-$voltClient = Client::create();
+$voltClient = \volt\Client::create();
 
 try {
     $voltClient->createConnection($voltHostname);
-} catch (ConnectException $e) {
+} catch (Exception $e) {
     print($e->getMessage() . "\n");
     exit(1);
 }
 
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_INTEGER));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$procedure = new Procedure('Initialize', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_INTEGER));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$procedure = new \volt\Procedure('Initialize', $parameters);
 $procedure->params()->addInt32($maxContestants)->addString($contestantNames);
 $response = $voltClient->invoke($procedure);
 $results = $response->results();

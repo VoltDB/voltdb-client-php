@@ -63,10 +63,38 @@
     if (name.substr(0, 8).compare("voltdb::") == 0) {
         name = name.substr(8, name.length());
     }
+
+    long code = 0;
+    if (name.compare("NullPointerException") == 0) {
+        code = 1;
+    } else if (name.compare("InvalidColumnException") == 0) {
+        code = 2;
+    } else if (name.compare("OverflowUnderflowException") == 0) {
+        code = 3;
+    } else if (name.compare("IndexOutOfBoundsException") == 0) {
+        code = 4;
+    } else if (name.compare("NonExpandableBufferException") == 0) {
+        code = 5;
+    } else if (name.compare("UninitializedParamsException") == 0) {
+        code = 6;
+    } else if (name.compare("ParamMismatchException") == 0) {
+        code = 7;
+    } else if (name.compare("NoMoreRowsException") == 0) {
+        code = 8;
+    } else if (name.compare("StringToDecimalException") == 0) {
+        code = 9;
+    } else if (name.compare("ConnectException") == 0) {
+        code = 10;
+    } else if (name.compare("NoConnectionsException") == 0) {
+        code = 11;
+    } else if (name.compare("LibEventException") == 0) {
+        code = 12;
+    }
+
     zend_throw_exception(
-            zend_fetch_class(name.c_str(), name.length(), 0),
-            const_cast<char*>($1.what()),
-            0 TSRMLS_CC);
+        zend_exception_get_default(),
+        const_cast<char*>($1.what()),
+        code TSRMLS_CC);
     return;
 %}
 %enddef
@@ -133,6 +161,21 @@ typedef signed long int int64_t;
 %include "ClientConfig.h"
 
 %pragma(php) code="
+/* Code for each type of exception */
+const ExceptionCode = 0;
+const NullPointerExceptionCode = 1;
+const InvalidColumnExceptionCode = 2;
+const OverflowUnderflowExceptionCode = 3;
+const IndexOutOfBoundsExceptionCode = 4;
+const NonExpandableBufferExceptionCode = 5;
+const UninitializedParamsExceptionCode = 6;
+const ParamMismatchExceptionCode = 7;
+const NoMoreRowsExceptionCode = 8;
+const StringToDecimalExceptionCode = 9;
+const ConnectExceptionCode = 10;
+const NoConnectionsExceptionCode = 11;
+const LibEventExceptionCode = 12;
+
 /* Client wrapper class */
 
 class Client {
