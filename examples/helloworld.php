@@ -3,20 +3,20 @@
 require_once('../dist/voltdb.php');
 
 // Instantiate a client and connect to the database.
-$client = Client::create();
+$client = \volt\Client::create();
 try {
     $client->createConnection('localhost');
-} catch (ConnectException $e) {
+} catch (Exception $e) {
     print($e->getMessage() . "\n");
     exit(1);
 }
 
 // Describe the stored procedure to be invoked
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$procedure = new Procedure('Insert', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$procedure = new \volt\Procedure('Insert', $parameters);
 
 // Load the database.
 $params = $procedure->params();
@@ -42,9 +42,9 @@ $response = $client->invoke($procedure);
 if ($response->failure()) { print($response->toString() . "\n"); }
 
 // Describe procedure to retrieve message
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$procedure = new Procedure('Select', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$procedure = new \volt\Procedure('Select', $parameters);
 
 // Retrieve the message
 $procedure->params()->addString('Spanish');

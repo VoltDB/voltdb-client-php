@@ -1,6 +1,6 @@
 <?php
 
-require('../include/voltdb.php');
+require('../dist/voltdb.php');
 
 // this class is a shared storage area for AsyncCallback and the other code
 class Stats {
@@ -23,7 +23,7 @@ class Stats {
 
 }
 
-class AsyncCallback extends ProcedureCallback {
+class AsyncCallback extends \volt\ProcedureCallback {
 
     function callback($response) {
         if ($response->failure()) {
@@ -115,7 +115,7 @@ $transactionsThisSecond = 0;
 $lastMillisecond = microtime(true) * 1000;
 $thisMillisecond = microtime(true) * 1000;
 
-$voltClient = Client::create();
+$voltClient = \volt\Client::create();
 
 $voltServers = explode(',', $serverList);
 foreach ($voltServers as $thisServer) {
@@ -123,16 +123,16 @@ foreach ($voltServers as $thisServer) {
     printf('Connecting to server: \'%s\'' . "\n", $thisServer);
     try {
         $voltClient->createConnection($thisServer);
-    } catch (ConnectException $e) {
+    } catch (Exception $e) {
         print($e->getMessage() . "\n");
         exit(1);
     }
 }
 
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_INTEGER));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_STRING));
-$procedure = new Procedure('Initialize', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_INTEGER));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_STRING));
+$procedure = new \volt\Procedure('Initialize', $parameters);
 $procedure->params()->addInt32($maxContestants)->addString($contestantNames);
 $response = $voltClient->invoke($procedure);
 $results = $response->results();
@@ -149,11 +149,11 @@ $startRecordingLatency = $startTime + $lagLatencyMillis;
 
 $callback = new AsyncCallback();
 
-$parameters = new Parameters();
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_TINYINT));
-$parameters->push(new Parameter(voltdb::WIRE_TYPE_BIGINT));
-$procedure = new Procedure('Vote', $parameters);
+$parameters = new \volt\Parameters();
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_BIGINT));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_TINYINT));
+$parameters->push(new \volt\Parameter(\volt\voltdb::WIRE_TYPE_BIGINT));
+$procedure = new \volt\Procedure('Vote', $parameters);
 
 while ($endTime > $currentTime) {
     Stats::$numSpCalls++;
@@ -240,8 +240,8 @@ print("\n");
 $winnerName = "<<UNKNOWN>>";
 
 $winnerVotes = -1;
-$parameters = new Parameters();
-$procedure = new Procedure('Results', $parameters);
+$parameters = new \volt\Parameters();
+$procedure = new \volt\Procedure('Results', $parameters);
 $response = $voltClient->invoke($procedure);
 $results = $response->results();
 $table = $results->get(0);
