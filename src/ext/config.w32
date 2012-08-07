@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("voltdb", "for voltdb support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("voltdb", "enable voltdb support", "no");
+
+if (PHP_VOLTDB != "no") {
+	EXTENSION("voltdb", "voltdb.c");
+}
+
