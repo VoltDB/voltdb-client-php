@@ -37,7 +37,7 @@ PHP_METHOD(VoltClient, drain);
 
 struct voltclient_object {
     zend_object std;
-    voltdb::Client client;
+    voltdb::Client *client;
     std::map<const char *, voltdb::Procedure *> procedures;
 };
 

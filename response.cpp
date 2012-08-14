@@ -51,7 +51,9 @@ void voltresponse_free(void *obj TSRMLS_CC)
 {
     voltresponse_object *response_obj = (voltresponse_object *)obj;
 
+    response_obj->results.clear();
     delete response_obj->response;
+    response_obj->response = NULL;
 
     zend_hash_destroy(response_obj->std.properties);
     FREE_HASHTABLE(response_obj->std.properties);

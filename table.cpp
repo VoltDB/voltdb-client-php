@@ -51,6 +51,7 @@ void volttable_free(void *obj TSRMLS_CC)
     volttable_object *table_obj = (volttable_object *)obj;
 
     delete table_obj->table;
+    table_obj->table = NULL;
 
     zend_hash_destroy(table_obj->std.properties);
     FREE_HASHTABLE(table_obj->std.properties);
@@ -175,7 +176,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_string(return_value, value.c_str(), 0);
+                add_next_index_string(return_value, value.c_str(), value.length());
                 break;
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:

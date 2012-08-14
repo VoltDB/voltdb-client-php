@@ -75,6 +75,9 @@ void voltclient_free(void *obj TSRMLS_CC)
     }
     client_obj->procedures.clear();
 
+    delete client_obj->client;
+    client_obj->client = NULL;
+
     // Return the client held by this thread to the pool
     voltdb::ConnectionPool::pool()->onScriptEnd();
 
@@ -177,8 +180,8 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
     }
 
     // Set the parameters
-    voltdb::errType err = voltdb::errOk;
     voltdb::Procedure *proc = get_procedure(obj, name, param_count);
+    voltdb::errType err = voltdb::errOk;
     voltdb::ParameterSet *proc_params = proc->params();
     proc_params->reset(err);
     if (!voltdb::isOk(err)) {
@@ -233,9 +236,9 @@ PHP_METHOD(VoltClient, connect)
     }
 
     if (argc == 4) {
-        obj->client = voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password, port);
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password, port));
     } else {
-        obj->client = voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password);
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password));
     }
 
     if (!voltdb::isOk(err)) {
@@ -311,7 +314,7 @@ PHP_METHOD(VoltClient, invoke)
 
     // Invoke the procedure
     voltdb::errType err = voltdb::errOk;
-    voltdb::InvocationResponse resp = obj->client.invoke(err, *proc);
+    voltdb::InvocationResponse resp = obj->client->invoke(err, *proc);
     if (!voltdb::isOk(err)) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
         RETURN_NULL();
@@ -344,7 +347,7 @@ PHP_METHOD(VoltClient, drain)
     voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
     voltdb::errType err = voltdb::errOk;
 
-    bool retval = obj->client.drain(err);
+    bool retval = obj->client->drain(err);
     if (!voltdb::isOk(err)) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
         RETURN_FALSE;
