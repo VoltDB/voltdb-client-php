@@ -22,7 +22,7 @@ if test "$PHP_VOLTDB" != "no"; then
   PHP_REQUIRE_CXX()
 
   # search for VoltDB C++ client headers
-  SEARCH_PATH="../../../cpp"
+  SEARCH_PATH="../cpp"
   SEARCH_FOR="/include/Client.h"
   AC_MSG_CHECKING([for voltdb C++ client files in default path])
   for i in $SEARCH_PATH ; do
