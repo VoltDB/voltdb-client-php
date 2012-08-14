@@ -59,7 +59,7 @@ if test "$PHP_VOLTDB" != "no"; then
   PHP_ADD_LIBRARY_WITH_PATH(event, $VOLTDB_CXX_DIR/third_party_libs/linux, VOLTDB_SHARED_LIBADD)
   PHP_ADD_LIBRARY_WITH_PATH(event_pthreads, $VOLTDB_CXX_DIR/third_party_libs/linux, VOLTDB_SHARED_LIBADD)
 
-  voltdb_sources="voltdb.cpp"
+  voltdb_sources="voltdb.cpp client.cpp response.cpp"
   PHP_NEW_EXTENSION(voltdb,
                     $voltdb_sources,
                     $ext_shared,

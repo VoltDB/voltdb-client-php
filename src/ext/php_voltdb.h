@@ -36,31 +36,6 @@ extern zend_module_entry voltdb_module_entry;
 #include "TSRM.h"
 #endif
 
-// VoltClient
-PHP_METHOD(VoltClient, __construct);
-PHP_METHOD(VoltClient, __destruct);
-PHP_METHOD(VoltClient, connect);
-PHP_METHOD(VoltClient, addStoredProc);
-PHP_METHOD(VoltClient, removeStoredProc);
-PHP_METHOD(VoltClient, getStoredProcs);
-PHP_METHOD(VoltClient, invoke);
-PHP_METHOD(VoltClient, invokeAsync);
-PHP_METHOD(VoltClient, drain);
-
-// // VoltProcedure
-// PHP_METHOD(VoltProcedure, __construct);
-// PHP_METHOD(VoltProcedure, __destruct);
-// PHP_METHOD(VoltProcedure, getParams);
-
-// // VoltInvocationResponse
-// PHP_METHOD(VoltInvocationResponse, __construct);
-// PHP_METHOD(VoltInvocationResponse, __destruct);
-// PHP_METHOD(VoltInvocationResponse, statusCode);
-// PHP_METHOD(VoltInvocationResponse, statusString);
-// PHP_METHOD(VoltInvocationResponse, appStatusCode);
-// PHP_METHOD(VoltInvocationResponse, appStatusString);
-// PHP_METHOD(VoltInvocationResponse, results);
-
 // // VoltTable
 // PHP_METHOD(VoltTable, __construct);
 // PHP_METHOD(VoltTable, __destruct);
