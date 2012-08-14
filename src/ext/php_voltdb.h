@@ -36,15 +36,6 @@ extern zend_module_entry voltdb_module_entry;
 #include "TSRM.h"
 #endif
 
-// // VoltTable
-// PHP_METHOD(VoltTable, __construct);
-// PHP_METHOD(VoltTable, __destruct);
-// PHP_METHOD(VoltTable, iterator);
-// PHP_METHOD(VoltTable, statusCode);
-// PHP_METHOD(VoltTable, rowCount);
-// PHP_METHOD(VoltTable, columnCount);
-// PHP_METHOD(VoltTable, columns);
-
 PHP_MINIT_FUNCTION(voltdb);
 PHP_MSHUTDOWN_FUNCTION(voltdb);
 PHP_RINIT_FUNCTION(voltdb);

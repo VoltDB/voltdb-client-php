@@ -30,6 +30,7 @@ extern "C" {
 #include "ConnectionPool.h"
 #include "client.h"
 #include "response.h"
+#include "table.h"
 #include "php_voltdb.h"
 
 // Initialize global variables
@@ -37,24 +38,6 @@ extern "C" {
 
 /* True global resources - no need for thread safety here */
 static int le_voltdb;
-
-/* {{{ voltdb_functions[]
- *
- * Every user visible function must have an entry in voltdb_functions[].
- */
-// const zend_function_entry voltdb_methods[] = {
-//     // // VoltTable
-//     // PHP_ME(VoltTable, __construct, NULL, ZEND_ACC_PUBLIC | ZEND_ACC_DTOR)
-//     // PHP_ME(VoltTable, __destruct, NULL, ZEND_ACC_PUBLIC | ZEND_ACC_DTOR)
-//     // PHP_ME(VoltTable, iterator, NULL, ZEND_ACC_PUBLIC)
-//     // PHP_ME(VoltTable, statusCode, NULL, ZEND_ACC_PUBLIC)
-//     // PHP_ME(VoltTable, rowCount, NULL, ZEND_ACC_PUBLIC)
-//     // PHP_ME(VoltTable, columnCount, NULL, ZEND_ACC_PUBLIC)
-//     // PHP_ME(VoltTable, columns, NULL, ZEND_ACC_PUBLIC)
-
-// 	PHP_FE_END	/* Must be the last line in voltdb_functions[] */
-// };
-/* }}} */
 
 /* {{{ voltdb_module_entry
  */
@@ -113,6 +96,7 @@ PHP_MINIT_FUNCTION(voltdb)
 
     create_voltclient_class();
     create_voltresponse_class();
+    create_volttable_class();
 
     // Initialize the connection pool
     voltdb::onLoad();

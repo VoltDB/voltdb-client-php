@@ -12,6 +12,7 @@ PHP_METHOD(VoltInvocationResponse, nextResult);
 struct voltresponse_object {
     zend_object std;
     voltdb::InvocationResponse *response;
+    std::vector<voltdb::Table> results;
     std::vector<voltdb::Table>::const_iterator it;
 };
 

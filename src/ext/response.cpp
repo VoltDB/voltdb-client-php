@@ -6,6 +6,7 @@ extern "C" {
 }
 
 #include "InvocationResponse.hpp"
+#include "table.h"
 #include "response.h"
 
 // class entry used to instantiate the PHP response class
@@ -97,7 +98,8 @@ struct voltresponse_object *instantiate_voltresponse(zval *return_val,
     ro = (struct voltresponse_object *)zend_object_store_get_object(return_val TSRMLS_CC);
     assert(ro != NULL);
     ro->response = new voltdb::InvocationResponse(resp);
-    ro->it = ro->response->results().begin();
+    ro->results = ro->response->results();
+    ro->it = ro->results.begin();
 
     return ro;
 }
@@ -136,11 +138,10 @@ PHP_METHOD(VoltInvocationResponse, hasMoreResults)
 {
     zval *zobj = getThis();
     voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
-    std::vector<voltdb::Table> results = obj->response->results();
-    if (results.empty() || obj->it == results.end()) {
-        RETURN_FALSE;
-    } else {
+    if (obj->it < obj->results.end()) {
         RETURN_TRUE;
+    } else {
+        RETURN_FALSE;
     }
 }
 
@@ -148,13 +149,26 @@ PHP_METHOD(VoltInvocationResponse, nextResult)
 {
     zval *zobj = getThis();
     voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
-    std::vector<voltdb::Table> results = obj->response->results();
 
-    if (obj->it == results.end()) {
+    if (obj->it >= obj->results.end()) {
         RETURN_NULL();
     }
 
-    // TODO: Wrap VoltTable and advance the iterator
+    // Get the table and advance the iterator
     voltdb::Table table = *(obj->it);
-    (obj->it)++;
+    obj->it++;
+
+    voltdb::errType err = table.getErr();
+    if (!voltdb::isOk(err)) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
+        RETURN_NULL();
+    }
+
+    // Wrap the table in a PHP class
+    struct volttable_object *to = instantiate_volttable(return_value, table);
+    if (to == NULL) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                             voltdb::errException TSRMLS_CC);
+        RETURN_NULL();
+    }
 }
