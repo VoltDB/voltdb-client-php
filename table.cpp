@@ -84,6 +84,109 @@ struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &
     return to;
 }
 
+int row_to_array(zval *return_value, voltdb::Row row)
+{
+    voltdb::errType err = voltdb::errOk;
+    int count = row.columnCount();
+    std::vector<voltdb::Column> columns = row.columns();
+
+    for (int i = 0; i < count; i++) {
+        bool isNull = row.isNull(err, i);
+        if (!voltdb::isOk(err)) {
+            // TODO: Should we free the array?
+            return 0;
+        }
+
+        if (isNull) {
+            add_next_index_null(return_value);
+        } else {
+            switch (columns[i].type()) {
+            case voltdb::WIRE_TYPE_TINYINT:
+            {
+                int8_t value = row.getInt8(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_long(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_SMALLINT:
+            {
+                int16_t value = row.getInt16(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_long(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_INTEGER:
+            {
+                int32_t value = row.getInt32(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_long(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_BIGINT:
+            {
+                int64_t value = row.getInt64(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_long(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_FLOAT:
+            {
+                double value = row.getDouble(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_double(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_STRING:
+            {
+                std::string value = row.getString(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_string(return_value, value.c_str(), 0);
+                break;
+            }
+            case voltdb::WIRE_TYPE_TIMESTAMP:
+            {
+                int64_t value = row.getTimestamp(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                add_next_index_long(return_value, value);
+                break;
+            }
+            case voltdb::WIRE_TYPE_DECIMAL:
+            {
+                voltdb::Decimal value = row.getDecimal(err, i);
+                if (!voltdb::isOk(err)) {
+                    return 0;
+                }
+                // TODO: get float
+                break;
+            }
+            case voltdb::WIRE_TYPE_VARBINARY:
+            {
+                // TODO: encode it and store it as a string?
+                break;
+            }
+            default:
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
 PHP_METHOD(VoltTable, statusCode)
 {
     zval *zobj = getThis();
@@ -168,100 +271,7 @@ PHP_METHOD(VoltTable, nextRow)
         RETURN_NULL();
     }
 
-    int count = row.columnCount();
-    std::vector<voltdb::Column> columns = row.columns();
-
-    for (int i = 0; i < count; i++) {
-        bool isNull = row.isNull(err, i);
-        if (!voltdb::isOk(err)) {
-            // TODO: Should we free the array?
-            RETURN_NULL();
-        }
-
-        if (isNull) {
-            add_next_index_null(return_value);
-        } else {
-            switch (columns[i].type()) {
-            case voltdb::WIRE_TYPE_TINYINT:
-            {
-                int8_t value = row.getInt8(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_long(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_SMALLINT:
-            {
-                int16_t value = row.getInt16(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_long(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_INTEGER:
-            {
-                int32_t value = row.getInt32(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_long(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_BIGINT:
-            {
-                int64_t value = row.getInt64(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_long(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_FLOAT:
-            {
-                double value = row.getDouble(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_double(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_STRING:
-            {
-                std::string value = row.getString(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_string(return_value, value.c_str(), 0);
-                break;
-            }
-            case voltdb::WIRE_TYPE_TIMESTAMP:
-            {
-                int64_t value = row.getTimestamp(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                add_next_index_long(return_value, value);
-                break;
-            }
-            case voltdb::WIRE_TYPE_DECIMAL:
-            {
-                voltdb::Decimal value = row.getDecimal(err, i);
-                if (!voltdb::isOk(err)) {
-                    RETURN_NULL();
-                }
-                // TODO: get float
-                break;
-            }
-            case voltdb::WIRE_TYPE_VARBINARY:
-            {
-                // TODO: encode it and store it as a string?
-                break;
-            }
-            default:
-                break;
-            }
-        }
+    if (!row_to_array(return_value, row)) {
+        RETURN_NULL();
     }
 }
