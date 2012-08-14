@@ -41,14 +41,11 @@ inline int get_varargs(int argc, zval ****args)
     }
 
     *args = (zval ***)emalloc(argc * sizeof(zval **));
-    php_printf("parsing varargs\n");
     if (zend_get_parameters_array_ex(argc, *args) == FAILURE) {
-        php_printf("failed parsing varargs\n");
         efree(*args);
         return 0;
     }
 
-    php_printf("parsed varargs\n");
     return 1;
 }
 
