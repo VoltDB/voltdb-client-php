@@ -71,6 +71,7 @@ void voltclient_free(void *obj TSRMLS_CC)
     for (it = client_obj->procedures.begin();
          it != client_obj->procedures.end();
          it++) {
+        efree((void *)it->first);
         delete it->second;
     }
     client_obj->procedures.clear();
@@ -132,6 +133,7 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
             paramTypes[i] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
         }
 
+        name = estrdup(name);
         proc = new voltdb::Procedure(name, paramTypes);
         obj->procedures[name] = proc;
     } else {
@@ -172,7 +174,7 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
         return NULL;
     }
 
-    // TODO: Only string params for now
+    // Only string params
     for (i = param_offset; i < argc; i++) {
         if (Z_TYPE_PP(params[i]) == IS_STRING) {
             proc_params->addString(err, std::string(Z_STRVAL_PP(params[i]), Z_STRLEN_PP(params[i])));

@@ -116,6 +116,8 @@ int row_to_array(zval *return_value, voltdb::Row row)
 
     for (int i = 0; i < count; i++) {
         std::string name = columns[i].name();
+        int name_len = name.length() + 1; // including the terminator
+
         bool isNull = row.isNull(err, i);
         if (!voltdb::isOk(err)) {
             // TODO: Should we free the array?
@@ -123,7 +125,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
         }
 
         if (isNull) {
-            add_assoc_null_ex(return_value, name.c_str(), name.length());
+            add_assoc_null_ex(return_value, name.c_str(), name_len);
         } else {
             switch (columns[i].type()) {
             case voltdb::WIRE_TYPE_TINYINT:
@@ -132,7 +134,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_SMALLINT:
@@ -141,7 +143,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_INTEGER:
@@ -150,7 +152,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_BIGINT:
@@ -159,7 +161,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_FLOAT:
@@ -168,7 +170,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_double_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_double_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_STRING:
@@ -183,7 +185,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                  * the refcount is decremented.
                  */
                 char *dup_val = estrdup(value.c_str());
-                add_assoc_string_ex(return_value, name.c_str(), name.length(), dup_val, 0);
+                add_assoc_string_ex(return_value, name.c_str(), name_len, dup_val, 0);
                 break;
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
@@ -192,7 +194,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
+                add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_DECIMAL:
