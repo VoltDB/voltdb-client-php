@@ -194,9 +194,12 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
                 proc_params->addString(err, std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
                 break;
             default:
-                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                                     voltdb::errParamMismatchException TSRMLS_CC);
-                return NULL;
+                zval temp;
+                temp = **param;
+                zval_copy_ctor(&temp);
+                convert_to_string(&temp);
+                proc_params->addString(err, std::string(Z_STRVAL(temp), Z_STRLEN(temp)));
+                break;
             }
 
             if (!voltdb::isOk(err)) {
