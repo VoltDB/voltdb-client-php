@@ -42,6 +42,8 @@ extern "C" {
 #include "response.h"
 #include "client.h"
 
+static const char *VOLT_NULL_INDICATOR = "\\N";
+
 // class entry used to instantiate the PHP client class
 zend_class_entry *voltclient_ce;
 
@@ -184,9 +186,14 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
         for (zend_hash_internal_pointer_reset_ex(param_hash, &param_ptr);
              zend_hash_get_current_data_ex(param_hash, (void **)&param, &param_ptr) == SUCCESS;
              zend_hash_move_forward_ex(param_hash, &param_ptr)) {
-            if (Z_TYPE_PP(param) == IS_STRING) {
+            switch (Z_TYPE_PP(param)) {
+            case IS_NULL:
+                proc_params->addString(err, VOLT_NULL_INDICATOR);
+                break;
+            case IS_STRING:
                 proc_params->addString(err, std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
-            } else {
+                break;
+            default:
                 zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                      voltdb::errParamMismatchException TSRMLS_CC);
                 return NULL;
