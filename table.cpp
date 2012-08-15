@@ -38,7 +38,6 @@ const zend_function_entry volttable_methods[] = {
     PHP_ME(VoltTable, statusCode, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltTable, rowCount, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltTable, columnCount, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(VoltTable, columnIndexFromName, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltTable, hasMoreRows, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltTable, nextRow, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END                  // Must be the last line
@@ -239,34 +238,6 @@ PHP_METHOD(VoltTable, columnCount)
     zval *zobj = getThis();
     volttable_object *obj = (volttable_object *)zend_object_store_get_object(zobj TSRMLS_CC);
     RETURN_LONG(obj->table->columnCount());
-}
-
-PHP_METHOD(VoltTable, columnIndexFromName)
-{
-    zval *zobj = getThis();
-    volttable_object *obj = (volttable_object *)zend_object_store_get_object(zobj TSRMLS_CC);
-    int i = 0;
-    std::vector<voltdb::Column> columns = obj->table->columns();
-    char *name = NULL;
-    int len = 0;
-
-    // Get the name parameter
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, (char *)"s", &name, &len) == FAILURE) {
-        RETURN_LONG(-1);
-    }
-
-    for (i = 0; i < columns.size(); i++) {
-        if (columns[i].name().compare(name) == 0) {
-            break;
-        }
-    }
-
-    if (i == columns.size()) {
-        // Not found
-        RETURN_LONG(-1);
-    } else {
-        RETURN_LONG(i);
-    }
 }
 
 PHP_METHOD(VoltTable, hasMoreRows)

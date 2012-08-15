@@ -31,7 +31,6 @@
 PHP_METHOD(VoltTable, statusCode);
 PHP_METHOD(VoltTable, rowCount);
 PHP_METHOD(VoltTable, columnCount);
-PHP_METHOD(VoltTable, columnIndexFromName);
 PHP_METHOD(VoltTable, hasMoreRows);
 PHP_METHOD(VoltTable, nextRow);
 
