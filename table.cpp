@@ -29,7 +29,7 @@ extern "C" {
 }
 
 #include "Table.h"
-#include "table.h"
+#include "volttable.h"
 
 // class entry used to instantiate the PHP table class
 zend_class_entry *volttable_ce;
@@ -115,6 +115,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
     std::vector<voltdb::Column> columns = row.columns();
 
     for (int i = 0; i < count; i++) {
+        std::string name = columns[i].name();
         bool isNull = row.isNull(err, i);
         if (!voltdb::isOk(err)) {
             // TODO: Should we free the array?
@@ -122,7 +123,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
         }
 
         if (isNull) {
-            add_next_index_null(return_value);
+            add_assoc_null_ex(return_value, name.c_str(), name.length());
         } else {
             switch (columns[i].type()) {
             case voltdb::WIRE_TYPE_TINYINT:
@@ -131,7 +132,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_long(return_value, value);
+                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_SMALLINT:
@@ -140,7 +141,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_long(return_value, value);
+                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_INTEGER:
@@ -149,7 +150,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_long(return_value, value);
+                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_BIGINT:
@@ -158,7 +159,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_long(return_value, value);
+                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_FLOAT:
@@ -167,7 +168,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_double(return_value, value);
+                add_assoc_double_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_STRING:
@@ -176,7 +177,13 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_string(return_value, value.c_str(), value.length());
+                /*
+                 * necessary to dup here because the add_assoc_string_ex takes
+                 * char*. No need to free it, PHP should take care of this when
+                 * the refcount is decremented.
+                 */
+                char *dup_val = estrdup(value.c_str());
+                add_assoc_string_ex(return_value, name.c_str(), name.length(), dup_val, 0);
                 break;
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
@@ -185,7 +192,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                add_next_index_long(return_value, value);
+                add_assoc_long_ex(return_value, name.c_str(), name.length(), value);
                 break;
             }
             case voltdb::WIRE_TYPE_DECIMAL:

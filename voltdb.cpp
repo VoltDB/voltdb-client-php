@@ -35,7 +35,7 @@ extern "C" {
 #include "ConnectionPool.h"
 #include "client.h"
 #include "response.h"
-#include "table.h"
+#include "volttable.h"
 #include "php_voltdb.h"
 
 // Initialize global variables

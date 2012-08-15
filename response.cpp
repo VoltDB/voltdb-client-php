@@ -29,7 +29,7 @@ extern "C" {
 }
 
 #include "InvocationResponse.hpp"
-#include "table.h"
+#include "volttable.h"
 #include "response.h"
 
 // class entry used to instantiate the PHP response class
