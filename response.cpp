@@ -40,6 +40,7 @@ const zend_function_entry voltresponse_methods[] = {
     PHP_ME(VoltInvocationResponse, statusString, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltInvocationResponse, appStatusCode, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltInvocationResponse, appStatusString, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(VoltInvocationResponse, resultCount, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltInvocationResponse, hasMoreResults, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltInvocationResponse, nextResult, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END                  // Must be the last line
@@ -157,6 +158,13 @@ PHP_METHOD(VoltInvocationResponse, appStatusString)
     voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
     // The second parameter 1 tells PHP to make a copy of the string
     RETURN_STRING(obj->response->appStatusString().c_str(), 1);
+}
+
+PHP_METHOD(VoltInvocationResponse, resultCount)
+{
+    zval *zobj = getThis();
+    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    RETURN_LONG(obj->results.size());
 }
 
 PHP_METHOD(VoltInvocationResponse, hasMoreResults)

@@ -29,6 +29,7 @@ PHP_METHOD(VoltInvocationResponse, statusCode);
 PHP_METHOD(VoltInvocationResponse, statusString);
 PHP_METHOD(VoltInvocationResponse, appStatusCode);
 PHP_METHOD(VoltInvocationResponse, appStatusString);
+PHP_METHOD(VoltInvocationResponse, resultCount);
 PHP_METHOD(VoltInvocationResponse, hasMoreResults);
 PHP_METHOD(VoltInvocationResponse, nextResult);
 
