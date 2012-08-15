@@ -117,23 +117,6 @@ void create_voltclient_class(void)
     voltclient_ce->create_object = voltclient_create_handler;
     memcpy(&voltclient_object_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
     voltclient_object_handlers.clone_obj = NULL;
-
-    // Set up all the exception codes as class constants
-    zend_declare_class_constant_long(voltclient_ce, "EXCEPTION", 9, voltdb::errException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "NULLPOINTEREXCEPTION", 29, voltdb::errNullPointerException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "INVALIDCOLUMNEXCEPTION", 22, voltdb::errInvalidColumnException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "OVERFLOWUNDERFLOWEXCEPTION", 26, voltdb::errOverflowUnderflowException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "INDEXOUTOFBOUNDSEXCEPTION", 25, voltdb::errIndexOutOfBoundsException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "NONEXPANDABLEBUFFEREXCEPTION", 28, voltdb::errNonExpandableBufferException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "UNINITIALIZEDPARAMSEXCEPTION", 28, voltdb::errUninitializedParamsException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "PARAMMISMATCHEXCEPTION", 22, voltdb::errParamMismatchException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "NOMOREROWSEXCEPTION", 19, voltdb::errNoMoreRowsException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "STRINGTODECIMALEXCEPTION", 24, voltdb::errStringToDecimalException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "CONNECTEXCEPTION", 16, voltdb::errConnectException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "NOCONNECTIONSEXCEPTION", 22, voltdb::errNoConnectionsException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "LIBEVENTEXCEPTION", 17, voltdb::errLibEventException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "CLUSTERINSTANCEMISMATCHEXCEPTION", 32, voltdb::errClusterInstanceMismatchException TSRMLS_CC);
-    zend_declare_class_constant_long(voltclient_ce, "COLUMNMISMATCHEXCEPTION", 23, voltdb::errColumnMismatchException TSRMLS_CC);
 }
 
 voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int param_count)
