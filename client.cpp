@@ -151,10 +151,18 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
     int i, len = 0;
 
     assert(obj != NULL);
-    // TODO: Check if the client is created.
+
+    // Check if the client is created.
+    if (obj->client == NULL) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                             voltdb::errConnectException TSRMLS_CC);
+        return NULL;
+    }
 
     // Get the procedure name and parameters
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, (char *)"s|a", &name, &len, &params) == FAILURE) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                             voltdb::errParamMismatchException TSRMLS_CC);
         return NULL;
     }
     if (params != NULL) {
