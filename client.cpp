@@ -51,9 +51,6 @@ const zend_function_entry voltclient_methods[] = {
     // VoltClient
     PHP_ME(VoltClient, __construct, NULL, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
     PHP_ME(VoltClient, connect, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(VoltClient, addStoredProc, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(VoltClient, removeStoredProc, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(VoltClient, getStoredProcs, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, invoke, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, invokeAsync, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, drain, NULL, ZEND_ACC_PUBLIC)
@@ -146,53 +143,53 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
 voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_object *obj)
 {
     char *name = NULL;
-    zval ***params = NULL;
-    int argc = ZEND_NUM_ARGS();
-    int param_offset = 1;
-    int param_count = argc - param_offset;
+    zval *params = NULL;
+    zval **param = NULL;
+    HashTable *param_hash;
+    HashPosition param_ptr;
+    int param_count = 0;
     int i, len = 0;
 
     assert(obj != NULL);
     // TODO: Check if the client is created.
 
-    // Get the procedure name
-    if (zend_parse_parameters(1 TSRMLS_CC, (char *)"s", &name, &len) == FAILURE ||
-        get_varargs(argc, &params) == 0) {
-        if (params != NULL) {
-            efree(params);
-        }
+    // Get the procedure name and parameters
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, (char *)"s|a", &name, &len, &params) == FAILURE) {
         return NULL;
     }
+    if (params != NULL) {
+        param_hash = Z_ARRVAL_P(params);
+        param_count = zend_hash_num_elements(param_hash);
+    }
 
-    // Set the parameters
+    // Get the procedure
     voltdb::Procedure *proc = get_procedure(obj, name, param_count);
     voltdb::errType err = voltdb::errOk;
     voltdb::ParameterSet *proc_params = proc->params();
     proc_params->reset(err);
     if (!voltdb::isOk(err)) {
-        efree(params);
         return NULL;
     }
 
-    // Only string params
-    for (i = param_offset; i < argc; i++) {
-        if (Z_TYPE_PP(params[i]) == IS_STRING) {
-            proc_params->addString(err, std::string(Z_STRVAL_PP(params[i]), Z_STRLEN_PP(params[i])));
-        } else {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                                 voltdb::errParamMismatchException TSRMLS_CC);
-            efree(params);
-            return NULL;
-        }
+    if (params != NULL) {
+        // Set the parameters, only string params
+        for (zend_hash_internal_pointer_reset_ex(param_hash, &param_ptr);
+             zend_hash_get_current_data_ex(param_hash, (void **)&param, &param_ptr) == SUCCESS;
+             zend_hash_move_forward_ex(param_hash, &param_ptr)) {
+            if (Z_TYPE_PP(param) == IS_STRING) {
+                proc_params->addString(err, std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
+            } else {
+                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                                     voltdb::errParamMismatchException TSRMLS_CC);
+                return NULL;
+            }
 
-        if (!voltdb::isOk(err)) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-            efree(params);
-            return NULL;
+            if (!voltdb::isOk(err)) {
+                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
+                return NULL;
+            }
         }
     }
-
-    efree(params);
 
     return proc;
 }
@@ -232,60 +229,6 @@ PHP_METHOD(VoltClient, connect)
     }
 
     RETURN_TRUE;
-}
-
-PHP_METHOD(VoltClient, addStoredProc)
-{
-    char *name = NULL;
-    zval ***types = NULL;
-    int argc = ZEND_NUM_ARGS();
-    int type_offset = 1;
-    int type_count = argc - type_offset;
-    int i, len = 0;
-
-    if (zend_parse_parameters(1 TSRMLS_CC, (char *)"s", &name, &len) == FAILURE ||
-        get_varargs(argc, &types) == 0) {
-        if (types != NULL) {
-            efree(types);
-        }
-        RETURN_FALSE;
-    }
-
-    zval *zobj = getThis();
-    voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
-    if (obj->procedures.find(name) == obj->procedures.end()) {
-        std::vector<voltdb::Parameter> paramTypes(type_count);
-        for (i = type_offset; i < argc; i++) {
-            if (Z_TYPE_PP(types[i]) == IS_LONG) {
-                paramTypes[i - type_offset] = voltdb::Parameter((voltdb::WireType)Z_LVAL_PP(types[i]));
-            } else {
-                efree(types);
-                RETURN_FALSE;
-            }
-        }
-
-        voltdb::Procedure *proc = new voltdb::Procedure(name, paramTypes);
-        obj->procedures[name] = proc;
-
-        efree(types);
-        RETURN_TRUE;
-    } else {
-        efree(types);
-        RETURN_FALSE;
-    }
-}
-
-PHP_METHOD(VoltClient, removeStoredProc)
-{
-    char *name = NULL;
-    int len = 0;
-
-    RETURN_TRUE;
-}
-
-PHP_METHOD(VoltClient, getStoredProcs)
-{
-
 }
 
 PHP_METHOD(VoltClient, invoke)

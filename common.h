@@ -33,20 +33,4 @@ extern "C" {
 
 /* Common functions */
 
-/* Get varargs into an array. The caller must efree() the args. */
-inline int get_varargs(int argc, zval ****args)
-{
-    if (argc < 1) {
-        return 0;
-    }
-
-    *args = (zval ***)emalloc(argc * sizeof(zval **));
-    if (zend_get_parameters_array_ex(argc, *args) == FAILURE) {
-        efree(*args);
-        return 0;
-    }
-
-    return 1;
-}
-
 #endif  // VOLT_COMMON_H

@@ -28,9 +28,6 @@
 PHP_METHOD(VoltClient, __construct);
 PHP_METHOD(VoltClient, __destruct);
 PHP_METHOD(VoltClient, connect);
-PHP_METHOD(VoltClient, addStoredProc);
-PHP_METHOD(VoltClient, removeStoredProc);
-PHP_METHOD(VoltClient, getStoredProcs);
 PHP_METHOD(VoltClient, invoke);
 PHP_METHOD(VoltClient, invokeAsync);
 PHP_METHOD(VoltClient, drain);
