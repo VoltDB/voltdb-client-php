@@ -247,13 +247,26 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
             case IS_STRING:
                 proc_params->addString(err, std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
                 break;
-            default:
+            case IS_LONG:
+            case IS_DOUBLE:
+            case IS_BOOL:
+            case IS_CONSTANT:
+                // Other primitive types will be converted to string
+                /*
+                 * Necessary to make a copy of the array element before
+                 * converting the value to string, otherwise the original value
+                 * will be converted.
+                 */
                 zval temp;
                 temp = **param;
                 zval_copy_ctor(&temp);
                 convert_to_string(&temp);
                 proc_params->addString(err, std::string(Z_STRVAL(temp), Z_STRLEN(temp)));
                 break;
+            default:
+                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                                     voltdb::errParamMismatchException TSRMLS_CC);
+                return NULL;
             }
 
             if (!voltdb::isOk(err)) {
