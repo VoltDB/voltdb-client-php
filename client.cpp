@@ -38,6 +38,7 @@ extern "C" {
 #include "Parameter.hpp"
 #include "ParameterSet.hpp"
 #include "WireType.h"
+#include "ProcedureCallback.hpp"
 #include "common.h"
 #include "response.h"
 #include "client.h"
@@ -46,8 +47,10 @@ static const char *VOLT_NULL_INDICATOR = "\\N";
 
 // class entry used to instantiate the PHP client class
 zend_class_entry *voltclient_ce;
-
 extern zend_class_entry *voltresponse_ce;
+
+// Identifier for the response resource
+static int le_voltresponse;
 
 const zend_function_entry voltclient_methods[] = {
     // VoltClient
@@ -55,9 +58,55 @@ const zend_function_entry voltclient_methods[] = {
     PHP_ME(VoltClient, connect, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, invoke, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, invokeAsync, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(VoltClient, getResponse, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, drain, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END	/* Must be the last line in zend_function_entry */
 };
+
+class VoltCallback : public voltdb::ProcedureCallback {
+public:
+    VoltCallback(int res_id) {
+        m_res_id = res_id;
+        /*
+         * Increment the ref count so that the resource won't be deleted before
+         * the callback is called
+         */
+        zend_list_addref(m_res_id);
+    }
+
+    bool callback(voltdb::InvocationResponse response) {
+        int type;
+        voltresponse_res *ptr = (voltresponse_res *)zend_list_find(m_res_id, &type);
+
+        if (ptr == NULL || type != le_voltresponse) {
+            // TODO: shouldn't happen
+        } else {
+            ptr->resp = new voltdb::InvocationResponse(response);
+        }
+
+        /*
+         * Decrement the ref count on the resource so it can be deleted if
+         * nobody will access it.
+         */
+        zend_list_delete(m_res_id);
+
+        return false;
+    }
+private:
+    int m_res_id;
+};
+
+static void voltresponse_free(zend_rsrc_list_entry *rsrc TSRMLS_DC)
+{
+    voltresponse_res *res = (voltresponse_res *)rsrc->ptr;
+    assert(res != NULL);
+
+    if (res->resp != NULL) {
+        delete res->resp;
+        res->resp = NULL;
+    }
+    efree(res);
+}
 
 /* VoltClient */
 zend_object_handlers voltclient_object_handlers;
@@ -109,7 +158,7 @@ zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
     return retval;
 }
 
-void create_voltclient_class(void)
+void create_voltclient_class(int module_number)
 {
     zend_class_entry ce;
     INIT_CLASS_ENTRY(ce, "VoltClient", voltclient_methods);
@@ -117,6 +166,11 @@ void create_voltclient_class(void)
     voltclient_ce->create_object = voltclient_create_handler;
     memcpy(&voltclient_object_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
     voltclient_object_handlers.clone_obj = NULL;
+
+    // Register a destructor for the response resource
+    le_voltresponse = zend_register_list_destructors_ex(voltresponse_free, NULL,
+                                                        (char *)VOLT_RESPONSE_RES_NAME,
+                                                        module_number);
 }
 
 voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int param_count)
@@ -284,7 +338,55 @@ PHP_METHOD(VoltClient, invoke)
 
 PHP_METHOD(VoltClient, invokeAsync)
 {
+    zval *zobj = getThis();
+    voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltdb::Procedure *proc = prepare_to_invoke(INTERNAL_FUNCTION_PARAM_PASSTHRU, obj);
+    if (proc == NULL) {
+        RETURN_NULL();
+    }
 
+    // Set up the response resource and the callback
+    voltresponse_res *response = (voltresponse_res *)emalloc(sizeof(voltresponse_res));
+    int res_id = ZEND_REGISTER_RESOURCE(return_value, response, le_voltresponse);
+    boost::shared_ptr<VoltCallback> callback(new VoltCallback(res_id));
+
+    // Invoke the procedure
+    voltdb::errType err = voltdb::errOk;
+    obj->client->invoke(err, *proc, callback);
+    if (!voltdb::isOk(err)) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
+        RETURN_NULL();
+    }
+}
+
+PHP_METHOD(VoltClient, getResponse)
+{
+    voltresponse_res *response = NULL;
+    zval *zresponse = NULL;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, (char *)"r", &zresponse) == FAILURE) {
+        RETURN_NULL();
+    }
+
+    ZEND_FETCH_RESOURCE(response, voltresponse_res *, &zresponse, -1,
+                        (char *)VOLT_RESPONSE_RES_NAME, le_voltresponse);
+    if (response != NULL && response->resp != NULL) {
+        voltdb::errType err = response->resp->getErr();
+        if (!voltdb::isOk(err)) {
+            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
+            RETURN_NULL();
+        }
+
+        // Instantiate a PHP response object
+        struct voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp);
+        if (ro == NULL) {
+            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                                 voltdb::errException TSRMLS_CC);
+            RETURN_NULL();
+        }
+    } else {
+        RETURN_NULL();
+    }
 }
 
 PHP_METHOD(VoltClient, drain)

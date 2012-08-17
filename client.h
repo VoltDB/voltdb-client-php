@@ -24,13 +24,29 @@
 #ifndef VOLT_CLIENT_H
 #define VOLT_CLIENT_H
 
+extern "C" {
+#include "php.h"
+}
+
+#include <map>
+#include "Client.h"
+#include "Procedure.hpp"
+#include "InvocationResponse.hpp"
+
 // VoltClient
 PHP_METHOD(VoltClient, __construct);
-PHP_METHOD(VoltClient, __destruct);
 PHP_METHOD(VoltClient, connect);
 PHP_METHOD(VoltClient, invoke);
 PHP_METHOD(VoltClient, invokeAsync);
+PHP_METHOD(VoltClient, getResponse);
 PHP_METHOD(VoltClient, drain);
+
+#define VOLT_RESPONSE_RES_NAME "VoltDB Response"
+struct voltresponse_object;
+// Result of asynchronously called invocations
+typedef struct _voltresponse_res {
+    voltdb::InvocationResponse *resp;
+} voltresponse_res;
 
 struct voltclient_object {
     zend_object std;
@@ -38,6 +54,6 @@ struct voltclient_object {
     std::map<const char *, voltdb::Procedure *> procedures;
 };
 
-void create_voltclient_class(void);
+void create_voltclient_class(int module_number);
 
 #endif  // VOLT_CLIENT_H

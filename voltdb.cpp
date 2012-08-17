@@ -41,9 +41,6 @@ extern "C" {
 // Initialize global variables
 // ZEND_DECLARE_MODULE_GLOBALS(voltdb)
 
-/* True global resources - no need for thread safety here */
-static int le_voltdb;
-
 /* {{{ voltdb_module_entry
  */
 zend_module_entry voltdb_module_entry = {
@@ -99,7 +96,7 @@ PHP_MINIT_FUNCTION(voltdb)
 	REGISTER_INI_ENTRIES();
 	*/
 
-    create_voltclient_class();
+    create_voltclient_class(module_number);
     create_voltresponse_class();
     create_volttable_class();
 

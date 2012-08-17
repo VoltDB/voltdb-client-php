@@ -48,12 +48,10 @@ PHP_MINFO_FUNCTION(voltdb);
 /*
   	Declare any global variables you may need between the BEGIN
 	and END macros here:
-
-ZEND_BEGIN_MODULE_GLOBALS(voltdb)
-	long  global_value;
-	char *global_string;
-ZEND_END_MODULE_GLOBALS(voltdb)
 */
+/* ZEND_BEGIN_MODULE_GLOBALS(voltdb) */
+
+/* ZEND_END_MODULE_GLOBALS(voltdb) */
 
 /* In every utility function you add that needs to use variables
    in php_voltdb_globals, call TSRMLS_FETCH(); after declaring other
