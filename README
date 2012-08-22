@@ -1,15 +1,46 @@
-# PHP VoltDB Client Library
+PHP VoltDB Client Library
+=========================
 
 The PHP VoltDB client library allows connecting to a VoltDB cluster, invoking
 stored procedures and reading responses from a PHP 5.3 application.
 
-The binary file provided is compiled for PHP 5.3 or above on 64-bit Linux. To
-use the library on other platforms, it currently must be built from source.
+# Supported Platforms
 
-## Installation
+* 64-bit Linux
+* 64-bit SmartOS
+* Mac OS X
 
-Copy the VoltDB PHP extension (voltdb.so) to your PHP extension
-library (specified in your php.ini file).
+# Installation
+
+Requirements:
+  * VoltDB C++ client library source ("noexceptions" branch)
+  * PHP 5.3
+
+The C++ client libray must be compiled WITHOUT compiler optimization. To do
+this, you have to modify the makefile in the C++ client library to remove "-O3"
+from the compiler flags.
+
+To prepare the PHP extension for building, first execute the following command,
+
+    phpize
+
+It will generate the script for configuration. Then you can configure using the
+command,
+
+    ./configure --with-voltdb=CXX_LIB_PATH
+
+replace CXX_LIB_PATH with the path to the C++ client library source.
+
+Note: If you are building on 64-bit SmartOS, you have to append CXXFLAGS="-m64"
+and LDFLAGS="-m64" to ./configure so that it will generate 64-bit binary.
+
+Once configure finishes successfully, type
+
+    make
+
+The compiled binary will be in the "modules" sub-directory. Copy the VoltDB PHP
+extension (voltdb.so) to your PHP extension library (specified in your php.ini
+file).
 
 Edit your php.ini file to load the VoltDB extension:
 
@@ -19,49 +50,26 @@ Note that if you are running PHP through a web server such as Apache
 (instead of command line), you will have to restart/reload the server
 for the new php.ini changes to take effect.
 
-## Running
+# Running
 
-With the extension loaded into PHP, include the voltdb.php file
-at the top of your script. This file contains proxy classes for
-interacting with a VoltDB server.
+To make sure that the extension is loaded successfully, you can run the
+following command if you are using PHP CLI,
 
-Look at the examples directory to see how to use the PHP wrapper.
-  * helloworld and helloworld_async demonstrate basic concepts.
-  * voter.php demonstrates a long running stand-alone PHP program.
-  * voter_initialize_apache.php and voter_apache.php demonstrate
-    an efficient use of the PHP client library within Apache.
+    php -m | grep voltdb
 
-You can additionally view the source code of the examples online at:
+If the command returns a single row saying "voltdb", then it's
+loaded.
 
-     https://source.voltdb.com/browse/ClientAPI/php/trunk/examples
+If you are using PHP on a web server, you can check if the output of php_info()
+contains "voltdb".
 
-## Known Issues
+Please see the examples directory for how to use the client.
+
+# Known Issues
 
 This wrapper is still in its development phase, so a few features are
 not fully supported. This includes:
 
-  * Parameters arrays
-    Arrays of parameters are supported using vector wrappers, but they
-    aren't tested.
-
-  * int64_t and Decimal: int64_t doesn't work because PHP doesn't
-    support 64-bit integers. Decimal isn't tested.
-
-  * Retrieving results When extracting data out of an
-    InvocationResponse object, you must explicitly create a variable
-    to hold the results object. For example, this is valid:
-
-        $results = $response->results();
-        $row = $results->get(0)->iterator()->next();
-
-    Whereas this is not:
-
-        $row = $response->results()->get(0)->iterator()->next();
-
-    If you chain the method calls together like above, the variable
-    returned by results() gets garbage collected too early. See
-    CLIENTAPI-15 for the progress of this bug.
-
-  * Uncaught exception handler The handler is provided the wrong
-    procedure callback when it is invoked. See
-    https://issues.voltdb.com/browse/CLIENTAPI-33
+* Parameters arrays
+* Decimal type
+* Varbinary type
