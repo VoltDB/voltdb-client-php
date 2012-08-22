@@ -60,7 +60,7 @@ const zend_function_entry voltclient_methods[] = {
     PHP_ME(VoltClient, invokeAsync, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, getResponse, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, drain, NULL, ZEND_ACC_PUBLIC)
-	PHP_FE_END	/* Must be the last line in zend_function_entry */
+    PHP_FE_END                /* Must be the last line in zend_function_entry */
 };
 
 class VoltCallback : public voltdb::ProcedureCallback {

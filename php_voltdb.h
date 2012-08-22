@@ -28,11 +28,11 @@ extern zend_module_entry voltdb_module_entry;
 #define phpext_voltdb_ptr &voltdb_module_entry
 
 #ifdef PHP_WIN32
-#	define PHP_VOLTDB_API __declspec(dllexport)
+#    define PHP_VOLTDB_API __declspec(dllexport)
 #elif defined(__GNUC__) && __GNUC__ >= 4
-#	define PHP_VOLTDB_API __attribute__ ((visibility("default")))
+#    define PHP_VOLTDB_API __attribute__ ((visibility("default")))
 #else
-#	define PHP_VOLTDB_API
+#    define PHP_VOLTDB_API
 #endif
 
 #ifdef ZTS
@@ -46,8 +46,8 @@ PHP_RSHUTDOWN_FUNCTION(voltdb);
 PHP_MINFO_FUNCTION(voltdb);
 
 /*
-  	Declare any global variables you may need between the BEGIN
-	and END macros here:
+  Declare any global variables you may need between the BEGIN
+  and END macros here:
 */
 /* ZEND_BEGIN_MODULE_GLOBALS(voltdb) */
 
@@ -69,14 +69,4 @@ PHP_MINFO_FUNCTION(voltdb);
 #define VoltG(v) (voltdb_globals.v)
 #endif
 
-#endif	/* PHP_VOLTDB_H */
-
-
-/*
- * Local variables:
- * tab-width: 4
- * c-basic-offset: 4
- * End:
- * vim600: noet sw=4 ts=4 fdm=marker
- * vim<600: noet sw=4 ts=4
- */
+#endif  /* PHP_VOLTDB_H */

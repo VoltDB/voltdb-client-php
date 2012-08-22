@@ -45,19 +45,19 @@ extern "C" {
  */
 zend_module_entry voltdb_module_entry = {
 #if ZEND_MODULE_API_NO >= 20010901
-	STANDARD_MODULE_HEADER,
+    STANDARD_MODULE_HEADER,
 #endif
-	"voltdb",
-	NULL,                       // Functions
-	PHP_MINIT(voltdb),
-	PHP_MSHUTDOWN(voltdb),
-	PHP_RINIT(voltdb),		/* Replace with NULL if there's nothing to do at request start */
-	PHP_RSHUTDOWN(voltdb),	/* Replace with NULL if there's nothing to do at request end */
-	PHP_MINFO(voltdb),
+    "voltdb",
+    NULL,                       // Functions
+    PHP_MINIT(voltdb),
+    PHP_MSHUTDOWN(voltdb),
+    PHP_RINIT(voltdb), /* Replace with NULL if there's nothing to do at request start */
+    PHP_RSHUTDOWN(voltdb), /* Replace with NULL if there's nothing to do at request end */
+    PHP_MINFO(voltdb),
 #if ZEND_MODULE_API_NO >= 20010901
-	"0.1", /* Replace with version number for your extension */
+    "0.1", /* Replace with version number for your extension */
 #endif
-	STANDARD_MODULE_PROPERTIES
+    STANDARD_MODULE_PROPERTIES
 };
 /* }}} */
 
@@ -82,8 +82,8 @@ PHP_INI_END()
 /* Uncomment this function if you have INI entries
 static void php_voltdb_init_globals(zend_voltdb_globals *voltdb_globals)
 {
-	voltdb_globals->global_value = 0;
-	voltdb_globals->global_string = NULL;
+    voltdb_globals->global_value = 0;
+    voltdb_globals->global_string = NULL;
 }
 */
 /* }}} */
@@ -92,9 +92,9 @@ static void php_voltdb_init_globals(zend_voltdb_globals *voltdb_globals)
  */
 PHP_MINIT_FUNCTION(voltdb)
 {
-	/* If you have INI entries, uncomment these lines
-	REGISTER_INI_ENTRIES();
-	*/
+    /* If you have INI entries, uncomment these lines
+    REGISTER_INI_ENTRIES();
+    */
 
     create_voltclient_class(module_number);
     create_voltresponse_class();
@@ -120,7 +120,7 @@ PHP_MINIT_FUNCTION(voltdb)
     // Initialize the connection pool
     voltdb::onLoad();
 
-	return SUCCESS;
+    return SUCCESS;
 }
 /* }}} */
 
@@ -128,14 +128,14 @@ PHP_MINIT_FUNCTION(voltdb)
  */
 PHP_MSHUTDOWN_FUNCTION(voltdb)
 {
-	/* uncomment this line if you have INI entries
-	UNREGISTER_INI_ENTRIES();
-	*/
+    /* uncomment this line if you have INI entries
+    UNREGISTER_INI_ENTRIES();
+    */
 
     // Tear down the connection pool and any pooled clients
     voltdb::onUnload();
 
-	return SUCCESS;
+    return SUCCESS;
 }
 /* }}} */
 
@@ -144,7 +144,7 @@ PHP_MSHUTDOWN_FUNCTION(voltdb)
  */
 PHP_RINIT_FUNCTION(voltdb)
 {
-	return SUCCESS;
+    return SUCCESS;
 }
 /* }}} */
 
@@ -153,7 +153,7 @@ PHP_RINIT_FUNCTION(voltdb)
  */
 PHP_RSHUTDOWN_FUNCTION(voltdb)
 {
-	return SUCCESS;
+    return SUCCESS;
 }
 /* }}} */
 
@@ -161,21 +161,12 @@ PHP_RSHUTDOWN_FUNCTION(voltdb)
  */
 PHP_MINFO_FUNCTION(voltdb)
 {
-	php_info_print_table_start();
-	php_info_print_table_header(2, "voltdb support", "enabled");
-	php_info_print_table_end();
+    php_info_print_table_start();
+    php_info_print_table_header(2, "voltdb support", "enabled");
+    php_info_print_table_end();
 
-	/* Remove comments if you have entries in php.ini
-	DISPLAY_INI_ENTRIES();
-	*/
+    /* Remove comments if you have entries in php.ini
+    DISPLAY_INI_ENTRIES();
+    */
 }
 /* }}} */
-
-/*
- * Local variables:
- * tab-width: 4
- * c-basic-offset: 4
- * End:
- * vim600: noet sw=4 ts=4 fdm=marker
- * vim<600: noet sw=4 ts=4
- */
