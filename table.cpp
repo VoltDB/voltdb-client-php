@@ -202,7 +202,12 @@ int row_to_array(zval *return_value, voltdb::Row row)
                 if (!voltdb::isOk(err)) {
                     return 0;
                 }
-                // TODO: get float
+                /*
+                 * return decimal as a string. PHP float doesn't have enough
+                 * precision to hold a SQL decimal
+                 */
+                char *dup_val = estrdup(value.toString().c_str());
+                add_assoc_string_ex(return_value, name.c_str(), name_len, dup_val, 0);
                 break;
             }
             case voltdb::WIRE_TYPE_VARBINARY:
