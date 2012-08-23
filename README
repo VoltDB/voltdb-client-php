@@ -71,5 +71,4 @@ This wrapper is still in its development phase, so a few features are
 not fully supported. This includes:
 
 * Parameters arrays
-* Decimal type
 * Varbinary type
