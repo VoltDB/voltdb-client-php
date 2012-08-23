@@ -3,13 +3,20 @@ PHP VoltDB Client Library API
 
 Introduction
 ------------
-VoltDB is a high throughput, low latency, clustering database capable of running hundreds of thousands transactions per second. The VoltDB PHP client library allows a PHP application to connect to and query from a VoltDB cluster.
+VoltDB is a high throughput, low latency, clustering database capable of running
+hundreds of thousands transactions per second. The VoltDB PHP client library
+allows a PHP application to connect to and query from a VoltDB cluster.
 
 Installation
 ------------
-The client library uses a C extension and a special version VoltDB C++ driver. Both must be built and compiled on the targeted deployment platform. Please see the README for further instructions on how to build and install the extension.
+The client library uses a C extension and a special version VoltDB C++
+driver. Both must be built and compiled on the targeted deployment
+platform. Please see the README for further instructions on how to build and
+install the extension.
 
-If you have downloaded the extension as a bundle from the VoltDB website, then the C++ driver is already included and only requires the build and installation processes.
+If you have downloaded the extension as a bundle from the VoltDB website, then
+the C++ driver is already included and only requires the build and installation
+processes.
 
 Note: The extension is not supported on Microsoft Windows.
 
@@ -37,7 +44,8 @@ public __construct( void )
 - Return Value: An unconnected VoltClient
 
 public bool connect( string $hostname, string $username, string $password [, int $port] )
-- Description: Connects to a single host within a cluster. Call multiple times to connect to all the cluster nodes.
+- Description: Connects to a single host within a cluster. Call multiple times
+  to connect to all the cluster nodes.
 
 - Parameters:
 hostname: The host or IP address of the VoltDB server.
@@ -54,7 +62,10 @@ public VoltInvocationResponse invoke( string $query [, string $parameter[, strin
 query: A string calling either the stored procedure or an ad hoc query.
 parameter: Zero or more string parameters to pass to the query or stored procedure.
 
-- Return Value: A VoltInvocationResponse object or NULL. The VoltInvocationResult will have a status code to indicate whether the invocation was successful. The result will also contain the data resulting form the query.
+- Return Value: A VoltInvocationResponse object or NULL. The
+  VoltInvocationResult will have a status code to indicate whether the
+  invocation was successful. The result will also contain the data resulting
+  form the query.
 
 public resource invokeAsync( string $query [, string $parameter[, string $...]] )
 - Description: Invokes an asynchronous query.
@@ -63,14 +74,18 @@ public resource invokeAsync( string $query [, string $parameter[, string $...]] 
 query: A string calling either the stored procedure or an ad hoc query.
 parameter: Zero or more string parameters to pass to the query or stored procedure.
 
-- Return Value: A resource that is retrieved by calling drain() to wait for the results and getResponse() to get the VoltInvoationResponse object.
+- Return Value: A resource that is retrieved by calling drain() to wait for the
+  results and getResponse() to get the VoltInvoationResponse object.
 
 public VoltInvocationResponse getResponse( resource $resource )
 - Description: Gets the last asynchronous query's results.
 
 - Parameters: None
 
-- Return Value: A VoltInvocationResponse object or NULL. The VoltInvocationResult will have a status code to indicate whether the invocation was successful. If the query is successful, then the object will contain the results of the query.
+- Return Value: A VoltInvocationResponse object or NULL. The
+  VoltInvocationResult will have a status code to indicate whether the
+  invocation was successful. If the query is successful, then the object will
+  contain the results of the query.
 
 public bool drain( void )
 - Description: A blocking call that will not return until VoltDB responds.
@@ -88,7 +103,8 @@ public int appStatusCode( void )
 
 - Parameters: None
 
-- Return Value: One of the the VoltInvocationResponse constants indicating whether the query and connection are functional.
+- Return Value: One of the the VoltInvocationResponse constants indicating
+  whether the query and connection are functional.
 
 public string appStatusString( void )
 - Description: Gets a human readable string version of the application status code.
@@ -119,11 +135,13 @@ public int resultCount( void )
 - Return Value: The number of VoltTables resulting from the query.
 
 public int statusCode( void )
-- Description: Returns a VoltInvocationResponse constant indicating the successfulness of the query.
+- Description: Returns a VoltInvocationResponse constant indicating the
+  successfulness of the query.
 
 - Parameters: None
 
-- Return Value: A VoltInvocationResponse constant indicating the successfulness of the query.
+- Return Value: A VoltInvocationResponse constant indicating the successfulness
+  of the query.
 
 public string statusString( void )
 - Description: Returns a human readable version of the query status code.
@@ -135,7 +153,8 @@ public string statusString( void )
 VoltTable
 ---------
 public int columnCount( void )
-- Description: Returns the number of columns in the VoltTable. This will remain constant across all rows.
+- Description: Returns the number of columns in the VoltTable. This will remain
+  constant across all rows.
 
 - Parameters: None
 
@@ -153,7 +172,8 @@ public array nextRow( void )
 
 - Parameters: None
 
-- Return Value: The next associative array representing the row. Each array will use a key value that is the name of the columns returned.
+- Return Value: The next associative array representing the row. Each array will
+  use a key value that is the name of the columns returned.
 
 public int rowCount( void )
 - Description: Returns the number of rows in the VoltTable.
@@ -167,4 +187,5 @@ public int statusCode( void )
 
 - Parameters: None
 
-- Return Value: This value is set by the developer of a stored procedure and is user code specific. It is not a value produced by VoltDB itself.
+- Return Value: This value is set by the developer of a stored procedure and is
+  user code specific. It is not a value produced by VoltDB itself.
