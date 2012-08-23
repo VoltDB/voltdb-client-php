@@ -167,4 +167,4 @@ public int statusCode( void )
 
 - Parameters: None
 
-- Return Value: A status code indicating whether there is an error stats.
+- Return Value: This value is set by the developer of a stored procedure and is user code specific. It is not a value produced by VoltDB itself.
