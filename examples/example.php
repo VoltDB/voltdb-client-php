@@ -12,7 +12,7 @@ try {
      * All params are strings. If the procedure was not called before, this will
      * also create a procedure with strings as param types.
      */
-    $resp = $voltClient->invoke("Vote", '3', '4', '5');
+    $resp = $voltClient->invoke("Vote", array(3, 4, 5));
     if ($resp === null) {
         echo "invoke had an error\n";
     } else {
