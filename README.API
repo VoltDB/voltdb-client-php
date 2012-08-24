@@ -61,7 +61,9 @@ public VoltInvocationResponse invoke( string $query [, array $parameters] )
 
 - Parameters:
 query: A string calling either the stored procedure or an ad hoc query.
-parameters: Zero or more string parameters to pass to the query or stored procedure through an array. A non-string parameter will be coerced into a string.
+parameters: Zero or more string parameters to pass to the query or stored
+procedure through an array. A non-string parameter will be coerced into a
+string. Note that ad hoc queries must call the @adhoc system procedure and pass the query as a parameter.
 
 - Return Value: A VoltInvocationResponse object or NULL. The
   VoltInvocationResult will have a status code to indicate whether the
@@ -73,7 +75,10 @@ public resource invokeAsync( string $query [, array $parameters] )
 
 - Parameters:
 query: A string calling either the stored procedure or an ad hoc query.
-parameters: Zero or more string parameters to pass to the query or stored procedure through an array. A non-string parameter will be coerced into a string.
+parameters: Zero or more string parameters to pass to the query or stored
+procedure through an array. A non-string parameter will be coerced into a
+string. Note that ad hoc queries must call the @adhoc system procedure and pass
+the query as a parameter.
 
 - Return Value: A resource that is retrieved by calling drain() to wait for the
   results and getResponse() to get the VoltInvoationResponse object.
