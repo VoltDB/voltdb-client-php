@@ -27,7 +27,7 @@ if test "$PHP_VOLTDB" != "no"; then
   PHP_SUBST(VOLTDB_SHARED_LIBADD)
   AC_CANONICAL_HOST
   case "${host_os}" in
-    *-*-SunOS*)
+    darwin*)
             ;;
     *)
             PHP_ADD_LIBRARY(rt, 1, VOLTDB_SHARED_LIBADD)
