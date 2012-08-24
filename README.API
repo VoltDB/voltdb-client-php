@@ -63,7 +63,8 @@ public VoltInvocationResponse invoke( string $query [, array $parameters] )
 query: A string calling either the stored procedure or an ad hoc query.
 parameters: Zero or more string parameters to pass to the query or stored
 procedure through an array. A non-string parameter will be coerced into a
-string. Note that ad hoc queries must call the @adhoc system procedure and pass the query as a parameter.
+string. Note that ad hoc queries must call the @adhoc system procedure and pass
+the query as a parameter.
 
 - Return Value: A VoltInvocationResponse object or NULL. The
   VoltInvocationResult will have a status code to indicate whether the
@@ -86,7 +87,8 @@ the query as a parameter.
 public VoltInvocationResponse getResponse( resource $resource )
 - Description: Gets an asynchronous query result from the resource.
 
-- Parameters: None
+- Parameters:
+resource: The resource returned by calling invokeAsync().
 
 - Return Value: A VoltInvocationResponse object or NULL. The
   VoltInvocationResult will have a status code to indicate whether the
@@ -110,12 +112,12 @@ public int appStatusCode( void )
 - Parameters: None
 
 - Return Value: The developer of the stored procedure sets this value. This
-allows the developer to create customer error codes when the procedure's logic
-goes awry.
+  allows the developer to create customer error codes when the procedure's logic
+  goes awry.
 
 public string appStatusString( void )
 - Description: Gets a human readable string version of the application status
-code.
+  code.
 
 - Parameters: None
 
