@@ -31,6 +31,11 @@ extern "C" {
 #include "zend_exceptions.h"
 }
 
+/* PHP older than 5.3.13 doesn't define this macro. We need to define it here */
+#ifndef PHP_FE_END
+#    define PHP_FE_END {NULL, NULL, NULL}
+#endif
+
 /* Common functions */
 
 #endif  // VOLT_COMMON_H

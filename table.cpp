@@ -29,6 +29,7 @@ extern "C" {
 }
 
 #include "Table.h"
+#include "common.h"
 #include "volttable.h"
 
 // class entry used to instantiate the PHP table class
