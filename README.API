@@ -43,7 +43,8 @@ public __construct( void )
 
 - Return Value: An unconnected VoltClient
 
-public bool connect( string $hostname, string $username, string $password [, int $port] )
+public bool connect( string $hostname, string $username, string $password [, int
+$port] )
 - Description: Connects to a single host within a cluster. Call multiple times
   to connect to all the cluster nodes.
 
@@ -55,30 +56,30 @@ port: Set the port if you are not using the default port number of 21212.
 
 - Return Value: TRUE if a connection was made.
 
-public VoltInvocationResponse invoke( string $query [, string $parameter[, string $...]] )
+public VoltInvocationResponse invoke( string $query [, array $parameters] )
 - Description: Invokes a synchronous query.
 
 - Parameters:
 query: A string calling either the stored procedure or an ad hoc query.
-parameter: Zero or more string parameters to pass to the query or stored procedure.
+parameters: Zero or more string parameters to pass to the query or stored procedure through an array. A non-string parameter will be coerced into a string.
 
 - Return Value: A VoltInvocationResponse object or NULL. The
   VoltInvocationResult will have a status code to indicate whether the
   invocation was successful. The result will also contain the data resulting
   form the query.
 
-public resource invokeAsync( string $query [, string $parameter[, string $...]] )
+public resource invokeAsync( string $query [, array $parameters] )
 - Description: Invokes an asynchronous query.
 
 - Parameters:
 query: A string calling either the stored procedure or an ad hoc query.
-parameter: Zero or more string parameters to pass to the query or stored procedure.
+parameters: Zero or more string parameters to pass to the query or stored procedure through an array. A non-string parameter will be coerced into a string.
 
 - Return Value: A resource that is retrieved by calling drain() to wait for the
   results and getResponse() to get the VoltInvoationResponse object.
 
 public VoltInvocationResponse getResponse( resource $resource )
-- Description: Gets the last asynchronous query's results.
+- Description: Gets an asynchronous query result from the resource.
 
 - Parameters: None
 
@@ -103,11 +104,13 @@ public int appStatusCode( void )
 
 - Parameters: None
 
-- Return Value: One of the the VoltInvocationResponse constants indicating
-  whether the query and connection are functional.
+- Return Value: The developer of the stored procedure sets this value. This
+allows the developer to create customer error codes when the procedure's logic
+goes awry.
 
 public string appStatusString( void )
-- Description: Gets a human readable string version of the application status code.
+- Description: Gets a human readable string version of the application status
+code.
 
 - Parameters: None
 
