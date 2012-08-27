@@ -28,15 +28,17 @@ if test "$PHP_VOLTDB" != "no"; then
   AC_CANONICAL_HOST
   case "${host_os}" in
     darwin*)
+            THIRD_PARTY_LIB=$PHP_VOLTDB/third_party_libs/osx
             ;;
     *)
+            THIRD_PARTY_LIB=$PHP_VOLTDB/third_party_libs/linux
             PHP_ADD_LIBRARY(rt, 1, VOLTDB_SHARED_LIBADD)
             ;;
   esac
 
   PHP_ADD_LIBRARY(stdc++, 1, VOLTDB_SHARED_LIBADD)
-  PHP_ADD_LIBRARY_WITH_PATH(event, $PHP_VOLTDB/third_party_libs/linux, VOLTDB_SHARED_LIBADD)
-  PHP_ADD_LIBRARY_WITH_PATH(event_pthreads, $PHP_VOLTDB/third_party_libs/linux, VOLTDB_SHARED_LIBADD)
+  PHP_ADD_LIBRARY_WITH_PATH(event, $THIRD_PARTY_LIB, VOLTDB_SHARED_LIBADD)
+  PHP_ADD_LIBRARY_WITH_PATH(event_pthreads, $THIRD_PARTY_LIB, VOLTDB_SHARED_LIBADD)
 
   LDFLAGS="$LDFLAGS $PHP_VOLTDB/libvoltdbcpp.a"
 
