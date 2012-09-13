@@ -291,7 +291,7 @@ PHP_METHOD(VoltClient, connect)
     char *hostname = NULL;
     char *username = NULL;
     char *password = NULL;
-    int port = 21212;
+    long port = 21212;
 
     voltdb::errType err = voltdb::errOk;
     zval *zobj = getThis();
