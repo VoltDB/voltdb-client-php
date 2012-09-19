@@ -40,6 +40,25 @@ if test "$PHP_VOLTDB" != "no"; then
   PHP_ADD_LIBRARY_WITH_PATH(event, $THIRD_PARTY_LIB, VOLTDB_SHARED_LIBADD)
   PHP_ADD_LIBRARY_WITH_PATH(event_pthreads, $THIRD_PARTY_LIB, VOLTDB_SHARED_LIBADD)
 
+  # The PHP client will segfault if compiled with compiler optimization,
+  # removing the default -O2 here
+  MY_CFLAGS=`echo $CFLAGS | tr " " "\n" | while read line
+  do
+          if test x"$line" != "x-O2"
+          then
+                  echo -n "$line "
+          fi
+  done`
+  CFLAGS=$MY_CFLAGS
+  MY_CXXFLAGS=`echo $CXXFLAGS | tr " " "\n" | while read line
+  do
+          if test x"$line" != "x-O2"
+          then
+                  echo -n "$line "
+          fi
+  done`
+  CXXFLAGS=$MY_CXXFLAGS
+
   LDFLAGS="$LDFLAGS $PHP_VOLTDB/libvoltdbcpp.a"
 
   voltdb_sources="voltdb.cpp client.cpp response.cpp table.cpp"
