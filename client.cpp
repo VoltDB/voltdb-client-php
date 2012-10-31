@@ -39,6 +39,7 @@ extern "C" {
 #include "ParameterSet.hpp"
 #include "WireType.h"
 #include "ProcedureCallback.hpp"
+#include "StatusListener.h"
 #include "common.h"
 #include "response.h"
 #include "client.h"
@@ -62,6 +63,30 @@ const zend_function_entry voltclient_methods[] = {
     PHP_ME(VoltClient, drain, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END                /* Must be the last line in zend_function_entry */
 };
+
+/*
+ * A status listener that tells the the client to not block on backpressure. The
+ * client will queue invocations until backpressure is relieved. This status
+ * listener is used for all client creations.
+ */
+class StatusListener: public voltdb::StatusListener {
+    bool uncaughtException(std::exception exception,
+                           boost::shared_ptr<voltdb::ProcedureCallback> callback,
+                           voltdb::InvocationResponse response) {
+        return true;
+    }
+
+    bool connectionLost(std::string hostname, int32_t connectionsLeft) {
+        return true;
+    }
+
+    bool backpressure(bool hasBackpressure) {
+        // This unblocks invoke() on backpressure
+        return true;
+    }
+};
+// Cache the status listener
+static StatusListener status_listener;
 
 class VoltCallback : public voltdb::ProcedureCallback {
 public:
@@ -307,9 +332,15 @@ PHP_METHOD(VoltClient, connect)
     }
 
     if (argc == 4) {
-        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password, port));
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
+                                             err, hostname,
+                                             username, password,
+                                             &status_listener, port));
     } else {
-        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(err, hostname, username, password));
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
+                                             err, hostname,
+                                             username, password,
+                                             &status_listener));
     }
 
     if (!voltdb::isOk(err)) {
