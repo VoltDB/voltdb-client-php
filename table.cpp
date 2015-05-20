@@ -114,7 +114,6 @@ struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &
 
 int row_to_array(zval *return_value, voltdb::Row row)
 {
-    voltdb::errType err = voltdb::errOk;
     int count = row.columnCount();
     std::vector<voltdb::Column> columns = row.columns();
 
@@ -122,11 +121,7 @@ int row_to_array(zval *return_value, voltdb::Row row)
         std::string name = columns[i].name();
         int name_len = name.length() + 1; // including the terminator
 
-        bool isNull = row.isNull(err, i);
-        if (!voltdb::isOk(err)) {
-            // TODO: Should we free the array?
-            return 0;
-        }
+        bool isNull = row.isNull(i);
 
         if (isNull) {
             add_assoc_null_ex(return_value, name.c_str(), name_len);
@@ -134,55 +129,37 @@ int row_to_array(zval *return_value, voltdb::Row row)
             switch (columns[i].type()) {
             case voltdb::WIRE_TYPE_TINYINT:
             {
-                int8_t value = row.getInt8(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                int8_t value = row.getInt8(i);
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_SMALLINT:
             {
-                int16_t value = row.getInt16(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                int16_t value = row.getInt16(i);
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_INTEGER:
             {
-                int32_t value = row.getInt32(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                int32_t value = row.getInt32(i);
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_BIGINT:
             {
-                int64_t value = row.getInt64(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                int64_t value = row.getInt64(i);
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_FLOAT:
             {
-                double value = row.getDouble(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                double value = row.getDouble(i);
                 add_assoc_double_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_STRING:
             {
-                std::string value = row.getString(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                std::string value = row.getString(i);
                 /*
                  * necessary to dup here because the add_assoc_string_ex takes
                  * char*. No need to free it, PHP should take care of this when
@@ -194,19 +171,13 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
             {
-                int64_t value = row.getTimestamp(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                int64_t value = row.getTimestamp(i);
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_DECIMAL:
             {
-                voltdb::Decimal value = row.getDecimal(err, i);
-                if (!voltdb::isOk(err)) {
-                    return 0;
-                }
+                voltdb::Decimal value = row.getDecimal(i);
                 /*
                  * return decimal as a string. PHP float doesn't have enough
                  * precision to hold a SQL decimal
@@ -271,18 +242,11 @@ PHP_METHOD(VoltTable, nextRow)
     }
 
     // Get the next row and advance the iterator
-    voltdb::errType err = voltdb::errOk;
-    voltdb::Row row = obj->it.next(err);
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
+    voltdb::Row row = obj->it.next();
 
     // Convert the row into a PHP array
     if (array_init(return_value) == FAILURE) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errException TSRMLS_CC);
-        RETURN_NULL();
+        throw voltdb::Exception();
     }
 
     if (!row_to_array(return_value, row)) {

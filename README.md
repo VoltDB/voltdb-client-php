@@ -13,7 +13,7 @@ stored procedures and reading responses from a PHP 5.3 application.
 # Installation
 
 Requirements:
-  * VoltDB C++ client library source ("noexceptions" branch)
+  * VoltDB C++ client library source
   * PHP 5.3
 
 The C++ client libray must be compiled WITHOUT compiler optimization. To do

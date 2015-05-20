@@ -80,6 +80,10 @@ class StatusListener: public voltdb::StatusListener {
         return true;
     }
 
+    bool connectionActive(std::string hostname, int32_t connectionsActive) {
+        return true;
+    }
+
     bool backpressure(bool hasBackpressure) {
         // This unblocks invoke() on backpressure
         return true;
@@ -99,7 +103,7 @@ public:
         zend_list_addref(m_res_id);
     }
 
-    bool callback(voltdb::InvocationResponse response) {
+    bool callback(voltdb::InvocationResponse response) throw (voltdb::Exception){
         int type;
         voltresponse_res *ptr = (voltresponse_res *)zend_list_find(m_res_id, &type);
 
@@ -225,7 +229,7 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
     return proc;
 }
 
-voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_object *obj)
+voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_object *obj) throw (voltdb::ConnectException, voltdb::ParamMismatchException)
 {
     char *name = NULL;
     zval *params = NULL;
@@ -239,16 +243,12 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
 
     // Check if the client is created.
     if (obj->client == NULL) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errConnectException TSRMLS_CC);
-        return NULL;
+        throw voltdb::ConnectException();
     }
 
     // Get the procedure name and parameters
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, (char *)"s|a", &name, &len, &params) == FAILURE) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errParamMismatchException TSRMLS_CC);
-        return NULL;
+        throw voltdb::ParamMismatchException();
     }
     if (params != NULL) {
         param_hash = Z_ARRVAL_P(params);
@@ -257,12 +257,8 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
 
     // Get the procedure
     voltdb::Procedure *proc = get_procedure(obj, name, param_count);
-    voltdb::errType err = voltdb::errOk;
     voltdb::ParameterSet *proc_params = proc->params();
-    proc_params->reset(err);
-    if (!voltdb::isOk(err)) {
-        return NULL;
-    }
+    proc_params->reset();
 
     if (params != NULL) {
         // Set the parameters, only string params
@@ -271,10 +267,10 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
              zend_hash_move_forward_ex(param_hash, &param_ptr)) {
             switch (Z_TYPE_PP(param)) {
             case IS_NULL:
-                proc_params->addString(err, VOLT_NULL_INDICATOR);
+                proc_params->addString(VOLT_NULL_INDICATOR);
                 break;
             case IS_STRING:
-                proc_params->addString(err, std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
+                proc_params->addString(std::string(Z_STRVAL_PP(param), Z_STRLEN_PP(param)));
                 break;
             case IS_LONG:
             case IS_DOUBLE:
@@ -290,17 +286,10 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
                 temp = **param;
                 zval_copy_ctor(&temp);
                 convert_to_string(&temp);
-                proc_params->addString(err, std::string(Z_STRVAL(temp), Z_STRLEN(temp)));
+                proc_params->addString(std::string(Z_STRVAL(temp), Z_STRLEN(temp)));
                 break;
             default:
-                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                                     voltdb::errParamMismatchException TSRMLS_CC);
-                return NULL;
-            }
-
-            if (!voltdb::isOk(err)) {
-                zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-                return NULL;
+                throw voltdb::ParamMismatchException();
             }
         }
     }
@@ -322,7 +311,6 @@ PHP_METHOD(VoltClient, connect)
     char *password = NULL;
     long port = 21212;
 
-    voltdb::errType err = voltdb::errOk;
     zval *zobj = getThis();
     voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
 
@@ -332,20 +320,15 @@ PHP_METHOD(VoltClient, connect)
     }
 
     if (argc == 4) {
-        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
-                                             err, hostname,
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquire256Client(
+                                             hostname,
                                              username, password,
                                              &status_listener, port));
     } else {
-        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
-                                             err, hostname,
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquire256Client(
+                                             hostname,
                                              username, password,
                                              &status_listener));
-    }
-
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_FALSE;
     }
 
     RETURN_TRUE;
@@ -361,26 +344,12 @@ PHP_METHOD(VoltClient, invoke)
     }
 
     // Invoke the procedure
-    voltdb::errType err = voltdb::errOk;
-    voltdb::InvocationResponse resp = obj->client->invoke(err, *proc);
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
-
-    // Check if the response was constructed correctly
-    err = resp.getErr();
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
+    voltdb::InvocationResponse resp = obj->client->invoke(*proc);
 
     // Instantiate a PHP response object
     struct voltresponse_object *ro = instantiate_voltresponse(return_value, resp);
     if (ro == NULL) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errException TSRMLS_CC);
-        RETURN_NULL();
+        throw voltdb::Exception();
     }
 }
 
@@ -399,12 +368,7 @@ PHP_METHOD(VoltClient, invokeAsync)
     boost::shared_ptr<VoltCallback> callback(new VoltCallback(res_id));
 
     // Invoke the procedure
-    voltdb::errType err = voltdb::errOk;
-    obj->client->invoke(err, *proc, callback);
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
+    obj->client->invoke(*proc, callback);
 }
 
 PHP_METHOD(VoltClient, getResponse)
@@ -419,18 +383,10 @@ PHP_METHOD(VoltClient, getResponse)
     ZEND_FETCH_RESOURCE(response, voltresponse_res *, &zresponse, -1,
                         (char *)VOLT_RESPONSE_RES_NAME, le_voltresponse);
     if (response != NULL && response->resp != NULL) {
-        voltdb::errType err = response->resp->getErr();
-        if (!voltdb::isOk(err)) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-            RETURN_NULL();
-        }
-
         // Instantiate a PHP response object
         struct voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp);
         if (ro == NULL) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                                 voltdb::errException TSRMLS_CC);
-            RETURN_NULL();
+            throw voltdb::Exception();
         }
     } else {
         RETURN_NULL();
@@ -441,13 +397,8 @@ PHP_METHOD(VoltClient, drain)
 {
     zval *zobj = getThis();
     voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
-    voltdb::errType err = voltdb::errOk;
 
-    bool retval = obj->client->drain(err);
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_FALSE;
-    }
+    bool retval = obj->client->drain();
 
     if (retval) {
         RETURN_TRUE;

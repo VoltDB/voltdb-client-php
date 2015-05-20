@@ -196,17 +196,9 @@ PHP_METHOD(VoltInvocationResponse, nextResult)
     voltdb::Table table = *(obj->it);
     obj->it++;
 
-    voltdb::errType err = table.getErr();
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
-
     // Wrap the table in a PHP class
     struct volttable_object *to = instantiate_volttable(return_value, table);
     if (to == NULL) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errException TSRMLS_CC);
-        RETURN_NULL();
+        throw voltdb::Exception();
     }
 }
