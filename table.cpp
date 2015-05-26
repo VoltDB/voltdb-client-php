@@ -31,6 +31,7 @@ extern "C" {
 #include "Table.h"
 #include "common.h"
 #include "volttable.h"
+#include "exception.h"
 
 // class entry used to instantiate the PHP table class
 zend_class_entry *volttable_ce;
@@ -121,7 +122,12 @@ int row_to_array(zval *return_value, voltdb::Row row)
         std::string name = columns[i].name();
         int name_len = name.length() + 1; // including the terminator
 
-        bool isNull = row.isNull(i);
+        bool isNull;
+        try {
+            isNull = row.isNull(i);
+        } catch (voltdb::InvalidColumnException) {
+            return 0;
+        }
 
         if (isNull) {
             add_assoc_null_ex(return_value, name.c_str(), name_len);
@@ -129,37 +135,67 @@ int row_to_array(zval *return_value, voltdb::Row row)
             switch (columns[i].type()) {
             case voltdb::WIRE_TYPE_TINYINT:
             {
-                int8_t value = row.getInt8(i);
+                int8_t value;
+                try {
+                    value = row.getInt8(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_SMALLINT:
             {
-                int16_t value = row.getInt16(i);
+                int16_t value;
+                try {
+                    value = row.getInt16(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_INTEGER:
             {
-                int32_t value = row.getInt32(i);
+                int32_t value;
+                try {
+                    value = row.getInt32(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_BIGINT:
             {
-                int64_t value = row.getInt64(i);
+                int64_t value;
+                try {
+                    value = row.getInt64(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_FLOAT:
             {
-                double value = row.getDouble(i);
+                double value;
+                try {
+                    value = row.getDouble(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_double_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_STRING:
             {
-                std::string value = row.getString(i);
+                std::string value;
+                try {
+                    value = row.getString(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 /*
                  * necessary to dup here because the add_assoc_string_ex takes
                  * char*. No need to free it, PHP should take care of this when
@@ -171,13 +207,23 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
             {
-                int64_t value = row.getTimestamp(i);
+                int64_t value;
+                try {
+                    value = row.getTimestamp(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
                 break;
             }
             case voltdb::WIRE_TYPE_DECIMAL:
             {
-                voltdb::Decimal value = row.getDecimal(i);
+                voltdb::Decimal value;
+                try {
+                    value = row.getDecimal(i);
+                } catch (voltdb::InvalidColumnException) {
+                    return 0;
+                }
                 /*
                  * return decimal as a string. PHP float doesn't have enough
                  * precision to hold a SQL decimal
@@ -242,14 +288,27 @@ PHP_METHOD(VoltTable, nextRow)
     }
 
     // Get the next row and advance the iterator
-    voltdb::Row row = obj->it.next();
+    try {
+        voltdb::Row row = obj->it.next();
 
-    // Convert the row into a PHP array
-    if (array_init(return_value) == FAILURE) {
-        throw voltdb::Exception();
-    }
+        // Convert the row into a PHP array
+        if (array_init(return_value) == FAILURE) {
+            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                                 errException TSRMLS_CC);		
+            RETURN_NULL();
+        }
 
-    if (!row_to_array(return_value, row)) {
+        if (!row_to_array(return_value, row)) {
+            RETURN_NULL();
+        }
+    } catch (voltdb::NoMoreRowsException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoMoreRowsException TSRMLS_CC);		
+        RETURN_NULL();
+    } catch (voltdb::OverflowUnderflowException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errOverflowUnderflowException TSRMLS_CC);		
+        RETURN_NULL();
+    } catch (voltdb::IndexOutOfBoundsException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errIndexOutOfBoundsException TSRMLS_CC);		
         RETURN_NULL();
     }
 }
