@@ -31,6 +31,7 @@ extern "C" {
 #include "Table.h"
 #include "common.h"
 #include "volttable.h"
+#include "exception.h"
 
 // class entry used to instantiate the PHP table class
 zend_class_entry *volttable_ce;
@@ -114,7 +115,6 @@ struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &
 
 int row_to_array(zval *return_value, voltdb::Row row)
 {
-    voltdb::errType err = voltdb::errOk;
     int count = row.columnCount();
     std::vector<voltdb::Column> columns = row.columns();
 
@@ -122,9 +122,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
         std::string name = columns[i].name();
         int name_len = name.length() + 1; // including the terminator
 
-        bool isNull = row.isNull(err, i);
-        if (!voltdb::isOk(err)) {
-            // TODO: Should we free the array?
+        bool isNull;
+        try {
+            isNull = row.isNull(i);
+        } catch (voltdb::InvalidColumnException) {
             return 0;
         }
 
@@ -134,8 +135,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             switch (columns[i].type()) {
             case voltdb::WIRE_TYPE_TINYINT:
             {
-                int8_t value = row.getInt8(err, i);
-                if (!voltdb::isOk(err)) {
+                int8_t value;
+                try {
+                    value = row.getInt8(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
@@ -143,8 +146,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_SMALLINT:
             {
-                int16_t value = row.getInt16(err, i);
-                if (!voltdb::isOk(err)) {
+                int16_t value;
+                try {
+                    value = row.getInt16(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
@@ -152,8 +157,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_INTEGER:
             {
-                int32_t value = row.getInt32(err, i);
-                if (!voltdb::isOk(err)) {
+                int32_t value;
+                try {
+                    value = row.getInt32(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
@@ -161,8 +168,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_BIGINT:
             {
-                int64_t value = row.getInt64(err, i);
-                if (!voltdb::isOk(err)) {
+                int64_t value;
+                try {
+                    value = row.getInt64(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
@@ -170,8 +179,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_FLOAT:
             {
-                double value = row.getDouble(err, i);
-                if (!voltdb::isOk(err)) {
+                double value;
+                try {
+                    value = row.getDouble(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_double_ex(return_value, name.c_str(), name_len, value);
@@ -179,8 +190,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_STRING:
             {
-                std::string value = row.getString(err, i);
-                if (!voltdb::isOk(err)) {
+                std::string value;
+                try {
+                    value = row.getString(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 /*
@@ -194,8 +207,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
             {
-                int64_t value = row.getTimestamp(err, i);
-                if (!voltdb::isOk(err)) {
+                int64_t value;
+                try {
+                    value = row.getTimestamp(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 add_assoc_long_ex(return_value, name.c_str(), name_len, value);
@@ -203,8 +218,10 @@ int row_to_array(zval *return_value, voltdb::Row row)
             }
             case voltdb::WIRE_TYPE_DECIMAL:
             {
-                voltdb::Decimal value = row.getDecimal(err, i);
-                if (!voltdb::isOk(err)) {
+                voltdb::Decimal value;
+                try {
+                    value = row.getDecimal(i);
+                } catch (voltdb::InvalidColumnException) {
                     return 0;
                 }
                 /*
@@ -271,21 +288,27 @@ PHP_METHOD(VoltTable, nextRow)
     }
 
     // Get the next row and advance the iterator
-    voltdb::errType err = voltdb::errOk;
-    voltdb::Row row = obj->it.next(err);
-    if (!voltdb::isOk(err)) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, err TSRMLS_CC);
-        RETURN_NULL();
-    }
+    try {
+        voltdb::Row row = obj->it.next();
 
-    // Convert the row into a PHP array
-    if (array_init(return_value) == FAILURE) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             voltdb::errException TSRMLS_CC);
-        RETURN_NULL();
-    }
+        // Convert the row into a PHP array
+        if (array_init(return_value) == FAILURE) {
+            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
+                                 errException TSRMLS_CC);		
+            RETURN_NULL();
+        }
 
-    if (!row_to_array(return_value, row)) {
+        if (!row_to_array(return_value, row)) {
+            RETURN_NULL();
+        }
+    } catch (voltdb::NoMoreRowsException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoMoreRowsException TSRMLS_CC);		
+        RETURN_NULL();
+    } catch (voltdb::OverflowUnderflowException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errOverflowUnderflowException TSRMLS_CC);		
+        RETURN_NULL();
+    } catch (voltdb::IndexOutOfBoundsException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errIndexOutOfBoundsException TSRMLS_CC);		
         RETURN_NULL();
     }
 }

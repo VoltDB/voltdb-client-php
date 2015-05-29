@@ -13,8 +13,9 @@ stored procedures and reading responses from a PHP 5.3 application.
 # Installation
 
 Requirements:
-  * VoltDB C++ client library source ("noexceptions" branch)
+  * VoltDB C++ client library source
   * PHP 5.3
+  * Boost C++ Library 1.53.0 or above.
 
 The C++ client libray must be compiled WITHOUT compiler optimization. To do
 this, you have to modify the makefile in the C++ client library to remove "-O3"
