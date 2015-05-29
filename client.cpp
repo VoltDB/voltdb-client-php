@@ -104,7 +104,11 @@ public:
         zend_list_addref(m_res_id);
     }
 
-    bool callback(voltdb::InvocationResponse response) throw (voltdb::Exception){
+    /*
+     * Does not actually throw an exception, but needs to match the definition of
+     * callback in voltdb::ProcedureCallback
+     */
+    bool callback(voltdb::InvocationResponse response) throw (voltdb::Exception) {
         int type;
         voltresponse_res *ptr = (voltresponse_res *)zend_list_find(m_res_id, &type);
 
