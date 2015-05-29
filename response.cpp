@@ -201,7 +201,7 @@ PHP_METHOD(VoltInvocationResponse, nextResult)
     struct volttable_object *to = instantiate_volttable(return_value, table);
     if (to == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                             errException TSRMLS_CC);		
+                             errException TSRMLS_CC);
         RETURN_NULL();
     }
 }

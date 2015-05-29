@@ -230,7 +230,8 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
     return proc;
 }
 
-voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_object *obj) {
+voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_object *obj)
+{
     char *name = NULL;
     zval *params = NULL;
     zval **param = NULL;
@@ -349,38 +350,20 @@ PHP_METHOD(VoltClient, connect)
         RETURN_FALSE;
     }
 
-    if (argc == 4) {
-        try {
-            obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
-                                                 hostname, username,
-                                                 password, &status_listener,
-                                                 port, voltdb::HASH_SHA256));
-        } catch (voltdb::ConnectException) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);		
-            RETURN_FALSE;
-        } catch (voltdb::LibEventException) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
-            RETURN_FALSE;
-        } catch (voltdb::Exception) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
-            RETURN_FALSE;
-        }
-    } else {
-        try {
-            obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
-                                                 hostname, username,
-                                                 password, &status_listener,
-                                                 21212, voltdb::HASH_SHA256));
-        } catch (voltdb::ConnectException) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);		
-            RETURN_FALSE;
-        } catch (voltdb::LibEventException) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
-            RETURN_FALSE;
-        } catch (voltdb::Exception) {
-            zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
-            RETURN_FALSE;
-        }
+    try {
+        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
+                                             hostname, username,
+                                             password, &status_listener,
+                                             port, voltdb::HASH_SHA256));
+    } catch (voltdb::ConnectException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);		
+        RETURN_FALSE;
+    } catch (voltdb::LibEventException) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
+        RETURN_FALSE;
+    } catch (voltdb::Exception) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
+        RETURN_FALSE;
     }
 
     RETURN_TRUE;
