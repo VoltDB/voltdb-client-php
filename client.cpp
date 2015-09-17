@@ -62,6 +62,7 @@ const zend_function_entry voltclient_methods[] = {
     PHP_ME(VoltClient, invokeAsync, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, getResponse, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(VoltClient, drain, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(VoltClient, close, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END                /* Must be the last line in zend_function_entry */
 };
 
@@ -489,4 +490,13 @@ PHP_METHOD(VoltClient, drain)
     } else {
         RETURN_FALSE;
     }
+}
+
+PHP_METHOD(VoltClient, close)
+{
+    zval *zobj = getThis();
+    voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+
+    obj->client->close();
+    RETURN_NULL();
 }
