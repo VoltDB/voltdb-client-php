@@ -40,6 +40,7 @@ PHP_METHOD(VoltClient, invoke);
 PHP_METHOD(VoltClient, invokeAsync);
 PHP_METHOD(VoltClient, getResponse);
 PHP_METHOD(VoltClient, drain);
+PHP_METHOD(VoltClient, close);
 
 #define VOLT_RESPONSE_RES_NAME "VoltDB Response"
 struct voltresponse_object;

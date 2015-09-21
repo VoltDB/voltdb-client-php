@@ -37,6 +37,15 @@ try {
             }
         }
     }
+    $voltClient->close();
+
+    $voltClient->connect($hostname, '', '');
+    $resp = $voltClient->invoke("Vote", array(4, 5, 6));
+    if ($resp === null) {
+        echo "invoke had an error\n";
+    } else {
+        echo "invoke returned a response\n";
+    }
 } catch (Exception $e) {
     echo "Exception " . $e->getCode() . "\n";
     return;
