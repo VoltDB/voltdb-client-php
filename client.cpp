@@ -498,10 +498,13 @@ PHP_METHOD(VoltClient, close)
     voltclient_object *obj = (voltclient_object *)zend_object_store_get_object(zobj TSRMLS_CC);
 
     try {
-        voltdb::ConnectionPool::pool()->closeClientConnection(*(obj->client));
+        if (obj->client != NULL) {
+            voltdb::ConnectionPool::pool()->closeClientConnection(*(obj->client));
+            delete obj->client;
+            obj->client = NULL;
+        }
     } catch (voltdb::MisplacedClientException) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errMisplacedClientException TSRMLS_CC);		
-        RETURN_FALSE;
+        RETURN_NULL();
     }
-    RETURN_NULL();
 }
