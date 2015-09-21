@@ -21,6 +21,10 @@ The C++ client libray must be compiled WITHOUT compiler optimization. To do
 this, you have to modify the makefile in the C++ client library to remove "-O3"
 from the compiler flags.
 
+If the C++ compiler fails to build with the error message "cannot find -lboost_thread-mt".
+You have to modify the makefile to change the compiler flags "-lboost_system-mt" and
+"-lboost_thread-mt". Changing them to "-lboost_system" and "-lboost_thread" respectively.
+
 To prepare the PHP extension for building, first execute the following command,
 
     phpize
