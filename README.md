@@ -70,10 +70,16 @@ contains "voltdb".
 
 Please see the examples directory for how to use the client.
 
+New Features in V5.2
+==================
+
+* The php cient now uses SHA-256 to hash password for authentication request. It can only
+connect to VoltDB V5.2 and above.
+* The php client has a 'close' method
+
 # Known Issues
 
-This wrapper is still in its development phase, so a few features are
-not fully supported. This includes:
+The following  features are not fully supported:
 
 * Parameters arrays
 * Varbinary type
