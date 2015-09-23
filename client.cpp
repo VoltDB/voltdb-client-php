@@ -359,7 +359,7 @@ PHP_METHOD(VoltClient, connect)
         obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
                                              hostname, username,
                                              password, &status_listener,
-                                             port, voltdb::HASH_SHA256));
+                                             port, voltdb::HASH_SHA1));
     } catch (voltdb::ConnectException) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);		
         RETURN_FALSE;
