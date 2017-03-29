@@ -294,7 +294,7 @@ PHP_METHOD(VoltTable, nextRow)
         // Convert the row into a PHP array
         if (array_init(return_value) == FAILURE) {
             zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
-                                 errException TSRMLS_CC);		
+                                 errException TSRMLS_CC);
             RETURN_NULL();
         }
 
@@ -302,13 +302,13 @@ PHP_METHOD(VoltTable, nextRow)
             RETURN_NULL();
         }
     } catch (voltdb::NoMoreRowsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoMoreRowsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoMoreRowsException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::OverflowUnderflowException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errOverflowUnderflowException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errOverflowUnderflowException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::IndexOutOfBoundsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errIndexOutOfBoundsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errIndexOutOfBoundsException TSRMLS_CC);
         RETURN_NULL();
     }
 }

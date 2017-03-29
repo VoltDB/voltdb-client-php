@@ -131,7 +131,7 @@ private:
     int m_res_id;
 };
 
-static void voltresponse_free(zend_rsrc_list_entry *rsrc TSRMLS_DC)
+static void voltresponse_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
 {
     voltresponse_res *res = (voltresponse_res *)rsrc->ptr;
     assert(res != NULL);
@@ -144,12 +144,14 @@ static void voltresponse_free(zend_rsrc_list_entry *rsrc TSRMLS_DC)
 }
 
 /* VoltClient */
-zend_object_handlers voltclient_object_handlers;
+static zend_object_handlers voltclient_object_handlers;
 
-void voltclient_free(void *obj TSRMLS_CC)
+static void voltclient_free_object_storage_handler(voltclient_object *client_obj TSRMLS_DC)
 {
-    voltclient_object *client_obj = (voltclient_object *)obj;
+    // Free the std object
+    zend_object_std_dtor(&client_obj->std TSRMLS_CC);
 
+    // Free additional resources
     std::map<const char *, voltdb::Procedure *>::iterator it;
     for (it = client_obj->procedures.begin();
          it != client_obj->procedures.end();
@@ -165,9 +167,6 @@ void voltclient_free(void *obj TSRMLS_CC)
     // Return the client held by this thread to the pool
     voltdb::ConnectionPool::pool()->onScriptEnd();
 
-    zend_hash_destroy(client_obj->std.properties);
-    FREE_HASHTABLE(client_obj->std.properties);
-
     efree(client_obj);
 }
 
@@ -178,11 +177,9 @@ zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
 
     voltclient_object *obj = (voltclient_object *)emalloc(sizeof(voltclient_object));
     memset(obj, 0, sizeof(voltclient_object));
-    obj->std.ce = type;
-    obj->procedures = std::map<const char *, voltdb::Procedure *>();
 
-    ALLOC_HASHTABLE(obj->std.properties);
-    zend_hash_init(obj->std.properties, 0, NULL, ZVAL_PTR_DTOR, 0);
+    // Initialize the std object
+    zend_object_std_init(&obj->std, type TSRMLS_CC);
 #if PHP_VERSION_ID < 50399
     zend_hash_copy(obj->std.properties, &type->default_properties,
                    (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
@@ -190,8 +187,17 @@ zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
     object_properties_init(&(obj->std), type);
 #endif
 
-    retval.handle = zend_objects_store_put(obj, NULL,
-                                           voltclient_free, NULL TSRMLS_CC);
+    // Initialize other resources
+    obj->procedures = std::map<const char *, voltdb::Procedure *>();
+
+    // Put the internal object into the object store
+    retval.handle = zend_objects_store_put(
+        obj,
+        NULL,
+        (zend_objects_free_object_storage_t) voltclient_free_object_storage_handler,
+        NULL TSRMLS_CC);
+
+    // Assign the customized object handlers
     retval.handlers = &voltclient_object_handlers;
 
     return retval;
@@ -203,11 +209,13 @@ void create_voltclient_class(int module_number)
     INIT_CLASS_ENTRY(ce, "VoltClient", voltclient_methods);
     voltclient_ce = zend_register_internal_class(&ce TSRMLS_CC);
     voltclient_ce->create_object = voltclient_create_handler;
-    memcpy(&voltclient_object_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
+
+    // Create customized object handlers
+    voltclient_object_handlers = *zend_get_std_object_handlers();
     voltclient_object_handlers.clone_obj = NULL;
 
     // Register a destructor for the response resource
-    le_voltresponse = zend_register_list_destructors_ex(voltresponse_free, NULL,
+    le_voltresponse = zend_register_list_destructors_ex(voltresponse_dtor, NULL,
                                                         (char *)VOLT_RESPONSE_RES_NAME,
                                                         module_number);
 }
@@ -316,7 +324,9 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
                 convert_to_string(&temp);
                 try {
                     proc_params->addString(std::string(Z_STRVAL(temp), Z_STRLEN(temp)));
+                    zval_dtor(&temp);
                 } catch (voltdb::ParamMismatchException) {
+                    zval_dtor(&temp);
                     zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                          errParamMismatchException TSRMLS_CC);
                     return NULL;
@@ -361,13 +371,13 @@ PHP_METHOD(VoltClient, connect)
                                              password, &status_listener,
                                              port, voltdb::HASH_SHA256));
     } catch (voltdb::ConnectException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);
         RETURN_FALSE;
     } catch (voltdb::LibEventException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);
         RETURN_FALSE;
     } catch (voltdb::Exception) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);
         RETURN_FALSE;
     }
 
@@ -388,16 +398,16 @@ PHP_METHOD(VoltClient, invoke)
     try {
         resp = obj->client->invoke(*proc);
     } catch (voltdb::NoConnectionsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::UninitializedParamsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errUninitializedParamsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errUninitializedParamsException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::LibEventException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::Exception) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);
         RETURN_NULL();
     }
 
@@ -428,16 +438,16 @@ PHP_METHOD(VoltClient, invokeAsync)
     try {
         obj->client->invoke(*proc, callback);
     } catch (voltdb::NoConnectionsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::UninitializedParamsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errUninitializedParamsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errUninitializedParamsException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::LibEventException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);
         RETURN_NULL();
     } catch (voltdb::Exception) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);
         RETURN_NULL();
     }
 }
@@ -475,13 +485,13 @@ PHP_METHOD(VoltClient, drain)
     try {
         retval = obj->client->drain();
     } catch (voltdb::NoConnectionsException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);
         RETURN_FALSE;
     } catch (voltdb::LibEventException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);
         RETURN_FALSE;
     } catch (voltdb::Exception) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errException TSRMLS_CC);
         RETURN_FALSE;
     }
 
@@ -504,7 +514,7 @@ PHP_METHOD(VoltClient, close)
             obj->client = NULL;
         }
     } catch (voltdb::MisplacedClientException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errMisplacedClientException TSRMLS_CC);		
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errMisplacedClientException TSRMLS_CC);
         RETURN_NULL();
     }
 }

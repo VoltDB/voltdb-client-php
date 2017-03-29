@@ -8,6 +8,5 @@
 // ARG_ENABLE("voltdb", "enable voltdb support", "no");
 
 if (PHP_VOLTDB != "no") {
-	EXTENSION("voltdb", "voltdb.c");
+    EXTENSION("voltdb", "voltdb.c");
 }
-
