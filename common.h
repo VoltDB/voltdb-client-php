@@ -34,6 +34,8 @@ extern "C" {
 #endif
 }
 
+#include "php7_wrapper.h"
+
 /* PHP older than 5.3.13 doesn't define this macro. We need to define it here */
 #ifndef PHP_FE_END
 #    define PHP_FE_END {NULL, NULL, NULL}

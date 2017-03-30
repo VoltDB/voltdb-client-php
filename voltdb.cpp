@@ -25,18 +25,13 @@
 #include "config.h"
 #endif
 
-extern "C" {
-#include "php.h"
-#include "php_ini.h"
-#include "ext/standard/info.h"
-#include "zend_exceptions.h"
-}
-
 #include "ConnectionPool.h"
+
+#include "common.h"
+#include "php_voltdb.h"
 #include "client.h"
 #include "response.h"
 #include "volttable.h"
-#include "php_voltdb.h"
 #include "exception.h"
 
 // Initialize global variables

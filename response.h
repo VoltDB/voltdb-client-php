@@ -24,6 +24,8 @@
 #ifndef VOLT_INVOCATION_RESPONSE_H
 #define VOLT_INVOCATION_RESPONSE_H
 
+#include "common.h"
+
 // VoltInvocationResponse
 PHP_METHOD(VoltInvocationResponse, statusCode);
 PHP_METHOD(VoltInvocationResponse, statusString);
@@ -33,12 +35,28 @@ PHP_METHOD(VoltInvocationResponse, resultCount);
 PHP_METHOD(VoltInvocationResponse, hasMoreResults);
 PHP_METHOD(VoltInvocationResponse, nextResult);
 
-struct voltresponse_object {
-    zend_object std;
+PHP_VOLTDB_WRAP_OBJECT_START(voltresponse_object)
     voltdb::InvocationResponse *response;
     std::vector<voltdb::Table> results;
     std::vector<voltdb::Table>::const_iterator it;
-};
+PHP_VOLTDB_WRAP_OBJECT_END(voltresponse_object)
+
+#if PHP_MAJOR_VERSION < 7
+
+#define Z_VOLTRESPONSE_OBJECT_P(zv) \
+  (voltresponse_object *)zend_object_store_get_object(zv TSRMLS_CC)
+
+#else
+
+static inline voltresponse_object
+*voltresponse_object_from_obj(zend_object *obj) {
+    return (voltresponse_object *)((char*)(obj) -
+                                   XtOffsetOf(voltresponse_object, std));
+}
+
+#define Z_VOLTRESPONSE_OBJECT_P(zv) voltresponse_object_from_obj(Z_OBJ_P((zv)))
+
+#endif /* PHP_MAJOR_VERSION */
 
 void create_voltresponse_class(TSRMLS_D);
 voltresponse_object *instantiate_voltresponse(zval *return_val,

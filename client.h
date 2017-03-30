@@ -29,6 +29,8 @@
 #include "Procedure.hpp"
 #include "InvocationResponse.hpp"
 
+#include "common.h"
+
 // VoltClient
 PHP_METHOD(VoltClient, __construct);
 PHP_METHOD(VoltClient, connect);
@@ -45,11 +47,27 @@ typedef struct _voltresponse_res {
     voltdb::InvocationResponse *resp;
 } voltresponse_res;
 
-struct voltclient_object {
-    zend_object std;
+PHP_VOLTDB_WRAP_OBJECT_START(voltclient_object)
     voltdb::Client *client;
     std::map<const char *, voltdb::Procedure *> procedures;
-};
+PHP_VOLTDB_WRAP_OBJECT_END(voltclient_object)
+
+#if PHP_MAJOR_VERSION < 7
+
+#define Z_VOLTCLIENT_OBJECT_P(zv) \
+  (voltclient_object *)zend_object_store_get_object(zv TSRMLS_CC)
+
+#else
+
+static inline voltclient_object
+*voltclient_object_from_obj(zend_object *obj) {
+    return (voltclient_object *)((char*)(obj) -
+                                 XtOffsetOf(voltclient_object, std));
+}
+
+#define Z_VOLTCLIENT_OBJECT_P(zv) voltclient_object_from_obj(Z_OBJ_P((zv)))
+
+#endif /* PHP_MAJOR_VERSION */
 
 void create_voltclient_class(int module_number TSRMLS_DC);
 

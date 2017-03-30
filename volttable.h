@@ -27,6 +27,8 @@
 #include "Table.h"
 #include "TableIterator.h"
 
+#include "common.h"
+
 // VoltTable
 PHP_METHOD(VoltTable, statusCode);
 PHP_METHOD(VoltTable, rowCount);
@@ -34,11 +36,27 @@ PHP_METHOD(VoltTable, columnCount);
 PHP_METHOD(VoltTable, hasMoreRows);
 PHP_METHOD(VoltTable, nextRow);
 
-struct volttable_object {
-    zend_object std;
+PHP_VOLTDB_WRAP_OBJECT_START(volttable_object)
     voltdb::Table *table;
     voltdb::TableIterator it;
-};
+PHP_VOLTDB_WRAP_OBJECT_END(volttable_object)
+
+#if PHP_MAJOR_VERSION < 7
+
+#define Z_VOLTTABLE_OBJECT_P(zv) \
+  (volttable_object *)zend_object_store_get_object(zv TSRMLS_CC)
+
+#else
+
+static inline volttable_object
+*volttable_object_from_obj(zend_object *obj) {
+    return (volttable_object *)((char*)(obj) -
+                                XtOffsetOf(volttable_object, std));
+}
+
+#define Z_VOLTTABLE_OBJECT_P(zv) volttable_object_from_obj(Z_OBJ_P((zv)))
+
+#endif /* PHP_MAJOR_VERSION */
 
 void create_volttable_class(TSRMLS_D);
 volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table TSRMLS_DC);

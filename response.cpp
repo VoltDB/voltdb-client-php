@@ -23,7 +23,6 @@
 
 #include "InvocationResponse.hpp"
 
-#include "common.h"
 #include "volttable.h"
 #include "response.h"
 #include "exception.h"
@@ -44,47 +43,25 @@ const zend_function_entry voltresponse_methods[] = {
 
 static zend_object_handlers voltresponse_object_handlers;
 
-static void voltresponse_free_object_storage_handler(voltresponse_object *response_obj TSRMLS_DC)
+PHP_VOLTDB_FREE_WRAPPED_FUNC_START(voltresponse_object)
+    // Free custom resources
+    wrapped_obj->results.clear();
+    delete wrapped_obj->response;
+    wrapped_obj->response = NULL;
+PHP_VOLTDB_FREE_WRAPPED_FUNC_END()
+
+static php_voltdb_zend_object voltresponse_create_handler(zend_class_entry *ce TSRMLS_DC)
 {
-    // Free the std object
-    zend_object_std_dtor(&response_obj->std TSRMLS_CC);
-
-    // Free additional resources
-    response_obj->results.clear();
-    delete response_obj->response;
-    response_obj->response = NULL;
-
-    efree(response_obj);
-}
-
-static zend_object_value voltresponse_create_handler(zend_class_entry *ce TSRMLS_DC)
-{
-    zval *tmp;
-    zend_object_value retval;
-
-    voltresponse_object *obj = (voltresponse_object *)emalloc(sizeof(voltresponse_object));
-    memset(obj, 0, sizeof(voltresponse_object));
+    PHP_VOLTDB_ALLOC_CLASS_OBJECT(voltresponse_object, ce)
 
     // Initialize the std object
-    zend_object_std_init(&obj->std, ce TSRMLS_CC);
-#if PHP_VERSION_ID < 50399
-    zend_hash_copy(obj->std.properties, &ce->default_properties,
-                   (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
-#else
-    object_properties_init(&(obj->std), ce);
-#endif
+    zend_object_std_init(&intern->std, ce TSRMLS_CC);
+    PHP_VOLTDB_INIT_CLASS_OBJECT_PROPERTIES()
 
     // Put the internal object into the object store
-    retval.handle = zend_objects_store_put(
-        obj,
-        (zend_objects_store_dtor_t) zend_objects_destroy_object,
-        (zend_objects_free_object_storage_t) voltresponse_free_object_storage_handler,
-        NULL TSRMLS_CC);
-
+    // Assign the customized object storage free callback
     // Assign the customized object handlers
-    retval.handlers = &voltresponse_object_handlers;
-
-    return retval;
+    PHP_VOLTDB_FREE_CLASS_OBJECT(voltresponse_object, voltresponse_object_handlers)
 }
 
 void create_voltresponse_class(TSRMLS_D)
@@ -94,9 +71,7 @@ void create_voltresponse_class(TSRMLS_D)
     voltresponse_ce = zend_register_internal_class(&ce TSRMLS_CC);
     voltresponse_ce->create_object = voltresponse_create_handler;
 
-    // Create customized object handlers
-    voltresponse_object_handlers = *zend_get_std_object_handlers();
-    voltresponse_object_handlers.clone_obj = NULL;
+    PHP_VOLTDB_INIT_HANDLER(voltresponse_object, voltresponse_object_handlers)
 
     // Set up all status codes as class constants
     zend_declare_class_constant_long(voltresponse_ce,
@@ -125,7 +100,7 @@ voltresponse_object *instantiate_voltresponse(zval *return_val,
         return NULL;
     }
 
-    ro = (voltresponse_object *)zend_object_store_get_object(return_val TSRMLS_CC);
+    ro = Z_VOLTRESPONSE_OBJECT_P(return_val);
     assert(ro != NULL);
     ro->response = new voltdb::InvocationResponse(resp);
     ro->results = ro->response->results();
@@ -137,44 +112,44 @@ voltresponse_object *instantiate_voltresponse(zval *return_val,
 PHP_METHOD(VoltInvocationResponse, statusCode)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     RETURN_LONG(obj->response->statusCode());
 }
 
 PHP_METHOD(VoltInvocationResponse, statusString)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     // The second parameter 1 tells PHP to make a copy of the string
-    RETURN_STRING(obj->response->statusString().c_str(), 1);
+    PHP_VOLTDB_RETURN_STRING(obj->response->statusString().c_str(), 1);
 }
 
 PHP_METHOD(VoltInvocationResponse, appStatusCode)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     RETURN_LONG(obj->response->appStatusCode());
 }
 
 PHP_METHOD(VoltInvocationResponse, appStatusString)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     // The second parameter 1 tells PHP to make a copy of the string
-    RETURN_STRING(obj->response->appStatusString().c_str(), 1);
+    PHP_VOLTDB_RETURN_STRING(obj->response->appStatusString().c_str(), 1);
 }
 
 PHP_METHOD(VoltInvocationResponse, resultCount)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     RETURN_LONG(obj->results.size());
 }
 
 PHP_METHOD(VoltInvocationResponse, hasMoreResults)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
     if (obj->it < obj->results.end()) {
         RETURN_TRUE;
     } else {
@@ -185,7 +160,7 @@ PHP_METHOD(VoltInvocationResponse, hasMoreResults)
 PHP_METHOD(VoltInvocationResponse, nextResult)
 {
     zval *zobj = getThis();
-    voltresponse_object *obj = (voltresponse_object *)zend_object_store_get_object(zobj TSRMLS_CC);
+    voltresponse_object *obj = Z_VOLTRESPONSE_OBJECT_P(zobj);
 
     if (obj->it >= obj->results.end()) {
         RETURN_NULL();
