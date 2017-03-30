@@ -82,7 +82,7 @@ string. Note that ad hoc queries must call the @adhoc system procedure and pass
 the query as a parameter.
 
 - Return Value: A resource that is retrieved by calling drain() to wait for the
-  results and getResponse() to get the VoltInvoationResponse object.
+  results and getResponse() to get the VoltInvocationResponse object.
 
 public VoltInvocationResponse getResponse( resource $resource )
 - Description: Gets an asynchronous query result from the resource.

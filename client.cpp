@@ -21,13 +21,6 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-extern "C" {
-#include "php.h"
-#include "php_ini.h"
-#include "ext/standard/info.h"
-#include "zend_exceptions.h"
-}
-
 #include <map>
 #include <vector>
 #include <string>
@@ -40,6 +33,7 @@ extern "C" {
 #include "WireType.h"
 #include "ProcedureCallback.hpp"
 #include "StatusListener.h"
+
 #include "common.h"
 #include "response.h"
 #include "client.h"
@@ -49,7 +43,6 @@ static const char *VOLT_NULL_INDICATOR = "\\N";
 
 // class entry used to instantiate the PHP client class
 zend_class_entry *voltclient_ce;
-extern zend_class_entry *voltresponse_ce;
 
 // Identifier for the response resource
 static int le_voltresponse;
@@ -170,7 +163,7 @@ static void voltclient_free_object_storage_handler(voltclient_object *client_obj
     efree(client_obj);
 }
 
-zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
+static zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
 {
     zval *tmp;
     zend_object_value retval;
@@ -203,7 +196,7 @@ zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
     return retval;
 }
 
-void create_voltclient_class(int module_number)
+void create_voltclient_class(int module_number TSRMLS_DC)
 {
     zend_class_entry ce;
     INIT_CLASS_ENTRY(ce, "VoltClient", voltclient_methods);
@@ -412,7 +405,7 @@ PHP_METHOD(VoltClient, invoke)
     }
 
     // Instantiate a PHP response object
-    struct voltresponse_object *ro = instantiate_voltresponse(return_value, resp);
+    voltresponse_object *ro = instantiate_voltresponse(return_value, resp);
     if (ro == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                              errException TSRMLS_CC);
@@ -465,7 +458,7 @@ PHP_METHOD(VoltClient, getResponse)
                         (char *)VOLT_RESPONSE_RES_NAME, le_voltresponse);
     if (response != NULL && response->resp != NULL) {
         // Instantiate a PHP response object
-        struct voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp);
+        voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp);
         if (ro == NULL) {
             zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                  errException TSRMLS_CC);

@@ -21,16 +21,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-extern "C" {
-#include "php.h"
-#include "php_ini.h"
-#include "ext/standard/info.h"
-#include "zend_exceptions.h"
-}
-
 #include "InvocationResponse.hpp"
-#include "volttable.h"
+
 #include "common.h"
+#include "volttable.h"
 #include "response.h"
 #include "exception.h"
 
@@ -48,33 +42,31 @@ const zend_function_entry voltresponse_methods[] = {
     PHP_FE_END                  // Must be the last line
 };
 
-zend_object_handlers voltresponse_object_handlers;
+static zend_object_handlers voltresponse_object_handlers;
 
-void voltresponse_free(void *obj TSRMLS_CC)
+static void voltresponse_free_object_storage_handler(voltresponse_object *response_obj TSRMLS_DC)
 {
-    voltresponse_object *response_obj = (voltresponse_object *)obj;
+    // Free the std object
+    zend_object_std_dtor(&response_obj->std TSRMLS_CC);
 
+    // Free additional resources
     response_obj->results.clear();
     delete response_obj->response;
     response_obj->response = NULL;
 
-    zend_hash_destroy(response_obj->std.properties);
-    FREE_HASHTABLE(response_obj->std.properties);
-
     efree(response_obj);
 }
 
-zend_object_value voltresponse_create_handler(zend_class_entry *type TSRMLS_DC)
+static zend_object_value voltresponse_create_handler(zend_class_entry *type TSRMLS_DC)
 {
     zval *tmp;
     zend_object_value retval;
 
     voltresponse_object *obj = (voltresponse_object *)emalloc(sizeof(voltresponse_object));
     memset(obj, 0, sizeof(voltresponse_object));
-    obj->std.ce = type;
 
-    ALLOC_HASHTABLE(obj->std.properties);
-    zend_hash_init(obj->std.properties, 0, NULL, ZVAL_PTR_DTOR, 0);
+    // Initialize the std object
+    zend_object_std_init(&obj->std, type TSRMLS_CC);
 #if PHP_VERSION_ID < 50399
     zend_hash_copy(obj->std.properties, &type->default_properties,
                    (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
@@ -82,22 +74,28 @@ zend_object_value voltresponse_create_handler(zend_class_entry *type TSRMLS_DC)
     object_properties_init(&(obj->std), type);
 #endif
 
-    retval.handle = zend_objects_store_put(obj, NULL,
-                                           voltresponse_free, NULL TSRMLS_CC);
+    // Put the internal object into the object store
+    retval.handle = zend_objects_store_put(
+        obj,
+        NULL,
+        (zend_objects_free_object_storage_t) voltresponse_free_object_storage_handler,
+        NULL TSRMLS_CC);
+
+    // Assign the customized object handlers
     retval.handlers = &voltresponse_object_handlers;
 
     return retval;
 }
 
-void create_voltresponse_class(void)
+void create_voltresponse_class(TSRMLS_D)
 {
     zend_class_entry ce;
     INIT_CLASS_ENTRY(ce, "VoltInvocationResponse", voltresponse_methods);
     voltresponse_ce = zend_register_internal_class(&ce TSRMLS_CC);
     voltresponse_ce->create_object = voltresponse_create_handler;
-    memcpy(&voltresponse_object_handlers,
-           zend_get_std_object_handlers(),
-           sizeof(zend_object_handlers));
+
+    // Create customized object handlers
+    voltresponse_object_handlers = *zend_get_std_object_handlers();
     voltresponse_object_handlers.clone_obj = NULL;
 
     // Set up all status codes as class constants
@@ -118,16 +116,16 @@ void create_voltresponse_class(void)
                                      voltdb::STATUS_CODE_CONNECTION_LOST TSRMLS_CC);
 }
 
-struct voltresponse_object *instantiate_voltresponse(zval *return_val,
-                                                     voltdb::InvocationResponse &resp)
+voltresponse_object *instantiate_voltresponse(zval *return_val,
+                                              voltdb::InvocationResponse &resp)
 {
-    struct voltresponse_object *ro = NULL;
+    voltresponse_object *ro = NULL;
 
     if (object_init_ex(return_val, voltresponse_ce) != SUCCESS) {
         return NULL;
     }
 
-    ro = (struct voltresponse_object *)zend_object_store_get_object(return_val TSRMLS_CC);
+    ro = (voltresponse_object *)zend_object_store_get_object(return_val TSRMLS_CC);
     assert(ro != NULL);
     ro->response = new voltdb::InvocationResponse(resp);
     ro->results = ro->response->results();
@@ -198,7 +196,7 @@ PHP_METHOD(VoltInvocationResponse, nextResult)
     obj->it++;
 
     // Wrap the table in a PHP class
-    struct volttable_object *to = instantiate_volttable(return_value, table);
+    volttable_object *to = instantiate_volttable(return_value, table);
     if (to == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                              errException TSRMLS_CC);

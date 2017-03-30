@@ -29,6 +29,9 @@ extern "C" {
 #include "php_ini.h"
 #include "ext/standard/info.h"
 #include "zend_exceptions.h"
+#ifdef ZTS
+#include "TSRM.h"
+#endif
 }
 
 /* PHP older than 5.3.13 doesn't define this macro. We need to define it here */

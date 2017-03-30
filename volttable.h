@@ -40,7 +40,7 @@ struct volttable_object {
     voltdb::TableIterator it;
 };
 
-void create_volttable_class(void);
-struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table);
+void create_volttable_class(TSRMLS_D);
+volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table);
 
 #endif  // VOLT_TABLE_H

@@ -21,14 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-extern "C" {
-#include "php.h"
-#include "php_ini.h"
-#include "ext/standard/info.h"
-#include "zend_exceptions.h"
-}
-
 #include "Table.h"
+
 #include "common.h"
 #include "volttable.h"
 #include "exception.h"
@@ -45,32 +39,30 @@ const zend_function_entry volttable_methods[] = {
     PHP_FE_END                  // Must be the last line
 };
 
-zend_object_handlers volttable_object_handlers;
+static zend_object_handlers volttable_object_handlers;
 
-void volttable_free(void *obj TSRMLS_CC)
+static void volttable_free_object_storage_handler(volttable_object *table_obj TSRMLS_DC)
 {
-    volttable_object *table_obj = (volttable_object *)obj;
+    // Free the std object
+    zend_object_std_dtor(&table_obj->std TSRMLS_CC);
 
+    // Free additional resources
     delete table_obj->table;
     table_obj->table = NULL;
-
-    zend_hash_destroy(table_obj->std.properties);
-    FREE_HASHTABLE(table_obj->std.properties);
 
     efree(table_obj);
 }
 
-zend_object_value volttable_create_handler(zend_class_entry *type TSRMLS_DC)
+static zend_object_value volttable_create_handler(zend_class_entry *type TSRMLS_DC)
 {
     zval *tmp;
     zend_object_value retval;
 
     volttable_object *obj = (volttable_object *)emalloc(sizeof(volttable_object));
     memset(obj, 0, sizeof(volttable_object));
-    obj->std.ce = type;
 
-    ALLOC_HASHTABLE(obj->std.properties);
-    zend_hash_init(obj->std.properties, 0, NULL, ZVAL_PTR_DTOR, 0);
+    // Initialize the std object
+    zend_object_std_init(&obj->std, type TSRMLS_CC);
 #if PHP_VERSION_ID < 50399
     zend_hash_copy(obj->std.properties, &type->default_properties,
                    (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
@@ -78,34 +70,40 @@ zend_object_value volttable_create_handler(zend_class_entry *type TSRMLS_DC)
     object_properties_init(&(obj->std), type);
 #endif
 
-    retval.handle = zend_objects_store_put(obj, NULL,
-                                           volttable_free, NULL TSRMLS_CC);
+    // Put the internal object into the object store
+    retval.handle = zend_objects_store_put(
+        obj,
+        NULL,
+        (zend_objects_free_object_storage_t) volttable_free_object_storage_handler,
+        NULL TSRMLS_CC);
+
+    // Assign the customized object handlers
     retval.handlers = &volttable_object_handlers;
 
     return retval;
 }
 
-void create_volttable_class(void)
+void create_volttable_class(TSRMLS_D)
 {
     zend_class_entry ce;
     INIT_CLASS_ENTRY(ce, "VoltTable", volttable_methods);
     volttable_ce = zend_register_internal_class(&ce TSRMLS_CC);
     volttable_ce->create_object = volttable_create_handler;
-    memcpy(&volttable_object_handlers,
-           zend_get_std_object_handlers(),
-           sizeof(zend_object_handlers));
+
+    // Create customized object handlers
+    volttable_object_handlers = *zend_get_std_object_handlers();
     volttable_object_handlers.clone_obj = NULL;
 }
 
-struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table)
+volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table)
 {
-    struct volttable_object *to = NULL;
+    volttable_object *to = NULL;
 
     if (object_init_ex(return_val, volttable_ce) != SUCCESS) {
         return NULL;
     }
 
-    to = (struct volttable_object *)zend_object_store_get_object(return_val TSRMLS_CC);
+    to = (volttable_object *)zend_object_store_get_object(return_val TSRMLS_CC);
     assert(to != NULL);
     to->table = new voltdb::Table(table);
     to->it = to->table->iterator();
@@ -113,7 +111,7 @@ struct volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &
     return to;
 }
 
-int row_to_array(zval *return_value, voltdb::Row row)
+static int row_to_array(zval *return_value, voltdb::Row row)
 {
     int count = row.columnCount();
     std::vector<voltdb::Column> columns = row.columns();

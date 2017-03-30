@@ -40,7 +40,7 @@ struct voltresponse_object {
     std::vector<voltdb::Table>::const_iterator it;
 };
 
-void create_voltresponse_class(void);
-struct voltresponse_object *instantiate_voltresponse(zval *return_val, voltdb::InvocationResponse &resp);
+void create_voltresponse_class(TSRMLS_D);
+voltresponse_object *instantiate_voltresponse(zval *return_val, voltdb::InvocationResponse &resp);
 
 #endif  // VOLT_INVOCATION_RESPONSE_H

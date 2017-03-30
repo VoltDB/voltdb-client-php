@@ -97,9 +97,9 @@ PHP_MINIT_FUNCTION(voltdb)
     REGISTER_INI_ENTRIES();
     */
 
-    create_voltclient_class(module_number);
-    create_voltresponse_class();
-    create_volttable_class();
+    create_voltclient_class(module_number TSRMLS_CC);
+    create_voltresponse_class(TSRMLS_C);
+    create_volttable_class(TSRMLS_C);
 
     // Set up all the exception codes as constants
     REGISTER_LONG_CONSTANT("VOLT_EXCEPTION", errException, CONST_CS | CONST_PERSISTENT);

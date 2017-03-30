@@ -24,10 +24,6 @@
 #ifndef VOLT_CLIENT_H
 #define VOLT_CLIENT_H
 
-extern "C" {
-#include "php.h"
-}
-
 #include <map>
 #include "Client.h"
 #include "Procedure.hpp"
@@ -55,6 +51,6 @@ struct voltclient_object {
     std::map<const char *, voltdb::Procedure *> procedures;
 };
 
-void create_voltclient_class(int module_number);
+void create_voltclient_class(int module_number TSRMLS_DC);
 
 #endif  // VOLT_CLIENT_H
