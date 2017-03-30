@@ -169,7 +169,7 @@ static void voltclient_free_object_storage_handler(voltclient_object *client_obj
     efree(client_obj);
 }
 
-static zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS_DC)
+static zend_object_value voltclient_create_handler(zend_class_entry *ce TSRMLS_DC)
 {
     zval *tmp;
     zend_object_value retval;
@@ -178,12 +178,12 @@ static zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS
     memset(obj, 0, sizeof(voltclient_object));
 
     // Initialize the std object
-    zend_object_std_init(&obj->std, type TSRMLS_CC);
+    zend_object_std_init(&obj->std, ce TSRMLS_CC);
 #if PHP_VERSION_ID < 50399
-    zend_hash_copy(obj->std.properties, &type->default_properties,
+    zend_hash_copy(obj->std.properties, &ce->default_properties,
                    (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
 #else
-    object_properties_init(&(obj->std), type);
+    object_properties_init(&(obj->std), ce);
 #endif
 
     // Initialize other resources
@@ -192,7 +192,7 @@ static zend_object_value voltclient_create_handler(zend_class_entry *type TSRMLS
     // Put the internal object into the object store
     retval.handle = zend_objects_store_put(
         obj,
-        NULL,
+        (zend_objects_store_dtor_t) zend_objects_destroy_object,
         (zend_objects_free_object_storage_t) voltclient_free_object_storage_handler,
         NULL TSRMLS_CC);
 
