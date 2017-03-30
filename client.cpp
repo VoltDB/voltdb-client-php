@@ -89,8 +89,11 @@ static StatusListener status_listener;
 
 class VoltCallback : public voltdb::ProcedureCallback {
 public:
-    VoltCallback(int res_id) {
+    VoltCallback(int res_id TSRMLS_DC) {
         m_res_id = res_id;
+#ifdef ZTS
+        this->TSRMLS_C = TSRMLS_C;
+#endif
         /*
          * Increment the ref count so that the resource won't be deleted before
          * the callback is called
@@ -122,6 +125,9 @@ public:
     }
 private:
     int m_res_id;
+#ifdef ZTS
+    TSRMLS_D;
+#endif
 };
 
 static void voltresponse_dtor(zend_rsrc_list_entry *rsrc TSRMLS_DC)
@@ -425,7 +431,7 @@ PHP_METHOD(VoltClient, invokeAsync)
     // Set up the response resource and the callback
     voltresponse_res *response = (voltresponse_res *)emalloc(sizeof(voltresponse_res));
     int res_id = ZEND_REGISTER_RESOURCE(return_value, response, le_voltresponse);
-    boost::shared_ptr<VoltCallback> callback(new VoltCallback(res_id));
+    boost::shared_ptr<VoltCallback> callback(new VoltCallback(res_id TSRMLS_CC));
 
     // Invoke the procedure
     try {
