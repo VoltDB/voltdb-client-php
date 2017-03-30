@@ -411,7 +411,7 @@ PHP_METHOD(VoltClient, invoke)
     }
 
     // Instantiate a PHP response object
-    voltresponse_object *ro = instantiate_voltresponse(return_value, resp);
+    voltresponse_object *ro = instantiate_voltresponse(return_value, resp TSRMLS_CC);
     if (ro == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                              errException TSRMLS_CC);
@@ -464,7 +464,7 @@ PHP_METHOD(VoltClient, getResponse)
                         (char *)VOLT_RESPONSE_RES_NAME, le_voltresponse);
     if (response != NULL && response->resp != NULL) {
         // Instantiate a PHP response object
-        voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp);
+        voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp TSRMLS_CC);
         if (ro == NULL) {
             zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                  errException TSRMLS_CC);

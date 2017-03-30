@@ -117,7 +117,7 @@ void create_voltresponse_class(TSRMLS_D)
 }
 
 voltresponse_object *instantiate_voltresponse(zval *return_val,
-                                              voltdb::InvocationResponse &resp)
+                                              voltdb::InvocationResponse &resp TSRMLS_DC)
 {
     voltresponse_object *ro = NULL;
 
@@ -196,7 +196,7 @@ PHP_METHOD(VoltInvocationResponse, nextResult)
     obj->it++;
 
     // Wrap the table in a PHP class
-    volttable_object *to = instantiate_volttable(return_value, table);
+    volttable_object *to = instantiate_volttable(return_value, table TSRMLS_CC);
     if (to == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                              errException TSRMLS_CC);

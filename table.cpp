@@ -95,7 +95,7 @@ void create_volttable_class(TSRMLS_D)
     volttable_object_handlers.clone_obj = NULL;
 }
 
-volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table)
+volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table TSRMLS_DC)
 {
     volttable_object *to = NULL;
 

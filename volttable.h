@@ -41,6 +41,6 @@ struct volttable_object {
 };
 
 void create_volttable_class(TSRMLS_D);
-volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table);
+volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table TSRMLS_DC);
 
 #endif  // VOLT_TABLE_H
