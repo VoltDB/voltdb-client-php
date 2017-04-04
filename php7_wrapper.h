@@ -258,7 +258,7 @@ static inline int php_voltdb_zend_hash_del(HashTable *ht, char *key, int len) {
 
 #define PHP_VOLTDB_REGISTER_RESOURCE(rsrc_id, zv, rsrc, rsrc_type) \
   rsrc_id = zend_register_resource(rsrc, rsrc_type); \
-  RETURN_RES(rsrc_id);
+  RETVAL_RES(rsrc_id);
 
 #define PHP_VOLTDB_LIST_ADD_REF(rsrc_id) rsrc_id->gc.refcount++;
 

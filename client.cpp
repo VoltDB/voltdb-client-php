@@ -409,6 +409,7 @@ PHP_METHOD(VoltClient, invokeAsync)
 
     // Set up the response resource and the callback
     voltresponse_res *response = (voltresponse_res *)emalloc(sizeof(voltresponse_res));
+    memset(response, 0, sizeof(voltresponse_res));
     php_voltdb_zend_resource_id rsrc_id;
     PHP_VOLTDB_REGISTER_RESOURCE(rsrc_id, return_value, response, le_voltresponse)
     boost::shared_ptr<VoltCallback> callback(new VoltCallback(rsrc_id TSRMLS_CC));
