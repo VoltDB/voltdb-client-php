@@ -149,7 +149,8 @@ PHP_VOLTDB_FREE_WRAPPED_FUNC_START(voltclient_object)
     for (it = wrapped_obj->procedures.begin();
          it != wrapped_obj->procedures.end();
          it++) {
-        efree((void *)it->first);
+        // The key doesn't need to be freed, it is allocated when
+        // parsing the method parameters and managed by PHP engine
         delete it->second;
     }
     wrapped_obj->procedures.clear();
@@ -206,7 +207,6 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
             paramTypes[i] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
         }
 
-        name = estrdup(name);
         proc = new voltdb::Procedure(name, paramTypes);
         obj->procedures[name] = proc;
     } else {

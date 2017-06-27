@@ -227,7 +227,7 @@ static inline int php_voltdb_zend_hash_find(HashTable *ht, char *key, int len,
 
 static inline int php_voltdb_zend_hash_find(HashTable *ht, char *key, int len,
                                           void **value) {
-  zval *value_tmp = zend_hash_str_find(ht, key, len -1);
+  zval *value_tmp = zend_hash_str_find(ht, key, len - 1);
   if (value_tmp == NULL) {
     return FAILURE;
   } else {
@@ -253,7 +253,8 @@ static inline int php_voltdb_zend_hash_del(HashTable *ht, char *key, int len) {
   if (!duplicate) { efree((char *)str); }
 
 #define PHP_VOLTDB_ADD_ASSOC_STRING(arg, key, str, duplicate) \
-  add_assoc_string(arg, key, str); \
+  zend_string *zstr = zend_string_init(str, sizeof(str) - 1, 0); \
+  add_assoc_str_ex(arg, key, sizeof(key) - 1, zstr); \
   if (!duplicate) { efree((char *)str); }
 
 #define PHP_VOLTDB_REGISTER_RESOURCE(rsrc_id, zv, rsrc, rsrc_type) \

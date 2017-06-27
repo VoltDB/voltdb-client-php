@@ -172,8 +172,8 @@ static int row_to_array(zval *return_value, voltdb::Row row)
                  * necessary to dup here because the add_assoc_string takes
                  * char*.
                  */
-                char *dup_val = estrdup(value.c_str());
-                PHP_VOLTDB_ADD_ASSOC_STRING(return_value, name, dup_val, 0)
+                char *val = const_cast<char *>(value.c_str());
+                PHP_VOLTDB_ADD_ASSOC_STRING(return_value, name, val, 1)
                 break;
             }
             case voltdb::WIRE_TYPE_TIMESTAMP:
@@ -199,8 +199,8 @@ static int row_to_array(zval *return_value, voltdb::Row row)
                  * return decimal as a string. PHP float doesn't have enough
                  * precision to hold a SQL decimal
                  */
-                char *dup_val = estrdup(value.toString().c_str());
-                PHP_VOLTDB_ADD_ASSOC_STRING(return_value, name, dup_val, 0)
+                char *val = const_cast<char *>(value.toString().c_str());
+                PHP_VOLTDB_ADD_ASSOC_STRING(return_value, name, val, 1)
                 break;
             }
             case voltdb::WIRE_TYPE_VARBINARY:
