@@ -42,8 +42,11 @@ static zend_object_handlers volttable_object_handlers;
 
 PHP_VOLTDB_FREE_WRAPPED_FUNC_START(volttable_object)
     // Free custom resources
-    delete wrapped_obj->table;
-    wrapped_obj->table = NULL;
+    if (wrapped_obj->table != NULL) {
+        wrapped_obj->table->~Table();
+        efree(wrapped_obj->table);
+        wrapped_obj->table = NULL;
+    }
 PHP_VOLTDB_FREE_WRAPPED_FUNC_END()
 
 static php_voltdb_zend_object volttable_create_handler(zend_class_entry *ce TSRMLS_DC)
@@ -80,7 +83,8 @@ volttable_object *instantiate_volttable(zval *return_val, voltdb::Table &table T
 
     to = Z_VOLTTABLE_OBJECT_P(return_val);
     assert(to != NULL);
-    to->table = new voltdb::Table(table);
+    void *mem = emalloc(sizeof(voltdb::Table));
+    to->table = new (mem) voltdb::Table(table);
     to->it = to->table->iterator();
 
     return to;

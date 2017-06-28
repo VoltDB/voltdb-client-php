@@ -110,7 +110,8 @@ public:
         if (ptr == NULL || type != le_voltresponse) {
             // TODO: shouldn't happen
         } else {
-            ptr->resp = new voltdb::InvocationResponse(response);
+            void *mem = emalloc(sizeof(voltdb::InvocationResponse));
+            ptr->resp = new (mem) voltdb::InvocationResponse(response);
         }
 
         /*
@@ -133,8 +134,9 @@ static void voltresponse_dtor(php_voltdb_zend_resource *rsrc TSRMLS_DC)
     voltresponse_res *res = (voltresponse_res *)rsrc->ptr;
     assert(res != NULL);
 
-    if (res->resp != NULL) {
-        delete res->resp;
+    if (!res->retrieved && res->resp != NULL) {
+        res->resp->~InvocationResponse();
+        efree(res->resp);
         res->resp = NULL;
     }
     efree(res);
@@ -151,12 +153,19 @@ PHP_VOLTDB_FREE_WRAPPED_FUNC_START(voltclient_object)
          it++) {
         // The key doesn't need to be freed, it is allocated when
         // parsing the method parameters and managed by PHP engine
-        delete it->second;
+        if (it->second != NULL) {
+            it->second->~Procedure();
+            efree(it->second);
+            it->second = NULL;
+        }
     }
     wrapped_obj->procedures.clear();
 
-    delete wrapped_obj->client;
-    wrapped_obj->client = NULL;
+    if (wrapped_obj->client != NULL) {
+        wrapped_obj->client->~Client();
+        efree(wrapped_obj->client);
+        wrapped_obj->client = NULL;
+    }
 
     // Return the client held by this thread to the pool
     voltdb::ConnectionPool::pool()->onScriptEnd();
@@ -207,7 +216,8 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
             paramTypes[i] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
         }
 
-        proc = new voltdb::Procedure(name, paramTypes);
+        void *mem = emalloc(sizeof(voltdb::Procedure));
+        proc = new (mem) voltdb::Procedure(name, paramTypes);
         obj->procedures[name] = proc;
     } else {
         proc = it->second;
@@ -342,7 +352,8 @@ PHP_METHOD(VoltClient, connect)
     }
 
     try {
-        obj->client = new voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
+        void *mem = emalloc(sizeof(voltdb::Client));
+        obj->client = new (mem) voltdb::Client(voltdb::ConnectionPool::pool()->acquireClient(
                                              hostname, username,
                                              password, &status_listener,
                                              port, voltdb::HASH_SHA256));
@@ -371,9 +382,9 @@ PHP_METHOD(VoltClient, invoke)
     }
 
     // Invoke the procedure
-    voltdb::InvocationResponse resp;
+    voltdb::InvocationResponse response;
     try {
-        resp = obj->client->invoke(*proc);
+        response = obj->client->invoke(*proc);
     } catch (voltdb::NoConnectionsException) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errNoConnectionsException TSRMLS_CC);
         RETURN_NULL();
@@ -389,6 +400,8 @@ PHP_METHOD(VoltClient, invoke)
     }
 
     // Instantiate a PHP response object
+    void *mem = emalloc(sizeof(voltdb::InvocationResponse));
+    voltdb::InvocationResponse *resp = new (mem) voltdb::InvocationResponse(response);
     voltresponse_object *ro = instantiate_voltresponse(return_value, resp TSRMLS_CC);
     if (ro == NULL) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
@@ -410,9 +423,11 @@ PHP_METHOD(VoltClient, invokeAsync)
     // Set up the response resource and the callback
     voltresponse_res *response = (voltresponse_res *)emalloc(sizeof(voltresponse_res));
     memset(response, 0, sizeof(voltresponse_res));
+    response->retrieved = false;
     php_voltdb_zend_resource_id rsrc_id;
     PHP_VOLTDB_REGISTER_RESOURCE(rsrc_id, return_value, response, le_voltresponse)
-    boost::shared_ptr<VoltCallback> callback(new VoltCallback(rsrc_id TSRMLS_CC));
+    ZMMAllocator<VoltCallback> alloc;
+    boost::shared_ptr<VoltCallback> callback(boost::allocate_shared<VoltCallback> (alloc, rsrc_id TSRMLS_CC));
 
     // Invoke the procedure
     try {
@@ -445,12 +460,13 @@ PHP_METHOD(VoltClient, getResponse)
                               VOLT_RESPONSE_RES_NAME, le_voltresponse)
     if (response != NULL && response->resp != NULL) {
         // Instantiate a PHP response object
-        voltresponse_object *ro = instantiate_voltresponse(return_value, *response->resp TSRMLS_CC);
+        voltresponse_object *ro = instantiate_voltresponse(return_value, response->resp TSRMLS_CC);
         if (ro == NULL) {
             zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                  errException TSRMLS_CC);
             RETURN_NULL();
         }
+        response->retrieved = true;
     } else {
         RETURN_NULL();
     }
@@ -490,7 +506,8 @@ PHP_METHOD(VoltClient, close)
     try {
         if (obj->client != NULL) {
             voltdb::ConnectionPool::pool()->closeClientConnection(*(obj->client));
-            delete obj->client;
+            obj->client->~Client();
+            efree(obj->client);
             obj->client = NULL;
         }
     } catch (voltdb::MisplacedClientException) {

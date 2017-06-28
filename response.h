@@ -60,6 +60,6 @@ static inline voltresponse_object
 
 void create_voltresponse_class(TSRMLS_D);
 voltresponse_object *instantiate_voltresponse(zval *return_val,
-                                              voltdb::InvocationResponse &resp TSRMLS_DC);
+                                              voltdb::InvocationResponse *resp TSRMLS_DC);
 
 #endif  // VOLT_INVOCATION_RESPONSE_H

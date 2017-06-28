@@ -46,8 +46,11 @@ static zend_object_handlers voltresponse_object_handlers;
 PHP_VOLTDB_FREE_WRAPPED_FUNC_START(voltresponse_object)
     // Free custom resources
     wrapped_obj->results.clear();
-    delete wrapped_obj->response;
-    wrapped_obj->response = NULL;
+    if (wrapped_obj->response != NULL) {
+        wrapped_obj->response->~InvocationResponse();
+        efree(wrapped_obj->response);
+        wrapped_obj->response = NULL;
+    }
 PHP_VOLTDB_FREE_WRAPPED_FUNC_END()
 
 static php_voltdb_zend_object voltresponse_create_handler(zend_class_entry *ce TSRMLS_DC)
@@ -92,7 +95,7 @@ void create_voltresponse_class(TSRMLS_D)
 }
 
 voltresponse_object *instantiate_voltresponse(zval *return_val,
-                                              voltdb::InvocationResponse &resp TSRMLS_DC)
+                                              voltdb::InvocationResponse *resp TSRMLS_DC)
 {
     voltresponse_object *ro = NULL;
 
@@ -102,7 +105,7 @@ voltresponse_object *instantiate_voltresponse(zval *return_val,
 
     ro = Z_VOLTRESPONSE_OBJECT_P(return_val);
     assert(ro != NULL);
-    ro->response = new voltdb::InvocationResponse(resp);
+    ro->response = resp;
     ro->results = ro->response->results();
     ro->it = ro->results.begin();
 
