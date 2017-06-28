@@ -46,6 +46,7 @@ static zend_object_handlers voltresponse_object_handlers;
 PHP_VOLTDB_FREE_WRAPPED_FUNC_START(voltresponse_object)
     // Free custom resources
     wrapped_obj->results.clear();
+    std::vector<voltdb::Table>().swap(wrapped_obj->results);
     if (wrapped_obj->response != NULL) {
         wrapped_obj->response->~InvocationResponse();
         efree(wrapped_obj->response);
