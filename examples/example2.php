@@ -1,7 +1,7 @@
 <?php
 
 $hostname = 'localhost';
-$port = 32778;
+$port = 32768;
 
 // Use a client that has a cached connection from the pool.
 try {
@@ -13,11 +13,17 @@ try {
      * All params are strings. If the procedure was not called before, this will
      * also create a procedure with strings as param types.
      */
-    $voltarr = new VoltArray(VoltArray::VOLT_TYPE_TIMESTAMP);
-    $voltarr->add("1499463188000000", "1499473188000000");
-    $resp = $voltClient->invoke("SelectWithin", array($voltarr));
+    $handle = $voltClient->invokeAsync("Vote", array(3, 4, 5));
+    $retry = 0;
+    while (!$voltClient->drain()) {
+        $retry++;
+    }
+    echo $retry . "\n";
+    echo $handle . "\n";
+    $resp = $voltClient->getResponse($handle);
     if ($resp === null) {
         echo "invoke had an error\n";
+        return;
     } else {
         echo "invoke returned a response\n";
     }
@@ -41,18 +47,8 @@ try {
         }
     }
     $voltClient->close();
-/*
-    $voltClient->connect($hostname, '', '', $port);
-    $resp = $voltClient->invoke("Vote", array(4, 5, 6));
-    if ($resp === null) {
-        echo "invoke had an error\n";
-    } else {
-        echo "invoke returned a response\n";
-    }
-    $voltClient->close();
-    */
 } catch (Exception $e) {
-    echo "Exception " . $e->getCode() . " " . $e->getMessage() . "\n";
+    echo "Exception " . $e->getCode() . "\n";
     return;
 }
 

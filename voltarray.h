@@ -21,28 +21,40 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef VOLT_COMMON_H
-#define VOLT_COMMON_H
+#ifndef VOLT_ARRAY_H
+#define VOLT_ARRAY_H
 
-extern "C" {
-#include "php.h"
-#include "php_ini.h"
-#include "ext/standard/info.h"
-#include "ext/standard/php_var.h"
-#include "ext/spl/spl_exceptions.h"
-#include "zend_exceptions.h"
-#ifdef ZTS
-#include "TSRM.h"
-#endif
+#include "common.h"
+
+extern zend_class_entry *voltarray_ce;
+
+// VoltArray
+PHP_METHOD(VoltArray, __construct);
+PHP_METHOD(VoltArray, add);
+PHP_METHOD(VoltArray, dump);
+
+PHP_VOLTDB_WRAP_OBJECT_START(voltarray_object)
+    php_voltdb_long wire_type;
+    std::vector<php_voltdb_zval_vec> values;
+PHP_VOLTDB_WRAP_OBJECT_END(voltarray_object)
+
+#if PHP_MAJOR_VERSION < 7
+
+#define Z_VOLTARRAY_OBJECT_P(zv) \
+  (voltarray_object *)zend_object_store_get_object(zv TSRMLS_CC)
+
+#else
+
+static inline voltarray_object
+*voltarray_object_from_obj(zend_object *obj) {
+    return (voltarray_object *)((char*)(obj) -
+                                   XtOffsetOf(voltarray_object, std));
 }
 
-#include "php7_wrapper.h"
+#define Z_VOLTARRAY_OBJECT_P(zv) voltarray_object_from_obj(Z_OBJ_P((zv)))
 
-/* PHP older than 5.3.13 doesn't define this macro. We need to define it here */
-#ifndef PHP_FE_END
-#    define PHP_FE_END {NULL, NULL, NULL}
-#endif
+#endif /* PHP_MAJOR_VERSION */
 
-/* Common functions */
+void create_voltarray_class(TSRMLS_D);
 
-#endif  // VOLT_COMMON_H
+#endif  // VOLT_ARRAY_H

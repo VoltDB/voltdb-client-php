@@ -32,6 +32,7 @@
 #include "client.h"
 #include "response.h"
 #include "volttable.h"
+#include "voltarray.h"
 #include "exception.h"
 
 // Initialize global variables
@@ -95,6 +96,7 @@ PHP_MINIT_FUNCTION(voltdb)
     create_voltclient_class(module_number TSRMLS_CC);
     create_voltresponse_class(TSRMLS_C);
     create_volttable_class(TSRMLS_C);
+    create_voltarray_class(TSRMLS_C);
 
     // Set up all the exception codes as constants
     REGISTER_LONG_CONSTANT("VOLT_EXCEPTION", errException, CONST_CS | CONST_PERSISTENT);

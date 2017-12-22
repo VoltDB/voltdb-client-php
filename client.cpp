@@ -36,6 +36,7 @@
 
 #include "response.h"
 #include "client.h"
+#include "voltarray.h"
 #include "exception.h"
 
 static const char *VOLT_NULL_INDICATOR = "\\N";
@@ -203,7 +204,7 @@ void create_voltclient_class(int module_number TSRMLS_DC)
                                                         module_number);
 }
 
-voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int param_count)
+voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, HashTable *arr, int param_count)
 {
     std::map<const char *, voltdb::Procedure *>::const_iterator it = obj->procedures.find(name);
     voltdb::Procedure *proc = NULL;
@@ -212,9 +213,23 @@ voltdb::Procedure *get_procedure(voltclient_object *obj, const char *name, int p
     if (it == obj->procedures.end()) {
         // Procedure doesn't exist, create one with all string params
         std::vector<voltdb::Parameter> paramTypes(param_count);
-        for (i = 0; i < param_count; i++) {
-            paramTypes[i] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
-        }
+        zval *param = NULL;
+        PHP_VOLTDB_HASH_FOREACH_VAL_START(arr, param)
+            if (Z_TYPE_P(param) == IS_OBJECT) {
+                if (!instanceof_function(Z_OBJCE_P(param), voltarray_ce)) {
+                    zend_throw_exception(zend_exception_get_default(TSRMLS_C),
+                                         "Objects of class other than VoltArray are not allowed as procedure parameters",
+                                         errParamMismatchException TSRMLS_CC);
+                    return NULL;
+                }
+                voltarray_object *voltarr_obj = Z_VOLTARRAY_OBJECT_P(param);
+                paramTypes[i] = voltdb::Parameter(static_cast<voltdb::WireType>(voltarr_obj->wire_type), true);
+            }
+            else {
+                paramTypes[i] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
+            }
+            i++;
+        PHP_VOLTDB_HASH_FOREACH_END()
 
         void *mem = emalloc(sizeof(voltdb::Procedure));
         proc = new (mem) voltdb::Procedure(name, paramTypes);
@@ -257,7 +272,7 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
     }
 
     // Get the procedure
-    voltdb::Procedure *proc = get_procedure(obj, name, param_count);
+    voltdb::Procedure *proc = get_procedure(obj, name, param_hash, param_count);
     voltdb::ParameterSet *proc_params = proc->params();
     try {
         proc_params->reset();
@@ -318,6 +333,149 @@ voltdb::Procedure *prepare_to_invoke(INTERNAL_FUNCTION_PARAMETERS, voltclient_ob
                     return NULL;
                 }
                 break;
+            case IS_OBJECT: {
+                voltarray_object *obj = Z_VOLTARRAY_OBJECT_P(param);
+                switch(obj->wire_type) {
+                    case voltdb::WIRE_TYPE_TINYINT: {
+                        std::vector<int8_t> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<int8_t>(zval_get_long(&(*it))));
+                        }
+                        try {
+                            proc_params->addInt8(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_SMALLINT: {
+                        std::vector<int16_t> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<int16_t>(zval_get_long(&(*it))));
+                        }
+                        try {
+                            proc_params->addInt16(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_INTEGER: {
+                        std::vector<int32_t> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<int32_t>(zval_get_long(&(*it))));
+                        }
+                        try {
+                            proc_params->addInt32(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_BIGINT: {
+                        std::vector<int64_t> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<int64_t>(zval_get_long(&(*it))));
+                        }
+                        try {
+                            proc_params->addInt64(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_FLOAT: {
+                        std::vector<double> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<double>(zval_get_double(&(*it))));
+                        }
+                        try {
+                            proc_params->addDouble(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_STRING: {
+                        std::vector<voltdb::buffer_t> vals;
+                        std::vector<zend_string *> zstrs;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            zend_string *zstr = zval_get_string(&(*it));
+                            vals.push_back(voltdb::buffer_t(ZSTR_VAL(zstr), ZSTR_LEN(zstr)));
+                            zstrs.push_back(zstr);
+                        }
+                        try {
+                            proc_params->addString(vals);
+                            for (std::vector<zend_string *>::iterator it = zstrs.begin(); it != zstrs.end(); it++) {
+                                zend_string_release(*it);
+                            }
+                        } catch (voltdb::ParamMismatchException e) {
+                            for (std::vector<zend_string *>::iterator it = zstrs.begin(); it != zstrs.end(); it++) {
+                                zend_string_release(*it);
+                            }
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_DECIMAL: {
+                        std::vector<voltdb::Decimal> vals;
+                        std::vector<zend_string *> zstrs;
+                        try {
+                            for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                                zend_string *zstr = zval_get_string(&(*it));
+                                vals.push_back(voltdb::Decimal(std::string(ZSTR_VAL(zstr), ZSTR_LEN(zstr))));
+                                zstrs.push_back(zstr);
+                            }
+                            proc_params->addDecimal(vals);
+                            for (std::vector<zend_string *>::iterator it = zstrs.begin(); it != zstrs.end(); it++) {
+                                zend_string_release(*it);
+                            }
+                        } catch (voltdb::StringToDecimalException e) {
+                            for (std::vector<zend_string *>::iterator it = zstrs.begin(); it != zstrs.end(); it++) {
+                                zend_string_release(*it);
+                            }
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errStringToDecimalException TSRMLS_CC);
+                            return NULL;
+                        } catch (voltdb::ParamMismatchException e) {
+                            for (std::vector<zend_string *>::iterator it = zstrs.begin(); it != zstrs.end(); it++) {
+                                zend_string_release(*it);
+                            }
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                    case voltdb::WIRE_TYPE_TIMESTAMP: {
+                        std::vector<int64_t> vals;
+                        for (std::vector<zval>::iterator it = obj->values.begin(); it != obj->values.end(); it++) {
+                            vals.push_back(static_cast<int64_t>(zval_get_long(&(*it))));
+                        }
+                        try {
+                            proc_params->addTimestamp(vals);
+                        } catch (voltdb::ParamMismatchException e) {
+                            zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(),
+                                                 errParamMismatchException TSRMLS_CC);
+                            return NULL;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
             default:
                 zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL,
                                      errParamMismatchException TSRMLS_CC);
@@ -357,8 +515,8 @@ PHP_METHOD(VoltClient, connect)
                                              hostname, username,
                                              password, &status_listener,
                                              port, voltdb::HASH_SHA256));
-    } catch (voltdb::ConnectException) {
-        zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errConnectException TSRMLS_CC);
+    } catch (voltdb::ConnectException e) {
+        zend_throw_exception(zend_exception_get_default(TSRMLS_C), e.what(), errConnectException TSRMLS_CC);
         RETURN_FALSE;
     } catch (voltdb::LibEventException) {
         zend_throw_exception(zend_exception_get_default(TSRMLS_C), NULL, errLibEventException TSRMLS_CC);

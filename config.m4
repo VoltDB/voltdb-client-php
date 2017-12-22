@@ -63,7 +63,7 @@ if test "$PHP_VOLTDB" != "no"; then
 
   LDFLAGS="$LDFLAGS $PHP_VOLTDB/libvoltdbcpp.a"
 
-  voltdb_sources="voltdb.cpp client.cpp response.cpp table.cpp"
+  voltdb_sources="voltdb.cpp client.cpp response.cpp table.cpp voltarray.cpp"
   PHP_NEW_EXTENSION(voltdb,
                     $voltdb_sources,
                     $ext_shared,

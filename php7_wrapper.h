@@ -40,6 +40,7 @@
 #define php_voltdb_int int
 #define php_voltdb_long long
 #define php_voltdb_ulong ulong
+#define php_voltdb_zval_vec zval *
 #define php_voltdb_zend_object zend_object_value
 #define php_voltdb_zend_resource zend_rsrc_list_entry
 #define php_voltdb_zend_resource_id int
@@ -50,7 +51,6 @@
 #define php_voltdb_add_next_index_stringl(data, str, len, b) \
   add_next_index_stringl(data, str, len, b)
 
-#define PHP_VOLTDB_RETURN_STRING(val, dup) RETURN_STRING(val, dup)
 #define PHP_VOLTDB_MAKE_STD_ZVAL(pzv) MAKE_STD_ZVAL(pzv)
 #define PHP_VOLTDB_FREE_STD_ZVAL(pzv)
 #define PHP_VOLTDB_DELREF(zv) Z_DELREF_P(zv)
@@ -160,6 +160,7 @@ static inline int php_voltdb_zend_hash_find(HashTable *ht, char *key, int len,
 #define php_voltdb_int size_t
 #define php_voltdb_long zend_long
 #define php_voltdb_ulong zend_ulong
+#define php_voltdb_zval_vec zval
 #define php_voltdb_zend_object zend_object*
 #define php_voltdb_zend_resource zend_resource
 #define php_voltdb_zend_resource_id zend_resource*
@@ -170,7 +171,6 @@ static inline int php_voltdb_zend_hash_find(HashTable *ht, char *key, int len,
 #define php_voltdb_add_next_index_stringl(data, str, len, b) \
   add_next_index_stringl(data, str, len)
 
-#define PHP_VOLTDB_RETURN_STRING(val, dup) RETURN_STRING(val)
 #define PHP_VOLTDB_MAKE_STD_ZVAL(pzv) \
   pzv = (zval *)emalloc(sizeof(zval));
 #define PHP_VOLTDB_FREE_STD_ZVAL(pzv) efree(pzv);
@@ -249,7 +249,8 @@ static inline int php_voltdb_zend_hash_del(HashTable *ht, char *key, int len) {
   handler.free_obj = free_##class_object;
 
 #define PHP_VOLTDB_RETURN_STRING(str, duplicate) \
-  RETURN_STRING(str); \
+  zend_string *zstr = zend_string_init(str, strlen(str), 0); \
+  RETURN_STR(zstr); \
   if (!duplicate) { efree((char *)str); }
 
 #define PHP_VOLTDB_ADD_ASSOC_STRING(arg, key, str, duplicate) \
